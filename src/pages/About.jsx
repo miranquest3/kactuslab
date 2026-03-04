@@ -67,7 +67,10 @@ export default function About() {
           </p>
         </div>
       </section>
+
+{/* 3D Network Visualization - Placeholder for future interactive component
 <Network3D />
+*/}
       {/* Section 2 */}
       <section className="container-p py-20 grid md:grid-cols-2 gap-16 items-center">
         <div>

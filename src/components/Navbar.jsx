@@ -53,7 +53,7 @@ export default function Navbar() {
 
       {/* Right Button */}
       <div>
-        {!user ? (
+        {/* {!user ? (
           <Link
             to="/login"
             className="px-6 py-2 rounded-full bg-emerald-900 text-white font-medium hover:bg-emerald-800 transition"
@@ -73,7 +73,7 @@ export default function Navbar() {
               Logout
             </button>
           </div>
-        )}
+        )} */}
       </div>
 
     </nav>

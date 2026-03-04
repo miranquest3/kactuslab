@@ -5,7 +5,8 @@ import bg from '../assets/bg.jpg'
 import RegisterModal from '../components/RegisterModal'
 import { useEffect } from 'react'
 export default function Login() {
-  const { login, setUser } = useAuth()
+  // const { login, setUser } = useAuth()  // Disabled - login functionality removed for development
+  const { setUser } = useAuth()
   const navigate = useNavigate()
   const location = useLocation()
   const from = location.state?.from?.pathname || '/'
@@ -34,16 +35,8 @@ export default function Login() {
 }, [navigate])
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setError('')
-    setLoading(true)
-    try {
-      await login(email.trim(), password)
-      navigate(from, { replace: true })
-    } catch (err) {
-      setError(err.message || 'Failed to login')
-    } finally {
-      setLoading(false)
-    }
+    // Login functionality disabled for development
+    setError('Login is disabled. Please use the dashboard directly.')
   }
 
   return (

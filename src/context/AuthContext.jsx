@@ -3,42 +3,36 @@ import { createContext, useContext, useState, useEffect } from 'react'
 const AuthContext = createContext()
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null)
+  // Default user for development (no login required)
+  const [user, setUser] = useState({
+    name: 'Developer',
+    email: 'dev@kactus.local',
+    id: 1
+  })
 
   useEffect(() => {
+    // Check for token if available
     const token = localStorage.getItem('token')
     if (token) {
-      const payload = JSON.parse(atob(token.split('.')[1]))
-      setUser({
-        name: payload.name,
-        email: payload.email
-      })
+      try {
+        const payload = JSON.parse(atob(token.split('.')[1]))
+        setUser({
+          name: payload.name,
+          email: payload.email,
+          id: payload.id
+        })
+      } catch (e) {
+        console.log('Token parsing error, using default user')
+      }
     }
   }, [])
 
-  const login = async (email, password) => {
-    const res = await fetch('http://localhost:5000/api/auth/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password })
-    })
-
-    const data = await res.json()
-
-    if (!res.ok) throw new Error(data.message)
-
-    localStorage.setItem('token', data.accessToken)
-    setUser(data.user)
-  }
-
-  const logout = () => {
-    localStorage.removeItem('token')
-    setUser(null)
-    window.location.href = '/login'
-  }
+  // Login/Logout functions disabled for development
+  // const login = async (email, password) => { ... }
+  // const logout = () => { ... }
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, setUser }}>
+    <AuthContext.Provider value={{ user, setUser }}>
       {children}
     </AuthContext.Provider>
   )
