@@ -37,13 +37,13 @@ export default function FAQSection() {
   ];
 
   return (
-    <section className="bg-[#F2F2EF] py-32">
-      <div className="max-w-7xl mx-auto px-8">
-        <div className="grid md:grid-cols-2 gap-24">
+    <section className="bg-[#F2F2EF] py-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
 
           {/* LEFT SIDE */}
           <div>
-            <h2 className="text-6xl font-serif text-[#1E2B26]">
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-serif text-[#1E2B26]">
               FAQs
             </h2>
 

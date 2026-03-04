@@ -122,8 +122,8 @@ function TiltCard({ children }) {
     <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-emerald-400/10 blur-3xl rounded-full" />
   </div>
 
-  <div className="relative container mx-auto px-6">
-    <div className="bg-[#EDEFE6] rounded-[40px] px-10 py-20 md:px-16 md:py-24 grid md:grid-cols-2 gap-16 items-center shadow-[0_40px_80px_rgba(0,0,0,0.08)]">
+  <div className="relative container mx-auto px-4 sm:px-6">
+  <div className="bg-[#EDEFE6] rounded-[40px] px-6 sm:px-10 py-12 md:px-16 md:py-24 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center shadow-[0_40px_80px_rgba(0,0,0,0.08)]">
 
       {/* LEFT CONTENT */}
       <motion.div
@@ -135,7 +135,7 @@ function TiltCard({ children }) {
           initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           transition={{ duration: 1.2, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          className="text-5xl md:text-6xl font-serif leading-tight text-slate-900"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif leading-tight text-slate-900"
         >
           AI-Powered Try-Ons for
           <br />
@@ -146,7 +146,7 @@ function TiltCard({ children }) {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.5 }}
-          className="mt-8 text-slate-600 max-w-lg text-lg"
+          className="mt-6 text-slate-600 max-w-lg text-base md:text-lg"
         >
           KactusLabs helps fashion brands reduce returns and increase
           conversions with AI-generated virtual try-ons and intelligent
@@ -158,7 +158,7 @@ function TiltCard({ children }) {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.7 }}
-          className="mt-10 flex gap-6 flex-wrap"
+          className="mt-8 flex gap-4 flex-wrap"
         >
           <motion.button
             whileHover={{
@@ -194,7 +194,7 @@ function TiltCard({ children }) {
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
         whileHover={{ scale: 1.02 }}
-        className="rounded-3xl overflow-hidden shadow-[0_60px_100px_rgba(0,0,0,0.2)]"
+        className="rounded-3xl overflow-hidden shadow-[0_60px_100px_rgba(0,0,0,0.2)] w-full"
       >
         <motion.img
           src={HeroMain}
@@ -202,7 +202,7 @@ function TiltCard({ children }) {
           initial={{ scale: 1.1 }}
           animate={{ scale: 1 }}
           transition={{ duration: 1.4 }}
-          className="w-full object-cover"
+          className="w-full h-auto object-cover"
         />
       </motion.div>
 
@@ -334,7 +334,7 @@ function TiltCard({ children }) {
   {/*
   {/* FROM BROWSING TO BUYING */}
   <section id="features" className="bg-[#EDEFE6] py-20 overflow-hidden">
-    <div className="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+    <div className="container mx-auto px-4 sm:px-6 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
 
       {/* Image Animation */}
       <motion.div
@@ -395,7 +395,7 @@ function TiltCard({ children }) {
 
     </div>
   </section>
-  */
+
 
         {/* PRICING STRIP */}
         <section className="bg-emerald-950 text-white py-16 text-center">
@@ -451,7 +451,7 @@ function TiltCard({ children }) {
     </motion.div>
 
     {/* Stat Cards */}
-    <div className="mt-20 grid md:grid-cols-3 gap-10">
+    <div className="mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
 
       {[
         {
@@ -521,7 +521,7 @@ function TiltCard({ children }) {
 {/* TESTIMONIALS – SAME SIZE PREMIUM VERSION */}
 <section className="relative bg-gradient-to-b from-emerald-950 via-emerald-900 to-emerald-950 py-28 overflow-hidden">
 
-  <div className="relative container mx-auto px-6">
+  <div className="relative container mx-auto px-4 sm:px-6">
 
     {/* Title */}
     <motion.div
@@ -540,7 +540,7 @@ function TiltCard({ children }) {
     </motion.div>
 
     {/* Cards Grid (Same Layout) */}
-    <div className="mt-20 grid md:grid-cols-4 gap-8">
+    <div className="mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
 
       {[
         "KactusLabs improved our conversions instantly.",

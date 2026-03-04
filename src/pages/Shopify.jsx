@@ -19,7 +19,7 @@ export default function Shopify() {
           </button>
 
           {/* Visual */}
-          <div className="mt-20 flex items-center justify-center gap-10">
+          <div className="mt-20 flex items-center justify-center gap-6 flex-wrap">
             <div className="w-24 h-24 rounded-full bg-white shadow-md flex items-center justify-center text-3xl font-bold text-green-600">
               S
             </div>

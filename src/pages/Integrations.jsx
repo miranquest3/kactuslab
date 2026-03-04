@@ -12,7 +12,7 @@ export default function Integrations() {
       <section className="bg-[#e9efe4] py-24">
         <div className="container-p text-center">
 
-          <h1 className="text-4xl md:text-5xl font-semibold mb-6 max-w-3xl mx-auto leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold mb-6 max-w-3xl mx-auto leading-tight">
             Integrate KactusLabs with <br /> Your Commerce Stack
           </h1>
 
@@ -26,10 +26,10 @@ export default function Integrations() {
           </button>
 
           {/* Visual Connection */}
-          <div className="mt-20 flex items-center justify-center gap-12 md:gap-20">
+          <div className="mt-20 flex items-center justify-center gap-8 md:gap-20 flex-wrap">
             <div className="flex flex-col items-center">
               <div className="w-24 h-24 rounded-full bg-white shadow-md flex items-center justify-center text-2xl font-bold text-green-600">
-                <img src={ShopifyLogo} />
+                <img src={ShopifyLogo} alt="Shopify" className="w-10 h-10 object-contain" />
               </div>
               <span className="mt-3 text-sm text-slate-600">Shopify</span>
             </div>
@@ -40,7 +40,7 @@ export default function Integrations() {
 
             <div className="flex flex-col items-center">
               <div className="w-24 h-24 rounded-full bg-white shadow-md flex items-center justify-center text-lg font-bold text-purple-600">
-                 <img src={WooCommerceLogo} />
+                 <img src={WooCommerceLogo} alt="WooCommerce" className="w-10 h-10 object-contain" />
               </div>
               <span className="mt-3 text-sm text-slate-600">WooCommerce</span>
             </div>
@@ -53,16 +53,16 @@ export default function Integrations() {
       {/* Integration Cards */}
       <section className="container-p py-24 text-center">
 
-        <h2 className="text-3xl md:text-4xl font-semibold mb-16">
+        <h2 className="text-3xl sm:text-3xl md:text-4xl font-semibold mb-16">
           Seamlessly integrate KactusLabs <br /> with your tech stack
         </h2>
 
-        <div className="grid md:grid-cols-3 gap-8 text-left">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
 
           {/* Shopify */}
           <div className="bg-[#eef2ea] rounded-2xl p-8 shadow-sm hover:shadow-md transition">
-            <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-green-600 font-bold mb-6">
-              <img src={ShopifyLogo} alt="Shopify Logo" className="w-8 h-8" />
+              <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-green-600 font-bold mb-6">
+              <img src={ShopifyLogo} alt="Shopify Logo" className="w-8 h-8 object-contain" />
             </div>
             <h3 className="text-xl font-semibold mb-3">Shopify</h3>
             <p className="text-slate-600 mb-6">
@@ -79,8 +79,8 @@ export default function Integrations() {
 
           {/* WooCommerce */}
           <div className="bg-[#eef2ea] rounded-2xl p-8 shadow-sm hover:shadow-md transition">
-            <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-purple-600 font-bold mb-6">
-              <img src={WooCommerceLogo} alt="WooCommerce Logo" className="w-8 h-8" />
+              <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-purple-600 font-bold mb-6">
+              <img src={WooCommerceLogo} alt="WooCommerce Logo" className="w-8 h-8 object-contain" />
             </div>
             <h3 className="text-xl font-semibold mb-3">WooCommerce</h3>
             <p className="text-slate-600 mb-6">
@@ -91,8 +91,8 @@ export default function Integrations() {
 
           {/* API */}
           <div className="bg-[#eef2ea] rounded-2xl p-8 shadow-sm hover:shadow-md transition">
-            <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-slate-600 font-bold mb-6">
-              <img src={KactusLabsAPI} alt="KactusLabs API" className="w-8 h-8" />
+              <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-slate-600 font-bold mb-6">
+              <img src={KactusLabsAPI} alt="KactusLabs API" className="w-8 h-8 object-contain" />
             </div>
             <h3 className="text-xl font-semibold mb-3">KactusLabs API</h3>
             <p className="text-slate-600 mb-6">
