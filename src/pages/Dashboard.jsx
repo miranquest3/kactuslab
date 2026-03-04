@@ -411,47 +411,58 @@ function TiltCard({ children }) {
         {/* WHY IT MATTERS */}
     {/* WHY IT MATTERS */}
  {/* WHY IT MATTERS */}
+{/* WHY IT MATTERS */}
 <section className="relative bg-[#F4F5F1] py-32 overflow-hidden">
 
   {/* Soft Background Glow */}
-  <div className="absolute inset-0 pointer-events-none">
-    <div className="absolute -bottom-40 -left-40 w-[500px] h-[500px] bg-emerald-200/30 blur-3xl rounded-full" />
-  </div>
+  <motion.div 
+    className="absolute inset-0 pointer-events-none"
+    animate={{ scale: [1, 1.03, 1], opacity: [0.2, 0.45, 0.2] }}
+    transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+  >
+    <div className="absolute -bottom-40 -left-40 w-[500px] h-[500px] bg-emerald-200/20 blur-3xl rounded-full" />
+    <div className="absolute -top-40 -right-40 w-[600px] h-[600px] bg-emerald-300/15 blur-3xl rounded-full" />
+  </motion.div>
 
   <div className="relative container mx-auto px-6 text-center">
 
     {/* Title Animation */}
     <motion.div
-      initial={{ opacity: 0, y: 60 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+      initial={{ opacity: 0, y: 40, scale: 0.97 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
       viewport={{ once: true }}
     >
-      <h2 className="text-4xl md:text-5xl font-serif text-slate-800">
+      <h2 className="text-5xl md:text-6xl font-serif text-slate-800 tracking-tight leading-tight">
         Why It Matters
       </h2>
-      <p className="mt-4 text-slate-500">
-        Powering the Next Generation of Fashion
+      <p className="mt-3 text-lg md:text-xl text-slate-500 max-w-xl mx-auto">
+        Powering the Next Generation of Fashion with AI-driven precision and style.
       </p>
     </motion.div>
 
     {/* Logos */}
     <motion.div
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 0.6 }}
-      transition={{ duration: 1, delay: 0.3 }}
+      initial={{ opacity: 0, y: 15 }}
+      whileInView={{ opacity: 0.85, y: 0 }}
+      transition={{ duration: 0.6, delay: 0.2 }}
       viewport={{ once: true }}
-      className="mt-12 flex flex-wrap justify-center gap-12 text-sm text-slate-500"
+      className="mt-12 flex flex-wrap justify-center gap-16 text-sm text-slate-500"
     >
-      <span>logolpsum</span>
-      <span>logolpsum</span>
-      <span>LOGOIPSUM</span>
-      <span>logolpsum</span>
-      <span>logolpsum</span>
+      {["logolpsum","logolpsum","LOGOIPSUM","logolpsum","logolpsum"].map((logo, i) => (
+        <motion.span
+          key={i}
+          whileHover={{ scale: 1.25, y: -5, opacity: 1 }}
+          transition={{ type: "spring", stiffness: 300, damping: 18 }}
+          className="cursor-pointer font-medium"
+        >
+          {logo}
+        </motion.span>
+      ))}
     </motion.div>
 
     {/* Stat Cards */}
-    <div className="mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
+    <div className="mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
 
       {[
         {
@@ -473,39 +484,36 @@ function TiltCard({ children }) {
       ].map((card, index) => (
         <motion.div
           key={index}
-          initial={{ opacity: 0, y: 80 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 60, scale: 0.97 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
           transition={{
-            duration: 1,
-            delay: index * 0.2,
-            ease: [0.22, 1, 0.36, 1]
+            duration: 0.6,
+            delay: index * 0.15,
+            ease: "easeOut"
           }}
           viewport={{ once: true }}
           whileHover={{
-            y: -15,
-            scale: 1.03,
-            boxShadow: "0px 40px 80px rgba(0,0,0,0.08)"
+            y: -10,
+            scale: 1.05,
+            rotate: 0.5,
+            boxShadow: "0 40px 60px rgba(0,0,0,0.08)"
           }}
-          className={`rounded-3xl p-10 text-left transition-all ${
+          className={`rounded-3xl p-12 text-left transition-all ${
             card.dark
-              ? "text-white bg-gradient-to-br from-emerald-950 to-emerald-800"
-              : "bg-white border border-slate-200 text-slate-800"
+              ? "text-white bg-gradient-to-br from-emerald-950 to-emerald-800 shadow-lg"
+              : "bg-white border border-slate-200 text-slate-800 shadow-md"
           }`}
         >
           <motion.img
             src={card.icon}
             alt=""
             className="w-16 mb-6"
-            whileHover={{ rotate: 5, scale: 1.1 }}
+            whileHover={{ rotate: 10, scale: 1.1 }}
+            transition={{ type: "spring", stiffness: 220, damping: 12 }}
           />
 
-          <div className="text-lg font-semibold">
-            {card.title}
-          </div>
-
-          <p className={`mt-4 text-sm ${
-            card.dark ? "opacity-80" : "text-slate-600"
-          }`}>
+          <div className="text-xl font-semibold mb-2">{card.title}</div>
+          <p className={`text-sm ${card.dark ? "opacity-80" : "text-slate-600"}`}>
             {card.desc}
           </p>
         </motion.div>
@@ -515,7 +523,6 @@ function TiltCard({ children }) {
 
   </div>
 </section>
-
 
    {/* TESTIMONIALS – ULTRA FLOATING PREMIUM */}
 {/* TESTIMONIALS – SAME SIZE PREMIUM VERSION */}
