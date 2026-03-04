@@ -99,7 +99,7 @@ function Structure() {
 
 export default function Network3D() {
   return (
-    <div className="w-full h-[520px]">
+    <div className="w-full h-[320px] md:h-[420px] lg:h-[520px]">
       <Canvas camera={{ position: [10, 6, 10], fov: 50 }}>
         <ambientLight intensity={0.7} />
         <directionalLight position={[6, 8, 5]} intensity={1.2} />

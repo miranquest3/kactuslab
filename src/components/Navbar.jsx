@@ -18,10 +18,10 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="bg-white border-b border-slate-200 px-10 py-4 flex items-center justify-between">
+    <nav className="bg-white border-b border-slate-200 px-4 sm:px-6 lg:px-10 py-4 flex items-center justify-between">
 
       {/* Logo */}
-      <Link to="/" className="text-xl font-semibold text-slate-900">
+      <Link to="/" className="text-lg sm:text-xl font-semibold text-slate-900">
         KactusLabs
       </Link>
 

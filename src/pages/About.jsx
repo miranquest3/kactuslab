@@ -8,7 +8,7 @@ export default function About() {
       
       {/* Hero Section */}
       <section className="container-p py-20 text-center">
-        <h1 className="text-4xl md:text-5xl font-semibold mb-4">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold mb-4">
           About KactusLabs
         </h1>
         <p className="text-slate-600 max-w-2xl mx-auto">
@@ -20,7 +20,7 @@ export default function About() {
           <img
             src={HeroAbout}
             alt="KactusLabs intelligence visualization"
-            className="rounded-2xl shadow-lg max-w-4xl w-full"
+            className="rounded-2xl shadow-lg max-w-4xl w-full h-auto object-cover"
           />
         </div>
       </section>
@@ -31,7 +31,7 @@ export default function About() {
           What We’re Building
         </h2>
 
-        <div className="flex justify-center gap-6 mb-10">
+        <div className="flex justify-center gap-6 mb-10 flex-wrap">
           <div className="w-40 h-56 bg-[#0b3b2e] rounded-2xl"></div>
           <div className="w-40 h-56 bg-[#c8d6b8] rounded-2xl"></div>
           <div className="w-40 h-56 bg-[#dfe7d5] rounded-2xl"></div>
@@ -48,11 +48,11 @@ export default function About() {
       </section>
 
       {/* Section 1 */}
-      <section className="container-p py-20 grid md:grid-cols-2 gap-16 items-center">
+      <section className="container-p py-20 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
         <img
           src={StopGuessing}
           alt="Business professionals discussion"
-          className="rounded-2xl shadow-lg"
+          className="rounded-2xl shadow-lg w-full h-auto object-cover"
         />
 
         <div>
@@ -72,7 +72,7 @@ export default function About() {
 <Network3D />
 */}
       {/* Section 2 */}
-      <section className="container-p py-20 grid md:grid-cols-2 gap-16 items-center">
+      <section className="container-p py-20 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
         <div>
           <h2 className="text-3xl font-semibold mb-6">
             We believe intelligence should be clear, not chaotic.
@@ -87,7 +87,7 @@ export default function About() {
         <img
           src={WeBelieve}
           alt="Team strategic meeting"
-          className="rounded-2xl shadow-lg"
+          className="rounded-2xl shadow-lg w-full h-auto object-cover"
         />
       </section>
 

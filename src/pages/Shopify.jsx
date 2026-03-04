@@ -5,7 +5,7 @@ export default function Shopify() {
       {/* Hero */}
       <section className="bg-[#e9efe4] py-24">
         <div className="container-p text-center">
-          <h1 className="text-4xl md:text-5xl font-semibold mb-6 max-w-3xl mx-auto leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold mb-6 max-w-3xl mx-auto leading-tight">
             KactusLabs + Shopify <br /> Built for Modern Commerce
           </h1>
 
@@ -33,11 +33,11 @@ export default function Shopify() {
 
       {/* Features */}
       <section className="container-p py-24 text-center">
-        <h2 className="text-3xl md:text-4xl font-semibold mb-16">
+        <h2 className="text-3xl sm:text-3xl md:text-4xl font-semibold mb-16">
           Everything you need to power <br /> your Shopify store
         </h2>
 
-        <div className="grid md:grid-cols-3 gap-8 text-left">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
 
           <div className="bg-[#eef2ea] rounded-2xl p-8 shadow-sm hover:shadow-md transition">
             <h3 className="text-xl font-semibold mb-3">
@@ -80,7 +80,7 @@ export default function Shopify() {
             How it works
           </h2>
 
-          <div className="grid md:grid-cols-3 gap-10 text-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 text-center">
 
             <div>
               <div className="text-2xl font-semibold mb-4 text-[#0b3b2e]">
