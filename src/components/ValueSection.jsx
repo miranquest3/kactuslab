@@ -132,6 +132,18 @@ AI Fashion Coach
 
 </div>
 
+</div>{/* HIDDEN COST SECTION */}
+
+<div className="mt-40">
+
+{/* PROBLEM SECTION */} <div className="mt-40 text-center"> <motion.h2 initial={{ opacity:0, y:40 }} whileInView={{ opacity:1, y:0 }} transition={{ duration:1 }} className="text-4xl md:text-5xl font-serif mb-16" > The Hidden Cost of Scaling a Fashion Brand </motion.h2> <div className="flex flex-wrap justify-center gap-6"> {problems.map((item,index)=>( <motion.div key={index} initial={{ opacity:0, y:20 }} whileInView={{ opacity:1, y:0 }} transition={{ delay:index*0.05 }} whileHover={{ scale:1.1, rotate:-1 }} className="bg-black text-white px-6 py-3 rounded-xl text-sm shadow-lg" > {item} </motion.div>
+
+))}
+
+</div>
+
+</div>
+
 </div>
 
 </section>
