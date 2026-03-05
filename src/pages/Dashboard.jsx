@@ -13,6 +13,7 @@
   import Eighty from "../assets/images/Home/Icons/80.svg";
   import { motion } from "framer-motion"
 import { useRef } from "react"
+import ValueSection from "../components/ValueSection";
 
 
  /* Floating Particles Background */
@@ -210,7 +211,7 @@ function TiltCard({ children }) {
   </div>
 </section>
 
-
+<ValueSection />
       {/* ENTERPRISE READY */}
   {/* ENTERPRISE READY */}
 <section className="relative bg-[#F5F6F2] py-32 overflow-hidden">

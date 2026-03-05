@@ -12,7 +12,7 @@ import Integrations from './pages/Integrations.jsx'
 import Shopify from './pages/Shopify.jsx'
 import NotFound from './pages/NotFound.jsx'
 import Register from './pages/Register.jsx'
-
+import ValueSection from "./components/ValueSection";
 export default function App() {
   const { user } = useAuth()
 
