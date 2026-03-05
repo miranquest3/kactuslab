@@ -228,7 +228,7 @@ function TiltCard({ children }) {
       initial={{ opacity: 0, y: 60 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-      viewport={{ once: true }}
+      viewport={{ once:false }}
     >
       <h2 className="text-4xl md:text-5xl font-serif text-slate-800">
         Enterprise-Ready
@@ -256,7 +256,7 @@ function TiltCard({ children }) {
             delay: index * 0.15,
             ease: [0.22, 1, 0.36, 1],
           }}
-          viewport={{ once: true }}
+          viewport={{ once:false }}
           whileHover={{
             y: -12,
             scale: 1.05,
@@ -281,7 +281,7 @@ function TiltCard({ children }) {
       initial={{ opacity: 0, y: 80 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 1, delay: 0.3 }}
-      viewport={{ once: true }}
+      viewport={{ once:false }}
       className="mt-24 bg-[#F2F3EE] rounded-[32px] p-14 border border-slate-200 text-left shadow-sm"
     >
 
@@ -342,7 +342,7 @@ function TiltCard({ children }) {
         initial={{ opacity: 0, x: -80 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        viewport={{ once: true }}
+        viewport={{ once:false }}
         className="rounded-3xl overflow-hidden shadow-xl bg-white border border-slate-200 aspect-[4/5]"
       >
         <motion.img
@@ -352,7 +352,7 @@ function TiltCard({ children }) {
           initial={{ scale: 1.1 }}
           whileInView={{ scale: 1 }}
           transition={{ duration: 1 }}
-          viewport={{ once: true }}
+          viewport={{ once:false }}
         />
       </motion.div>
 
@@ -361,7 +361,7 @@ function TiltCard({ children }) {
         initial={{ opacity: 0, x: 80 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        viewport={{ once: true }}
+        viewport={{ once:false }}
       >
         <SectionTitle
           align="left"
@@ -382,7 +382,7 @@ function TiltCard({ children }) {
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.15 }}
-              viewport={{ once: true }}
+              viewport={{ once:false }}
               className="bg-white rounded-xl p-5 shadow-sm border border-slate-200 hover:shadow-md transition"
             >
               <div className="font-medium text-slate-800">{item}</div>
@@ -432,7 +432,7 @@ function TiltCard({ children }) {
       initial={{ opacity: 0, y: 40, scale: 0.97 }}
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      viewport={{ once: true }}
+      viewport={{ once:false }}
     >
       <h2 className="text-5xl md:text-6xl font-serif text-slate-800 tracking-tight leading-tight">
         Why It Matters
@@ -447,7 +447,7 @@ function TiltCard({ children }) {
       initial={{ opacity: 0, y: 15 }}
       whileInView={{ opacity: 0.85, y: 0 }}
       transition={{ duration: 0.6, delay: 0.2 }}
-      viewport={{ once: true }}
+      viewport={{ once:false }}
       className="mt-12 flex flex-wrap justify-center gap-16 text-sm text-slate-500"
     >
       {["logolpsum","logolpsum","LOGOIPSUM","logolpsum","logolpsum"].map((logo, i) => (
@@ -492,7 +492,7 @@ function TiltCard({ children }) {
             delay: index * 0.15,
             ease: "easeOut"
           }}
-          viewport={{ once: true }}
+          viewport={{ once:false }}
           whileHover={{
             y: -10,
             scale: 1.05,
@@ -536,7 +536,7 @@ function TiltCard({ children }) {
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
-      viewport={{ once: true }}
+      viewport={{ once:false }}
       className="text-center max-w-3xl mx-auto"
     >
       <h2 className="text-4xl md:text-5xl font-serif text-emerald-100">
