@@ -133,23 +133,9 @@ export default function Dashboard() {
   const blobY2 = useTransform(scrollY, [0, 500], [0, -100]);
 
   return (
-    <main className="bg-[#F5F6F2] text-slate-900">
+    <main className="bg-[#F5F6F2] text-slate-800">
 
-      <section className="relative py-24 md:py-32 overflow-hidden">
-
-        {/* Background Glow */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <motion.div
-            style={{ y: blobY1 }}
-            className="absolute -top-32 -left-32 w-[600px] h-[600px] bg-emerald-300/20 blur-[120px] rounded-full"
-          />
-          <motion.div
-            style={{ y: blobY2 }}
-            className="absolute top-1/2 -right-32 w-[500px] h-[500px] bg-emerald-400/10 blur-[100px] rounded-full"
-          />
-        </div>
-
-        <div className="relative container mx-auto px-4 sm:px-6">
+      <section className="overflow-hidden">
           <div className="bg-gradient-to-br from-[#EDEFE6] via-[#EEF1E8] to-[#E6EBDD] 
                           rounded-[48px] px-8 sm:px-12 py-16 md:px-20 md:py-28 
                           grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center 
@@ -158,8 +144,8 @@ export default function Dashboard() {
             {/* LEFT CONTENT */}
             <motion.div
               style={{ y: heroRevealY }}
-              initial={{ opacity: 0, x: -60 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, x: 60 }}
+              animate={{ opacity: 1, x: 150 }}
               transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
             >
               <h1 className="font-serif leading-tight text-[#1F2A24]">
@@ -209,13 +195,13 @@ export default function Dashboard() {
                 src={HeroMain}
                 alt="Preview"
                 className="w-[115%] md:w-[120%] max-w-none rounded-3xl 
-                           shadow-[0_60px_120px_rgba(0,0,0,0.25)]"
+                           shadow-[0_60px_120px_rgba(0,0,0,0.0)]"
               />
-              <div className="absolute inset-0 rounded-3xl bg-gradient-to-tr from-white/20 to-transparent pointer-events-none" />
+              <div className="absolute inset-0 rounded-3xl bg-gradient-to-tr from-white/0 to-transparent pointer-events-none" />
             </motion.div>
 
           </div>
-        </div>
+
       </section>
 
 
