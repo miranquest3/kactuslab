@@ -619,65 +619,58 @@ export default function Dashboard() {
             className="text-center max-w-3xl mx-auto"
           >
             <h2 className="text-4xl md:text-5xl font-serif text-emerald-100">
-              Why Fashion Brands love KactusLab
+              Why Fashion Brands love KactusLabs
             </h2>
             <p className="mt-4 text-emerald-200/80">
-              Real stories from brands that reduced returns and increased conversions.
+              Real stories from brands that reduced returns and increased conversions with KactusLabs
             </p>
           </motion.div>
 
           {/* Cards Grid (Same Layout) */}
 
-          <div className="mt-20 
-                flex md:grid md:grid-cols-3 
-                overflow-x-auto md:overflow-visible 
-                gap-6 max-w-6xl mx-auto">
-
-            {[
-              "KactusLab improved our conversions instantly.",
-              "Customers trust the virtual try-on experience.",
-              "Reduced returns significantly within weeks.",
-              "Saved production costs on photoshoots.",
-              "Boosted add-to-cart rate dramatically.",
-              "Better visual storytelling for products.",
-              "Improved customer confidence.",
-              "Seamless integration with our store."
-            ].map((text, i) => (
-
+          <div className="mt-20 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto px-4">
+            
+            {[1, 2].map((i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                whileHover={{
-                  y: -8,
-                  scale: 1.03,
-                  boxShadow: "0px 25px 60px rgba(0,0,0,0.25)"
-                }}
-                animate={{ y: [0, -6, 0] }}
-                transition={{
-                  opacity: { duration: 0.6, delay: i * 0.08 },
-                  y: {
-                    duration: 2 + (i % 2),
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }
-                }}
-                className={`bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-6 transition-all 
-    ${i % 2 === 1 ? "md:mt-12" : ""}`}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-white rounded-[24px] p-8 md:p-10 text-left shadow-[0_20px_40px_rgba(0,0,0,0.2)] flex flex-col h-full"
               >
-                <div className="text-emerald-100 font-semibold">
-                  ★★★★★
+                {/* Header: User Info */}
+                <div className="flex items-center gap-4 mb-6">
+                  <img 
+                    src="https://randomuser.me/api/portraits/women/44.jpg" 
+                    alt="Rebecca Mihalic" 
+                    className="w-14 h-14 rounded-full object-cover shadow-sm bg-slate-100"
+                  />
+                  <div>
+                    <h4 className="font-bold text-slate-900 text-[17px] leading-snug">Rebecca Mihalic</h4>
+                    <p className="text-sm font-semibold text-slate-500">Business Depot</p>
+                  </div>
                 </div>
 
-                <p className="mt-4 text-sm text-emerald-50/90 leading-relaxed">
-                  {text}
+                {/* Stars */}
+                <div className="flex gap-1.5 mb-6">
+                  {[...Array(5)].map((_, idx) => (
+                    <svg key={idx} className="w-6 h-6 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                </div>
+
+                {/* Testimonial Text */}
+                <p className="text-[#4b5563] leading-[1.7] flex-1 text-[16px] tracking-wide font-medium">
+                  KactusLabs has completely changed the way customers shop our products. It presents visual fit information clearly, improves product understanding, and helps shoppers make confident decisions before checkout. We no longer worry about confusion, incorrect expectations, or unnecessary product returns. The experience feels accurate, trustworthy, and has made our conversion flow far more efficient. I highly recommend KactusLabs
                 </p>
 
-                <div className="mt-4 text-xs text-emerald-200/70">
-                  Fashion Brand Partner
+                {/* Date */}
+                <div className="mt-8 font-semibold text-slate-700 text-[14px]">
+                  Feb 1, 2026
                 </div>
               </motion.div>
-
             ))}
 
           </div>
