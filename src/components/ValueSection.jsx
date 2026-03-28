@@ -1,151 +1,224 @@
 import { motion } from "framer-motion";
+import {
+  DollarSign,
+  Clock,
+  Users,
+  Camera,
+  AlertTriangle,
+  Workflow,
+  Layers,
+  UserX
+} from "lucide-react";
 
 export default function ValueSection() {
 
   const problems = [
-    "High Agency Costs",
-    "Studio Availability Problems",
-    "Scaling Difficulties",
-    "Slow Turnaround",
-    "Hidden Fees",
-    "Low ROI",
-    "Resource Gaps",
-    "Expensive Production",
-    "Workflow Inefficiency",
-    "Vendor Mismanagement",
-    "Model Sourcing Issues",
-    "Time Drain"
+    {
+      icon: DollarSign,
+      text: "High Agency Costs"
+    },
+    {
+      icon: Camera,
+      text: "Studio Availability Problems"
+    },
+    {
+      icon: Layers,
+      text: "Scaling Difficulties"
+    },
+    {
+      icon: Clock,
+      text: "Slow Turnaround"
+    },
+    {
+      icon: AlertTriangle,
+      text: "Hidden Fees"
+    },
+    {
+      icon: Workflow,
+      text: "Workflow Inefficiency"
+    },
+    {
+      icon: Users,
+      text: "Vendor Mismanagement"
+    },
+    {
+      icon: UserX,
+      text: "Model Sourcing Issues"
+    },
+    {
+      icon: DollarSign,
+      text: "Expensive Production"
+    },
+    {
+      icon: Clock,
+      text: "Time Drain"
+    },
+    {
+      icon: Layers,
+      text: "Resource Gaps"
+    },
+    {
+      icon: AlertTriangle,
+      text: "Low ROI"
+    }
   ];
 
-  const features = [
-    "AI Virtual Try-On",
-    "AI Photoshoots",
-    "Size Recommendation",
-    "AI Fashion Coach"
-  ];
+  function shuffle(arr) {
+    return [...arr].sort(() => Math.random() - 0.5);
+  }
+
+  const row1 = shuffle(problems);
+  const row2 = shuffle(problems);
+  const row3 = shuffle(problems);
 
   return (
-   <section className="relative py-32 bg-white">
 
-<div className="container mx-auto px-6">
+    <section className="relative py-32 bg-white">
 
+      <div className="container mx-auto px-6">
 
-{/* MAIN HEADLINE */}
+        <motion.h2
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          className="text-4xl md:text-5xl font-serif text-center mb-20"
+        >
+          The Hidden Cost of Scaling a Fashion Brand
+        </motion.h2>
 
-<motion.h2
-initial={{ opacity:0, y:40 }}
-whileInView={{ opacity:1, y:0 }}
-transition={{ duration:0.8 }}
-className="text-4xl md:text-6xl font-semibold leading-tight mb-18 max-w-6xl"
->
+        <div className="relative overflow-hidden space-y-6">
 
-Reduce Agency Costs by
-<span className="text-emerald-600"> ₹3–5 Lakhs</span>
+          {/* fade edges */}
 
-<br/>
-
-Cut Production Costs by 
-<span className="text-emerald-600"> 40%</span>
-
-</motion.h2>
+          <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white to-transparent z-10" />
+          <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-white to-transparent z-10" />
 
 
-<br/>
-<br/>
-{/* CONTENT GRID */}
+          {/* ROW 1 */}
 
-<div className="grid md:grid-cols-2 gap-20 items-start">
+          <motion.div
+            animate={{ x: ["0%", "-50%"] }}
+            transition={{
+              duration: 40,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+            className="flex gap-6 w-max"
+          >
 
+            {[...row1, ...row1].map((item, index) => {
 
-{/* LEFT SIDE */}
+              const Icon = item.icon;
 
-<div>
+              return (
 
-<h3 className="text-2xl md:text-3xl font-medium mb-6">
-<br/>
-AI Infrastructure for <span className="text-emerald-600">Fashion Commerce</span>
+                <div
+                  key={index}
+                  className="flex items-center gap-4 bg-white border border-slate-200 px-7 py-5 rounded-2xl shadow-sm min-w-[260px]"
+                >
 
-</h3>
+                  <div className="w-10 h-10 flex items-center justify-center rounded-xl bg-emerald-50 text-emerald-700">
+                    <Icon size={20} />
+                  </div>
 
+                  <span className="font-medium text-slate-800 text-sm">
+                    {item.text}
+                  </span>
 
-<div className="bg-emerald-100 text-emerald-1000 px-14 py-3 rounded-full inline-flex gap-6 text-m font-medium mb-8">
+                </div>
 
-<span>Cost Reduction</span>
+              )
 
-<span>AI Production</span>
+            })}
 
-<span>Faster Photoshoots</span>
-
-</div>
-
-
-<p className="text-lg text-slate-700 max-w-xl">
-
-KactusLabs helps fashion brands reduce returns and increase
-conversions with photorealistic AI virtual try-ons,
-intelligent size recommendations, and AI generated
-visual content.
-
-</p>
-
-</div>
-
-
-{/* RIGHT SIDE */}
-
-<div className="bg-[#EDEFE6] p-12 rounded-[40px] shadow-lg">
-
-<h3 className="text-3xl font-serif mb-4">
-
-Meet Kactus
-
-</h3>
-
-<p className="text-slate-700 mb-8">
-
-Your End-to-End Creative Partner
-
-</p>
+          </motion.div>
 
 
-<div className="grid grid-cols-2 gap-5">
+          {/* ROW 2 (reverse) */}
 
-<div className="bg-white rounded-xl px-5 py-4 text-sm shadow-md">
-AI Virtual Try-On
-</div>
+          <motion.div
+            animate={{ x: ["-50%", "0%"] }}
+            transition={{
+              duration: 42,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+            className="flex gap-6 w-max"
+          >
 
-<div className="bg-white rounded-xl px-5 py-4 text-sm shadow-md">
-AI Photoshoots
-</div>
+            {[...row2, ...row2].map((item, index) => {
 
-<div className="bg-white rounded-xl px-5 py-4 text-sm shadow-md">
-Size Recommendation
-</div>
+              const Icon = item.icon;
 
-<div className="bg-white rounded-xl px-5 py-4 text-sm shadow-md">
-AI Fashion Coach
-</div>
+              return (
 
-</div>
+                <div
+                  key={index}
+                  className="flex items-center gap-4 bg-white border border-slate-200 px-7 py-5 rounded-2xl shadow-sm min-w-[260px]"
+                >
 
-</div>
+                  <div className="w-10 h-10 flex items-center justify-center rounded-xl bg-emerald-50 text-emerald-700">
+                    <Icon size={20} />
+                  </div>
 
-</div>
+                  <span className="font-medium text-slate-800 text-sm">
+                    {item.text}
+                  </span>
 
-</div>{/* HIDDEN COST SECTION */}
+                </div>
 
-<div className="mt-40">
+              )
 
-{/* PROBLEM SECTION */} <div className="mt-40 text-center"> <motion.h2 initial={{ opacity:0, y:40 }} whileInView={{ opacity:1, y:0 }} transition={{ duration:1 }} className="text-4xl md:text-5xl font-serif mb-16" > The Hidden Cost of Scaling a Fashion Brand </motion.h2> <div className="flex flex-wrap justify-center gap-6"> {problems.map((item,index)=>( <motion.div key={index} initial={{ opacity:0, y:20 }} whileInView={{ opacity:1, y:0 }} transition={{ delay:index*0.05 }} whileHover={{ scale:1.1, rotate:-1 }} className="bg-black text-white px-6 py-3 rounded-xl text-sm shadow-lg" > {item} </motion.div>
+            })}
 
-))}
+          </motion.div>
 
-</div>
 
-</div>
+          {/* ROW 3 */}
 
-</div>
+          <motion.div
+            animate={{ x: ["0%", "-50%"] }}
+            transition={{
+              duration: 38,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+            className="flex gap-6 w-max"
+          >
 
-</section>
+            {[...row3, ...row3].map((item, index) => {
+
+              const Icon = item.icon;
+
+              return (
+
+                <div
+                  key={index}
+                  className="flex items-center gap-4 bg-white border border-slate-200 px-7 py-5 rounded-2xl shadow-sm min-w-[260px]"
+                >
+
+                  <div className="w-10 h-10 flex items-center justify-center rounded-xl bg-emerald-50 text-emerald-700">
+                    <Icon size={20} />
+                  </div>
+
+                  <span className="font-medium text-slate-800 text-sm">
+                    {item.text}
+                  </span>
+
+                </div>
+
+              )
+
+            })}
+
+          </motion.div>
+
+        </div>
+
+      </div>
+
+    </section>
+
   );
+
 }

@@ -1,138 +1,224 @@
+import { motion, useScroll, useTransform } from "framer-motion";
+import { MagneticButton, RevealImage, StaggerText } from "../components/AnimatedElements";
 import HeroAbout from "../assets/images/About/Hero-about.png";
 import StopGuessing from "../assets/images/About/stop-guessing.png";
 import WeBelieve from "../assets/images/About/we-belive.png";
-import Network3D from "../components/Network3D"
+
 export default function About() {
+  const { scrollY } = useScroll();
+  const parallaxY1 = useTransform(scrollY, [0, 1000], [0, 150]);
+  const parallaxY2 = useTransform(scrollY, [0, 1000], [0, -100]);
+
   return (
-    <main className="bg-[#f6f7f4] text-[#0f172a]">
-      
+    <main className="bg-[#f6f7f4] text-[#0f172a] overflow-x-hidden relative">
+
+      {/* Background Parallax Blobs */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <motion.div style={{ y: parallaxY1 }} className="absolute top-20 -left-40 w-[600px] h-[600px] bg-emerald-100/40 blur-[120px] rounded-full" />
+        <motion.div style={{ y: parallaxY2 }} className="absolute top-[1000px] -right-40 w-[500px] h-[500px] bg-emerald-200/20 blur-[100px] rounded-full" />
+      </div>
+
       {/* Hero Section */}
-      <section className="container-p py-20 text-center">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold mb-4">
-          About KactusLabs
+      <section className="container-p py-24 text-center relative z-10">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif font-semibold mb-6">
+          <StaggerText text="About KactusLabs" delay={0.1} />
         </h1>
-        <p className="text-slate-600 max-w-2xl mx-auto">
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.8 }}
+          className="text-slate-600 max-w-2xl mx-auto text-lg"
+        >
           An intelligence platform for brands, built to turn market signals
           into clear, reliable decisions.
-        </p>
+        </motion.p>
 
-        <div className="mt-12 flex justify-center">
-          <img
+        <div className="mt-16 flex justify-center">
+          <RevealImage
             src={HeroAbout}
             alt="KactusLabs intelligence visualization"
-            className="rounded-2xl shadow-lg max-w-4xl w-full h-auto object-cover"
+            className="rounded-[40px] shadow-2xl max-w-5xl w-full"
           />
         </div>
       </section>
 
       {/* What We're Building */}
-      <section className="container-p py-20 text-center">
-        <h2 className="text-3xl font-semibold mb-12">
+      <section className="container-p py-24 text-center relative z-10">
+        <motion.h2
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-3xl md:text-4xl font-serif font-semibold mb-12"
+        >
           What We’re Building
-        </h2>
+        </motion.h2>
 
-        <div className="flex justify-center gap-6 mb-10 flex-wrap">
-          <div className="w-40 h-56 bg-[#0b3b2e] rounded-2xl"></div>
-          <div className="w-40 h-56 bg-[#c8d6b8] rounded-2xl"></div>
-          <div className="w-40 h-56 bg-[#dfe7d5] rounded-2xl"></div>
+        <div className="flex justify-center gap-8 mb-12 flex-wrap">
+          {[
+            { color: "bg-[#0b3b2e]", delay: 0 },
+            { color: "bg-[#c8d6b8]", delay: 0.2 },
+            { color: "bg-[#dfe7d5]", delay: 0.4 }
+          ].map((box, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 50, rotate: -5 }}
+              whileInView={{ opacity: 1, y: 0, rotate: 0 }}
+              transition={{ duration: 0.8, delay: box.delay }}
+              viewport={{ once: true }}
+              whileHover={{ y: -10, rotate: 2, scale: 1.05 }}
+              className={`w-44 h-64 ${box.color} rounded-3xl shadow-lg cursor-pointer`}
+            />
+          ))}
         </div>
 
-        <h3 className="text-xl font-medium mb-4">
+        <motion.h3
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          className="text-2xl font-serif font-medium mb-4"
+        >
           Today · Next · Forward
-        </h3>
-        <p className="text-slate-600 max-w-2xl mx-auto">
+        </motion.h3>
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ delay: 0.2 }}
+          className="text-slate-600 max-w-2xl mx-auto text-lg"
+        >
           KactusLabs brings fragmented market signals into one clear
           intelligence layer, helping brands understand what the market is
           doing now, how it’s evolving, and where demand is forming.
-        </p>
+        </motion.p>
       </section>
 
       {/* Section 1 */}
-      <section className="container-p py-20 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-        <img
+      <section className="container-p py-24 grid grid-cols-1 md:grid-cols-2 gap-16 items-center relative z-10">
+        <RevealImage
           src={StopGuessing}
           alt="Business professionals discussion"
-          className="rounded-2xl shadow-lg w-full h-auto object-cover"
+          className="rounded-[40px] shadow-xl"
         />
 
-        <div>
-          <h2 className="text-3xl font-semibold mb-6">
+        <motion.div
+          initial={{ opacity: 0, x: 50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          <h2 className="text-3xl md:text-4xl font-serif font-semibold mb-6">
             Stop guessing. <br /> Start understanding.
           </h2>
-          <p className="text-slate-600 leading-relaxed">
+          <p className="text-slate-600 text-lg leading-relaxed">
             Sales numbers, customer feedback, trends, and competitor activity
             all exist in different places. KactusLabs unifies those signals into
             one intelligence view so teams can move with confidence instead of
             assumptions.
           </p>
-        </div>
+        </motion.div>
       </section>
 
-{/* 3D Network Visualization - Placeholder for future interactive component
-<Network3D />
-*/}
-
       {/* Section 2 */}
-      <section className="container-p py-20 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-        <div>
-          <h2 className="text-3xl font-semibold mb-6">
+      <section className="container-p py-24 grid grid-cols-1 md:grid-cols-2 gap-16 items-center relative z-10">
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="order-2 md:order-1"
+        >
+          <h2 className="text-3xl md:text-4xl font-serif font-semibold mb-6">
             We believe intelligence should be clear, not chaotic.
           </h2>
-          <p className="text-slate-600 leading-relaxed">
+          <p className="text-slate-600 text-lg leading-relaxed">
             Good tools reduce noise. Our platform surfaces the insights that
             matter most, helping leaders focus on what drives growth — without
             dashboard overload.
           </p>
-        </div>
+        </motion.div>
 
-        <img
+        <RevealImage
           src={WeBelieve}
           alt="Team strategic meeting"
-          className="rounded-2xl shadow-lg w-full h-auto object-cover"
+          className="rounded-[40px] shadow-xl order-1 md:order-2"
         />
       </section>
 
       {/* Investors Section */}
-      <section className="py-20 bg-gradient-to-r from-[#0b3b2e] to-[#122c22] text-white text-center">
-        <div className="container-p">
-          <h2 className="text-3xl font-semibold mb-4">
-            Backed by Industry-Leading Investors
-          </h2>
-          <p className="text-slate-300 mb-10">
-            Backed by investors that care about execution just as much as we do.
-          </p>
+      <section className="py-32 bg-emerald-950 text-white text-center relative overflow-hidden">
+        <motion.div
+          className="absolute inset-0 opacity-20"
+          animate={{ scale: [1, 1.1, 1], opacity: [0.1, 0.3, 0.1] }}
+          transition={{ duration: 10, repeat: Infinity }}
+        >
+          <div className="absolute -top-40 -left-40 w-96 h-96 bg-emerald-400 blur-3xl rounded-full" />
+          <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-emerald-500 blur-3xl rounded-full" />
+        </motion.div>
 
-          <div className="flex flex-wrap justify-center gap-10 text-slate-300">
-            <span>Tidal</span>
-            <span>KeyPay</span>
-            <span>ReceiptBank</span>
-            <span>Ignition</span>
+        <div className="container-p relative z-10">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="text-3xl md:text-5xl font-serif font-semibold mb-6"
+          >
+            Backed by Industry-Leading Investors
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="text-emerald-200/80 mb-12 text-lg"
+          >
+            Backed by investors that care about execution just as much as we do.
+          </motion.p>
+
+          <div className="flex flex-wrap justify-center gap-12 text-emerald-100/50 text-xl font-medium">
+            {["Tidal", "KeyPay", "ReceiptBank", "Ignition"].map((name, i) => (
+              <motion.span
+                key={i}
+                whileHover={{ scale: 1.2, color: "#fff", opacity: 1 }}
+                className="cursor-pointer transition-all"
+              >
+                {name}
+              </motion.span>
+            ))}
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="container-p py-20">
-        <div className="bg-gradient-to-r from-[#0b3b2e] to-[#122c22] text-white rounded-3xl p-12 md:p-16 flex flex-col md:flex-row justify-between items-center gap-8">
-          <div>
-            <h2 className="text-3xl font-semibold mb-4">
-              Start elevating product experiences with KactusLabs today
+      <section className="container-p py-24">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="bg-emerald-900 text-white rounded-[48px] p-12 md:p-20 flex flex-col md:flex-row justify-between items-center gap-12 shadow-2xl relative overflow-hidden group"
+        >
+          <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
+
+          <div className="relative z-10 text-center md:text-left">
+            <h2 className="text-3xl md:text-5xl font-serif font-semibold mb-8 leading-tight">
+              Start elevating product <br /> experiences with <br /> KactusLabs today
             </h2>
-            <button className="mt-4 px-6 py-3 bg-white text-[#0b3b2e] rounded-full font-medium hover:opacity-90 transition">
+            <MagneticButton className="px-10 py-5 bg-white text-emerald-950 rounded-full font-bold text-lg shadow-xl hover:shadow-white/20 transition-all">
               Schedule a Demo
-            </button>
+            </MagneticButton>
           </div>
 
-          <div className="max-w-md text-slate-300 text-sm">
-            <p>
+          <div className="max-w-md text-emerald-100/80 text-lg relative z-10 backdrop-blur-sm bg-black/5 p-8 rounded-3xl border border-white/10">
+            <p className="italic">
               “We’ve been confident with product insights like never before.
               Everything works seamlessly, providing context and true clarity.”
             </p>
-            <p className="mt-4 font-medium text-white">
-              — Camila Ashe, E-commerce Leader
-            </p>
+            <div className="mt-6 flex items-center gap-4">
+              <div className="w-12 h-12 rounded-full bg-emerald-800" />
+              <div>
+                <p className="font-bold text-white">— Camila Ashe</p>
+                <p className="text-sm">E-commerce Leader</p>
+              </div>
+            </div>
           </div>
-        </div>
+        </motion.div>
       </section>
 
     </main>

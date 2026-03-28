@@ -1,131 +1,181 @@
+import { motion, useScroll, useTransform } from "framer-motion";
+import { MagneticButton, SectionTitle, StaggerText } from "../components/AnimatedElements";
+
 export default function Shopify() {
+  const { scrollY } = useScroll();
+  const y1 = useTransform(scrollY, [0, 800], [0, 150]);
+  const y2 = useTransform(scrollY, [0, 800], [0, -100]);
+
   return (
-    <main className="bg-[#f6f7f4] text-[#0f172a]">
+    <main className="bg-[#f6f7f4] text-[#0f172a] overflow-x-hidden relative">
 
       {/* Hero */}
-      <section className="bg-[#e9efe4] py-24">
-        <div className="container-p text-center">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold mb-6 max-w-3xl mx-auto leading-tight">
-            KactusLabs + Shopify <br /> Built for Modern Commerce
+      <section className="bg-[#e9efe4] py-32 relative overflow-hidden">
+        <motion.div style={{ y: y1 }} className="absolute -top-40 -left-40 w-[600px] h-[600px] bg-emerald-200/30 blur-[120px] rounded-full" />
+        <motion.div style={{ y: y2 }} className="absolute top-1/2 -right-40 w-[500px] h-[500px] bg-emerald-300/20 blur-[100px] rounded-full" />
+
+        <div className="container-p text-center relative z-10">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif font-semibold mb-6 max-w-3xl mx-auto leading-tight">
+            <StaggerText text="KactusLabs + Shopify Built for Modern Commerce" />
           </h1>
 
-          <p className="text-slate-600 max-w-2xl mx-auto mb-8">
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.8 }}
+            className="text-slate-600 max-w-2xl mx-auto mb-10 text-lg"
+          >
             Seamlessly sync your Shopify store with KactusLabs to automate
             product workflows, reduce returns, and enhance product clarity.
-          </p>
+          </motion.p>
 
-          <button className="px-6 py-3 bg-[#0b3b2e] text-white rounded-full font-medium hover:opacity-90 transition">
+          <MagneticButton className="px-10 py-5 bg-[#0b3b2e] text-white rounded-full font-bold text-lg shadow-xl hover:shadow-emerald-900/20 transition-all">
             Install on Shopify
-          </button>
+          </MagneticButton>
 
           {/* Visual */}
-          <div className="mt-20 flex items-center justify-center gap-6 flex-wrap">
-            <div className="w-24 h-24 rounded-full bg-white shadow-md flex items-center justify-center text-3xl font-bold text-green-600">
+          <div className="mt-24 flex items-center justify-center gap-10 flex-wrap relative">
+            <motion.div
+              initial={{ rotate: -10, x: -50, opacity: 0 }}
+              animate={{ rotate: 0, x: 0, opacity: 1 }}
+              transition={{ type: "spring", delay: 1 }}
+              whileHover={{ scale: 1.1, rotate: 5 }}
+              className="w-28 h-28 rounded-[32px] bg-white shadow-2xl flex items-center justify-center text-4xl font-black text-[#96bf48]"
+            >
               S
-            </div>
+            </motion.div>
 
-            <div className="w-32 h-32 rounded-full bg-[#0b3b2e] text-white flex items-center justify-center font-semibold shadow-lg">
-              KactusLabs
-            </div>
+            <motion.div
+              animate={{ scale: [1, 1.1, 1] }}
+              transition={{ duration: 2, repeat: Infinity }}
+              className="w-4 h-4 rounded-full bg-emerald-300"
+            />
+
+            <motion.div
+              initial={{ rotate: 10, x: 50, opacity: 0 }}
+              animate={{ rotate: 0, x: 0, opacity: 1 }}
+              transition={{ type: "spring", delay: 1.2 }}
+              whileHover={{ scale: 1.1, rotate: -5 }}
+              className="w-36 h-36 rounded-[40px] bg-[#0b3b2e] text-white flex items-center justify-center font-bold shadow-[0_30px_60px_rgba(11,59,46,0.3)] border-2 border-white/20"
+            >
+              Kactus
+            </motion.div>
           </div>
         </div>
       </section>
 
       {/* Features */}
-      <section className="container-p py-24 text-center">
-        <h2 className="text-3xl sm:text-3xl md:text-4xl font-semibold mb-16">
-          Everything you need to power <br /> your Shopify store
-        </h2>
+      <section className="container-p py-32">
+        <SectionTitle
+          title="Everything you need to power your Shopify store"
+          subtitle="Advanced AI tools deeply integrated into the world's most popular commerce platform."
+        />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-16">
 
-          <div className="bg-[#eef2ea] rounded-2xl p-8 shadow-sm hover:shadow-md transition">
-            <h3 className="text-xl font-semibold mb-3">
-              Product Sync
-            </h3>
-            <p className="text-slate-600">
-              Automatically sync products, variants, pricing, and inventory
-              directly from Shopify into KactusLabs.
-            </p>
-          </div>
-
-          <div className="bg-[#eef2ea] rounded-2xl p-8 shadow-sm hover:shadow-md transition">
-            <h3 className="text-xl font-semibold mb-3">
-              Order & Customer Data
-            </h3>
-            <p className="text-slate-600">
-              Keep order and customer data aligned across platforms
-              to power better post-purchase experiences.
-            </p>
-          </div>
-
-          <div className="bg-[#eef2ea] rounded-2xl p-8 shadow-sm hover:shadow-md transition">
-            <h3 className="text-xl font-semibold mb-3">
-              Smart Visual Automation
-            </h3>
-            <p className="text-slate-600">
-              Generate and manage product visuals using AI,
-              fully integrated with your Shopify catalog.
-            </p>
-          </div>
+          {[
+            {
+              title: "Product Sync",
+              desc: "Automatically sync products, variants, pricing, and inventory directly from Shopify into KactusLabs."
+            },
+            {
+              title: "Order & Customer Data",
+              desc: "Keep order and customer data aligned across platforms to power better post-purchase experiences."
+            },
+            {
+              title: "Smart Visual Automation",
+              desc: "Generate and manage product visuals using AI, fully integrated with your Shopify catalog."
+            },
+          ].map((feature, i) => (
+            <motion.div
+              key={feature.title}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: i * 0.1 }}
+              viewport={{ once: true }}
+              whileHover={{
+                y: -15,
+                rotateX: 5,
+                rotateY: 5,
+                boxShadow: "0 40px 80px rgba(0,0,0,0.1)"
+              }}
+              className="bg-white rounded-[40px] p-12 shadow-sm border border-slate-100 transition-all perspective-[1000px] cursor-default"
+            >
+              <h3 className="text-2xl font-serif font-semibold mb-6 text-emerald-900">
+                {feature.title}
+              </h3>
+              <p className="text-slate-600 leading-relaxed text-lg">
+                {feature.desc}
+              </p>
+            </motion.div>
+          ))}
 
         </div>
       </section>
 
       {/* How It Works */}
-      <section className="container-p pb-24">
-        <div className="bg-[#eef2ea] rounded-3xl p-12 md:p-16">
+      <section className="container-p pb-32">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1 }}
+          className="bg-[#eef2ea] rounded-[56px] p-16 md:p-24 relative overflow-hidden"
+        >
+          <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-200/20 blur-[100px] rounded-full" />
 
-          <h2 className="text-3xl md:text-4xl font-semibold mb-12 text-center">
+          <h2 className="text-3xl md:text-5xl font-serif font-semibold mb-20 text-center relative z-10">
             How it works
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 text-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 relative z-10">
 
-            <div>
-              <div className="text-2xl font-semibold mb-4 text-[#0b3b2e]">
-                1
-              </div>
-              <p className="text-slate-600">
-                Connect your Shopify store in one click.
-              </p>
-            </div>
-
-            <div>
-              <div className="text-2xl font-semibold mb-4 text-[#0b3b2e]">
-                2
-              </div>
-              <p className="text-slate-600">
-                Sync your products and configure automation rules.
-              </p>
-            </div>
-
-            <div>
-              <div className="text-2xl font-semibold mb-4 text-[#0b3b2e]">
-                3
-              </div>
-              <p className="text-slate-600">
-                Start improving product clarity and reducing returns.
-              </p>
-            </div>
+            {[
+              { step: "1", text: "Connect your Shopify store in one click." },
+              { step: "2", text: "Sync your products and configure automation rules." },
+              { step: "3", text: "Start improving product clarity and reducing returns." },
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: i * 0.2 }}
+                className="text-center group"
+              >
+                <motion.div
+                  whileHover={{ scale: 1.2, rotate: 360 }}
+                  transition={{ type: "spring", stiffness: 100 }}
+                  className="w-20 h-20 rounded-3xl bg-emerald-100 text-[#0b3b2e] text-3xl font-black flex items-center justify-center mx-auto mb-8 shadow-inner group-hover:bg-emerald-900 group-hover:text-white transition-colors duration-500"
+                >
+                  {item.step}
+                </motion.div>
+                <p className="text-slate-600 text-xl font-medium px-4">
+                  {item.text}
+                </p>
+              </motion.div>
+            ))}
 
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* CTA */}
-      <section className="container-p pb-24">
-        <div className="bg-gradient-to-r from-[#0b3b2e] to-[#122c22] text-white rounded-3xl p-12 md:p-16 text-center">
+      <section className="container-p pb-32">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          className="bg-emerald-900 text-white rounded-[48px] p-16 md:p-24 text-center relative overflow-hidden group shadow-2xl"
+        >
+          <div className="absolute inset-0 bg-gradient-to-tr from-emerald-400/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
 
-          <h2 className="text-3xl md:text-4xl font-semibold mb-6 max-w-2xl mx-auto leading-tight">
-            Ready to transform your Shopify store?
+          <h2 className="text-4xl md:text-6xl font-serif font-semibold mb-10 max-w-3xl mx-auto leading-tight relative z-10">
+            Ready to transform your <br /> Shopify store?
           </h2>
 
-          <button className="px-6 py-3 bg-white text-[#0b3b2e] rounded-full font-medium hover:opacity-90 transition">
+          <MagneticButton className="px-12 py-6 bg-white text-[#0b3b2e] rounded-full font-bold text-xl shadow-2xl hover:shadow-white/20 transition-all relative z-10">
             Schedule a Demo
-          </button>
+          </MagneticButton>
 
-        </div>
+        </motion.div>
       </section>
 
     </main>

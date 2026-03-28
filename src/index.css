@@ -6,14 +6,33 @@
   --brand: #22c55e;
 }
 
-html, body, #root {
+html,
+body,
+#root {
   height: 100%;
 }
 
+/* Default Body Font */
+body {
+  font-family: "Space Grotesk";
+}
+
+/* Headings Font */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Instrument Serif";
+}
+
+/* Brand Button */
 .btn-brand {
   @apply bg-brand hover:bg-brand-dark text-white font-medium rounded-md px-4 py-2 transition;
 }
 
+/* Container Padding */
 .container-p {
   @apply container mx-auto px-4;
 }
