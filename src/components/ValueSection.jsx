@@ -99,7 +99,7 @@ export default function ValueSection() {
           <motion.div
             animate={{ x: ["0%", "-50%"] }}
             transition={{
-              duration: 40,
+              duration: 80,
               repeat: Infinity,
               ease: "linear"
             }}
@@ -139,7 +139,7 @@ export default function ValueSection() {
           <motion.div
             animate={{ x: ["-50%", "0%"] }}
             transition={{
-              duration: 42,
+              duration: 90,
               repeat: Infinity,
               ease: "linear"
             }}
@@ -179,7 +179,7 @@ export default function ValueSection() {
           <motion.div
             animate={{ x: ["0%", "-50%"] }}
             transition={{
-              duration: 38,
+              duration: 85,
               repeat: Infinity,
               ease: "linear"
             }}
