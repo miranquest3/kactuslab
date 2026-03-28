@@ -177,7 +177,7 @@ export default function Dashboard() {
                 transition={{ delay: 0.6, duration: 0.8 }}
                 className="mt-6 text-slate-600 max-w-xl text-base md:text-lg leading-relaxed"
               >
-                KactusLabs helps fashion brands reduce returns and increase
+                KactusLab helps fashion brands reduce returns and increase
                 conversions with photorealistic virtual try-ons, intelligent
                 size recommendations, and AI-generated visual content.
               </motion.p>
@@ -451,7 +451,7 @@ export default function Dashboard() {
       {/* PRICING STRIP */}
       <section className="bg-emerald-950 text-white py-16 text-center">
         <h3 className="text-3xl font-serif max-w-3xl mx-auto">
-          KactusLabs pricing is designed around how each brand operates.
+          KactusLab pricing is designed around how each brand operates.
         </h3>
         <a className="inline-block mt-6 bg-white text-emerald-900 px-6 py-3 rounded-full">
           Contact for pricing
@@ -589,7 +589,7 @@ export default function Dashboard() {
             className="text-center max-w-3xl mx-auto"
           >
             <h2 className="text-4xl md:text-5xl font-serif text-emerald-100">
-              Why Fashion Brands love KactusLabs
+              Why Fashion Brands love KactusLab
             </h2>
             <p className="mt-4 text-emerald-200/80">
               Real stories from brands that reduced returns and increased conversions.
@@ -600,7 +600,7 @@ export default function Dashboard() {
           <div className="mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
 
             {[
-              "KactusLabs improved our conversions instantly.",
+              "KactusLab improved our conversions instantly.",
               "Customers trust the virtual try-on experience.",
               "Reduced returns significantly within weeks.",
               "Saved production costs on photoshoots.",
@@ -657,7 +657,7 @@ export default function Dashboard() {
       {/* CTA */}
       <section className="bg-[#F5F6F2] py-20 text-center">
         <h3 className="text-3xl font-serif">
-          Start elevating product experiences with KactusLabs today
+          Start elevating product experiences with KactusLab today
         </h3>
         <a className="inline-block mt-6 bg-emerald-900 text-white px-6 py-3 rounded-full">
           Schedule a Demo

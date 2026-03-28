@@ -86,7 +86,7 @@ export default function Integrations() {
               className="w-40 h-40 rounded-full bg-[#0b3b2e] text-white flex flex-col items-center justify-center font-bold shadow-[0_20px_50px_rgba(11,59,46,0.5)] border-4 border-white relative z-10"
             >
               <div className="text-xl">Kactus</div>
-              <div className="text-xs opacity-50">HUB</div>
+              <div className="text-xs opacity-50">Lab</div>
             </motion.div>
 
             <motion.div

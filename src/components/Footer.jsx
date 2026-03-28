@@ -8,17 +8,17 @@ export default function Footer() {
         {/* Brand Column */}
         <div>
           <h3 className="text-base font-medium text-[#0b3b2e] mb-4">
-            KactusLabs
+            KactusLab
           </h3>
 
           <p className="text-slate-600 leading-relaxed mb-6">
-            KactusLabs helps brands present products clearly,
+            KactusLab helps brands present products clearly,
             reduce returns, and improve purchase confidence
             using visual AI.
           </p>
 
           <p className="text-slate-400 text-xs">
-            © 2026 KactusLabs
+            © 2026 KactusLab
           </p>
         </div>
 

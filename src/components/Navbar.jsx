@@ -94,7 +94,7 @@ export default function Navbar() {
           K
         </motion.span>
         <span className="text-lg sm:text-xl font-semibold text-slate-900 transition-colors group-hover:text-emerald-700">
-          KactusLabs
+          KactusLab
         </span>
       </Link>
 

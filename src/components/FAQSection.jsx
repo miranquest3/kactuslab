@@ -6,9 +6,9 @@ export default function FAQSection() {
   const faqs = [
     {
       question:
-        "Does KactusLabs work across different product categories and collections?",
+        "Does KactusLab work across different product categories and collections?",
       answer:
-        "Yes. KactusLabs adapts across product types and collections, ensuring a seamless AI-driven merchandising experience across your entire catalog."
+        "Yes. KactusLab adapts across product types and collections, ensuring a seamless AI-driven merchandising experience across your entire catalog."
     },
     {
       question:
@@ -18,21 +18,21 @@ export default function FAQSection() {
     },
     {
       question:
-        "How quickly does KactusLabs enhance the product experience?",
+        "How quickly does KactusLab enhance the product experience?",
       answer:
         "Most brands see improved engagement and conversion metrics within days of integration."
     },
     {
       question:
-        "Can my team manage and update KactusLabs content easily?",
+        "Can my team manage and update KactusLab content easily?",
       answer:
         "Yes. The platform is built for non-technical teams, allowing easy updates and content control without engineering support."
     },
     {
       question:
-        "Does KactusLabs work across mobile, desktop, and storefront views?",
+        "Does KactusLab work across mobile, desktop, and storefront views?",
       answer:
-        "KactusLabs is fully responsive and optimized for all devices including embedded storefront environments."
+        "KactusLab is fully responsive and optimized for all devices including embedded storefront environments."
     }
   ];
 
