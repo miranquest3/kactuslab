@@ -98,7 +98,7 @@ const features = [
   {
     icon: Ruler,
     title: "AI-Powered Size Recommendations",
-    desc: "Eliminate the number one reason for returns with brand-specific fit intelligence."
+    desc: "Eliminate  number one reason for returns with brand-specific fit intelligence."
   },
   {
     icon: Camera,
@@ -138,74 +138,74 @@ export default function Dashboard() {
   return (
     <main className="bg-[#F5F6F2] text-slate-800">
 
-      <section className="overflow-hidden">
-          <div className="bg-gradient-to-br from-[#EDEFE6] via-[#EEF1E8] to-[#E6EBDD] 
-                          rounded-[48px] px-8 sm:px-12 py-16 md:px-20 md:py-28 
-                          grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center 
-                          shadow-[0_50px_100px_rgba(0,0,0,0.08)] border border-white/30">
+        <section className="overflow-hidden">
+            <div className="bg-gradient-to-br from-[#EDEFE6] via-[#EEF1E8] to-[#E6EBDD] 
+                            rounded-[48px] px-8 sm:px-12 py-16 md:px-20 md:py-28 
+                            grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center 
+                            shadow-[0_50px_100px_rgba(0,0,0,0.08)] border border-white/30">
 
-            {/* LEFT CONTENT */}
-            <motion.div
-              style={{ y: heroRevealY }}
-              initial={{ opacity: 0, x: 60 }}
-              animate={{ opacity: 1, x: 150 }}
-              transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <h1 className="font-serif leading-tight text-[#1F2A24]">
-                <span className="block text-4xl md:text-5xl lg:text-6xl font-medium">
-                  Cut Production Costs by
-                </span>
-                <span className="block text-4xl md:text-5xl lg:text-6xl text-emerald-900 font-semibold mt-2">
-                  40% Scale Faster With AI
-                </span>
-              </h1>
-
-              <motion.p
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6, duration: 0.8 }}
-                className="mt-6 text-slate-600 max-w-xl text-base md:text-lg leading-relaxed"
-              >
-                KactusLab helps fashion brands reduce returns and increase
-                conversions with photorealistic virtual try-ons, intelligent
-                size recommendations, and AI-generated visual content.
-              </motion.p>
-
+              {/* LEFT CONTENT */}
               <motion.div
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.8, duration: 0.8 }}
-                className="mt-10 flex gap-5 flex-wrap"
+                style={{ y: heroRevealY }}
+                initial={{ opacity: 0, x: 60 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
               >
-                <button className="bg-emerald-900 text-white px-8 py-4 rounded-full font-medium shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5">
-                  Schedule a Demo
-                </button>
+                <h1 className="font-serif leading-tight text-[#1F2A24]">
+                  <span className="block text-4xl md:text-5xl lg:text-6xl font-medium">
+                    Cut Production Costs by
+                  </span>
+                  <span className="block text-4xl md:text-5xl lg:text-6xl text-emerald-900 font-semibold mt-2">
+                    40% Scale Faster With AI
+                  </span>
+                </h1>
 
-                <button className="border border-slate-300 px-8 py-4 rounded-full font-medium bg-[#F5F7F2] hover:bg-white transition">
-                  See It In Action
-                </button>
+                <motion.p
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6, duration: 0.8 }}
+                  className="mt-6 text-slate-600 max-w-xl text-base md:text-lg leading-relaxed"
+                >
+                  KactusLab helps fashion brands reduce returns and increase
+                  conversions with photorealistic virtual try-ons, intelligent
+                  size recommendations, and AI-generated visual content.
+                </motion.p>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.8, duration: 0.8 }}
+                  className="mt-10 flex gap-5 flex-wrap"
+                >
+                  <button className="bg-emerald-900 text-white px-8 py-4 rounded-full font-medium shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5">
+                    Schedule a Demo
+                  </button>
+
+                  <button className="border border-slate-300 px-8 py-4 rounded-full font-medium bg-[#F5F7F2] hover:bg-white transition">
+                    See It In Action
+                  </button>
+                </motion.div>
               </motion.div>
-            </motion.div>
 
-            {/* RIGHT IMAGE */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, x: 80 }}
-              animate={{ opacity: 1, scale: 1, x: 0 }}
-              transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-              className="relative flex justify-end"
-            >
-              <img
-                src={HeroMain}
-                alt="Preview"
-                className="w-[115%] md:w-[120%] max-w-none rounded-3xl 
-                           shadow-[0_60px_120px_rgba(0,0,0,0.0)]"
-              />
-              <div className="absolute inset-0 rounded-3xl bg-gradient-to-tr from-white/0 to-transparent pointer-events-none" />
-            </motion.div>
+              {/* RIGHT IMAGE */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95, x: 80 }}
+                animate={{ opacity: 1, scale: 1, x: 0 }}
+                transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+                className="relative flex justify-end"
+              >
+                <img
+                  src={HeroMain}
+                  alt="Preview"
+                  className="w-full md:scale-110 lg:scale-125 rounded-3xl 
+                            shadow-[0_60px_120px_rgba(0,0,0,0.0)]"
+                />
+                <div className="absolute inset-0 rounded-3xl bg-gradient-to-tr from-white/0 to-transparent pointer-events-none" />
+              </motion.div>
 
-          </div>
+            </div>
 
-      </section>
+        </section>
 
 
       <ValueSection />
