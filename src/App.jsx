@@ -12,6 +12,7 @@ import Integrations from './pages/Integrations.jsx'
 import Shopify from './pages/Shopify.jsx'
 import NotFound from './pages/NotFound.jsx'
 import Register from './pages/Register.jsx'
+import AdminDemoRequests from './pages/AdminDemoRequests.jsx'
 
 export default function App() {
   const { user } = useAuth()
@@ -46,6 +47,9 @@ export default function App() {
               <Route path="/contact" element={<Contact />} />
               <Route path="/integrations" element={<Integrations />} />
               <Route path="/shopify" element={<Shopify />} />
+              
+              {/* Hidden Admin Views */}
+              <Route path="/admin/demo-requests" element={<AdminDemoRequests />} />
 
               {/* 404 */}
               <Route path="*" element={<NotFound />} />

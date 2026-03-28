@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { MagneticButton, RevealImage, StaggerText } from "../components/AnimatedElements";
+import DemoModal from "../components/DemoModal";
 import HeroAbout from "../assets/images/About/Hero-about.png";
 import StopGuessing from "../assets/images/About/stop-guessing.png";
 import WeBelieve from "../assets/images/About/we-belive.png";
@@ -11,6 +12,7 @@ import buildright from "../assets/images/About/Rectangle 523.png";
 
 export default function About() {
   const [isMobile, setIsMobile] = useState(false);
+  const [isDemoOpen, setIsDemoOpen] = useState(false);
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -266,9 +268,11 @@ export default function About() {
             <h2 className="text-3xl md:text-5xl font-serif font-semibold mb-8 leading-tight">
               Start elevating product <br /> experiences with <br /> KactusLab today
             </h2>
-            <MagneticButton className="px-10 py-5 bg-white text-emerald-950 rounded-full font-bold text-lg shadow-xl hover:shadow-white/20 transition-all">
-              Schedule a Demo
-            </MagneticButton>
+            <div onClick={() => setIsDemoOpen(true)} className="inline-block cursor-pointer">
+              <MagneticButton className="px-10 py-5 bg-white text-emerald-950 rounded-full font-bold text-lg shadow-xl hover:shadow-white/20 transition-all">
+                Schedule a Demo
+              </MagneticButton>
+            </div>
           </div>
 
           <div className="max-w-md text-emerald-100/80 text-lg relative z-10 backdrop-blur-sm bg-black/5 p-8 rounded-3xl border border-white/10">
@@ -287,6 +291,7 @@ export default function About() {
         </motion.div>
       </section>
 
+      <DemoModal isOpen={isDemoOpen} onClose={() => setIsDemoOpen(false)} />
     </main>
   )
 }

@@ -1,12 +1,15 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { MagneticButton, SectionTitle, StaggerText } from "../components/AnimatedElements";
+import DemoModal from "../components/DemoModal";
 import HeroIntegration from "../assets/images/Integration/Hero-Integration.png";
 import KactusLabsAPI from "../assets/images/Integration/kactuslabsapi.png";
 import ShopifyLogo from "../assets/images/Integration/shopify.png";
 import WooCommerceLogo from "../assets/images/Integration/woocommerce.png";
 
 export default function Integrations() {
+  const [isDemoOpen, setIsDemoOpen] = useState(false);
   const { scrollY } = useScroll();
   const blobY1 = useTransform(scrollY, [0, 800], [0, 100]);
   const blobY2 = useTransform(scrollY, [0, 800], [0, -100]);
@@ -240,9 +243,11 @@ export default function Integrations() {
             <h2 className="text-3xl md:text-5xl font-serif font-semibold mb-8 leading-tight">
               Ready to unify your <br className="hidden md:block" /> commerce data?
             </h2>
-            <MagneticButton className="px-8 py-4 md:px-10 md:py-5 bg-white text-[#0b3b2e] rounded-full font-bold text-lg shadow-xl hover:shadow-white/20 transition-all">
-              Schedule a Demo
-            </MagneticButton>
+            <div onClick={() => setIsDemoOpen(true)} className="inline-block cursor-pointer">
+              <MagneticButton className="px-8 py-4 md:px-10 md:py-5 bg-white text-[#0b3b2e] rounded-full font-bold text-lg shadow-xl hover:shadow-white/20 transition-all">
+                Schedule a Demo
+              </MagneticButton>
+            </div>
           </div>
 
           <div className="max-w-md text-emerald-100/70 text-lg relative z-10 border-l-0 border-t md:border-t-0 md:border-l border-emerald-500/30 pt-8 md:pt-0 md:pl-8 text-center md:text-left">
@@ -254,6 +259,7 @@ export default function Integrations() {
         </motion.div>
       </section>
 
+      <DemoModal isOpen={isDemoOpen} onClose={() => setIsDemoOpen(false)} />
     </main>
   );
 }

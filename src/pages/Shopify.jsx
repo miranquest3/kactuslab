@@ -1,7 +1,10 @@
+import { useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { MagneticButton, SectionTitle, StaggerText } from "../components/AnimatedElements";
+import DemoModal from "../components/DemoModal";
 
 export default function Shopify() {
+  const [isDemoOpen, setIsDemoOpen] = useState(false);
   const { scrollY } = useScroll();
   const y1 = useTransform(scrollY, [0, 800], [0, 150]);
   const y2 = useTransform(scrollY, [0, 800], [0, -100]);
@@ -171,13 +174,16 @@ export default function Shopify() {
             Ready to transform your <br /> Shopify store?
           </h2>
 
-          <MagneticButton className="px-12 py-6 bg-white text-[#0b3b2e] rounded-full font-bold text-xl shadow-2xl hover:shadow-white/20 transition-all relative z-10">
-            Schedule a Demo
-          </MagneticButton>
+          <div onClick={() => setIsDemoOpen(true)} className="inline-block relative z-10 cursor-pointer">
+            <MagneticButton className="px-12 py-6 bg-white text-[#0b3b2e] rounded-full font-bold text-xl shadow-2xl hover:shadow-white/20 transition-all">
+              Schedule a Demo
+            </MagneticButton>
+          </div>
 
         </motion.div>
       </section>
 
+      <DemoModal isOpen={isDemoOpen} onClose={() => setIsDemoOpen(false)} />
     </main>
   )
 }
