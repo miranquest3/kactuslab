@@ -2,6 +2,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom"
 import { useAuth } from "../context/AuthContext"
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import logo from "../assets/logo.svg"
 
 export default function Navbar() {
   const { user, logout } = useAuth()
@@ -86,18 +87,19 @@ export default function Navbar() {
         }`}
     >
       {/* Logo */}
-      <Link to="/" className="group flex items-center gap-2">
-        <motion.span
-          whileHover={{ rotate: 15, scale: 1.1 }}
-          className="w-8 h-8 bg-emerald-900 rounded-lg flex items-center justify-center text-white font-bold"
-        >
-          K
-        </motion.span>
-        <span className="text-lg sm:text-xl font-semibold text-slate-900 transition-colors group-hover:text-emerald-700">
-          KactusLab
-        </span>
-      </Link>
+     <Link to="/" className="group flex items-center gap-3">
 
+  <motion.img
+    whileHover={{ scale: 1.08 }}
+    src={logo}
+    alt="Kactus Logo"
+    className="h-8 w-auto"
+  />
+
+  <span className="text-lg sm:text-xl font-semibold text-slate-900 group-hover:text-emerald-700 transition">
+  </span>
+
+</Link>
       {/* Center Tabs */}
       <div className="hidden md:flex items-center gap-10 text-slate-700 font-medium">
         {["Features", "About", "Integrations"].map((item) => (

@@ -16,9 +16,12 @@ import VirtualTryOn from "../assets/images/Home/Virtual-Try-On.jpg";
 import Fifteen from "../assets/images/Home/Icons/15.svg";
 import Forty from "../assets/images/Home/Icons/40.svg";
 import Eighty from "../assets/images/Home/Icons/80.svg";
+import shopifyl from "../assets/images/Home/Icons/shopify.png";
+import magentol from "../assets/images/Home/Icons/magento.png";
+import woocoml from "../assets/images/Home/Icons/woocom.png";    
 
 
-/* Floating Particles Background */
+/* Floating Particles Background */ 
 function FloatingParticles() {
   const particles = Array.from({ length: 25 })
   const { scrollY } = useScroll()
@@ -207,129 +210,88 @@ export default function Dashboard() {
 
       <ValueSection />
       {/* ENTERPRISE READY */}
+
       {/* ENTERPRISE READY */}
-      <section className="relative bg-[#F5F6F2] py-32 overflow-hidden">
+<section className="relative bg-[#F5F6F2] py-32 overflow-hidden">
 
-        {/* Soft Background Glow */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute -top-32 right-10 w-[400px] h-[400px] bg-emerald-200/30 blur-3xl rounded-full" />
-        </div>
+  {/* Soft Glow */}
+  <div className="absolute inset-0 pointer-events-none">
+    <div className="absolute -top-32 right-10 w-[400px] h-[400px] bg-slate-200/20 blur-[120px] rounded-full" />
+  </div>
 
-        <div className="relative container mx-auto px-6 text-center">
+  <div className="relative container mx-auto px-6 text-center">
 
-          {/* Title Animation */}
-          <motion.div
-            initial={{ opacity: 0, y: 60 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            viewport={{ once: false }}
-          >
-            <h2 className="text-4xl md:text-5xl font-serif text-slate-800">
-              Enterprise-Ready
-            </h2>
-            <p className="mt-4 text-slate-500">
-              Built for scale. Designed for reliability.
-            </p>
-          </motion.div>
+    {/* Heading */}
+    <motion.div
+      initial={{ opacity: 0, y: 60 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1 }}
+      viewport={{ once: true }}
+    >
+      <h2 className="text-5xl md:text-6xl font-serif text-[#1D2B24]">
+        Enterprise-Ready
+      </h2>
+      <p className="mt-4 text-slate-500 text-lg">
+        Built for scale. Designed for reliability.
+      </p>
+    </motion.div>
 
-          {/* Feature Cards */}
-          <div className="mt-20 grid grid-cols-1 md:grid-cols-4 gap-10">
+    {/* Feature Cards */}
+    <div className="mt-20 grid grid-cols-1 md:grid-cols-4 gap-8 max-w-6xl mx-auto">
 
-            {[
-              { label: "Fast Implementation", icon: FastImplementation },
-              { label: "Real-Time Brand Audit", icon: RealTime },
-              { label: "Zero Downtime", icon: ZeroDowntime },
-              { label: "API-Based Integration", icon: APIIcon },
-            ].map((item, index) => (
-              <motion.div
-                key={item.label}
-                initial={{ opacity: 0, y: 80 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.9,
-                  delay: index * 0.15,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
-                viewport={{ once: true }}
-                whileHover={{
-                  y: -15,
-                  scale: 1.05,
-                  rotateX: 5,
-                  rotateY: 5,
-                  boxShadow: "0px 40px 80px rgba(0,0,0,0.12)"
-                }}
-                className="bg-[#F2F3EE] rounded-3xl py-14 px-6 border border-slate-200 transition-all cursor-default group perspective-[1000px]"
-              >
-                <motion.div
-                  animate={{ y: [0, -5, 0] }}
-                  transition={{ duration: 4, repeat: Infinity, delay: index * 0.5 }}
-                  className="w-16 h-16 mx-auto mb-6 flex items-center justify-center rounded-2xl bg-emerald-950 shadow-lg group-hover:bg-emerald-800 transition-colors"
-                >
-                  <img src={item.icon} alt={item.label} className="w-7 h-7" />
-                </motion.div>
-
-                <div className="text-slate-800 font-medium text-lg">
-                  {item.label}
-                </div>
-              </motion.div>
-            ))}
-
+      {[
+        { label: "Fast Implementation", icon: FastImplementation },
+        { label: "Real-time Brand Audit", icon: RealTime },
+        { label: "Zero Downtime", icon: ZeroDowntime },
+        { label: "API-based Integration", icon: APIIcon },
+      ].map((item, index) => (
+        <motion.div
+          key={item.label}
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: index * 0.1 }}
+          viewport={{ once: true }}
+          whileHover={{ y: -8 }}
+          className="bg-[#F2F3EE] rounded-[28px] py-10 px-6 border border-slate-200 shadow-sm hover:shadow-md transition-all"
+        >
+          <div className="w-14 h-14 mx-auto mb-5 flex items-center justify-center rounded-xl bg-[#1F4D3A]">
+            <img src={item.icon} alt="" className="w-16 h-16" />
           </div>
 
-          {/* Compatibility Box */}
-          <motion.div
-            initial={{ opacity: 0, y: 80 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.3 }}
-            viewport={{ once: false }}
-            className="mt-24 bg-[#F2F3EE] rounded-[32px] p-14 border border-slate-200 text-left shadow-sm"
-          >
+          <div className="text-slate-800 font-medium text-base">
+            {item.label}
+          </div>
+        </motion.div>
+      ))}
+    </div>
 
-            {/* Compatible With */}
-            <h3 className="text-xl font-semibold text-slate-800">
-              Compatible With
-            </h3>
+    {/* Compatible With */}
+    <div className="mt-24">
 
-            <div className="mt-8 flex flex-wrap gap-5">
-              {["Shopify", "Magento", "WooCommerce", "Custom APIs"].map((item) => (
-                <motion.span
-                  key={item}
-                  whileHover={{
-                    scale: 1.05,
-                    backgroundColor: "#ffffff",
-                    boxShadow: "0px 10px 30px rgba(0,0,0,0.05)"
-                  }}
-                  className="px-6 py-3 rounded-full bg-[#E6E9DC] text-slate-700 text-sm transition"
-                >
-                  {item}
-                </motion.span>
-              ))}
-            </div>
+      <h3 className="text-2xl md:text-3xl font-medium text-[#1D2B24]">
+        Compatible with
+      </h3>
 
-            {/* Security & Compliance */}
-            <h3 className="mt-14 text-xl font-semibold text-slate-800">
-              Security & Compliance
-            </h3>
+      <div className="mt-10 border-t border-slate-200 pt-10 flex items-center justify-between max-w-6xl mx-auto px-6">
 
-            <div className="mt-8 flex flex-wrap gap-5">
-              {["SOC 2", "GDPR Ready", "ISO 27001"].map((item) => (
-                <motion.span
-                  key={item}
-                  whileHover={{
-                    scale: 1.05,
-                    boxShadow: "0px 10px 30px rgba(0,0,0,0.05)"
-                  }}
-                  className="px-6 py-3 rounded-full border border-slate-300 bg-white text-slate-700 text-sm transition"
-                >
-                  {item}
-                </motion.span>
-              ))}
-            </div>
+        <img src={shopifyl} className="h-14 object-contain opacity-90" />
 
-          </motion.div>
+        <img src={magentol} className="h-14 object-contain opacity-90" />
 
+        <img src={woocoml} className="h-14   object-contain opacity-90" />
+
+        <div className="text-slate-900 font-semibold text-lg">
+          Custom APIs
         </div>
-      </section>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+      {/* ENTERPRISE READY */}
+    
       {/* FROM BROWSING TO BUYING */}
 
       {/*
@@ -436,10 +398,13 @@ export default function Dashboard() {
 
       {/* PRICING STRIP */}
       <section className="bg-emerald-950 text-white py-16 text-center">
-        <h3 className="text-3xl font-serif max-w-3xl mx-auto">
-          KactusLab pricing is designed around how each brand operates.
-        </h3>
-        <a className="inline-block mt-6 bg-white text-emerald-900 px-6 py-3 rounded-full">
+        <h2 className="text-6xl font-serif max-w-3xl mx-auto">
+          KactusLab pricing is designed around</h2>
+          <h2 className="text-6xl font-serif max-w-3xl mx-auto">how each brand operates.
+        </h2><br></br>
+        <a className="mt-2 text-sm text-emerald-200/80">Instead of rigid tiers, we tailor plans based on your scale, use cases, and integration needs. This<br></br>ensures you pay for intelligence that actually fits your business, not unused features. </a>
+<br>
+</br>        <a className="inline-block mt-6 bg-white text-emerald-900 px-6 py-3 rounded-full">
           Contact for pricing
         </a>
       </section>
@@ -449,117 +414,94 @@ export default function Dashboard() {
       {/* WHY IT MATTERS */}
       {/* WHY IT MATTERS */}
       {/* WHY IT MATTERS */}
-      <section className="relative bg-[#F4F5F1] py-32 overflow-hidden">
+   {/* WHY IT MATTERS */}
+<section className="bg-white py-32">
 
-        {/* Soft Background Glow */}
-        <motion.div
-          className="absolute inset-0 pointer-events-none"
-          animate={{ scale: [1, 1.03, 1], opacity: [0.2, 0.45, 0.2] }}
-          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <div className="absolute -bottom-40 -left-40 w-[500px] h-[500px] bg-emerald-200/20 blur-3xl rounded-full" />
-          <div className="absolute -top-40 -right-40 w-[600px] h-[600px] bg-emerald-300/15 blur-3xl rounded-full" />
-        </motion.div>
+  <div className="container mx-auto px-6 text-center">
 
-        <div className="relative container mx-auto px-6 text-center">
+    {/* Heading */}
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      viewport={{ once: true }}
+    >
+      <h2 className="text-5xl md:text-6xl font-serif text-[#1D2B24]">
+        Why It Matters
+      </h2>
+      <p className="mt-4 text-lg text-slate-500">
+        Powering the Next Generation of Fashion
+      </p>
+    </motion.div>
 
-          {/* Title Animation */}
-          <motion.div
-            initial={{ opacity: 0, y: 40, scale: 0.97 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            viewport={{ once: false }}
-          >
-            <h2 className="text-5xl md:text-6xl font-serif text-slate-800 tracking-tight leading-tight">
-              Why It Matters
-            </h2>
-            <p className="mt-3 text-lg md:text-xl text-slate-500 max-w-xl mx-auto">
-              Powering the Next Generation of Fashion with AI-driven precision and style.
-            </p>
-          </motion.div>
+    {/* Cards */}
+    <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
 
-          {/* Logos */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 0.85, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: false }}
-            className="mt-12 flex flex-wrap justify-center gap-16 text-sm text-slate-500"
-          >
-            {["logolpsum", "logolpsum", "LOGOIPSUM", "logolpsum", "logolpsum"].map((logo, i) => (
-              <motion.span
-                key={i}
-                whileHover={{ scale: 1.25, y: -5, opacity: 1 }}
-                transition={{ type: "spring", stiffness: 300, damping: 18 }}
-                className="cursor-pointer font-medium"
-              >
-                {logo}
-              </motion.span>
-            ))}
-          </motion.div>
-
-          {/* Stat Cards */}
-          <div className="mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-
-            {[
-              {
-                icon: Fifteen,
-                title: "Reduction in Returns",
-                desc: "Based on 50,000+ customer interactions across our partner network.",
-                dark: true
-              },
-              {
-                icon: Forty,
-                title: "Increase in Add-to-Cart",
-                desc: "Shoppers are more confident when they can visualize the product.",
-              },
-              {
-                icon: Eighty,
-                title: "Lower Production Costs",
-                desc: "Replace expensive photoshoots with AI-generated on-model imagery.",
-              },
-            ].map((card, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 60, scale: 0.97 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{
-                  duration: 0.6,
-                  delay: index * 0.15,
-                  ease: "easeOut"
-                }}
-                viewport={{ once: false }}
-                whileHover={{
-                  y: -10,
-                  scale: 1.05,
-                  rotate: 0.5,
-                  boxShadow: "0 40px 60px rgba(0,0,0,0.08)"
-                }}
-                className={`rounded-3xl p-12 text-left transition-all ${card.dark
-                  ? "text-white bg-gradient-to-br from-emerald-950 to-emerald-800 shadow-lg"
-                  : "bg-white border border-slate-200 text-slate-800 shadow-md"
-                  }`}
-              >
-                <motion.img
-                  src={card.icon}
-                  alt=""
-                  className="w-16 mb-6"
-                  whileHover={{ rotate: 10, scale: 1.1 }}
-                  transition={{ type: "spring", stiffness: 220, damping: 12 }}
-                />
-
-                <div className="text-xl font-semibold mb-2">{card.title}</div>
-                <p className={`text-sm ${card.dark ? "opacity-80" : "text-slate-600"}`}>
-                  {card.desc}
-                </p>
-              </motion.div>
-            ))}
-
-          </div>
-
+      {/* Card 1 (Dark) */}
+      <motion.div
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+        className="rounded-[32px] p-10 text-left 
+                   bg-gradient-to-br from-[#062E22] to-[#0B3D2E] 
+                   text-white shadow-lg"
+      >
+        <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center mb-6">
+          <img src={Fifteen} className="w-20 h-20" />
         </div>
-      </section>
 
+        <div className="text-4xl font-semibold mb-2">15%</div>
+        <div className="text-base mb-3">Reduction in Returns</div>
+        <p className="text-sm text-white/70">
+          Based on 50,000+ customer interactions across our partner network.
+        </p>
+      </motion.div>
+
+      {/* Card 2 */}
+      <motion.div
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.1 }}
+        viewport={{ once: true }}
+        className="rounded-[32px] p-10 text-left 
+                   bg-[#C9D6B8] text-[#1D2B24]"
+      >
+        <div className="w-12 h-12 rounded-xl bg-black/5 flex items-center justify-center mb-6">
+          <img src={Forty} className="w-20 h-20" />
+        </div>
+
+        <div className="text-4xl font-semibold mb-2">40%</div>
+        <div className="text-base mb-3">Increase in Add-to-Cart</div>
+        <p className="text-sm text-slate-700">
+          Shoppers are more confident when they can visualize the product.
+        </p>
+      </motion.div>
+
+      {/* Card 3 */}
+      <motion.div
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+        viewport={{ once: true }}
+        className="rounded-[32px] p-10 text-left 
+                   bg-[#E4EAD9] text-[#1D2B24]"
+      >
+        <div className="w-12 h-12 rounded-xl bg-black/5 flex items-center justify-center mb-6">
+          <img src={Eighty} className="w-50 h-50" />
+        </div>
+
+        <div className="text-4xl font-semibold mb-2">80%</div>
+        <div className="text-base mb-3">Lower Production Costs</div>
+        <p className="text-sm text-slate-700">
+          Replace expensive photoshoots with AI-generated on-model imagery.
+        </p>
+      </motion.div>
+
+    </div>
+
+  </div>
+</section>
       {/* TESTIMONIALS – ULTRA FLOATING PREMIUM */}
       {/* TESTIMONIALS – SAME SIZE PREMIUM VERSION */}
       <section className="relative bg-gradient-to-b from-emerald-950 via-emerald-900 to-emerald-950 py-28 overflow-hidden">
@@ -637,18 +579,66 @@ export default function Dashboard() {
         </div>
       </section>
 
+
+   
+
       {/* FAQ SECTION */}
       <FAQSection />
 
       {/* CTA */}
-      <section className="bg-[#F5F6F2] py-20 text-center">
-        <h3 className="text-3xl font-serif">
-          Start elevating product experiences with KactusLab today
-        </h3>
-        <a className="inline-block mt-6 bg-emerald-900 text-white px-6 py-3 rounded-full">
+   {/* CTA SECTION */}
+{/* CTA SECTION */}
+<section className="bg-white py-5 px-4 md:px-6">
+
+  <div className="max-w-[2050px] mx-auto"> {/* 👈 wider */}
+
+    <div className="rounded-[40px] px-6 md:px-16 py-14 md:py-16 
+                    bg-gradient-to-r from-[#0B2F25] via-[#061E18] to-[#0B2F25] 
+                    text-white flex flex-col md:flex-row items-start md:items-center 
+                    gap-6 md:gap-8">
+
+      {/* LEFT CONTENT */}
+      <div className="max-w-[1220px] flex-1">
+        <h2 className="text-4xl md:text-3xl lg:text-6xl font-serif leading-[1.1] tracking-tight">
+          AI Visual Engine for Fashion Brands
+          <br />
+          Scale Your Growth Today.
+        </h2>
+
+        <button className="mt-6 border border-white/40 px-6 py-3 rounded-full text-sm hover:bg-white hover:text-black transition">
           Schedule a Demo
-        </a>
-      </section>
+        </button>
+      </div>
+
+      {/* RIGHT TESTIMONIAL */}
+      <div className="relative max-w-[420px] flex-shrink-0 border-l border-white/20 pl-6">
+        <p className="text-sm text-white/80 leading-relaxed">
+          I’ve been cautious with product tech in the past... but KactusLabs
+          just gets it. It’s easy to integrate, and the visuals focus on what 
+          really matters to customers. Everything works seamlessly, reducing
+          confusion and the small issues that often lead to returns.
+        </p>
+
+        <div className="mt-6 flex items-center gap-3">
+          <img
+            src="https://randomuser.me/api/portraits/women/44.jpg"
+            alt="user"
+            className="w-10 h-10 rounded-full object-cover"
+          />
+          <div>
+            <div className="text-sm font-medium">Cameo Ashe</div>
+            <div className="text-xs text-white/60">
+              Lemonade Beach E-Commerce
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
 
     </main>
   );
