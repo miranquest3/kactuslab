@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { MagneticButton, RevealImage, StaggerText } from "../components/AnimatedElements";
 import HeroAbout from "../assets/images/About/Hero-about.png";
@@ -9,6 +10,15 @@ import buildcenter from "../assets/images/About/Rectangle 522.png";
 import buildright from "../assets/images/About/Rectangle 523.png";
 
 export default function About() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   const { scrollY } = useScroll();
   const parallaxY1 = useTransform(scrollY, [0, 1000], [0, 150]);
   const parallaxY2 = useTransform(scrollY, [0, 1000], [0, -100]);
@@ -67,8 +77,8 @@ export default function About() {
 
   {/* LEFT CARD */}
   <motion.div
-    initial={{ opacity: 0, x: 80 }}
-    whileInView={{ opacity: 1, x: -260 }}
+    initial={{ opacity: 0, x: isMobile ? 40 : 80 }}
+    whileInView={{ opacity: 1, x: isMobile ? -90 : -260 }}
     transition={{ duration: 1}}
     viewport={{ once: true }}
     className="absolute w-[270px] md:w-[580px] z-10"
@@ -101,8 +111,8 @@ export default function About() {
 
   {/* RIGHT CARD */}
   <motion.div
-    initial={{ opacity: 0, x: 80 }}
-    whileInView={{ opacity: 1, x: 260 }}
+    initial={{ opacity: 0, x: isMobile ? 40 : 80 }}
+    whileInView={{ opacity: 1, x: isMobile ? 90 : 260 }}
     transition={{ duration: 1}}
     viewport={{ once: true }}
     className="absolute w-[320px] md:w-[580px] z-30"

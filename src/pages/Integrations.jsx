@@ -15,95 +15,141 @@ export default function Integrations() {
     <main className="bg-[#f6f7f4] text-[#0f172a] overflow-x-hidden relative">
 
       {/* Hero Section */}
-      <section className="bg-[#e9efe4] py-32 relative overflow-hidden">
-        {/* Parallax Blobs */}
-        <motion.div style={{ y: blobY1 }} className="absolute -top-20 -left-20 w-96 h-96 bg-emerald-200/40 blur-[100px] rounded-full" />
-        <motion.div style={{ y: blobY2 }} className="absolute bottom-0 -right-20 w-80 h-80 bg-emerald-300/20 blur-[80px] rounded-full" />
+    <section className="bg-[#EEF2E8] py-28 relative overflow-hidden">
 
-        <div className="container-p text-center relative z-10">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif font-semibold mb-6 max-w-4xl mx-auto leading-tight">
-            <StaggerText text="Integrate KactusLabs with Your Commerce Stack" />
-          </h1>
+  {/* Soft Background Glow */}
+  <div className="absolute inset-0 pointer-events-none">
+    <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-emerald-200/30 blur-[140px] rounded-full" />
+  </div>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.8 }}
-            className="text-slate-400 max-w-2xl mx-auto mb-10 text-lg"
-          >
-            Connect KactusLabs with Shopify, WooCommerce, and custom platforms
-            to unify data workflows and automate intelligent product operations.
-          </motion.p>
+  <div className="relative z-10 max-w-5xl mx-auto text-center px-6">
 
-          <MagneticButton className="px-10 py-5 bg-[#0b3b2e] text-white rounded-full font-bold text-lg shadow-xl hover:shadow-emerald-900/20 transition-all">
-            Explore Integrations
-          </MagneticButton>
+    {/* Heading */}
+    <h2 className="text-4xl md:text-6xl font-serif text-[#1D2B24] leading-tight">
+      Integrate KactusLabs with
+      <br />
+      Your Commerce Stack
+    </h2>
 
-          {/* Visual Connection Map */}
-          <div className="mt-24 relative flex items-center justify-center gap-10 md:gap-32 flex-wrap">
-            {/* Connection Lines (SVGs) */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <svg className="w-full h-full max-w-4xl opacity-20" viewBox="0 0 800 200">
-                <motion.path
-                  d="M 150 100 Q 400 0 650 100"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeDasharray="10 10"
-                  initial={{ pathLength: 0 }}
-                  animate={{ pathLength: 1, strokeDashoffset: [0, -100] }}
-                  transition={{ pathLength: { duration: 2 }, strokeDashoffset: { repeat: Infinity, duration: 20, ease: "linear" } }}
-                />
-                <motion.path
-                  d="M 150 100 Q 400 200 650 100"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeDasharray="10 10"
-                  initial={{ pathLength: 0 }}
-                  animate={{ pathLength: 1, strokeDashoffset: [0, 100] }}
-                  transition={{ pathLength: { duration: 2, delay: 0.5 }, strokeDashoffset: { repeat: Infinity, duration: 20, ease: "linear" } }}
-                />
-              </svg>
-            </div>
+    {/* Subtext */}
+    <p className="mt-6 text-slate-600 max-w-2xl mx-auto text-base md:text-lg">
+      Connect KactusLabs with Shopify, WooCommerce, and your own platform via our API
+      to unify data workflows and automate key processes.
+    </p>
 
-            <motion.div
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ type: "spring", delay: 1 }}
-              className="flex flex-col items-center group relative z-10"
-            >
-              <div className="w-28 h-28 rounded-full bg-white shadow-2xl flex items-center justify-center transition-transform group-hover:scale-110 duration-500">
-                <img src={ShopifyLogo} alt="Shopify" className="w-14 h-14 object-contain" />
-              </div>
-              <span className="mt-4 font-bold text-slate-500 uppercase tracking-widest text-xs">Shopify</span>
-            </motion.div>
+    {/* CTA */}
+    <button className="mt-8 bg-[#0B3B2E] text-white px-8 py-3 rounded-full text-sm hover:shadow-xl hover:scale-[1.03] transition-all">
+      See Integrations
+    </button>
 
-            <motion.div
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ type: "spring", delay: 0.8 }}
-              className="w-40 h-40 rounded-full bg-[#0b3b2e] text-white flex flex-col items-center justify-center font-bold shadow-[0_20px_50px_rgba(11,59,46,0.5)] border-4 border-white relative z-10"
-            >
-              <div className="text-xl">Kactus</div>
-              <div className="text-xs opacity-50">Lab</div>
-            </motion.div>
+    {/* ================== CONNECTION MAP ================== */}
+    <div className="mt-24 relative flex items-center justify-center">
 
-            <motion.div
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ type: "spring", delay: 1.2 }}
-              className="flex flex-col items-center group relative z-10"
-            >
-              <div className="w-28 h-28 rounded-full bg-white shadow-2xl flex items-center justify-center transition-transform group-hover:scale-110 duration-500">
-                <img src={WooCommerceLogo} alt="WooCommerce" className="w-14 h-14 object-contain" />
-              </div>
-              <span className="mt-4 font-bold text-slate-500 uppercase tracking-widest text-xs">WooCommerce</span>
-            </motion.div>
-          </div>
+      {/* BASE LINE */}
+      <div className="absolute w-full max-w-3xl h-[2px] bg-gradient-to-r from-transparent via-emerald-200 to-transparent" />
 
-        </div>
-      </section>
+      {/* 🔥 CENTER → LEFT + RIGHT HEARTBEAT */}
+     <div className="absolute w-full max-w-3xl h-[2px] overflow-hidden">
+
+  {/* LEFT FLOW (center → Shopify) */}
+  <motion.div
+    className="absolute left-1/2 top-0 h-[2px] bg-emerald-500"
+    animate={{
+      x: ["0%", "-100%"],
+      width: ["0%", "50%"],
+      opacity: [1, 0]
+    }}
+    transition={{
+      duration: 2.2,
+      repeat: Infinity,
+      ease: "easeOut"
+    }}
+  />
+
+  {/* RIGHT FLOW (center → WooCommerce) */}
+  <motion.div
+    className="absolute left-1/2 top-0 h-[2px] bg-emerald-500"
+    animate={{
+      x: ["0%", "100%"],
+      width: ["0%", "50%"],
+      opacity: [1, 0]
+    }}
+    transition={{
+      duration: 2.2,
+      repeat: Infinity,
+      ease: "easeOut"
+    }}
+  />
+
+  {/* GLOW LEFT */}
+  <motion.div
+    className="absolute left-1/2 h-[2px] bg-emerald-400 blur-md"
+    animate={{
+      x: ["0%", "-100%"],
+      width: ["0%", "60%"],
+      opacity: [0.8, 0]
+    }}
+    transition={{
+      duration: 2.2,
+      repeat: Infinity,
+      ease: "easeOut"
+    }}
+  />
+
+  {/* GLOW RIGHT */}
+  <motion.div
+    className="absolute left-1/2 h-[2px] bg-emerald-400 blur-md"
+    animate={{
+      x: ["0%", "100%"],
+      width: ["0%", "60%"],
+      opacity: [0.8, 0]
+    }}
+    transition={{
+      duration: 2.2,
+      repeat: Infinity,
+      ease: "easeOut"
+    }}
+  />
+
+</div>
+
+      {/* LEFT NODE (Shopify) */}
+      <div className="absolute left-2 md:left-10 flex flex-col items-center">
+        <motion.div
+          whileHover={{ scale: 1.1 }}
+          className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white shadow-lg flex items-center justify-center"
+        >
+          <img src={ShopifyLogo} className="w-8 md:w-10 object-contain" />
+        </motion.div>
+      </div>
+
+      {/* CENTER NODE (KactusLabs) */}
+      <motion.div
+        animate={{ scale: [1, 1.08, 1] }}
+        transition={{ duration: 2.2, repeat: Infinity }}
+        className="w-32 h-32 md:w-40 md:h-40 rounded-full 
+                   bg-[#062E22] flex items-center justify-center 
+                   text-white font-serif text-xl md:text-2xl 
+                   shadow-[0_25px_80px_rgba(0,0,0,0.35)] 
+                   border-[14px] border-[#C7D3B3]"
+      >
+        KactusLabs
+      </motion.div>
+
+      {/* RIGHT NODE (WooCommerce) */}
+      <div className="absolute right-2 md:right-10 flex flex-col items-center">
+        <motion.div
+          whileHover={{ scale: 1.1 }}
+          className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-[#A48DB3] flex items-center justify-center shadow-md"
+        >
+          <img src={WooCommerceLogo} className="w-10 md:w-12 object-contain" />
+        </motion.div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
 
       {/* Integration Cards */}
       <section className="container-p py-32">
@@ -186,20 +232,20 @@ export default function Integrations() {
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          className="bg-gradient-to-br from-[#0b3b2e] to-[#041a14] text-white rounded-[40px] p-12 md:p-20 flex flex-col md:flex-row justify-between items-center gap-16 shadow-2xl relative overflow-hidden group"
+          className="bg-gradient-to-br from-[#0b3b2e] to-[#041a14] text-white rounded-[32px] md:rounded-[40px] p-8 md:p-20 flex flex-col md:flex-row justify-between items-center gap-10 md:gap-16 shadow-2xl relative overflow-hidden group"
         >
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(52,211,153,0.1),transparent)]" />
 
-          <div className="relative z-10 maxWidth-xl">
+          <div className="relative z-10 max-w-xl text-center md:text-left">
             <h2 className="text-3xl md:text-5xl font-serif font-semibold mb-8 leading-tight">
-              Ready to unify your <br /> commerce data?
+              Ready to unify your <br className="hidden md:block" /> commerce data?
             </h2>
-            <MagneticButton className="px-10 py-5 bg-white text-[#0b3b2e] rounded-full font-bold text-lg shadow-xl hover:shadow-white/20 transition-all">
+            <MagneticButton className="px-8 py-4 md:px-10 md:py-5 bg-white text-[#0b3b2e] rounded-full font-bold text-lg shadow-xl hover:shadow-white/20 transition-all">
               Schedule a Demo
             </MagneticButton>
           </div>
 
-          <div className="max-w-md text-emerald-100/70 text-lg relative z-10 border-l border-emerald-500/30 pl-8">
+          <div className="max-w-md text-emerald-100/70 text-lg relative z-10 border-l-0 border-t md:border-t-0 md:border-l border-emerald-500/30 pt-8 md:pt-0 md:pl-8 text-center md:text-left">
             <p className="italic mb-6">
               “The API integration was straightforward and well-documented. We had our custom ERP sync built and running in less than a week.”
             </p>
