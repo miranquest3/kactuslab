@@ -145,54 +145,7 @@ export default function About() {
           doing now, how it’s evolving, and where demand is forming.
         </motion.p>
       </section>
-      {/* What We're Building */}
-      <section className="container-p py-24 text-center relative z-10">
-        <motion.h2
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-3xl md:text-4xl font-serif font-semibold mb-12"
-        >
-          What We’re Building
-        </motion.h2>
-
-        <div className="flex justify-center gap-8 mb-12 flex-wrap">
-          {[
-            { color: "bg-[#0b3b2e]", delay: 0 },
-            { color: "bg-[#c8d6b8]", delay: 0.2 },
-            { color: "bg-[#dfe7d5]", delay: 0.4 }
-          ].map((box, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 50, rotate: -5 }}
-              whileInView={{ opacity: 1, y: 0, rotate: 0 }}
-              transition={{ duration: 0.8, delay: box.delay }}
-              viewport={{ once: true }}
-              whileHover={{ y: -10, rotate: 2, scale: 1.05 }}
-              className={`w-44 h-64 ${box.color} rounded-3xl shadow-lg cursor-pointer`}
-            />
-          ))}
-        </div>
-
-        <motion.h3
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          className="text-2xl font-serif font-medium mb-4"
-        >
-          Today · Next · Forward
-        </motion.h3>
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          className="text-slate-600 max-w-2xl mx-auto text-lg"
-        >
-          KactusLab brings fragmented market signals into one clear
-          intelligence layer, helping brands understand what the market is
-          doing now, how it’s evolving, and where demand is forming.
-        </motion.p>
-      </section>
+    
 
       {/* Section 1 */}
       <section className="container-p py-24 grid grid-cols-1 md:grid-cols-2 gap-16 items-center relative z-10">
