@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function DemoModal({ isOpen, onClose }) {
   const [formData, setFormData] = useState({
@@ -12,7 +12,24 @@ export default function DemoModal({ isOpen, onClose }) {
     joinTechnical: false,
     newsletter: false
   });
-  const [status, setStatus] = useState(null); // 'loading', 'success', 'error'
+  const [status, setStatus] = useState(null);
+
+  // ✅ FIX: Completely lock background scroll
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+      document.body.style.position = "fixed";
+      document.body.style.width = "100%";
+    } else {
+      document.body.style.overflow = "auto";
+      document.body.style.position = "static";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+      document.body.style.position = "static";
+    };
+  }, [isOpen]);
 
   if (!isOpen) return null;
 
@@ -69,6 +86,11 @@ export default function DemoModal({ isOpen, onClose }) {
            animate={{ y: 0, opacity: 1, scale: 1 }}
            exit={{ y: 20, opacity: 0, scale: 0.95 }}
            onClick={e => e.stopPropagation()}
+
+           // ✅ FIX: prevent scroll going to background
+           onWheel={(e) => e.stopPropagation()}
+           onTouchMove={(e) => e.stopPropagation()}
+
            className="bg-white rounded-2xl shadow-2xl p-8 md:p-12 max-w-2xl w-full relative max-h-[90vh] overflow-y-auto hide-scrollbar"
         >
           {/* Close button */}

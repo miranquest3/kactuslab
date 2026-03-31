@@ -13,6 +13,11 @@ import Shopify from './pages/Shopify.jsx'
 import NotFound from './pages/NotFound.jsx'
 import Register from './pages/Register.jsx'
 import AdminDemoRequests from './pages/AdminDemoRequests.jsx'
+import Feature from './pages/Features.jsx'
+import Vto from './pages/Vto.jsx'
+import WhatsAppMarketing from './pages/WhatsAppMarketing.jsx'
+import AiPhotoShoot from './pages/AiPhotoShoot.jsx'
+import ScrollToTop from "./components/ScrollToTop.jsx"
 
 export default function App() {
   const { user } = useAuth()
@@ -21,6 +26,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col">
+       <ScrollToTop />
       {/* Scroll Progress Bar */}
       <motion.div
         className="fixed top-0 left-0 right-0 h-1 bg-emerald-500 origin-left z-[100]"
@@ -47,7 +53,10 @@ export default function App() {
               <Route path="/contact" element={<Contact />} />
               <Route path="/integrations" element={<Integrations />} />
               <Route path="/shopify" element={<Shopify />} />
-              
+              <Route path="/vto" element={<Vto />} />
+              <Route path="/whatsapp-marketing" element={<WhatsAppMarketing />} />
+              <Route path="/ai-photoshoot" element={<AiPhotoShoot />} />
+
               {/* Hidden Admin Views */}
               <Route path="/admin/demo-requests" element={<AdminDemoRequests />} />
 
