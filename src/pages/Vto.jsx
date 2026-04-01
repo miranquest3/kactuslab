@@ -116,17 +116,19 @@ export default function Vto() {
       {/* ================= LEFT SIDE (IMAGE) ================= */}
       <div className="flex justify-center md:justify-start">
 
-        <img
-          src={challanges}
-          alt="Customer Confusion Flow"
-          className="w-full max-w-[700px] object-contain"
-        />
+        <div className="overflow-hidden rounded-xl">
+  <img
+    src={challanges}
+    alt="Customer Confusion Flow"
+    className="w-full max-w-[700px] object-contain transition-transform duration-500 ease-in-out hover:scale-110"
+  />
+</div>
 
       </div>
 
       {/* ================= RIGHT SIDE ================= */}
       <div className="bg-gradient-to-br from-[#062E22] to-[#0B3D2E] 
-                      rounded-[32px] p-10 md:p-12 text-white">
+                      rounded-[32px] p-10 md:p-12 text-white transition-transform duration-500 ease-in-out hover:scale-110">
 
         <h3 className="font-serif text-2xl mb-8 text-[#D4E5C0]">
           How this Effect Brands?
@@ -212,7 +214,7 @@ export default function Vto() {
       src={vtoImage}
       alt="VTO Preview"
       className="w-full h-full object-cover rounded-[32px] 
-                 shadow-[0_20px_50px_rgba(0,0,0,0.25)]"
+                 shadow-[0_20px_50px_rgba(0,0,0,0.25)] transition-transform duration-500 ease-in-out hover:scale-110"
     />
 
   </div>
@@ -229,7 +231,7 @@ export default function Vto() {
 
   {/* CARD 1 */}
   <div className="bg-gradient-to-br from-[#062E22] to-[#0B3D2E] 
-                  text-white p-8 pb-6 rounded-[32px] flex flex-col">
+                  text-white p-8 pb-6 rounded-[32px] flex flex-col transition-transform duration-500 ease-in-out hover:scale-110">
 
     {/* ICON + HEADING */}
     <div className="flex items-center gap-3 mb-4">
@@ -256,7 +258,7 @@ Users instantly see how an outfit looks on their own body with a single click, e
 
   {/* CARD 2 */}
   <div className="bg-[#C9D6B8] text-[#1D2B24] 
-                  p-8 pb-6 rounded-[32px] flex flex-col">
+                  p-8 pb-6 rounded-[32px] flex flex-col transition-transform duration-500 ease-in-out hover:scale-110">
 
     <div className="flex items-center gap-3 mb-4">
       <img src={size} alt="icon" className="w-6 h-6" />
@@ -280,7 +282,7 @@ Users instantly see how an outfit looks on their own body with a single click, e
 
   {/* CARD 3 */}
   <div className="bg-[#E4EAD9] text-[#1D2B24] 
-                  p-8 pb-6 rounded-[32px] flex flex-col">
+                  p-8 pb-6 rounded-[32px] flex flex-col transition-transform duration-500 ease-in-out hover:scale-110">
 
     <div className="flex items-center gap-3 mb-4">
       <img src={download} alt="icon" className="w-6 h-6" />
@@ -327,7 +329,7 @@ Users instantly see how an outfit looks on their own body with a single click, e
                       rounded-[32px] 
                       px-10 py-12 
                       text-left 
-                      min-h-[340px] flex flex-col justify-start">
+                      min-h-[340px] flex flex-col justify-start transition-transform duration-500 ease-in-out hover:scale-110">
 
         <h3 className="font-serif text-[26px] text-[#1D2B24] mb-8">
           Other Brands
@@ -352,7 +354,7 @@ Users instantly see how an outfit looks on their own body with a single click, e
                       rounded-[32px] 
                       px-10 py-12 
                       text-left text-white 
-                      min-h-[340px] flex flex-col justify-start">
+                      min-h-[340px] flex flex-col justify-start transition-transform duration-500 ease-in-out hover:scale-110">
 
         <h3 className="font-serif text-[26px] mb-8 text-[#D4E5C0]">
           Kactuslabs
