@@ -6,15 +6,34 @@
   --brand: #22c55e;
 }
 
-html,
+html {
+  min-height: 100%;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 body,
 #root {
-  height: 100%;
+  min-height: 100%;
 }
 
 /* Default Body Font */
 body {
+  margin: 0;
+  overflow-x: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
   font-family: "Space Grotesk";
+}
+
+* {
+  scrollbar-width: none;
+}
+
+*::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
 }
 
 /* Headings Font */
@@ -25,6 +44,21 @@ h4,
 h5,
 h6 {
   font-family: "Instrument Serif";
+}
+
+@font-face {
+  font-family: "SF Pro";
+  src:
+    local("SF Pro Display"),
+    local("SF Pro Text"),
+    local("SF Pro"),
+    local("SFProDisplay-Regular"),
+    local("SFProText-Regular");
+}
+
+.demo-page,
+.demo-page * {
+  font-family: "SF Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
 }
 
 /* Brand Button */

@@ -30,13 +30,13 @@ export default function Login() {
     })
 
     window.history.replaceState({}, document.title, '/')
-    navigate('/dashboard', { replace: true })
+    navigate('/', { replace: true })
   }
 }, [navigate])
   const handleSubmit = async (e) => {
     e.preventDefault()
     // Login functionality disabled for development
-    setError('Login is disabled. Please use the dashboard directly.')
+    setError('Login is disabled. Please use the homepage directly.')
   }
 
   return (

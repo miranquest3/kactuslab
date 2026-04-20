@@ -5,7 +5,6 @@ import Footer from './components/Footer.jsx'
 import { useAuth } from './context/AuthContext.jsx'
 
 import Login from './pages/Login.jsx'
-import Dashboard from './pages/Dashboard.jsx'
 import About from './pages/About.jsx'
 import Contact from './pages/Contact.jsx'
 import Integrations from './pages/Integrations.jsx'
@@ -13,16 +12,20 @@ import Shopify from './pages/Shopify.jsx'
 import NotFound from './pages/NotFound.jsx'
 import Register from './pages/Register.jsx'
 import AdminDemoRequests from './pages/AdminDemoRequests.jsx'
-import Feature from './pages/Features.jsx'
 import Vto from './pages/Vto.jsx'
 import WhatsAppMarketing from './pages/WhatsAppMarketing.jsx'
 import AiPhotoShoot from './pages/AiPhotoShoot.jsx'
 import ScrollToTop from "./components/ScrollToTop.jsx"
+import Home from './pages/Home.jsx'
 
 export default function App() {
   const { user } = useAuth()
   const location = useLocation()
   const { scrollYProgress } = useScroll()
+  const transparentNavbarRoutes = ['/', '/about', '/integrations', '/shopify', '/vto', '/ai-whatsapp-marketing']
+  const hideGlobalNavbarRoutes = ['/about']
+  const shouldOverlayNavbar = transparentNavbarRoutes.includes(location.pathname)
+  const shouldShowGlobalNavbar = !hideGlobalNavbarRoutes.includes(location.pathname)
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -34,9 +37,9 @@ export default function App() {
       />
 
       {/* Navbar always visible */}
-      <Navbar />
+      {shouldShowGlobalNavbar && <Navbar />}
 
-      <div className="flex-1 pt-10 overflow-x-hidden">
+      <div className={`flex-1 overflow-x-hidden ${shouldOverlayNavbar ? '' : 'pt-16'}`}>
         <AnimatePresence mode="wait">
           <motion.div
             key={location.pathname}
@@ -47,16 +50,14 @@ export default function App() {
           >
             <Routes location={location} key={location.pathname}>
               {/* Main Pages */}
-              <Route path="/" element={<Dashboard />} />
-              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/integrations" element={<Integrations />} />
               <Route path="/shopify" element={<Shopify />} />
               <Route path="/vto" element={<Vto />} />
-              <Route path="/whatsapp-marketing" element={<WhatsAppMarketing />} />
+              <Route path="/ai-whatsapp-marketing" element={<WhatsAppMarketing />} />
               <Route path="/ai-photoshoot" element={<AiPhotoShoot />} />
-
               {/* Hidden Admin Views */}
               <Route path="/admin/demo-requests" element={<AdminDemoRequests />} />
 

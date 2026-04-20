@@ -1,263 +1,326 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { MagneticButton, SectionTitle, StaggerText } from "../components/AnimatedElements";
 import DemoModal from "../components/DemoModal";
-import HeroIntegration from "../assets/images/Integration/Hero-Integration.png";
-import KactusLabsAPI from "../assets/images/Integration/kactuslabsapi.png";
-import ShopifyLogo from "../assets/images/Integration/shopify.png";
-import WooCommerceLogo from "../assets/images/Integration/woocommerce.png";
+import hero from "../assets/images/Home/hero.png";
+import logoWithoutName from "../assets/images/logowithoutname.svg";
+import shopifyIcon from "../assets/images/Integration/shopifyIcon.svg";
+import wooIcon from "../assets/images/Integration/wocommerceIcon.svg";
+import woocommerceCardIcon from "../assets/images/Integration/woocommerce.png";
+import kactusApiCardIcon from "../assets/images/Integration/KactusApi.png";
+import ShopifyCard from "../assets/images/Shopify/ShopifyCard.svg";
+import ShopifyHeroBg from "../assets/images/Shopify/shopifyhero.png";
+import ctaImage from "../assets/images/Integration/ctaImage.png";
+
+const integrationCards = [
+  {
+    title: "Fast Implementation",
+    description: "Fast Implementation this is best i am best lorme ipsum lorme imsume",
+    icon: shopifyIcon,
+    iconAlt: "Shopify"
+  },
+  {
+    title: "Fast Implementation",
+    description: "Fast Implementation this is best i am best lorme ipsum lorme imsume",
+    icon: woocommerceCardIcon,
+    iconAlt: "WooCommerce"
+  },
+  {
+    title: "Fast Implementation",
+    description: "Fast Implementation this is best i am best lorme ipsum lorme imsume",
+    icon: kactusApiCardIcon,
+    iconAlt: "Kactus API"
+  }
+];
+
+const integrationCtaPoints = [
+  "150+ Handcoded",
+  "150+ Handcoded",
+  "150+ Handcoded"
+];
+
+const shopifyHeroTestimonial = {
+  quote:
+    "I've been cautious with product tech in the past, but KactusLabs just gets it. It's easy to integrate, and the visuals focus on what really matters to customers. Everything works seamlessly, reducing confusion and the small issues that often lead to returns.",
+  name: "Cameo Ashe",
+  role: "Lemonade Beach E-Commerce",
+  image: "https://randomuser.me/api/portraits/women/28.jpg"
+};
 
 export default function Integrations() {
   const [isDemoOpen, setIsDemoOpen] = useState(false);
   const { scrollY } = useScroll();
-  const blobY1 = useTransform(scrollY, [0, 800], [0, 100]);
-  const blobY2 = useTransform(scrollY, [0, 800], [0, -100]);
+  const heroRevealY = useTransform(scrollY, [0, 500], [0, 110]);
+  const blobY1 = useTransform(scrollY, [0, 500], [0, 100]);
+  const blobY2 = useTransform(scrollY, [0, 500], [0, -100]);
 
   return (
-    <main className="bg-[#f6f7f4] text-[#0f172a] overflow-x-hidden relative">
-
-      {/* Hero Section */}
-    <section className="bg-[#EEF2E8] py-28 relative overflow-hidden">
-
-  {/* Soft Background Glow */}
-  <div className="absolute inset-0 pointer-events-none">
-    <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-emerald-200/30 blur-[140px] rounded-full" />
-  </div>
-
-  <div className="relative z-10 max-w-5xl mx-auto text-center px-6">
-
-    {/* Heading */}
-    <h2 className="text-4xl md:text-6xl font-serif text-[#1D2B24] leading-tight">
-      Integrate KactusLabs with
-      <br />
-      Your Commerce Stack
-    </h2>
-
-    {/* Subtext */}
-    <p className="mt-6 text-slate-600 max-w-2xl mx-auto text-base md:text-lg">
-      Connect KactusLabs with Shopify, WooCommerce, and your own platform via our API
-      to unify data workflows and automate key processes.
-    </p>
-
-    {/* CTA */}
-    <button className="mt-8 bg-[#0B3B2E] text-white px-8 py-3 rounded-full text-sm hover:shadow-xl hover:scale-[1.03] transition-all">
-      See Integrations
-    </button>
-
-    {/* ================== CONNECTION MAP ================== */}
-    <div className="mt-24 relative flex items-center justify-center">
-
-      {/* BASE LINE */}
-      <div className="absolute w-full max-w-3xl h-[2px] bg-gradient-to-r from-transparent via-emerald-200 to-transparent" />
-
-      {/* 🔥 CENTER → LEFT + RIGHT HEARTBEAT */}
-     <div className="absolute w-full max-w-3xl h-[2px] overflow-hidden">
-
-  {/* LEFT FLOW (center → Shopify) */}
-  <motion.div
-    className="absolute left-1/2 top-0 h-[2px] bg-emerald-500"
-    animate={{
-      x: ["0%", "-100%"],
-      width: ["0%", "50%"],
-      opacity: [1, 0]
-    }}
-    transition={{
-      duration: 2.2,
-      repeat: Infinity,
-      ease: "easeOut"
-    }}
-  />
-
-  {/* RIGHT FLOW (center → WooCommerce) */}
-  <motion.div
-    className="absolute left-1/2 top-0 h-[2px] bg-emerald-500"
-    animate={{
-      x: ["0%", "100%"],
-      width: ["0%", "50%"],
-      opacity: [1, 0]
-    }}
-    transition={{
-      duration: 2.2,
-      repeat: Infinity,
-      ease: "easeOut"
-    }}
-  />
-
-  {/* GLOW LEFT */}
-  <motion.div
-    className="absolute left-1/2 h-[2px] bg-emerald-400 blur-md"
-    animate={{
-      x: ["0%", "-100%"],
-      width: ["0%", "60%"],
-      opacity: [0.8, 0]
-    }}
-    transition={{
-      duration: 2.2,
-      repeat: Infinity,
-      ease: "easeOut"
-    }}
-  />
-
-  {/* GLOW RIGHT */}
-  <motion.div
-    className="absolute left-1/2 h-[2px] bg-emerald-400 blur-md"
-    animate={{
-      x: ["0%", "100%"],
-      width: ["0%", "60%"],
-      opacity: [0.8, 0]
-    }}
-    transition={{
-      duration: 2.2,
-      repeat: Infinity,
-      ease: "easeOut"
-    }}
-  />
-
-</div>
-
-      {/* LEFT NODE (Shopify) */}
-      <div className="absolute left-2 md:left-10 flex flex-col items-center">
+    <main className="bg-[#F5F6F2] text-slate-800">
+      <section className="relative min-h-screen overflow-hidden bg-[#06231C]">
         <motion.div
-          whileHover={{ scale: 1.1 }}
-          className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white shadow-lg flex items-center justify-center"
-        >
-          <img src={ShopifyLogo} className="w-8 md:w-10 object-contain" />
-        </motion.div>
-      </div>
-
-      {/* CENTER NODE (KactusLabs) */}
-      <motion.div
-        animate={{ scale: [1, 1.08, 1] }}
-        transition={{ duration: 2.2, repeat: Infinity }}
-        className="w-32 h-32 md:w-40 md:h-40 rounded-full 
-                   bg-[#062E22] flex items-center justify-center 
-                   text-white font-serif text-xl md:text-2xl 
-                   shadow-[0_25px_80px_rgba(0,0,0,0.35)] 
-                   border-[14px] border-[#C7D3B3]"
-      >
-        KactusLabs
-      </motion.div>
-
-      {/* RIGHT NODE (WooCommerce) */}
-      <div className="absolute right-2 md:right-10 flex flex-col items-center">
-        <motion.div
-          whileHover={{ scale: 1.1 }}
-          className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-[#A48DB3] flex items-center justify-center shadow-md"
-        >
-          <img src={WooCommerceLogo} className="w-10 md:w-12 object-contain" />
-        </motion.div>
-      </div>
-
-    </div>
-
-  </div>
-</section>
-
-      {/* Integration Cards */}
-      <section className="container-p py-32">
-        <SectionTitle
-          title="Seamlessly integrate KactusLabs with your tech stack"
-          subtitle="One connection, infinite possibilities for your commerce growth."
+          style={{ y: heroRevealY, backgroundImage: `url(${ShopifyHeroBg})` }}
+          className="absolute inset-0 bg-cover bg-center"
         />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(2,21,16,0.9)_0%,rgba(4,40,31,0.72)_42%,rgba(17,111,96,0.18)_100%)]" />
+        <motion.div
+          style={{ y: blobY1 }}
+          className="absolute left-[-40px] top-[18%] z-[1] h-[360px] w-[360px] rounded-full bg-[#32cdb5]/30 blur-[110px]"
+        />
+        <motion.div
+          style={{ y: blobY2 }}
+          className="absolute right-[-40px] top-[-40px] z-[1] h-[320px] w-[320px] rounded-full bg-[#a8ffe8]/20 blur-[130px]"
+        />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.08)_0%,transparent_55%)] mix-blend-screen opacity-40" />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-16">
-
-          {[
-            {
-              name: "Shopify",
-              logo: ShopifyLogo,
-              desc: "Automatically sync products, orders, customers, and inventory directly from Shopify.",
-              link: "/shopify",
-              tag: "Native App"
-            },
-            {
-              name: "WooCommerce",
-              logo: WooCommerceLogo,
-              desc: "Sync products and order data seamlessly from WooCommerce into KactusLabs.",
-              link: null,
-              tag: "Coming Soon"
-            },
-            {
-              name: "KactusLabs API",
-              logo: KactusLabsAPI,
-              desc: "Build custom integrations and automate advanced workflows using our open API.",
-              link: "#",
-              tag: "Docs"
-            }
-          ].map((item, i) => (
+        <div className="relative z-10 px-6 pb-6 pt-16 sm:px-8 md:px-14 md:pt-20 lg:px-20 xl:px-24">
+          <div className="grid min-h-[calc(100vh-10rem)] w-full items-center gap-10 lg:grid-cols-[60%_40%] lg:gap-6">
             <motion.div
-              key={item.name}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
-              viewport={{ once: true }}
-              whileHover={{
-                y: -15,
-                scale: 1.02,
-                rotateX: 4,
-                rotateY: 4,
-                boxShadow: "0 40px 80px rgba(0,0,0,0.1)"
-              }}
-              className="bg-white rounded-[32px] p-10 shadow-sm border border-slate-100 transition-all flex flex-col perspective-[1000px] group cursor-pointer"
+              initial={{ opacity: 0, y: 28 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+              className="max-w-[860px] lg:pr-10"
             >
-              <div className="flex justify-between items-start mb-8">
-                <div className="w-16 h-16 rounded-2xl bg-[#eef2ea] flex items-center justify-center p-3">
-                  <img src={item.logo} alt={item.name} className="w-full h-full object-contain" />
-                </div>
-                <span className="px-3 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-bold uppercase tracking-widest rounded-full border border-emerald-100">
-                  {item.tag}
-                </span>
-              </div>
+              <h1
+                className="self-stretch text-white"
+                style={{
+                  color: "#FFF",
+                  fontFamily: "SF Pro",
+                  fontSize: "54px",
+                  fontStyle: "normal",
+                  fontWeight: 400,
+                  lineHeight: "64px"
+                }}
+              >
+                Integrate KactusLabs with
+                <br />
+                Your Commerce Stack
+              </h1>
 
-              <h3 className="text-2xl font-serif font-semibold mb-4 text-slate-900 group-hover:text-emerald-800 transition-colors">
-                {item.name}
-              </h3>
-              <p className="text-slate-600 mb-8 flex-grow leading-relaxed">
-                {item.desc}
+              <p
+                className="mt-4 max-w-[820px]"
+                style={{
+                  color: "rgba(255,255,255,0.88)",
+                  fontFamily: "SF Pro",
+                  fontSize: "22px",
+                  fontStyle: "normal",
+                  fontWeight: 400,
+                  lineHeight: "1.35"
+                }}
+              >
+                Connect KactusLabs with Shopify, WooCommerce, and
+                <br />
+                your own platform via our API to unify data workflows and
+                <br />
+                automate key processes.
               </p>
 
-              {item.link ? (
-                <Link to={item.link} className="flex items-center gap-2 text-[#0b3b2e] font-bold translate-x-0 group-hover:translate-x-2 transition-transform">
-                  Explore Integration <span className="text-xl">→</span>
-                </Link>
-              ) : (
-                <span className="text-slate-400 font-bold">Coming 2026</span>
-              )}
+              <button
+                type="button"
+                onClick={() => setIsDemoOpen(true)}
+                className="mt-7 inline-flex h-12 items-center justify-center rounded-[4px] bg-[#D4E5C0] px-8 text-[15px] font-medium text-[#06231C] transition-all duration-300 hover:translate-y-[-1px] hover:bg-[#dbe9ca]"
+              >
+                See Integrations
+              </button>
             </motion.div>
-          ))}
 
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
+              className="flex min-h-[520px] w-full items-center justify-center"
+            >
+              <div className="relative h-[420px] w-[420px]">
+                <div className="absolute left-1/2 top-1/2 h-[354px] w-[354px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/85" />
+                <div className="absolute left-1/2 top-1/2 h-[258px] w-[258px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/85" />
+
+                <div className="absolute left-1/2 top-1/2 flex h-[76px] w-[76px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#06231C] shadow-[0_18px_40px_rgba(4,28,22,0.35)]">
+                  <img src={logoWithoutName} alt="KactusLab" className="h-10 w-10 object-contain" />
+                </div>
+
+                <div className="absolute left-1/5 top-1/2 flex h-[54px] w-[54px] translate-x-[70px] translate-y-[-177px] items-center justify-center rounded-full bg-white shadow-[0_0_30px_rgba(212,229,192,0.32),0_12px_25px_rgba(255,255,255,0.16)]">
+                  <img src={shopifyIcon} alt="Shopify" className="h-10 w-10 object-contain" />
+                </div>
+
+                <div className="absolute left-1/2 top-1/2 flex h-[54px] w-[54px] translate-x-[98px] translate-y-[98px] items-center justify-center rounded-full bg-[#D78AC2] shadow-[0_0_26px_rgba(215,138,194,0.34),0_12px_25px_rgba(215,138,194,0.22)]">
+                  <img src={wooIcon} alt="WooCommerce" className="h-8 w-8 object-contain" />
+                </div>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="container-p pb-32">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          className="bg-gradient-to-br from-[#0b3b2e] to-[#041a14] text-white rounded-[32px] md:rounded-[40px] p-8 md:p-20 flex flex-col md:flex-row justify-between items-center gap-10 md:gap-16 shadow-2xl relative overflow-hidden group"
-        >
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(52,211,153,0.1),transparent)]" />
-
-          <div className="relative z-10 max-w-xl text-center md:text-left">
-            <h2 className="text-3xl md:text-5xl font-serif font-semibold mb-8 leading-tight">
-              Ready to unify your <br className="hidden md:block" /> commerce data?
+      <section className="bg-white px-6 pb-16 pt-6 sm:px-8 md:px-14 md:pb-20 md:pt-8 lg:px-20 xl:px-24">
+        <div className="mx-auto max-w-[1320px]">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.65 }}
+            viewport={{ once: true }}
+            className="mx-auto flex w-full justify-center text-center"
+          >
+            <h2
+              style={{
+                width: "658px",
+                height: "110px",
+                textAlign: "center",
+                fontFamily: "SF Pro",
+                fontSize: "46px",
+                fontStyle: "normal",
+                fontWeight: 400,
+                lineHeight: "48px",
+                textTransform: "capitalize",
+                background: "linear-gradient(90deg, #06231C 48.13%, #D4E5C0 120.12%)",
+                backgroundClip: "text",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent"
+              }}
+            >
+              Seamlessly Integrate KactusLabs
+              <br />
+              With Your Tech Stack
             </h2>
-            <div onClick={() => setIsDemoOpen(true)} className="inline-block cursor-pointer">
-              <MagneticButton className="px-8 py-4 md:px-10 md:py-5 bg-white text-[#0b3b2e] rounded-full font-bold text-lg shadow-xl hover:shadow-white/20 transition-all">
-                Schedule a Demo
-              </MagneticButton>
-            </div>
-          </div>
+          </motion.div>
 
-          <div className="max-w-md text-emerald-100/70 text-lg relative z-10 border-l-0 border-t md:border-t-0 md:border-l border-emerald-500/30 pt-8 md:pt-0 md:pl-8 text-center md:text-left">
-            <p className="italic mb-6">
-              “The API integration was straightforward and well-documented. We had our custom ERP sync built and running in less than a week.”
-            </p>
-            <p className="font-bold text-white">— VP of Engineering, Global Fashion Brand</p>
+          <div className="mt-12 grid gap-7 lg:grid-cols-3">
+            {integrationCards.map((card, index) => (
+              <motion.article
+                key={`${card.title}-${index}`}
+                initial={{ opacity: 0, y: 28 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55, delay: index * 0.08 }}
+                viewport={{ once: true }}
+                className="min-h-[218px] bg-cover bg-center bg-no-repeat px-5 pb-6 pt-5 text-white"
+                style={{ backgroundImage: `url(${ShopifyCard})` }}
+              >
+                <div className="flex h-full flex-col">
+                  <div className="flex h-[54px] w-[54px] items-center justify-center rounded-full bg-white shadow-[0_12px_25px_rgba(255,255,255,0.12)]">
+                    <img src={card.icon} alt={card.iconAlt} className="h-10 w-10 object-contain" />
+                  </div>
+
+                  <h3 className="mt-4 text-[18px] font-medium leading-[1.25] text-white">
+                    {card.title}
+                  </h3>
+
+                  <p className="mt-3 max-w-[260px] text-[14px] leading-[1.45]" style={{ color: "#FFFFFFBD" }}>
+                    {card.description}
+                  </p>
+
+                  <button
+                    type="button"
+                    className="mt-auto inline-flex items-center gap-3 pt-8 text-[14px] font-medium text-[#EEF7DA]"
+                  >
+                    Learn More
+                    <svg viewBox="0 0 14 14" className="h-3.5 w-3.5" aria-hidden="true">
+                      <path d="M4 2.5L9 7L4 11.5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </button>
+                </div>
+              </motion.article>
+            ))}
           </div>
-        </motion.div>
+        </div>
       </section>
+<section className="relative overflow-hidden bg-white px-6 pb-14 pt-6 sm:px-8 md:px-14 md:pb-[72px] md:pt-8 lg:px-20 xl:px-24">
+  <div className="mx-auto grid max-w-[1380px] gap-10 lg:grid-cols-[40%_60%] lg:items-center lg:gap-8">
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      viewport={{ once: true }}
+      className="max-w-full lg:pr-6"
+    >
+      <h2
+        className="w-full text-[34px] font-normal leading-[1.05] tracking-[-0.03em] text-[#06231C] sm:text-[42px] md:text-[48px] lg:text-[54px] xl:text-[56px]"
+        style={{ fontFamily: '"SF Pro", sans-serif' }}
+      >
+        <span className="block">AI Visual Engine for</span>
+        <span className="block">Fashion Brands</span>
+      </h2>
+
+      <p
+        className="mt-4 text-[24px] font-normal leading-[1.16] text-[#1B5D4D] sm:text-[28px] md:text-[34px]"
+        style={{ fontFamily: '"SF Pro", sans-serif' }}
+      >
+        Scale Your Growth Today.
+      </p>
+
+      <div className="mt-12 space-y-5">
+        {integrationCtaPoints.map((point, index) => (
+          <div key={`${point}-${index}`} className="flex items-center gap-3">
+            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-[#7D8781] text-[#4E5C56]">
+              <svg viewBox="0 0 16 16" className="h-3.5 w-3.5" aria-hidden="true">
+                <path d="M4 8.1 6.7 10.8 12 5.5" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </span>
+            <p
+              className="max-w-[300px] text-[18px] leading-[1.35] text-[#4F5B57] md:text-[19px]"
+              style={{ fontFamily: '"SF Pro", sans-serif' }}
+            >
+              {point}
+            </p>
+          </div>
+        ))}
+      </div>
+
+      <div className="mt-12 flex flex-wrap gap-4">
+        <button
+          type="button"
+          onClick={() => setIsDemoOpen(true)}
+          className="inline-flex h-10 min-w-[168px] items-center justify-center rounded-[4px] bg-[#D4E5C0] px-6 text-[15px] font-medium text-[#06231C] transition-all duration-300 hover:translate-y-[-1px] hover:bg-[#dbe9ca]"
+        >
+          Schedule a Demo
+        </button>
+
+        <button
+          type="button"
+          className="inline-flex h-10 min-w-[136px] items-center justify-center rounded-[4px] border border-[#16362D] bg-white px-6 text-[15px] font-medium text-[#16362D] transition-all duration-300 hover:translate-y-[-1px] hover:bg-[#f8fbf3]"
+        >
+          Outcome
+        </button>
+      </div>
+    </motion.div>
+
+    <motion.div
+      initial={{ opacity: 0, x: 28 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.65, delay: 0.08 }}
+      viewport={{ once: true }}
+      className="relative lg:pl-2"
+    >
+      <div className="absolute left-[-30px] top-[18px] h-44 w-44 rounded-full bg-[#E8F1CF] blur-[92px]" />
+      <div className="absolute right-[10%] top-0 h-44 w-44 rounded-full bg-[#EAF2D6] blur-[100px]" />
+      <div className="absolute bottom-[12%] left-[35%] h-36 w-36 rounded-full bg-[#DCEBC2] blur-[92px]" />
+
+      <div
+        className="relative overflow-hidden
+          mr-[-24px] sm:mr-[-32px] md:mr-[-56px] lg:mr-[-80px] xl:mr-[-96px]
+          mb-[-56px] md:mb-[-72px]
+          rounded-tl-[28px]
+          bg-[linear-gradient(180deg,#FFFFFF_0%,#FDFEF9_100%)]
+          pt-3 pl-3
+          border-t border-l border-[#EEF2E5]"
+        style={{
+          borderRight: 'none',
+          borderBottom: 'none',
+        }}
+      >
+        <div
+          className="overflow-hidden rounded-tl-[22px] border-t border-l border-[#EEF2E3] bg-white"
+          style={{
+            borderRight: 'none',
+            borderBottom: 'none',
+          }}
+        >
+          <img
+            src={ctaImage}
+            alt="WhatsApp marketing dashboard call-to-action preview"
+            className="block h-auto w-full"
+          />
+        </div>
+      </div>
+    </motion.div>
+  </div>
+</section>
 
       <DemoModal isOpen={isDemoOpen} onClose={() => setIsDemoOpen(false)} />
     </main>
