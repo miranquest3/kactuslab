@@ -74,7 +74,7 @@ export default function Navbar() {
     open: { opacity: 1, x: 0 }
   }
 
-  const transparentNavbarRoutes = ["/", "/integrations", "/shopify", "/vto", "/ai-whatsapp-marketing"]
+  const transparentNavbarRoutes = ["/", "/integrations", "/feelings", "/shopify", "/vto", "/ai-whatsapp-marketing"]
   const shouldOverlayHero = transparentNavbarRoutes.includes(location.pathname)
   const useTransparentNavbarStyle = shouldOverlayHero && !scrolled
 
@@ -270,7 +270,7 @@ export default function Navbar() {
         {/* Other Tabs (unchanged) */}
         <motion.div whileHover={{ y: -2 }}>
           <Link
-            to="/about"
+            to="/outcomes"
             className="hover:text-emerald-600 transition"
           >
            Outcomes
@@ -279,10 +279,10 @@ export default function Navbar() {
 
         <motion.div whileHover={{ y: -2 }}>
           <Link
-            to="/integrations"
+            to="/feelings"
             className="hover:text-emerald-600 transition"
           >
-            Integrations
+            Feelings
           </Link>
         </motion.div>
 
@@ -377,8 +377,8 @@ export default function Navbar() {
               </motion.div>
 
               {[
-                { label: "About", to: "/about" },
-                { label: "Integrations", to: "/integrations" },
+                { label: "Outcomes", to: "/outcomes" },
+                { label: "Feelings", to: "/feelings" },
                 { label: "Login", to: "/login" }
               ].map((item) => (
                 <motion.div key={item.label} variants={itemVariants}>

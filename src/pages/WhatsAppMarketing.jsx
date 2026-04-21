@@ -2,6 +2,7 @@ import { useRef, useState } from "react"
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion"
 import { MagneticButton, SectionTitle, RevealImage, StaggerText } from "../components/AnimatedElements"
 import DemoModal from "../components/DemoModal";
+import GrowthCtaSection from "../components/GrowthCtaSection";
 
 // Icons
 import EnterpriseVector from "../assets/images/Home/vector.svg";
@@ -17,10 +18,14 @@ import vtoSectionBg from "../assets/images/Vto/sec 2.svg";
 import rightIcon from "../assets/images/Vto/right.svg";
 import wrongIcon from "../assets/images/Vto/wrong.svg";
 import vtoImg from "../assets/images/Vto/vtoImg.png";
-import ctaImage from "../assets/images/Integration/ctaImage.png";
-import ShopifyHeroBg from "../assets/images/Shopify/shopifyhero.png";
+import whatsappTopSectionBg from "../assets/images/whatsapp/topsectionbg.png";
 import logoWithoutName from "../assets/images/logowithoutname.svg";
 import whatsappBrandIcon from "../assets/images/whatsapp/WHATSAPP logo.svg";
+import marketingFlowBg from "../assets/images/whatsapp/Marketing Flow.png";
+import userEngagementIcon from "../assets/images/whatsapp/User Engagement.svg";
+import imageCollectionIcon from "../assets/images/whatsapp/Image Collection.svg";
+import contentGenerationIcon from "../assets/images/whatsapp/Content Generation.svg";
+import automatedDeliveryIcon from "../assets/images/whatsapp/Automated Delivery.svg";
 import leftPopupBg from "../assets/images/whatsapp/leftpopup.png";
 import rightPopupBg from "../assets/images/whatsapp/rightpopup.png";
 import whatsappSectionBg from "../assets/images/whatsapp/whatsappSec2.png";
@@ -31,12 +36,6 @@ const logos = [
   { type: "image", src: magentol, label: "Magento" },
   { type: "image", src: woocoml, label: "WooCommerce" },
   { type: "text", label: "Custom APIs" },
-];
-
-const integrationCtaPoints = [
-  "150+ Handcoded",
-  "150+ Handcoded",
-  "150+ Handcoded"
 ];
 
 const enterpriseCards = [
@@ -287,6 +286,33 @@ const whatsappGapMessages = [
   }
 ];
 
+const whatsappMarketingFlowSteps = [
+  {
+    number: "1",
+    title: "User Engagement",
+    description: "Customers upload photos to visualize how a product will look on them on a brand's website using Try-On.",
+    icon: userEngagementIcon
+  },
+  {
+    number: "2",
+    title: "Image Collection",
+    description: "KactusLab collects customers' uploaded photos to create a WhatsApp marketing campaign for brands.",
+    icon: imageCollectionIcon
+  },
+  {
+    number: "3",
+    title: "Content Generation",
+    description: "KactusLab generates try-on images based on each customer's shopping preferences and newly arrived outfits.",
+    icon: contentGenerationIcon
+  },
+  {
+    number: "4",
+    title: "Automated Delivery",
+    description: "Campaign creatives are automatically shared with customers via WhatsApp to drive engagement and conversions.",
+    icon: automatedDeliveryIcon
+  }
+];
+
 const shopifyHowItWorksSteps = [
   {
     title: "Fast Implementation",
@@ -432,6 +458,7 @@ export default function WhatsAppMarketing() {
   const [activeFeatureCard, setActiveFeatureCard] = useState(null);
   const [activeReviewCard, setActiveReviewCard] = useState(null);
   const [openFaqIndex, setOpenFaqIndex] = useState(0);
+  const [isMarketingFlowActive, setIsMarketingFlowActive] = useState(false);
 
   const heroRevealY = useTransform(scrollY, [0, 500], [0, 110]);
 
@@ -439,11 +466,13 @@ export default function WhatsAppMarketing() {
     <main className="demo-page bg-[#F5F6F2] text-slate-800">
 
       <section className="relative overflow-hidden bg-[#06231C]">
-        <motion.div
-          style={{ y: heroRevealY, backgroundImage: `url(${ShopifyHeroBg})` }}
-          className="absolute inset-0 bg-cover bg-center"
+        <motion.img
+          src={whatsappTopSectionBg}
+          alt=""
+          aria-hidden="true"
+          style={{ y: heroRevealY }}
+          className="absolute inset-0 h-full w-full object-cover object-left"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(2,21,16,0.9)_0%,rgba(4,40,31,0.72)_42%,rgba(17,111,96,0.18)_100%)]" />
 
         <div className="relative z-10 flex min-h-[720px] items-center px-6 pb-20 pt-28 sm:px-8 md:px-14 md:pt-32 lg:px-20 xl:px-24">
           <div className="mx-auto grid w-full max-w-[1320px] items-center gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(420px,580px)] lg:gap-16">
@@ -635,37 +664,106 @@ export default function WhatsAppMarketing() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65 }}
             viewport={{ once: true, amount: 0.25 }}
-            className="relative mx-auto mt-12 max-w-[1120px] overflow-hidden rounded-[10px] bg-white p-6 shadow-[0_26px_80px_rgba(0,0,0,0.18)] md:p-8"
+            className={`relative mx-auto mt-12 max-w-[1120px] overflow-hidden rounded-[24px] bg-white shadow-[0_26px_80px_rgba(0,0,0,0.18)] transition-[min-height,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] focus:outline-none focus:ring-2 focus:ring-[#d5e6c1]/60 ${isMarketingFlowActive ? "min-h-[760px] sm:min-h-[640px] md:min-h-[560px] shadow-[0_34px_100px_rgba(0,0,0,0.22)]" : "min-h-[360px] sm:min-h-[420px] md:min-h-[500px]"}`}
+            tabIndex={0}
+            role="button"
+            aria-expanded={isMarketingFlowActive}
+            aria-label="Reveal the KactusLabs WhatsApp marketing flow"
+            onMouseEnter={() => setIsMarketingFlowActive(true)}
+            onMouseLeave={() => setIsMarketingFlowActive(false)}
+            onFocus={() => setIsMarketingFlowActive(true)}
+            onBlur={(event) => {
+              if (!event.currentTarget.contains(event.relatedTarget)) {
+                setIsMarketingFlowActive(false);
+              }
+            }}
+            onClick={() => setIsMarketingFlowActive(true)}
+            onKeyDown={(event) => {
+              if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                setIsMarketingFlowActive(true);
+              }
+            }}
           >
-            <div className="absolute left-[-54px] top-[-56px] h-[170px] w-[170px] rounded-full border-[8px] border-[#24483F]/55 blur-[3px]" />
-            <div className="absolute right-[-68px] bottom-[-82px] h-[230px] w-[230px] rounded-full border-[8px] border-[#24483F]/55 blur-[3px]" />
+            <img
+              src={marketingFlowBg}
+              alt=""
+              aria-hidden="true"
+              className="absolute inset-0 h-full w-full object-contain object-center"
+            />
+            <div className="absolute inset-0 px-5 py-7 sm:px-8 sm:py-8 md:px-10 md:py-10">
+              <div className="pointer-events-none absolute inset-0 z-20">
+                <div className="absolute inset-x-4 top-1/2 flex -translate-y-1/2 items-center justify-center md:inset-x-8">
+                  <div className="flex items-center justify-center gap-4 md:gap-8">
+                    <div
+                      className={`flex items-center gap-3 px-2 py-2 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${isMarketingFlowActive ? "-translate-x-[120px] scale-[0.72] opacity-0 sm:-translate-x-[180px] md:-translate-x-[320px] lg:-translate-x-[420px]" : "opacity-100"}`}
+                    >
+                      <img
+                        src={logoWithoutName}
+                        alt="KactusLab"
+                        className={`object-contain transition-all duration-500 ${isMarketingFlowActive ? "h-10 w-10 md:h-11 md:w-11" : "h-14 w-14 md:h-16 md:w-16"}`}
+                      />
+                      <span
+                        className={`font-normal leading-none text-[#0C2D25] transition-all duration-500 ${isMarketingFlowActive ? "text-[18px] md:text-[22px]" : "text-[30px] md:text-[40px]"}`}
+                      >
+                        KactusLab
+                      </span>
+                    </div>
 
-            <div className="relative rounded-[10px] border border-[#e8ece7] bg-white/65 px-6 py-14 shadow-[0_0_0_1px_rgba(232,236,231,0.45)] backdrop-blur-[18px] md:px-12 md:py-20">
-              <div className="flex flex-col items-center justify-center gap-10 md:flex-row md:gap-16">
-                <div className="flex items-center gap-4">
-                  <img
-                    src={logoWithoutName}
-                    alt="KactusLab"
-                    className="h-14 w-14 object-contain"
-                  />
-                  <span className="text-[34px] font-normal leading-none text-[#0C2D25] md:text-[40px]">
-                    KactusLab
-                  </span>
-                </div>
+                    <div
+                      className={`hidden w-px bg-[#a0aca2] transition-all duration-500 md:block ${isMarketingFlowActive ? "h-0 opacity-0" : "h-[110px] opacity-100"}`}
+                    />
 
-                <div className="hidden h-[124px] w-px bg-[#b8beb8] md:block" />
-
-                <div className="flex items-center gap-4">
-                  <img
-                    src={whatsappBrandIcon}
-                    alt="WhatsApp"
-                    className="h-14 w-14 object-contain"
-                  />
-                  <span className="text-[34px] font-normal leading-none text-[#111827] md:text-[40px]">
-                    Whatsapp
-                  </span>
+                    <div
+                      className={`flex items-center gap-3 px-2 py-2 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${isMarketingFlowActive ? "translate-x-[120px] scale-[0.72] opacity-0 sm:translate-x-[180px] md:translate-x-[320px] lg:translate-x-[420px]" : "opacity-100"}`}
+                    >
+                      <img
+                        src={whatsappBrandIcon}
+                        alt="WhatsApp"
+                        className={`object-contain transition-all duration-500 ${isMarketingFlowActive ? "h-10 w-10 md:h-11 md:w-11" : "h-14 w-14 md:h-16 md:w-16"}`}
+                      />
+                      <span
+                        className={`font-normal leading-none text-[#111827] transition-all duration-500 ${isMarketingFlowActive ? "text-[18px] md:text-[22px]" : "text-[30px] md:text-[40px]"}`}
+                      >
+                        WhatsApp
+                      </span>
+                    </div>
+                  </div>
                 </div>
               </div>
+
+              <div
+                className={`absolute inset-x-6 bottom-9 top-[118px] z-10 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] md:inset-x-12 md:top-[132px] ${isMarketingFlowActive ? "translate-y-0 scale-100 opacity-100" : "pointer-events-none translate-y-8 scale-[0.96] opacity-0"}`}
+              >
+                <div className="grid h-full content-center gap-8 sm:grid-cols-2 sm:gap-x-10 sm:gap-y-8">
+                  {whatsappMarketingFlowSteps.map((step) => (
+                    <article key={step.number} className="relative min-h-[170px] px-3 py-2">
+                      <span className="ml-1 inline-flex h-7 w-7 items-center justify-center rounded-full bg-[#5E6860] text-[12px] font-semibold text-white">
+                        {step.number}
+                      </span>
+
+                      <div className="mt-4 flex items-start gap-4">
+                        <img
+                          src={step.icon}
+                          alt=""
+                          aria-hidden="true"
+                          className="h-[68px] w-[68px] shrink-0 object-contain md:h-[78px] md:w-[78px]"
+                        />
+
+                        <div className="space-y-2">
+                          <h3 className="text-[22px] font-normal leading-[1.1] text-[#0C2D25]">
+                            {step.title}
+                          </h3>
+                          <p className="max-w-[260px] text-[13px] leading-[1.45] text-[#45524D] md:text-[14px]">
+                            {step.description}
+                          </p>
+                        </div>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </div>
+
             </div>
           </motion.div>
         </div>
@@ -744,89 +842,7 @@ export default function WhatsAppMarketing() {
       
 
      
-      <section className="relative overflow-hidden bg-white px-6 pb-14 pt-6 sm:px-8 md:px-14 md:pb-[72px] md:pt-8 lg:px-20 xl:px-24">
-        <div className="mx-auto grid max-w-[1380px] gap-10 lg:grid-cols-[40%_60%] lg:items-center lg:gap-8">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="max-w-full lg:pr-6"
-          >
-            <h2
-              className="w-full text-[34px] font-normal leading-[1.05] tracking-[-0.03em] text-[#06231C] sm:text-[42px] md:text-[48px] lg:text-[54px] xl:text-[56px]"
-              style={{ fontFamily: '"SF Pro", sans-serif' }}
-            >
-              <span className="block">AI Visual Engine for</span>
-              <span className="block">Fashion Brands</span>
-            </h2>
-
-            <p
-              className="mt-4 text-[24px] font-normal leading-[1.16] text-[#1B5D4D] sm:text-[28px] md:text-[34px]"
-              style={{ fontFamily: '"SF Pro", sans-serif' }}
-            >
-              Scale Your Growth Today.
-            </p>
-
-            <div className="mt-12 space-y-5">
-              {integrationCtaPoints.map((point, index) => (
-                <div key={`${point}-${index}`} className="flex items-center gap-3">
-                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-[#7D8781] text-[#4E5C56]">
-                    <svg viewBox="0 0 16 16" className="h-3.5 w-3.5" aria-hidden="true">
-                      <path d="M4 8.1 6.7 10.8 12 5.5" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </span>
-                  <p
-                    className="max-w-[300px] text-[18px] leading-[1.35] text-[#4F5B57] md:text-[19px]"
-                    style={{ fontFamily: '"SF Pro", sans-serif' }}
-                  >
-                    {point}
-                  </p>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-12 flex flex-wrap gap-4">
-              <button
-                type="button"
-                onClick={() => setIsDemoOpen(true)}
-                className="inline-flex h-10 min-w-[168px] items-center justify-center rounded-[4px] bg-[#D4E5C0] px-6 text-[15px] font-medium text-[#06231C] transition-all duration-300 hover:translate-y-[-1px] hover:bg-[#dbe9ca]"
-              >
-                Schedule a Demo
-              </button>
-
-              <button
-                type="button"
-                className="inline-flex h-10 min-w-[136px] items-center justify-center rounded-[4px] border border-[#16362D] bg-white px-6 text-[15px] font-medium text-[#16362D] transition-all duration-300 hover:translate-y-[-1px] hover:bg-[#f8fbf3]"
-              >
-                Outcome
-              </button>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 28 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.65, delay: 0.08 }}
-            viewport={{ once: true }}
-            className="relative lg:pl-2"
-          >
-            <div className="absolute left-[-30px] top-[18px] h-44 w-44 rounded-full bg-[#E8F1CF] blur-[92px]" />
-            <div className="absolute right-[10%] top-0 h-44 w-44 rounded-full bg-[#EAF2D6] blur-[100px]" />
-            <div className="absolute bottom-[12%] left-[35%] h-36 w-36 rounded-full bg-[#DCEBC2] blur-[92px]" />
-
-            <div className="relative overflow-hidden rounded-[36px] border border-[#EEF2E5] bg-[linear-gradient(180deg,#FFFFFF_0%,#FDFEF9_100%)] p-3 shadow-[0_24px_70px_rgba(6,35,28,0.08)]">
-              <div className="overflow-hidden rounded-[30px] border border-[#EEF2E3] bg-white">
-                <img
-                  src={ctaImage}
-                  alt="WhatsApp marketing dashboard call-to-action preview"
-                  className="block h-auto w-full"
-                />
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      <GrowthCtaSection onPrimaryClick={() => setIsDemoOpen(true)} />
 
       <DemoModal isOpen={isDemoOpen} onClose={() => setIsDemoOpen(false)} />
     </main>

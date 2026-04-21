@@ -264,31 +264,191 @@ const comparisonRows = [
   "Behaviour-Driven Personalised Campaigns"
 ];
 
-const businessExecutionItems = [
+const businessExecutionSlides = [
   {
-    title: "Market Research",
-    description:
-      "Kactus analyzes brand identity and inventory, identifies unsold items, explains why, and creates a roadmap for reduction with a clear strategy. You approve the plan before we proceed."
+    heading: "Reduce Dead Inventory",
+    label: "Command",
+    number: "01",
+    rows: [
+      {
+        title: "The Diagnostic Engine",
+        subtitle: "Identifying Why Your Inventory Isn't Moving",
+        answer:
+          "KactusLabs' first line of action. Our AI deep dives into your business data to pinpoint which items are stagnant and why. It delivers a comprehensive roadmap and solution-oriented report to get your stock back in fashion."
+      },
+      {
+        title: "Visual Rejuvenation",
+        subtitle: "Breathing New Life into Stagnant Stock",
+        answer:
+          "We refresh weak-performing products with sharper styling, new campaign angles, and AI-generated creative that makes old inventory feel new again."
+      },
+      {
+        title: "Dynamic Storefront Optimization",
+        subtitle: "Placing the Right Products in the Spotlight",
+        answer:
+          "Product ordering, landing page focus, and collection visibility are adjusted so slower stock gets intentional, conversion-ready exposure."
+      },
+      {
+        title: "Personalized Communication",
+        subtitle: "Bringing Creative Visuals Directly To Your Inbox",
+        answer:
+          "Customers receive tailored outreach through WhatsApp and owned channels using product-specific messaging, visuals, and urgency triggers."
+      },
+      {
+        title: "Autonomous Content Deployment",
+        subtitle: "From Data Insight to Viral Visuals",
+        answer:
+          "KactusLabs turns the reduction strategy into approved content assets and publishes them across the right surfaces without slowing your team down."
+      }
+    ]
   },
   {
-    title: "AI Product Photoshoot",
-    description:
-      "Generate polished visual assets for slow-moving products so you can refresh presentation, highlight demand, and support faster sell-through without a traditional shoot."
+    heading: "Recover Silent Carts",
+    label: "Command",
+    number: "02",
+    rows: [
+      {
+        title: "Intent Mapping",
+        subtitle: "Understanding Where Shoppers Drop Off",
+        answer:
+          "We trace abandonment signals across product views, sizing hesitation, and cart exits so the recovery flow starts from actual shopper behavior."
+      },
+      {
+        title: "Timed Re-engagement",
+        subtitle: "Nudging Customers at the Right Moment",
+        answer:
+          "Follow-ups are timed around intent, product value, and urgency so reminders feel helpful instead of spammy."
+      },
+      {
+        title: "WhatsApp Recovery Flows",
+        subtitle: "Restarting High-Intent Conversations",
+        answer:
+          "Cart reminders move into richer, conversational journeys that answer objections and bring users back with less friction."
+      },
+      {
+        title: "Offer Matching",
+        subtitle: "Sending the Right Incentive to the Right Buyer",
+        answer:
+          "Instead of blanket discounts, KactusLabs tests what type of push each segment actually needs to convert."
+      },
+      {
+        title: "Revenue Attribution",
+        subtitle: "Learning Which Recovery Actions Perform Best",
+        answer:
+          "Every recovery touchpoint is measured so your team can see what reopened demand and where to scale next."
+      }
+    ]
   },
   {
-    title: "Website Management",
-    description:
-      "Update merchandising, landing pages, and content across the storefront so the collection story stays aligned with campaign goals and inventory priorities."
+    heading: "Increase Conversion Rate",
+    label: "Command",
+    number: "03",
+    rows: [
+      {
+        title: "Fit Confidence Layer",
+        subtitle: "Helping Shoppers See and Size Correctly",
+        answer:
+          "Virtual try-on and guided fit signals reduce uncertainty, helping customers commit faster and with more confidence."
+      },
+      {
+        title: "Product Storytelling",
+        subtitle: "Turning PDPs into Decision Support",
+        answer:
+          "We improve the way product benefits, visuals, and context are presented so shoppers understand what makes an item right for them."
+      },
+      {
+        title: "Guided Discovery",
+        subtitle: "Recommending the Best Next Product",
+        answer:
+          "AI surfaces relevant products and looks based on shopper intent, shortening the gap between browsing and buying."
+      },
+      {
+        title: "Trust Activation",
+        subtitle: "Placing Social Proof at the Right Moment",
+        answer:
+          "Reviews, usage context, and reassurance cues appear where hesitation is highest to help move decisions forward."
+      },
+      {
+        title: "Checkout Assist",
+        subtitle: "Removing Friction Before Purchase",
+        answer:
+          "KactusLabs reduces drop-off with better prompts, fewer dead ends, and clearer next steps as users approach checkout."
+      }
+    ]
   },
   {
-    title: "WhatsApp Marketing",
-    description:
-      "Launch targeted outbound campaigns based on customer behavior, inventory pressure, and product relevance to drive quicker action from the right audience."
+    heading: "Launch Faster Campaigns",
+    label: "Command",
+    number: "04",
+    rows: [
+      {
+        title: "Campaign Briefing Engine",
+        subtitle: "Turning Goals into Launch-Ready Plans",
+        answer:
+          "A single business goal becomes a structured content and rollout plan with clear outputs, channels, and approval checkpoints."
+      },
+      {
+        title: "AI Photoshoot Workflow",
+        subtitle: "Creating Fresh Creative Without Studio Delays",
+        answer:
+          "Products can be restyled, reframed, and campaign-prepped without booking a full shoot every time the strategy changes."
+      },
+      {
+        title: "Creative Adaptation",
+        subtitle: "Formatting Assets for Every Surface",
+        answer:
+          "Visuals and copy are transformed for storefronts, WhatsApp, ads, and social so teams do not repeat manual production work."
+      },
+      {
+        title: "Approval Control",
+        subtitle: "Keeping Teams in the Loop Before Publishing",
+        answer:
+          "Automation does not remove control. Teams can review, refine, and approve before campaigns go live."
+      },
+      {
+        title: "Performance Replay",
+        subtitle: "Learning What to Scale Next",
+        answer:
+          "Post-launch insights are fed back into the system so stronger campaign patterns can be repeated quickly."
+      }
+    ]
   },
   {
-    title: "Social Media Marketing",
-    description:
-      "Repurpose the strategy into channel-ready creative and messaging so social touchpoints support the same reduction objective across every customer journey."
+    heading: "Automate Daily Execution",
+    label: "Command",
+    number: "05",
+    rows: [
+      {
+        title: "Workflow Mapping",
+        subtitle: "Identifying Repetitive Operational Work",
+        answer:
+          "We break down where teams spend time manually and turn those repeated actions into orchestrated AI workflows."
+      },
+      {
+        title: "Storefront Task Runner",
+        subtitle: "Updating Merchandising Automatically",
+        answer:
+          "Collections, featured products, and supporting content can adapt based on inventory pressure and campaign needs."
+      },
+      {
+        title: "Messaging Orchestrator",
+        subtitle: "Keeping Outbound Communication in Sync",
+        answer:
+          "Customer-facing messages stay aligned with product priorities, campaign timing, and shopper behavior signals."
+      },
+      {
+        title: "Inventory-Aware Decisions",
+        subtitle: "Connecting Stock Pressure to Execution",
+        answer:
+          "Operational actions are informed by actual inventory risk so growth tasks and clearance needs stop fighting each other."
+      },
+      {
+        title: "Unified Reporting",
+        subtitle: "Tracking What AI Completed and Improved",
+        answer:
+          "Leadership gets a single view of what the system executed, what changed, and where performance improved over time."
+      }
+    ]
   }
 ];
 
@@ -461,7 +621,10 @@ export default function About() {
   const [activeFeatureCard, setActiveFeatureCard] = useState(null);
   const [activeReviewCard, setActiveReviewCard] = useState(null);
   const [openFaqIndex, setOpenFaqIndex] = useState(0);
-  const [openBusinessExecutionIndex, setOpenBusinessExecutionIndex] = useState(0);
+  const [activeBusinessExecutionSlide, setActiveBusinessExecutionSlide] = useState(0);
+  const [businessExecutionOpenIndexes, setBusinessExecutionOpenIndexes] = useState(
+    () => businessExecutionSlides.map(() => 0)
+  );
   const [heroPhase, setHeroPhase] = useState(0);
 
   const heroRevealY = useTransform(scrollY, [0, 500], [0, 110]);
@@ -537,6 +700,33 @@ export default function About() {
       timers.forEach((timer) => window.clearTimeout(timer));
     };
   }, []);
+
+  const activeBusinessExecutionContent = businessExecutionSlides[activeBusinessExecutionSlide];
+  const activeBusinessExecutionOpenIndex =
+    businessExecutionOpenIndexes[activeBusinessExecutionSlide] ?? 0;
+
+  const handleBusinessExecutionSlideChange = (direction) => {
+    setActiveBusinessExecutionSlide((current) => {
+      const totalSlides = businessExecutionSlides.length;
+      return (current + direction + totalSlides) % totalSlides;
+    });
+  };
+
+  const handleBusinessExecutionSlideSelect = (index) => {
+    setActiveBusinessExecutionSlide(index);
+  };
+
+  const handleBusinessExecutionRowToggle = (rowIndex) => {
+    setBusinessExecutionOpenIndexes((current) =>
+      current.map((openIndex, slideIndex) =>
+        slideIndex === activeBusinessExecutionSlide
+          ? openIndex === rowIndex
+            ? -1
+            : rowIndex
+          : openIndex
+      )
+    );
+  };
 
   return (
     <main className="demo-page bg-[#F5F6F2] text-slate-800">
@@ -705,10 +895,10 @@ export default function About() {
                   )}
                 </div>
                 <motion.div whileHover={{ y: -2 }}>
-                  <Link to="/about" className="hover:text-emerald-600 transition">Outcomes</Link>
+                  <Link to="/outcomes" className="hover:text-emerald-600 transition">Outcomes</Link>
                 </motion.div>
                 <motion.div whileHover={{ y: -2 }}>
-                  <Link to="/integrations" className="hover:text-emerald-600 transition">Integrations</Link>
+                  <Link to="/feelings" className="hover:text-emerald-600 transition">Feelings</Link>
                 </motion.div>
               </div>
               <div className="hidden w-[120px] shrink-0 md:block" />
@@ -931,10 +1121,10 @@ export default function About() {
                   )}
                 </div>
                 <motion.div whileHover={{ y: -2 }}>
-                  <Link to="/about" className="hover:text-emerald-600 transition">Outcomes</Link>
+                  <Link to="/outcomes" className="hover:text-emerald-600 transition">Outcomes</Link>
                 </motion.div>
                 <motion.div whileHover={{ y: -2 }}>
-                  <Link to="/integrations" className="hover:text-emerald-600 transition">Integrations</Link>
+                  <Link to="/feelings" className="hover:text-emerald-600 transition">Feelings</Link>
                 </motion.div>
               </div>
 
@@ -1047,148 +1237,205 @@ export default function About() {
         </div>
       </section>
 
-      <section className="bg-white px-6 py-20 sm:px-8 md:px-14 md:py-24 lg:px-20 xl:px-24">
-        <div className="mx-auto grid max-w-[1320px] gap-12 lg:grid-cols-[359px_minmax(0,1fr)] lg:gap-20">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true, amount: 0.35 }}
-            className="pt-2"
-          >
-            <h2
-              style={{
-                width: "359px",
-                maxWidth: "100%",
-                color: "#0A1317",
-                fontFamily: "SF Pro",
-                fontSize: "45px",
-                fontStyle: "normal",
-                fontWeight: 510,
-                lineHeight: "50px"
-              }}
+      <section className="bg-white px-6 py-16 sm:px-8 md:px-14 md:py-20 lg:px-20 xl:px-24">
+        <div className="mx-auto max-w-[1240px]">
+          <div className="relative px-1 sm:px-2 lg:px-4">
+            <button
+              type="button"
+              onClick={() => handleBusinessExecutionSlideChange(-1)}
+              aria-label="Show previous outcome"
+              className="absolute left-0 top-1/2 z-10 hidden h-14 w-14 -translate-x-[52px] -translate-y-1/2 items-center justify-center rounded-full text-[#C7CBC4] transition-all duration-300 hover:bg-[#F6F8F2] hover:text-[#06231C] lg:flex"
             >
-              Reducing Inventory By 10%
-            </h2>
+              <svg viewBox="0 0 24 24" className="h-8 w-8" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <path d="M14.5 5L7.5 12L14.5 19" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
 
-            <p
-              className="mt-4"
-              style={{
-                width: "339px",
-                maxWidth: "100%",
-                color: "#5D6C7B",
-                fontFamily: "SF Pro",
-                fontSize: "16px",
-                fontStyle: "normal",
-                fontWeight: 400,
-                lineHeight: "27px"
-              }}
+            <button
+              type="button"
+              onClick={() => handleBusinessExecutionSlideChange(1)}
+              aria-label="Show next outcome"
+              className="absolute right-0 top-1/2 z-10 hidden h-14 w-14 translate-x-[52px] -translate-y-1/2 items-center justify-center rounded-full text-[#C7CBC4] transition-all duration-300 hover:bg-[#F6F8F2] hover:text-[#06231C] lg:flex"
             >
-              SKactusLabs&apos; AI-powered Virtual Try-On drives buyer confidence through instant outfit visualization and smart sizing
-            </p>
-          </motion.div>
+              <svg viewBox="0 0 24 24" className="h-8 w-8" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <path d="M9.5 5L16.5 12L9.5 19" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
 
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65, delay: 0.05 }}
-            viewport={{ once: true, amount: 0.2 }}
-            className="border-t border-[#E4E7EC]"
-          >
-            {businessExecutionItems.map((item, index) => {
-              const isOpen = openBusinessExecutionIndex === index;
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeBusinessExecutionSlide}
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -16 }}
+                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                className="grid items-start gap-10 lg:grid-cols-[250px_minmax(0,1fr)] lg:gap-[58px]"
+              >
+                <motion.div
+                  initial={{ opacity: 0, x: -16 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -10 }}
+                  transition={{ duration: 0.28 }}
+                  className="flex flex-col gap-10 pt-1 lg:self-start lg:gap-14"
+                >
+                  <div>
+                    <h2
+                      className="max-w-[250px] text-[34px] leading-[36px] md:text-[41px] md:leading-[43px]"
+                      style={{
+                        fontFamily: '"SF Pro", sans-serif',
+                        fontStyle: "normal",
+                        fontWeight: 510,
+                        background: "linear-gradient(90deg, #06231C 48.13%, #D4E5C0 120.12%)",
+                        backgroundClip: "text",
+                        WebkitBackgroundClip: "text",
+                        WebkitTextFillColor: "transparent"
+                      }}
+                    >
+                      {activeBusinessExecutionContent.heading}
+                    </h2>
+                  </div>
 
-              return (
-                <div key={item.title} className="border-b border-[#E4E7EC]">
-                  <button
-                    type="button"
-                    onClick={() => setOpenBusinessExecutionIndex(isOpen ? -1 : index)}
-                    className="flex w-full items-start justify-between gap-5 py-4 text-left md:items-center md:py-5"
-                  >
-                    <div className="flex min-w-0 items-start gap-4">
-                      <div className="mt-1 flex h-7 w-7 shrink-0 items-center justify-center text-[#6B7280] md:mt-0">
-                        {index === 0 && (
-                          <svg viewBox="0 0 32 32" className="h-7 w-7" fill="none" stroke="currentColor" strokeWidth="1.5">
-                            <rect x="5" y="6" width="16" height="13" rx="1.5" />
-                            <path d="M8 10h4M8 13h6M8 16h5M23 10l2-2 2 2M25 8v7M21 21h6M24 18v6" />
-                          </svg>
-                        )}
-                        {index === 1 && (
-                          <svg viewBox="0 0 32 32" className="h-7 w-7" fill="none" stroke="currentColor" strokeWidth="1.5">
-                            <rect x="4.5" y="9" width="23" height="16" rx="3" />
-                            <path d="M11 9V7.5A2.5 2.5 0 0 1 13.5 5h5A2.5 2.5 0 0 1 21 7.5V9" />
-                            <circle cx="16" cy="17" r="4.5" />
-                          </svg>
-                        )}
-                        {index === 2 && (
-                          <svg viewBox="0 0 32 32" className="h-7 w-7" fill="none" stroke="currentColor" strokeWidth="1.5">
-                            <path d="M9 5.5h14M11 3.5v4M21 3.5v4M6 9.5h20v17H6zM10 14h5M10 18h7M20 16l2 2 4-4M19 24h5" />
-                          </svg>
-                        )}
-                        {index === 3 && (
-                          <svg viewBox="0 0 32 32" className="h-7 w-7" fill="none" stroke="currentColor" strokeWidth="1.5">
-                            <path d="M16 27c5.8 0 10.5-4.3 10.5-9.7S21.8 7.6 16 7.6 5.5 11.9 5.5 17.3c0 2 .7 3.8 2 5.3L6.2 27l4.8-1.6c1.5 1 3.2 1.6 5 1.6Z" />
-                            <path d="M12.6 13.2c.3-.7.6-.7.9-.7h.8c.2 0 .5 0 .7.5.2.6.8 2 .9 2.2.1.2.1.4 0 .6-.1.2-.2.4-.4.6l-.5.5c-.1.1-.2.3-.1.5.1.2.5 1 1.3 1.6.9.8 1.7 1 1.9 1.1.2.1.4.1.6-.1l.8-.9c.2-.2.4-.2.6-.1l2 1c.2.1.4.2.4.4 0 .2-.1 1-.5 1.4-.4.4-.9.7-1.5.7-.6 0-1.5-.2-2.6-.8-1-.5-2.2-1.4-3.4-2.5-1-1-1.8-2-2.4-3.1-.6-1.1-.8-2-.8-2.6 0-.6.2-1.1.4-1.5Z" />
-                          </svg>
-                        )}
-                        {index === 4 && (
-                          <svg viewBox="0 0 32 32" className="h-7 w-7" fill="none" stroke="currentColor" strokeWidth="1.5">
-                            <rect x="6" y="6" width="20" height="20" rx="6" />
-                            <circle cx="16" cy="16" r="5" />
-                            <circle cx="22.3" cy="9.7" r="1.2" fill="currentColor" stroke="none" />
-                          </svg>
-                        )}
-                      </div>
+                  <div>
+                    <p
+                      className="text-[22px] leading-none text-[#D0D2CE]"
+                      style={{
+                        fontFamily: '"SF Pro", sans-serif',
+                        fontStyle: "normal",
+                        fontWeight: 510
+                      }}
+                    >
+                      {activeBusinessExecutionContent.label}
+                    </p>
+                    <div
+                      className="mt-2 text-[112px] leading-none text-[#F0F1EE] sm:text-[136px] lg:text-[190px]"
+                      style={{
+                        fontFamily: '"SF Pro", sans-serif',
+                        fontStyle: "normal",
+                        fontWeight: 510,
+                        letterSpacing: "-0.06em"
+                      }}
+                    >
+                      {activeBusinessExecutionContent.number}
+                    </div>
+                  </div>
+                </motion.div>
 
-                      <div className="min-w-0">
-                        <h3
-                          style={{
-                            color: "#0A1317",
-                            fontFamily: "SF Pro",
-                            fontSize: "26.4px",
-                            fontStyle: "normal",
-                            fontWeight: 510,
-                            lineHeight: "34px"
-                          }}
+                <motion.div
+                  initial={{ opacity: 0, x: 16 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 10 }}
+                  transition={{ duration: 0.28 }}
+                  className="border-t border-[#E1E4DC]"
+                >
+                  {activeBusinessExecutionContent.rows.map((item, index) => {
+                    const isOpen = activeBusinessExecutionOpenIndex === index;
+
+                    return (
+                      <div key={`${activeBusinessExecutionContent.number}-${item.title}`} className="border-b border-[#E1E4DC]">
+                        <button
+                          type="button"
+                          onClick={() => handleBusinessExecutionRowToggle(index)}
+                          className="flex w-full items-start justify-between gap-4 py-5 text-left md:items-center md:py-6"
                         >
-                          {item.title}
-                        </h3>
-
-                        <AnimatePresence initial={false}>
-                          {isOpen && (
-                            <motion.p
-                              initial={{ opacity: 0, height: 0, marginTop: 0 }}
-                              animate={{ opacity: 1, height: "auto", marginTop: 12 }}
-                              exit={{ opacity: 0, height: 0, marginTop: 0 }}
-                              transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-                              className="overflow-hidden"
+                          <div className="min-w-0 pr-4">
+                            <div
+                              className="text-[18px] leading-[1.35] text-[#161616] sm:text-[20px] md:text-[18px] lg:text-[20px]"
                               style={{
-                                width: "584px",
-                                maxWidth: "100%",
-                                color: "#5D6C7B",
-                                fontFamily: "SF Pro",
-                                fontSize: "14px",
+                                fontFamily: '"SF Pro", sans-serif',
                                 fontStyle: "normal",
-                                fontWeight: 400,
-                                lineHeight: "22.483px",
-                                letterSpacing: "-0.15px"
+                                letterSpacing: "-0.02em"
                               }}
                             >
-                              {item.description}
-                            </motion.p>
-                          )}
-                        </AnimatePresence>
-                      </div>
-                    </div>
+                              <span className="font-[590] text-[#111111]">{item.title}:</span>{" "}
+                              <span className="font-normal text-[#4B4B4B]">{item.subtitle}</span>
+                            </div>
 
-                    <span className="shrink-0 pt-1 text-[34px] font-[250] leading-none text-[#0A1317]">
+                            <AnimatePresence initial={false}>
+                              {isOpen && (
+                                <motion.p
+                                  initial={{ height: 0, opacity: 0, marginTop: 0 }}
+                                  animate={{ height: "auto", opacity: 1, marginTop: 14 }}
+                                  exit={{ height: 0, opacity: 0, marginTop: 0 }}
+                                  transition={{ duration: 0.24, ease: "easeInOut" }}
+                                  className="max-w-[770px] overflow-hidden text-[14px] leading-[1.75] text-[#5C5C5C] sm:text-[15px]"
+                                  style={{
+                                    fontFamily: '"SF Pro", sans-serif',
+                                    fontStyle: "normal",
+                                    fontWeight: 400
+                                  }}
+                                >
+                                  {item.answer}
+                                </motion.p>
+                              )}
+                            </AnimatePresence>
+                          </div>
+
+                          <span className="relative flex h-9 w-9 shrink-0 items-center justify-center text-[0px] leading-none text-transparent">
+                            {isOpen ? (
+                              <svg viewBox="0 0 20 20" className="absolute h-5 w-5 text-[#1A1A1A]" fill="none" stroke="currentColor" strokeWidth="1.8">
+                                <path d="M4 10H16" strokeLinecap="round" />
+                              </svg>
+                            ) : (
+                              <svg viewBox="0 0 20 20" className="absolute h-5 w-5 text-[#1A1A1A]" fill="none" stroke="currentColor" strokeWidth="1.8">
+                                <path d="M4 10H16" strokeLinecap="round" />
+                                <path d="M10 4V16" strokeLinecap="round" />
+                              </svg>
+                            )}
                       {isOpen ? "−" : "+"}
                     </span>
                   </button>
                 </div>
               );
             })}
-          </motion.div>
+                </motion.div>
+              </motion.div>
+            </AnimatePresence>
+
+            <div className="mt-10 flex items-center justify-between gap-4">
+              <div className="flex items-center gap-2 lg:hidden">
+                <button
+                  type="button"
+                  onClick={() => handleBusinessExecutionSlideChange(-1)}
+                  aria-label="Show previous outcome"
+                  className="flex h-11 w-11 items-center justify-center rounded-full border border-[#E3E6DD] text-[#8D9487] transition-colors hover:text-[#06231C]"
+                >
+                  <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.5">
+                    <path d="M14.5 5L7.5 12L14.5 19" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleBusinessExecutionSlideChange(1)}
+                  aria-label="Show next outcome"
+                  className="flex h-11 w-11 items-center justify-center rounded-full border border-[#E3E6DD] text-[#8D9487] transition-colors hover:text-[#06231C]"
+                >
+                  <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.5">
+                    <path d="M9.5 5L16.5 12L9.5 19" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </button>
+              </div>
+
+              <div className="mx-auto flex items-center gap-2">
+                {businessExecutionSlides.map((slide, index) => {
+                  const isActive = index === activeBusinessExecutionSlide;
+
+                  return (
+                    <button
+                      key={slide.number}
+                      type="button"
+                      onClick={() => handleBusinessExecutionSlideSelect(index)}
+                      aria-label={`Show ${slide.heading}`}
+                      className={`h-2.5 rounded-full transition-all duration-300 ${
+                        isActive ? "w-6 bg-[#06231C]" : "w-2.5 bg-[#D7DDD4] hover:bg-[#BCC7B8]"
+                      }`}
+                    />
+                  );
+                })}
+              </div>
+
+              <div className="hidden w-[96px] lg:block" />
+            </div>
+          </div>
         </div>
       </section>
 

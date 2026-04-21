@@ -3,6 +3,7 @@ import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion"
 import { MagneticButton, SectionTitle, RevealImage, StaggerText } from "../components/AnimatedElements"
 import HeroMain from "../assets/images/Home/Hero-Main.png";
 import DemoModal from "../components/DemoModal";
+import GrowthCtaSection from "../components/GrowthCtaSection";
 
 // Icons
 import EnterpriseVector from "../assets/images/Home/vector.svg";
@@ -20,7 +21,6 @@ import iphone from "../assets/images/Home/phone.png";
 import ShopifyHeroCard from "../assets/images/Shopify/shopify&WhatsApp.svg";
 import ShopifyCard from "../assets/images/Shopify/ShopifyCard.svg";
 import HowItWorksBg from "../assets/images/Shopify/HowitWorks.svg.svg";
-import lastSectionBg from "../assets/images/Shopify/lastSection.png";
 import ShopifyHeroBg from "../assets/images/Shopify/shopifyhero.png";
 
 
@@ -395,27 +395,18 @@ export default function Shopify() {
   const [openFaqIndex, setOpenFaqIndex] = useState(0);
 
   const heroRevealY = useTransform(scrollY, [0, 500], [0, 110]);
-  const blobY1 = useTransform(scrollY, [0, 500], [0, 100]);
-  const blobY2 = useTransform(scrollY, [0, 500], [0, -100]);
 
   return (
     <main className="demo-page bg-[#F5F6F2] text-slate-800">
 
       <section className="relative min-h-screen overflow-hidden bg-[#06231C]">
-        <motion.div
-          style={{ y: heroRevealY, backgroundImage: `url(${ShopifyHeroBg})` }}
-          className="absolute inset-0 bg-cover bg-center"
+        <motion.img
+          src={ShopifyHeroBg}
+          alt=""
+          aria-hidden="true"
+          style={{ y: heroRevealY }}
+          className="absolute inset-0 h-full w-full object-cover object-left"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(2,21,16,0.9)_0%,rgba(4,40,31,0.76)_42%,rgba(17,111,96,0.22)_100%)]" />
-        <motion.div
-          style={{ y: blobY1 }}
-          className="absolute left-[-40px] top-[18%] z-[1] h-[360px] w-[360px] rounded-full bg-[#32cdb5]/30 blur-[110px]"
-        />
-        <motion.div
-          style={{ y: blobY2 }}
-          className="absolute right-[-40px] top-[-40px] z-[1] h-[320px] w-[320px] rounded-full bg-[#a8ffe8]/20 blur-[130px]"
-        />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.08)_0%,transparent_55%)] mix-blend-screen opacity-40" />
 
         <div className="relative z-10 flex min-h-screen items-center pb-16 pt-28 pl-6 pr-0 sm:pl-8 sm:pr-0 md:pl-14 md:pr-0 md:pt-32 lg:pl-20 lg:pr-0 xl:pl-24 xl:pr-0">
           <div className="grid w-full items-center gap-14 lg:grid-cols-[minmax(0,1fr)_577px] lg:gap-12">
@@ -610,58 +601,7 @@ export default function Shopify() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-white py-10">
-        <div
-          className="relative flex min-h-[360px] w-full items-center overflow-hidden px-8 py-10 md:min-h-[420px] md:px-12 md:py-12"
-          style={{
-            backgroundImage: `url(${lastSectionBg})`,
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-            backgroundSize: "100% 100%"
-          }}
-        >
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="max-w-[760px]"
-          >
-            <h2
-              className="self-stretch"
-              style={{
-                fontFamily: "SF Pro",
-                fontSize: "50.087px",
-                fontStyle: "normal",
-                fontWeight: 400,
-                lineHeight: "54.783px",
-                color: "#06231C"
-              }}
-            >
-              <span className="whitespace-nowrap" style={{ color: "#06231C" }}>AI Visual Engine for Fashion Brands</span>
-              <br />
-              <span
-                style={{
-                  background: "linear-gradient(90deg, #06231C 0%, #17896E 100%)",
-                  backgroundClip: "text",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent"
-                }}
-              >
-                Scale Your Growth Today.
-              </span>
-            </h2>
-
-            <button
-              type="button"
-              onClick={() => setIsDemoOpen(true)}
-              className="mt-14 inline-flex h-12 items-center justify-center rounded-[4px] bg-[#D4E5C0] px-7 text-[15px] font-medium text-[#06231C] transition-all duration-300 hover:translate-y-[-1px] hover:bg-[#dbe9ca]"
-            >
-              Schedule a Demo
-            </button>
-          </motion.div>
-        </div>
-      </section>
+      <GrowthCtaSection onPrimaryClick={() => setIsDemoOpen(true)} />
 
       <DemoModal isOpen={isDemoOpen} onClose={() => setIsDemoOpen(false)} />
     </main>

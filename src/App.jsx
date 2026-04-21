@@ -1,4 +1,4 @@
-import { Routes, Route, useLocation } from 'react-router-dom'
+import { Routes, Route, useLocation, Navigate } from 'react-router-dom'
 import { AnimatePresence, motion, useScroll } from 'framer-motion'
 import Navbar from './components/Navbar.jsx'
 import Footer from './components/Footer.jsx'
@@ -22,8 +22,8 @@ export default function App() {
   const { user } = useAuth()
   const location = useLocation()
   const { scrollYProgress } = useScroll()
-  const transparentNavbarRoutes = ['/', '/about', '/integrations', '/shopify', '/vto', '/ai-whatsapp-marketing']
-  const hideGlobalNavbarRoutes = ['/about']
+  const transparentNavbarRoutes = ['/', '/about', '/outcomes', '/integrations', '/feelings', '/shopify', '/vto', '/ai-whatsapp-marketing']
+  const hideGlobalNavbarRoutes = ['/about', '/outcomes']
   const shouldOverlayNavbar = transparentNavbarRoutes.includes(location.pathname)
   const shouldShowGlobalNavbar = !hideGlobalNavbarRoutes.includes(location.pathname)
 
@@ -51,9 +51,11 @@ export default function App() {
             <Routes location={location} key={location.pathname}>
               {/* Main Pages */}
               <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
+              <Route path="/about" element={<Navigate to="/outcomes" replace />} />
+              <Route path="/outcomes" element={<About />} />
               <Route path="/contact" element={<Contact />} />
-              <Route path="/integrations" element={<Integrations />} />
+              <Route path="/integrations" element={<Navigate to="/feelings" replace />} />
+              <Route path="/feelings" element={<Integrations />} />
               <Route path="/shopify" element={<Shopify />} />
               <Route path="/vto" element={<Vto />} />
               <Route path="/ai-whatsapp-marketing" element={<WhatsAppMarketing />} />
