@@ -52,7 +52,7 @@ export default function Footer() {
         <div>
           <h4 className="font-medium text-[#0b3b2e] mb-4">Legal</h4>
           <ul className="space-y-3 text-slate-600">
-            <li className="hover:text-[#0b3b2e] cursor-pointer">Privacy Policy</li>
+            <li><Link to="/privacy-policy" className="hover:text-[#0b3b2e] transition">Privacy Policy</Link></li>
             <li className="hover:text-[#0b3b2e] cursor-pointer">Terms of Service</li>
             <li className="hover:text-[#0b3b2e] cursor-pointer">Cookie Policy</li>
             <li className="hover:text-[#0b3b2e] cursor-pointer">Security FAQ</li>

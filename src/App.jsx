@@ -13,6 +13,8 @@ import Shopify from './pages/Shopify.jsx'
 import NotFound from './pages/NotFound.jsx'
 import Register from './pages/Register.jsx'
 import AdminDemoRequests from './pages/AdminDemoRequests.jsx'
+import PrivacyPolicy from './pages/PrivacyPolicy.jsx'
+
 
 export default function App() {
   const { user } = useAuth()
@@ -50,6 +52,8 @@ export default function App() {
               
               {/* Hidden Admin Views */}
               <Route path="/admin/demo-requests" element={<AdminDemoRequests />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+
 
               {/* 404 */}
               <Route path="*" element={<NotFound />} />
