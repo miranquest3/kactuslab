@@ -95,7 +95,7 @@ router.post('/', async (req, res) => {
     // Send Admin Email (runs in background)
     if (process.env.SMTP_USER && process.env.ADMIN_EMAIL) {
       transporter.sendMail({
-        from: `"KactusLab Alerts" <${process.env.SMTP_USER}>`,
+        from: `"Kactus AI Alerts" <${process.env.SMTP_USER}>`,
         to: process.env.ADMIN_EMAIL, 
         subject: `New Demo Request from ${firstName} ${lastName}`,
         html: `

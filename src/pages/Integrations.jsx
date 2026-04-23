@@ -34,7 +34,7 @@ const integrationCards = [
 
 const shopifyHeroTestimonial = {
   quote:
-    "I've been cautious with product tech in the past, but KactusLabs just gets it. It's easy to integrate, and the visuals focus on what really matters to customers. Everything works seamlessly, reducing confusion and the small issues that often lead to returns.",
+    "I've been cautious with product tech in the past, but Kactus AI just gets it. It's easy to integrate, and the visuals focus on what really matters to customers. Everything works seamlessly, reducing confusion and the small issues that often lead to returns.",
   name: "Cameo Ashe",
   role: "Lemonade Beach E-Commerce",
   image: "https://randomuser.me/api/portraits/women/28.jpg"
@@ -46,7 +46,7 @@ export default function Integrations() {
   const heroRevealY = useTransform(scrollY, [0, 500], [0, 110]);
 
   return (
-    <main className="bg-[#F5F6F2] text-slate-800">
+    <main className="sf-pro-page bg-[#F5F6F2] text-slate-800">
       <section className="relative min-h-screen overflow-hidden bg-[#06231C]">
         <motion.img
           src={ShopifyHeroBg}
@@ -75,7 +75,7 @@ export default function Integrations() {
                   lineHeight: "64px"
                 }}
               >
-                Integrate KactusLabs with
+                Integrate Kactus AI with
                 <br />
                 Your Commerce Stack
               </h1>
@@ -91,7 +91,7 @@ export default function Integrations() {
                   lineHeight: "1.35"
                 }}
               >
-                Connect KactusLabs with Shopify, WooCommerce, and
+                Connect Kactus AI with Shopify, WooCommerce, and
                 <br />
                 your own platform via our API to unify data workflows and
                 <br />
@@ -118,7 +118,7 @@ export default function Integrations() {
                 <div className="absolute left-1/2 top-1/2 h-[258px] w-[258px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/85" />
 
                 <div className="absolute left-1/2 top-1/2 flex h-[76px] w-[76px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#06231C] shadow-[0_18px_40px_rgba(4,28,22,0.35)]">
-                  <img src={logoWithoutName} alt="KactusLab" className="h-10 w-10 object-contain" />
+                  <img src={logoWithoutName} alt="Kactus AI" className="h-10 w-10 object-contain" />
                 </div>
 
                 <div className="absolute left-1/5 top-1/2 flex h-[54px] w-[54px] translate-x-[70px] translate-y-[-177px] items-center justify-center rounded-full bg-white shadow-[0_0_30px_rgba(212,229,192,0.32),0_12px_25px_rgba(255,255,255,0.16)]">
@@ -160,7 +160,7 @@ export default function Integrations() {
                 WebkitTextFillColor: "transparent"
               }}
             >
-              Seamlessly Integrate KactusLabs
+              Seamlessly Integrate Kactus AI
               <br />
               With Your Tech Stack
             </h2>

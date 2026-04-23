@@ -1,4 +1,4 @@
-﻿import { useRef, useState } from "react"
+import { useRef, useState } from "react"
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion"
 import { MagneticButton, SectionTitle, RevealImage, StaggerText } from "../components/AnimatedElements"
 import HeroMain from "../assets/images/Home/Hero-Main.png";
@@ -171,7 +171,7 @@ const featureCards = [
   {
     title: "COMMERCE AUTOMATION",
     subtitle: "From Chat to Checkout",
-    description: "Let KactusLabs handle next actions from engagement through conversion in a single flow"
+    description: "Let Kactus AI handle next actions from engagement through conversion in a single flow"
   }
 ];
 
@@ -181,7 +181,7 @@ const reviewCards = [
     handle: "@Sam.Payne90",
     image: "https://randomuser.me/api/portraits/women/44.jpg",
     badge: "Verified Purchase",
-    text: "KactusLabs made product discovery smoother and helped customers shop with more confidence from the start.",
+    text: "Kactus AI made product discovery smoother and helped customers shop with more confidence from the start.",
     date: "23 Nov 2021"
   },
   {
@@ -269,7 +269,7 @@ const shopifyHowItWorksSteps = [
 
 const shopifyHeroTestimonial = {
   quote:
-    "I've been cautious with product tech in the past, but KactusLabs just gets it. It's easy to integrate, and the visuals focus on what really matters to customers. Everything works seamlessly, reducing confusion and the small issues that often lead to returns.",
+    "I've been cautious with product tech in the past, but Kactus AI just gets it. It's easy to integrate, and the visuals focus on what really matters to customers. Everything works seamlessly, reducing confusion and the small issues that often lead to returns.",
   name: "Cameo Ashe",
   role: "Lemonade Beach E-Commerce",
   image: "https://randomuser.me/api/portraits/women/28.jpg"
@@ -427,11 +427,11 @@ export default function Shopify() {
                   lineHeight: "64px"
                 }}
               >
-                Kactuslabs + Shopify
+                Kactus AI + Shopify
               </h1>
 
               <p className="mt-4 max-w-[500px] text-[18px] leading-[1.22] text-white md:text-[18px]">
-                KactusLabs turns a single WhatsApp message into complete business execution on its own through:
+                Kactus AI turns a single WhatsApp message into complete business execution on its own through:
               </p>
 
               <button
@@ -451,7 +451,7 @@ export default function Shopify() {
             >
               <img
                 src={ShopifyHeroCard}
-                alt="KactusLab and Shopify integration"
+                alt="Kactus AI and Shopify integration"
                 className="w-full max-w-[577px] rounded-[7px] object-contain shadow-[0_24px_80px_rgba(6,35,28,0.28)] lg:mr-0"
               />
             </motion.div>
@@ -485,7 +485,7 @@ export default function Shopify() {
                 WebkitTextFillColor: "transparent"
               }}
             >
-              What You Can Do With  <br />Shopify + KactusLabs
+              What You Can Do With  <br />Shopify + Kactus AI
             </h2>
           </motion.div>
 

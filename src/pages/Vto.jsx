@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react"
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion"
+import { motion, AnimatePresence, useInView, useScroll, useTransform } from "framer-motion"
 import { MagneticButton, SectionTitle, RevealImage, StaggerText } from "../components/AnimatedElements"
 import DemoModal from "../components/DemoModal";
 import GrowthCtaSection from "../components/GrowthCtaSection";
@@ -27,7 +27,6 @@ import shouldIBuyChallengeIcon from "../assets/images/Vto/ic4.svg";
 import downloadFeatureIcon from "../assets/images/Vto/download.png";
 import instantVtoFeatureIcon from "../assets/images/Vto/instant.png";
 import smartSizeFeatureIcon from "../assets/images/Vto/sizefit.png";
-import vtoSectionBg from "../assets/images/Vto/sec 2.svg";
 import vtoSectionVector from "../assets/images/Vto/Vector.svg";
 import rightIcon from "../assets/images/Vto/right.svg";
 import wrongIcon from "../assets/images/Vto/wrong.svg";
@@ -80,6 +79,13 @@ const orbitDots = [
   { size: 392, color: "bg-[#F7E58C]", duration: 13, delay: 1.2, dotSize: "w-3 h-3" },
   { size: 312, color: "bg-[#F5A3A7]", duration: 11, delay: 0.4, dotSize: "w-3 h-3" },
   { size: 232, color: "bg-[#9BCBFF]", duration: 9, delay: 1.6, dotSize: "w-3 h-3" }
+];
+
+const vtoOrbitRings = [
+  { radius: 540, strokeOpacity: 1 },
+  { radius: 600, strokeOpacity: 1 },
+  { radius: 660, strokeOpacity: 0.34 },
+  
 ];
 
 const aiTestimonials = [
@@ -183,7 +189,7 @@ const featureCards = [
   {
     title: "COMMERCE AUTOMATION",
     subtitle: "From Chat to Checkout",
-    description: "Let KactusLabs handle next actions from engagement through conversion in a single flow"
+    description: "Let Kactus AI handle next actions from engagement through conversion in a single flow"
   }
 ];
 
@@ -193,7 +199,7 @@ const reviewCards = [
     handle: "@Sam.Payne90",
     image: "https://randomuser.me/api/portraits/women/44.jpg",
     badge: "Verified Purchase",
-    text: "KactusLabs made product discovery smoother and helped customers shop with more confidence from the start.",
+    text: "Kactus AI made product discovery smoother and helped customers shop with more confidence from the start.",
     date: "23 Nov 2021"
   },
   {
@@ -301,6 +307,14 @@ const vtoChallenges = [
   }
 ];
 
+const vtoInteractiveChallengeIndexes = vtoChallenges.reduce((indexes, item, index) => {
+  if (item.interactive) {
+    indexes.push(index);
+  }
+
+  return indexes;
+}, []);
+
 const vtoFeatureHighlights = [
   {
     title: "Instant Visualization",
@@ -309,7 +323,7 @@ const vtoFeatureHighlights = [
   },
   {
     title: "Smart Size Recommendations for Better Fit",
-    description: "Kactuslabs analyzes the user's BMI and uses AI algorithms to recommend the most accurate size for that individual.",
+    description: "Kactus AI analyzes the user's BMI and uses AI algorithms to recommend the most accurate size for that individual.",
     icon: smartSizeFeatureIcon
   },
   {
@@ -348,11 +362,116 @@ const shopifyHowItWorksSteps = [
 
 const shopifyHeroTestimonial = {
   quote:
-    "I've been cautious with product tech in the past, but KactusLabs just gets it. It's easy to integrate, and the visuals focus on what really matters to customers. Everything works seamlessly, reducing confusion and the small issues that often lead to returns.",
+    "I've been cautious with product tech in the past, but Kactus AI just gets it. It's easy to integrate, and the visuals focus on what really matters to customers. Everything works seamlessly, reducing confusion and the small issues that often lead to returns.",
   name: "Cameo Ashe",
   role: "Lemonade Beach E-Commerce",
   image: "https://randomuser.me/api/portraits/women/28.jpg"
 };
+
+function VtoOrbitBackground() {
+  return (
+    <motion.div
+      initial={{ opacity: 0.45, scale: 0.985 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 1.05, ease: [0.22, 1, 0.36, 1] }}
+      viewport={{ once: false, amount: 0.3 }}
+      className="absolute inset-0 pointer-events-none"
+    >
+      <div className="absolute inset-0 bg-[#06231C]" />
+      <motion.div
+        className="absolute inset-0"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 1.1, ease: "easeOut" }}
+        viewport={{ once: false, amount: 0.3 }}
+        style={{
+          background: `
+            radial-gradient(74% 82% at 50% -10%, rgba(212, 229, 192, 0.68) 0%, rgba(118, 127, 106, 0.20) 34%, rgba(6, 35, 28, 0) 67%),
+            radial-gradient(24% 58% at 2% 100%, rgba(212, 229, 192, 0.18) 0%, rgba(6, 35, 28, 0) 76%),
+            radial-gradient(24% 58% at 98% 100%, rgba(212, 229, 192, 0.18) 0%, rgba(6, 35, 28, 0) 76%)
+          `
+        }}
+      />
+      <svg
+        viewBox="0 0 1440 920"
+        className="absolute inset-0 h-full w-full"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        {vtoOrbitRings.map((ring, index) => (
+          <motion.circle
+            key={ring.radius}
+            cx="720"
+            cy="-255"
+            r={ring.radius}
+            fill="none"
+            stroke="white"
+            strokeWidth="2"
+            strokeOpacity={ring.strokeOpacity}
+            style={{ opacity: 0.09 }}
+            initial={{ opacity: 0, pathLength: 0.92 }}
+            whileInView={{ opacity: 0.09, pathLength: 1 }}
+            transition={{
+              duration: 1.05,
+              delay: 0.04 * index,
+              ease: [0.22, 1, 0.36, 1]
+            }}
+            viewport={{ once: false, amount: 0.3 }}
+          />
+        ))}
+      </svg>
+    </motion.div>
+  )
+}
+
+function VtoTopGlow({ wrapperClassName = "", glowClassName = "" }) {
+  const glowRef = useRef(null)
+  const isInView = useInView(glowRef, { amount: 0.25 })
+
+  return (
+    <div
+      ref={glowRef}
+      aria-hidden="true"
+      className={`pointer-events-none absolute inset-x-0 z-[1] flex justify-center ${wrapperClassName}`}
+    >
+      <motion.div
+        initial={false}
+        animate={
+          isInView
+            ? {
+                opacity: [0.18, 0.34, 0.58, 0.34],
+                scale: [0.9, 0.97, 1.05, 0.98],
+                y: [0, 0, 6, 0]
+              }
+            : {
+                opacity: 0,
+                scale: 0.84,
+                y: -12
+              }
+        }
+        transition={
+          isInView
+            ? {
+                duration: 6.2,
+                delay: 0.12,
+                times: [0, 0.2, 0.6, 1],
+                ease: "easeInOut",
+                repeat: Infinity,
+                repeatType: "mirror"
+              }
+            : { duration: 0.22, ease: "easeOut" }
+        }
+        className={`rounded-[1145.655px] ${glowClassName}`}
+        style={{
+          borderRadius: "1145.655px",
+          background: "linear-gradient(180deg, rgba(212, 229, 192, 0.67) 112.39%, rgba(118, 127, 106, 0.67) 124.06%)",
+          filter: "blur(100px)",
+          willChange: "transform, opacity"
+        }}
+      />
+    </div>
+  )
+}
 
 function FeatureShowcaseCard({ card, index, activeCard, setActiveCard }) {
   const [spotlight, setSpotlight] = useState({ x: 50, y: 50, active: false })
@@ -471,13 +590,17 @@ export default function Vto() {
   const [isDemoOpen, setIsDemoOpen] = useState(false);
   const [activeFeatureCard, setActiveFeatureCard] = useState(null);
   const [activeVtoChallenge, setActiveVtoChallenge] = useState(null);
+  const [hoveredVtoChallenge, setHoveredVtoChallenge] = useState(null);
   const [activeReviewCard, setActiveReviewCard] = useState(null);
   const [openFaqIndex, setOpenFaqIndex] = useState(0);
+  const vtoChallengesSectionRef = useRef(null);
   const desktopChallengeTrackRef = useRef(null);
+  const vtoChallengeCycleRef = useRef(0);
   const [desktopChallengeMetrics, setDesktopChallengeMetrics] = useState({
     containerWidth: 1260,
     slotWidth: 1260 / vtoChallenges.length
   });
+  const isVtoChallengesInView = useInView(vtoChallengesSectionRef, { amount: 0.35 });
 
   const heroRevealY = useTransform(scrollY, [0, 500], [0, 110]);
   const desktopChallengeCardWidth = Math.min(
@@ -516,6 +639,64 @@ export default function Vto() {
       resizeObserver.disconnect();
     };
   }, []);
+
+  useEffect(() => {
+    if (!isVtoChallengesInView) {
+      setActiveVtoChallenge(null);
+      return undefined;
+    }
+
+    if (hoveredVtoChallenge !== null) {
+      const hoveredCycleIndex = vtoInteractiveChallengeIndexes.indexOf(hoveredVtoChallenge);
+
+      if (hoveredCycleIndex >= 0) {
+        vtoChallengeCycleRef.current = hoveredCycleIndex;
+      }
+
+      setActiveVtoChallenge(hoveredVtoChallenge);
+      return undefined;
+    }
+
+    setActiveVtoChallenge(vtoInteractiveChallengeIndexes[vtoChallengeCycleRef.current]);
+
+    const challengeTimer = window.setInterval(() => {
+      vtoChallengeCycleRef.current =
+        (vtoChallengeCycleRef.current + 1) % vtoInteractiveChallengeIndexes.length;
+      setActiveVtoChallenge(vtoInteractiveChallengeIndexes[vtoChallengeCycleRef.current]);
+    }, 2000);
+
+    return () => {
+      window.clearInterval(challengeTimer);
+    };
+  }, [isVtoChallengesInView, hoveredVtoChallenge]);
+
+  const handleVtoChallengeHoverEnter = (index) => {
+    if (!vtoChallenges[index]?.interactive) {
+      return;
+    }
+
+    setHoveredVtoChallenge(index);
+  };
+
+  const handleVtoChallengeHoverLeave = () => {
+    if (!isVtoChallengesInView) {
+      setHoveredVtoChallenge(null);
+      setActiveVtoChallenge(null);
+      return;
+    }
+
+    const currentInteractiveIndex = vtoInteractiveChallengeIndexes.indexOf(
+      hoveredVtoChallenge ?? activeVtoChallenge
+    );
+    const nextCycleIndex =
+      currentInteractiveIndex >= 0
+        ? (currentInteractiveIndex + 1) % vtoInteractiveChallengeIndexes.length
+        : vtoChallengeCycleRef.current;
+
+    vtoChallengeCycleRef.current = nextCycleIndex;
+    setHoveredVtoChallenge(null);
+    setActiveVtoChallenge(vtoInteractiveChallengeIndexes[nextCycleIndex]);
+  };
 
   return (
     <main className="demo-page bg-[#F5F6F2] text-slate-800">
@@ -566,7 +747,7 @@ export default function Vto() {
               </p>
 
               <p className="mt-6 max-w-[430px] self-stretch text-[15px] leading-[24px] text-white">
-                KactusLab&apos;s AI virtual try-on lets customers see how products look on them in one click and get a precise size recommendation using body data, improving accuracy, boosting confidence, and reducing returns.
+                Kactus AI virtual try-on lets customers see how products look on them in one click and get a precise size recommendation using body data, improving accuracy, boosting confidence, and reducing returns.
               </p>
 
               <button
@@ -607,7 +788,10 @@ export default function Vto() {
         </div>
       </section>
 
-      <section className="bg-white px-6 py-16 sm:px-8 md:px-14 md:py-20 lg:px-20 xl:px-24">
+      <section
+        ref={vtoChallengesSectionRef}
+        className="bg-white px-6 py-16 sm:px-8 md:px-14 md:py-20 lg:px-20 xl:px-24"
+      >
         <div className="mx-auto max-w-[1320px]">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -638,7 +822,7 @@ export default function Vto() {
           <div
             ref={desktopChallengeTrackRef}
             className="relative mx-auto mt-14 hidden h-[146px] max-w-[1260px] overflow-hidden lg:block"
-            onMouseLeave={() => setActiveVtoChallenge(null)}
+            onMouseLeave={handleVtoChallengeHoverLeave}
           >
             <div className="grid h-full grid-cols-6 items-start gap-x-3 px-3 pt-2">
               {vtoChallenges.map((item, index) => {
@@ -655,9 +839,8 @@ export default function Vto() {
                     : 0;
 
                 return (
-                  <motion.button
+                  <motion.div
                     key={item.title}
-                    type="button"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{
@@ -665,15 +848,14 @@ export default function Vto() {
                       default: { type: "spring", stiffness: 220, damping: 28 }
                     }}
                     viewport={{ once: true }}
-                    onMouseEnter={() => setActiveVtoChallenge(isInteractive ? index : null)}
-                    onFocus={() => setActiveVtoChallenge(isInteractive ? index : null)}
-                    onClick={() => setActiveVtoChallenge(isInteractive ? index : null)}
                     animate={{
                       x: shiftAmount,
                       opacity: isActive ? 0 : 1,
                       scale: 1
                     }}
-                    tabIndex={isInteractive ? 0 : -1}
+                    onMouseEnter={() => {
+                      handleVtoChallengeHoverEnter(index);
+                    }}
                     className={`flex h-full flex-col items-center justify-start px-3 pt-1 text-center ${isInteractive ? "cursor-pointer" : "cursor-default"}`}
                   >
                     <div className="relative flex h-[58px] w-[58px] items-center justify-center">
@@ -702,7 +884,7 @@ export default function Vto() {
                     >
                       {item.title}
                     </p>
-                  </motion.button>
+                  </motion.div>
                 );
               })}
             </div>
@@ -724,14 +906,14 @@ export default function Vto() {
                         : activeVtoChallenge * desktopChallengeMetrics.slotWidth
                   }}
                 >
-                  <div className="flex w-[132px] shrink-0 flex-col items-start gap-3">
+                  <div className="flex w-[132px] shrink-0 flex-col items-center gap-3 text-center">
                     <img
                       src={vtoChallenges[activeVtoChallenge].cardIcon ?? vtoChallenges[activeVtoChallenge].icon}
                       alt={vtoChallenges[activeVtoChallenge].title}
                       className="h-[43.09px] w-[42.663px] object-contain"
                     />
                     <p
-                      className="text-left text-white"
+                      className="text-center text-white"
                       style={{
                         fontFamily: "SF Pro",
                         fontSize: "17px",
@@ -785,18 +967,16 @@ export default function Vto() {
               const isInteractive = item.interactive;
 
               return (
-                <motion.button
+                <motion.div
                   key={`${item.title}-mobile`}
-                  type="button"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.45, delay: index * 0.06 }}
                   viewport={{ once: true }}
-                  onClick={() => setActiveVtoChallenge(isInteractive ? index : null)}
                   className={`rounded-[16px] border px-5 py-5 text-left transition-colors duration-300 ${isActive ? "border-[#0B2D24] bg-[#0B2D24] text-white" : "border-[#dce4dd] bg-white text-[#06231C]"}`}
                 >
-                  <div className="flex items-start gap-4">
-                    <div className="relative mt-1 shrink-0">
+                  <div className={`flex gap-4 ${isActive ? "flex-col items-center text-center" : "items-start"}`}>
+                    <div className={`relative shrink-0 ${isActive ? "mt-0" : "mt-1"}`}>
                       <img
                         src={item.cardIcon ?? item.icon}
                         alt={item.title}
@@ -809,7 +989,7 @@ export default function Vto() {
                         </span>
                       )}
                     </div>
-                    <div>
+                    <div className={isActive ? "text-center" : ""}>
                       <p
                         style={{
                           fontFamily: "SF Pro",
@@ -823,7 +1003,7 @@ export default function Vto() {
                       </p>
                       {item.issue && (
                         <p
-                          className={isActive ? "mt-3 text-white" : "mt-3 text-[#173A31]"}
+                          className={isActive ? "mt-3 text-center text-white" : "mt-3 text-[#173A31]"}
                           style={{
                             fontFamily: "SF Pro",
                             fontSize: "15px",
@@ -837,24 +1017,21 @@ export default function Vto() {
                       )}
                     </div>
                   </div>
-                </motion.button>
+                </motion.div>
               );
             })}
           </div>
         </div>
       </section>
 
-      <section
-        className="relative overflow-hidden bg-[#06231C] px-6 py-20 text-white sm:px-8 md:px-14 md:py-24 lg:px-20 xl:px-24"
-        style={{
-          backgroundImage: `linear-gradient(180deg,rgba(6,35,28,0.88)_0%,rgba(6,35,28,0.94)_100%), url(${vtoSectionBg})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center"
-        }}
-      >
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(214,229,192,0.18)_0%,rgba(214,229,192,0.06)_22%,transparent_52%)]" />
+      <section className="relative overflow-hidden bg-[#06231C] px-6 pt-12 pb-20 text-white sm:px-8 md:px-14 md:pt-14 md:pb-24 lg:px-20 xl:px-24">
+        <VtoOrbitBackground />
+        <VtoTopGlow
+          wrapperClassName="top-0 -translate-y-[22%] md:-translate-y-[26%]"
+          glowClassName="h-[220px] w-[360px] md:h-[320px] md:w-[940px]"
+        />
 
-        <div className="relative mx-auto max-w-[1320px]">
+        <div className="relative z-10 mx-auto max-w-[1320px]">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -870,7 +1047,7 @@ export default function Vto() {
             />
 
             <h2
-              className="mt-6 text-center text-white"
+              className="mt-4 text-center text-white"
               style={{
                 color: "#FFF",
                 textAlign: "center",
@@ -884,12 +1061,12 @@ export default function Vto() {
               Virtual Try-On
             </h2>
 
-            <p className="mt-3 text-[18px] leading-[1.5] text-white/72">
+            <p className="mt-2.5 text-[18px] leading-[1.5] text-white/72">
               Built for scale. Designed for reliability.
             </p>
 
             <div
-              className="mt-10 w-full max-w-full overflow-hidden border border-white/12 bg-[#d3d3d3] shadow-[0_24px_80px_rgba(0,0,0,0.22)]"
+              className="mt-8 w-full max-w-full overflow-hidden border border-white/12 bg-[#d3d3d3] shadow-[0_24px_80px_rgba(0,0,0,0.22)]"
               style={{
                 width: "686px",
                 height: "338px",
@@ -907,7 +1084,7 @@ export default function Vto() {
             </div>
 
             <p className="mt-8 max-w-[860px] text-[20px] leading-[1.75] text-white/88">
-              KactusLabs&apos; AI-powered Virtual Try-On drives buyer confidence through instant outfit visualization and smart sizing while turning try-on data into WhatsApp marketing fuel and branding every image with your logo.
+              Kactus AI Virtual Try-On drives buyer confidence through instant outfit visualization and smart sizing while turning try-on data into WhatsApp marketing fuel and branding every image with your logo.
             </p>
 
             <button
@@ -929,7 +1106,7 @@ export default function Vto() {
                 viewport={{ once: true }}
                 className="px-6 py-6 text-center"
               >
-                <img src={card.icon} alt={card.title} className="mx-auto h-[62px] w-[62px] object-contain" />
+                <img src={card.icon} alt={card.title} className="mx-auto h-[40.667px] w-[40.667px] object-contain" />
 
                 <h3
                   className="mt-5 self-stretch text-center text-white"
@@ -987,10 +1164,10 @@ export default function Vto() {
               <div className="flex items-center justify-center gap-3 border-l border-[#dbe3ea] px-6 py-8">
                 <img
                   src={logoWithoutName}
-                  alt="Kactuslabs"
+                  alt="Kactus AI"
                   className="h-11 w-11 object-contain"
                 />
-                <h3 className="text-center text-[#173A31] text-[24px] font-medium leading-[1.2]">Kactuslabs</h3>
+                <h3 className="text-center text-[#173A31] text-[24px] font-medium leading-[1.2]">Kactus AI</h3>
               </div>
             </div>
 

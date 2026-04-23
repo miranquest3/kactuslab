@@ -194,7 +194,7 @@ export default function Dashboard() {
               transition={{ delay: 0.6, duration: 0.8 }}
               className="mt-6 text-slate-600 max-w-xl text-base md:text-lg leading-relaxed"
             >
-              KactusLab helps fashion brands reduce returns and increase
+              Kactus AI helps fashion brands reduce returns and increase
               conversions with photorealistic virtual try-ons, intelligent
               size recommendations, and AI-generated visual content.
             </motion.p>
@@ -453,7 +453,7 @@ export default function Dashboard() {
 
           {/* Heading */}
           <h2 className="font-serif leading-tight tracking-tight text-3xl sm:text-4xl md:text-5xl">
-            KactusLab pricing is designed around
+            Kactus AI pricing is designed around
             <span className="block mt-2">
               how each brand operates.
             </span>
@@ -619,10 +619,10 @@ export default function Dashboard() {
             className="text-center max-w-3xl mx-auto"
           >
             <h2 className="text-4xl md:text-5xl font-serif text-emerald-100">
-              Why Fashion Brands love KactusLabs
+              Why Fashion Brands love Kactus AI
             </h2>
             <p className="mt-4 text-emerald-200/80">
-              Real stories from brands that reduced returns and increased conversions with KactusLabs
+              Real stories from brands that reduced returns and increased conversions with Kactus AI
             </p>
           </motion.div>
 
@@ -663,7 +663,7 @@ export default function Dashboard() {
 
                 {/* Testimonial Text */}
                 <p className="text-[#4b5563] leading-[1.7] flex-1 text-[16px] tracking-wide font-medium">
-                  KactusLabs has completely changed the way customers shop our products. It presents visual fit information clearly, improves product understanding, and helps shoppers make confident decisions before checkout. We no longer worry about confusion, incorrect expectations, or unnecessary product returns. The experience feels accurate, trustworthy, and has made our conversion flow far more efficient. I highly recommend KactusLabs
+                  Kactus AI has completely changed the way customers shop our products. It presents visual fit information clearly, improves product understanding, and helps shoppers make confident decisions before checkout. We no longer worry about confusion, incorrect expectations, or unnecessary product returns. The experience feels accurate, trustworthy, and has made our conversion flow far more efficient. I highly recommend Kactus AI
                 </p>
 
                 {/* Date */}
@@ -712,7 +712,7 @@ export default function Dashboard() {
             {/* RIGHT TESTIMONIAL */}
             <div className="relative max-w-[420px] flex-shrink-0 border-l border-white/20 pl-6">
               <p className="text-sm text-white/80 leading-relaxed">
-                I’ve been cautious with product tech in the past... but KactusLabs
+                I’ve been cautious with product tech in the past... but Kactus AI
                 just gets it. It’s easy to integrate, and the visuals focus on what
                 really matters to customers. Everything works seamlessly, reducing
                 confusion and the small issues that often lead to returns.

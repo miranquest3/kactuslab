@@ -19,7 +19,7 @@ import rightIcon from "../assets/images/Vto/right.svg";
 import wrongIcon from "../assets/images/Vto/wrong.svg";
 import vtoImg from "../assets/images/Vto/vtoImg.png";
 import lastSectionBg from "../assets/images/Shopify/lastSection.png";
-import ShopifyHeroBg from "../assets/images/Shopify/shopifyhero.png";
+import outcomeHeroBg from "../assets/images/About/outcomebg.png";
 import leftPopupBg from "../assets/images/whatsapp/leftpopup.png";
 import rightPopupBg from "../assets/images/whatsapp/rightpopup.png";
 import whatsappSectionBg from "../assets/images/whatsapp/whatsappSec2.png";
@@ -179,7 +179,7 @@ const featureCards = [
   {
     title: "COMMERCE AUTOMATION",
     subtitle: "From Chat to Checkout",
-    description: "Let KactusLabs handle next actions from engagement through conversion in a single flow"
+    description: "Let Kactus AI handle next actions from engagement through conversion in a single flow"
   }
 ];
 
@@ -189,7 +189,7 @@ const reviewCards = [
     handle: "@Sam.Payne90",
     image: "https://randomuser.me/api/portraits/women/44.jpg",
     badge: "Verified Purchase",
-    text: "KactusLabs made product discovery smoother and helped customers shop with more confidence from the start.",
+    text: "Kactus AI made product discovery smoother and helped customers shop with more confidence from the start.",
     date: "23 Nov 2021"
   },
   {
@@ -274,7 +274,7 @@ const businessExecutionSlides = [
         title: "The Diagnostic Engine",
         subtitle: "Identifying Why Your Inventory Isn't Moving",
         answer:
-          "KactusLabs' first line of action. Our AI deep dives into your business data to pinpoint which items are stagnant and why. It delivers a comprehensive roadmap and solution-oriented report to get your stock back in fashion."
+          "Kactus AI's first line of action. Our AI deep dives into your business data to pinpoint which items are stagnant and why. It delivers a comprehensive roadmap and solution-oriented report to get your stock back in fashion."
       },
       {
         title: "Visual Rejuvenation",
@@ -298,159 +298,187 @@ const businessExecutionSlides = [
         title: "Autonomous Content Deployment",
         subtitle: "From Data Insight to Viral Visuals",
         answer:
-          "KactusLabs turns the reduction strategy into approved content assets and publishes them across the right surfaces without slowing your team down."
+          "Kactus AI turns the reduction strategy into approved content assets and publishes them across the right surfaces without slowing your team down."
       }
     ]
   },
   {
-    heading: "Recover Silent Carts",
+    heading: "Increase Sales",
     label: "Command",
     number: "02",
     rows: [
       {
-        title: "Intent Mapping",
-        subtitle: "Understanding Where Shoppers Drop Off",
+        title: "The Opportunity Finder",
+        subtitle: "Predictive Analytics for Trend Scaling",
         answer:
-          "We trace abandonment signals across product views, sizing hesitation, and cart exits so the recovery flow starts from actual shopper behavior."
+          "Under the \"Increase Sales\" command, Kactus AI shifts into high-gear trend forecasting. It identifies high-demand products, analyzes competitor gaps, and scans market shifts to find exactly which items in your collection are primed for a surge. It then delivers a growth roadmap focused on maximizing conversion rates and increasing average order value."
       },
       {
-        title: "Timed Re-engagement",
-        subtitle: "Nudging Customers at the Right Moment",
+        title: "The Conversion Creator",
+        subtitle: "High-Impact Visuals for Viral Growth",
         answer:
-          "Follow-ups are timed around intent, product value, and urgency so reminders feel helpful instead of spammy."
+          "To drive sales, visuals must be irresistible. Kactus AI generates fresh, high-energy lifestyle and studio content specifically designed to trigger impulse buys. These assets are not just product shots; they are strategic visual triggers created according to the market research report to appeal to your most profitable customer segments."
       },
       {
-        title: "WhatsApp Recovery Flows",
-        subtitle: "Restarting High-Intent Conversations",
+        title: "The Conversion Optimizer",
+        subtitle: "Streamlining the Path to Purchase",
         answer:
-          "Cart reminders move into richer, conversational journeys that answer objections and bring users back with less friction."
+          "Kactus AI autonomously reconfigures your website for maximum revenue. It creates high-converting landing pages, optimizes product sorting based on best-seller potential, and updates SEO metadata. AI ensures when a customer lands on your site, they are met with a frictionless experience designed to turn browsers into buyers."
       },
       {
-        title: "Offer Matching",
-        subtitle: "Sending the Right Incentive to the Right Buyer",
+        title: "The Revenue Accelerator",
+        subtitle: "Personalized Offers at Scale",
         answer:
-          "Instead of blanket discounts, KactusLabs tests what type of push each segment actually needs to convert."
+          "Kactus AI uses the sales-focused market research to launch VIP campaigns via WhatsApp. By sending the new, high-impact visuals directly to your top-tier customers with personalized Buy Now incentives, the AI creates a direct, private sales channel that bypasses social media noise."
       },
       {
-        title: "Revenue Attribution",
-        subtitle: "Learning Which Recovery Actions Perform Best",
+        title: "The Global Megaphone",
+        subtitle: "Automated Scaling via Organic and Paid Ads",
         answer:
-          "Every recovery touchpoint is measured so your team can see what reopened demand and where to scale next."
+          "To increase sales, visibility is key. Kactus AI takes the AI photoshoot content and pushes it across Instagram, Facebook, and Google. It autonomously manages Meta Ads, shifting budget in real time toward the highest-performing visuals to ensure your brand reaches new audiences and drives massive traffic to your store."
       }
     ]
   },
   {
-    heading: "Increase Conversion Rate",
+    heading: "Social Media Marketing Campaign",
     label: "Command",
     number: "03",
     rows: [
       {
-        title: "Fit Confidence Layer",
-        subtitle: "Helping Shoppers See and Size Correctly",
+        title: "The Campaign Architect",
+        subtitle: "Data-Driven Themes & Audience Segmentation",
         answer:
-          "Virtual try-on and guided fit signals reduce uncertainty, helping customers commit faster and with more confidence."
+          "Kactus AI begins by analyzing current high-performing trends and consumer sentiment to define your campaign's hook. Whether it is a Summer Sale, a Festive Launch, or a Brand Storytelling push, the AI generates a campaign roadmap. This includes the optimal timeline, high-conversion keywords, and a detailed breakdown of which customer segments to target for maximum ROI."
       },
       {
-        title: "Product Storytelling",
-        subtitle: "Turning PDPs into Decision Support",
+        title: "The Aesthetic Vision",
+        subtitle: "Themed Content for High-Impact Storytelling",
         answer:
-          "We improve the way product benefits, visuals, and context are presented so shoppers understand what makes an item right for them."
+          "A campaign is only as good as its visuals. Based on the research report, Kactus AI generates a dedicated library of campaign assets. These are not just standard product shots; they are conceptual lifestyle visuals and high-energy graphics designed to evoke the specific emotions of your campaign, providing the visual fuel for your website, ads, and social pages."
       },
       {
-        title: "Guided Discovery",
-        subtitle: "Recommending the Best Next Product",
+        title: "The Conversion Hub",
+        subtitle: "Dynamic Campaign Banners & Landing Pages",
         answer:
-          "AI surfaces relevant products and looks based on shopper intent, shortening the gap between browsing and buying."
+          "Kactus AI automatically dresses your website for the campaign. It creates high-converting landing pages, updates homepage banners with AI-generated visuals, and installs temporary UI elements like countdown timers or promotional bars. AI ensures that when a customer clicks an ad, they land on a page perfectly synced with the campaign message."
       },
       {
-        title: "Trust Activation",
-        subtitle: "Placing Social Proof at the Right Moment",
+        title: "The Instant Engagement",
+        subtitle: "Personalized VIP Campaign Broadcaster",
         answer:
-          "Reviews, usage context, and reassurance cues appear where hesitation is highest to help move decisions forward."
+          "Kactus AI cuts through the noise by bringing the campaign directly to your customers' pockets. Using campaign-specific visuals and research-defined segments, the AI sends personalized Early Access or Exclusive Offer messages. It handles the broadcast autonomously, ensuring your most loyal customers are the first to convert."
       },
       {
-        title: "Checkout Assist",
-        subtitle: "Removing Friction Before Purchase",
+        title: "The Omni-Channel Blitz",
+        subtitle: "Automated Ad Scaling & Cohesive Content",
         answer:
-          "KactusLabs reduces drop-off with better prompts, fewer dead ends, and clearer next steps as users approach checkout."
+          "Kactus AI leads distribution. It autonomously designs and schedules posts across Instagram and Facebook that mirror the campaign theme. Simultaneously, it launches and manages Meta and Google Ads, using fresh campaign imagery to find new buyers. AI monitors performance in real time, shifting budget to the highest-performing visuals to ensure the campaign scales."
       }
     ]
   },
   {
-    heading: "Launch Faster Campaigns",
+    heading: "Business Expand",
     label: "Command",
     number: "04",
     rows: [
       {
-        title: "Campaign Briefing Engine",
-        subtitle: "Turning Goals into Launch-Ready Plans",
+        title: "Territory Scout",
+        subtitle: "Regional Trend Mapping & Demographic Analysis",
         answer:
-          "A single business goal becomes a structured content and rollout plan with clear outputs, channels, and approval checkpoints."
+          "Kactus AI analyzes the fashion landscape of the target city or region. It identifies local style preferences, seasonal differences, and competitor pricing in that specific area. The AI then delivers a Market Entry Report, providing a roadmap for which products from your catalog will thrive in the new territory and the exact timeline for a successful launch."
       },
       {
-        title: "AI Photoshoot Workflow",
-        subtitle: "Creating Fresh Creative Without Studio Delays",
+        title: "The Cultural Adapter",
+        subtitle: "Localized Visual Storytelling",
         answer:
-          "Products can be restyled, reframed, and campaign-prepped without booking a full shoot every time the strategy changes."
+          "To enter a new city, your brand must look like it belongs there. Kactus AI generates fresh visual content that reflects the local culture, climate, and aesthetics of the expansion target. Whether it is changing the background scenery to match local landmarks or adjusting the vibe to suit regional tastes, the AI creates the specific assets needed for your expansion's social media and ads."
       },
       {
-        title: "Creative Adaptation",
-        subtitle: "Formatting Assets for Every Surface",
+        title: "The Local Ambassador",
+        subtitle: "Geo-Fenced Outreach & Community Building",
         answer:
-          "Visuals and copy are transformed for storefronts, WhatsApp, ads, and social so teams do not repeat manual production work."
+          "Kactus AI uses expansion data to trigger hyper-local WhatsApp campaigns. It targets potential customers in the new city with Grand Opening or New City Launch invitations. By using localized visuals from the AI photoshoot, it builds a direct, personal connection with the new community before you open your physical or virtual doors."
       },
       {
-        title: "Approval Control",
-        subtitle: "Keeping Teams in the Loop Before Publishing",
+        title: "The Awareness Machine",
+        subtitle: "Hyper-Local Ad Campaigns & Social Presence",
         answer:
-          "Automation does not remove control. Teams can review, refine, and approve before campaigns go live."
-      },
-      {
-        title: "Performance Replay",
-        subtitle: "Learning What to Scale Next",
-        answer:
-          "Post-launch insights are fed back into the system so stronger campaign patterns can be repeated quickly."
+          "To scale rapidly, Kactus AI launches geo-targeted Meta and Google Ads specifically focused on the upcoming city's coordinates. It uses localized photoshoot assets to run high-intent awareness campaigns, ensuring that every social media post and paid ad is seen by the right people in the target market, effectively seeding your brand presence before the official launch."
       }
     ]
   },
   {
-    heading: "Automate Daily Execution",
+    heading: "New Business",
     label: "Command",
     number: "05",
     rows: [
       {
-        title: "Workflow Mapping",
-        subtitle: "Identifying Repetitive Operational Work",
+        title: "The Brand Blueprint",
+        subtitle: "Niche Identification & Competitor Mapping",
         answer:
-          "We break down where teams spend time manually and turn those repeated actions into orchestrated AI workflows."
+          "The journey begins with the Genesis Report. Kactus AI analyzes global and local fashion trends to identify high-potential niches. It defines your target persona, suggests competitive pricing structures, and builds a launch roadmap. This report serves as the DNA of your new brand, ensuring you enter the market with a data-backed strategy rather than guesswork."
       },
       {
-        title: "Storefront Task Runner",
-        subtitle: "Updating Merchandising Automatically",
+        title: "The Identity Creator",
+        subtitle: "Building a Signature Aesthetic from Scratch",
         answer:
-          "Collections, featured products, and supporting content can adapt based on inventory pressure and campaign needs."
+          "A new brand needs a soul. Kactus AI generates your first Brand Lookbook by creating high-end, professional visuals that define your aesthetic. Using market research directives, the AI produces studio and lifestyle imagery that establishes your brand's vibe, giving you a premium visual library before you hold your first physical launch event."
       },
       {
-        title: "Messaging Orchestrator",
-        subtitle: "Keeping Outbound Communication in Sync",
+        title: "The Digital Flagship",
+        subtitle: "Architecting the 0-to-1 Storefront",
         answer:
-          "Customer-facing messages stay aligned with product priorities, campaign timing, and shopper behavior signals."
+          "You can build your digital home autonomously with Kactus AI. It designs a high-converting website layout, optimizes the user journey for new visitors, and sets up the SEO foundation needed to rank on Google. The AI ensures that your Coming Soon and Launch pages are perfectly synced with the brand identity established in the research phase."
       },
       {
-        title: "Inventory-Aware Decisions",
-        subtitle: "Connecting Stock Pressure to Execution",
+        title: "The Community Builder",
+        subtitle: "Capturing and Nurturing Early Adopters",
         answer:
-          "Operational actions are informed by actual inventory risk so growth tasks and clearance needs stop fighting each other."
+          "Before the doors open, Kactus AI starts building your Inner Circle. It sets up automated lead-capture systems to build a pre-launch waitlist. Using the updated visuals from the AI photoshoot, it sends Early Access invitations and brand stories to potential customers, ensuring you have a loyal audience ready to buy the moment the New Business command reaches the launch phase."
       },
       {
-        title: "Unified Reporting",
-        subtitle: "Tracking What AI Completed and Improved",
+        title: "The Hype Machine",
+        subtitle: "Forging Brand Authority from Zero",
         answer:
-          "Leadership gets a single view of what the system executed, what changed, and where performance improved over time."
+          "Kactus AI handles the 0-to-1 social climb. Utilizing AI-generated imagery, it creates a marketing strategy for Instagram and Facebook. The AI autonomously runs awareness-stage Meta Ads to introduce your upcoming brand to the world, ensuring that by the time you launch, your social pages already look like an established, trend-setting label."
       }
     ]
   }
 ];
+
+const businessExecutionLeftVariants = {
+  hidden: { opacity: 0, x: -72 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 1.05,
+      ease: [0.22, 1, 0.36, 1]
+    }
+  }
+};
+
+const businessExecutionRightVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.16,
+      delayChildren: 0.14
+    }
+  }
+};
+
+const businessExecutionRowVariants = {
+  hidden: { opacity: 0, x: 72 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.9,
+      ease: [0.22, 1, 0.36, 1]
+    }
+  }
+};
 
 const whatsappGapMessages = [
   {
@@ -496,7 +524,7 @@ const shopifyHowItWorksSteps = [
 
 const shopifyHeroTestimonial = {
   quote:
-    "I've been cautious with product tech in the past, but KactusLabs just gets it. It's easy to integrate, and the visuals focus on what really matters to customers. Everything works seamlessly, reducing confusion and the small issues that often lead to returns.",
+    "I've been cautious with product tech in the past, but Kactus AI just gets it. It's easy to integrate, and the visuals focus on what really matters to customers. Everything works seamlessly, reducing confusion and the small issues that often lead to returns.",
   name: "Cameo Ashe",
   role: "Lemonade Beach E-Commerce",
   image: "https://randomuser.me/api/portraits/women/28.jpg"
@@ -623,7 +651,7 @@ export default function About() {
   const [openFaqIndex, setOpenFaqIndex] = useState(0);
   const [activeBusinessExecutionSlide, setActiveBusinessExecutionSlide] = useState(0);
   const [businessExecutionOpenIndexes, setBusinessExecutionOpenIndexes] = useState(
-    () => businessExecutionSlides.map(() => 0)
+    () => businessExecutionSlides.map(() => -1)
   );
   const [heroPhase, setHeroPhase] = useState(0);
 
@@ -703,7 +731,7 @@ export default function About() {
 
   const activeBusinessExecutionContent = businessExecutionSlides[activeBusinessExecutionSlide];
   const activeBusinessExecutionOpenIndex =
-    businessExecutionOpenIndexes[activeBusinessExecutionSlide] ?? 0;
+    businessExecutionOpenIndexes[activeBusinessExecutionSlide] ?? -1;
 
   const handleBusinessExecutionSlideChange = (direction) => {
     setActiveBusinessExecutionSlide((current) => {
@@ -733,7 +761,7 @@ export default function About() {
 
       <section className="relative min-h-screen overflow-hidden bg-[#06231C]">
         <motion.div
-          style={{ y: heroRevealY, backgroundImage: `url(${ShopifyHeroBg})` }}
+          style={{ y: heroRevealY, backgroundImage: `url(${outcomeHeroBg})` }}
           className="absolute inset-0 bg-cover bg-center opacity-20"
         />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(58,103,88,0.42)_0%,rgba(6,35,28,0.94)_72%)]" />
@@ -940,7 +968,7 @@ export default function About() {
                     color: "#4B5563"
                   }}
                 >
-                  KactusLabs turns a single WhatsApp message into complete business execution on its own through:
+                  Kactus AI turns a single WhatsApp message into complete business execution on its own through:
                 </p>
               </div>
 
@@ -1167,7 +1195,7 @@ export default function About() {
                   color: "rgba(255,255,255,0.82)"
                 }}
               >
-                KactusLabs turns a single WhatsApp message into complete business execution on its own through:
+                Kactus AI turns a single WhatsApp message into complete business execution on its own through:
               </p>
             </motion.div>
 
@@ -1272,15 +1300,15 @@ export default function About() {
                 className="grid items-start gap-10 lg:grid-cols-[250px_minmax(0,1fr)] lg:gap-[58px]"
               >
                 <motion.div
-                  initial={{ opacity: 0, x: -16 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -10 }}
-                  transition={{ duration: 0.28 }}
+                  variants={businessExecutionLeftVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: false, amount: 0.2 }}
                   className="flex flex-col gap-10 pt-1 lg:self-start lg:gap-14"
                 >
                   <div>
                     <h2
-                      className="max-w-[250px] text-[34px] leading-[36px] md:text-[41px] md:leading-[43px]"
+                      className="block max-w-[250px] overflow-visible pb-[6px] text-[34px] leading-[44px] md:text-[41px] md:leading-[52px]"
                       style={{
                         fontFamily: '"SF Pro", sans-serif',
                         fontStyle: "normal",
@@ -1321,17 +1349,21 @@ export default function About() {
                 </motion.div>
 
                 <motion.div
-                  initial={{ opacity: 0, x: 16 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: 10 }}
-                  transition={{ duration: 0.28 }}
+                  variants={businessExecutionRightVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: false, amount: 0.2 }}
                   className="border-t border-[#E1E4DC]"
                 >
                   {activeBusinessExecutionContent.rows.map((item, index) => {
                     const isOpen = activeBusinessExecutionOpenIndex === index;
 
                     return (
-                      <div key={`${activeBusinessExecutionContent.number}-${item.title}`} className="border-b border-[#E1E4DC]">
+                      <motion.div
+                        key={`${activeBusinessExecutionContent.number}-${item.title}`}
+                        className="border-b border-[#E1E4DC]"
+                        variants={businessExecutionRowVariants}
+                      >
                         <button
                           type="button"
                           onClick={() => handleBusinessExecutionRowToggle(index)}
@@ -1346,8 +1378,14 @@ export default function About() {
                                 letterSpacing: "-0.02em"
                               }}
                             >
-                              <span className="font-[590] text-[#111111]">{item.title}:</span>{" "}
-                              <span className="font-normal text-[#4B4B4B]">{item.subtitle}</span>
+                              {item.subtitle ? (
+                                <>
+                                  <span className="font-[590] text-[#111111]">{item.title}:</span>{" "}
+                                  <span className="font-normal text-[#4B4B4B]">{item.subtitle}</span>
+                                </>
+                              ) : (
+                                <span className="font-[590] text-[#111111]">{item.title}</span>
+                              )}
                             </div>
 
                             <AnimatePresence initial={false}>
@@ -1384,7 +1422,7 @@ export default function About() {
                       {isOpen ? "−" : "+"}
                     </span>
                   </button>
-                </div>
+                </motion.div>
               );
             })}
                 </motion.div>

@@ -9,8 +9,8 @@ export default {
   theme: {
 
     fontFamily: {
-      sans: ['"Space Grotesk"'],
-      serif: ['"Instrument Serif"'],
+      sans: ['"SF Pro"', "-apple-system", "BlinkMacSystemFont", '"Segoe UI"', "sans-serif"],
+      serif: ['"SF Pro"', "-apple-system", "BlinkMacSystemFont", '"Segoe UI"', "sans-serif"],
     },
 
     extend: {

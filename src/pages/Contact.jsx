@@ -40,7 +40,7 @@ export default function Contact() {
             className="text-slate-600 text-xl mb-12"
           >
             Reach out to our intelligence team at <br />
-            <span className="text-emerald-900 font-bold border-b-2 border-emerald-900/20 px-1">contact@kactuslab.example</span>
+            <span className="text-emerald-900 font-bold border-b-2 border-emerald-900/20 px-1">contact@Kactus AI.example</span>
           </motion.p>
 
           <MagneticButton className="px-12 py-5 bg-emerald-900 text-white rounded-full font-bold text-lg shadow-xl hover:shadow-emerald-900/20 transition-all">

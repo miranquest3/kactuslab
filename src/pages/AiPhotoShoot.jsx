@@ -171,7 +171,7 @@ export default function AiPhotoShoot() {
 
     {/* ================= HEADING ================= */}
     <h2 className="text-center font-serif text-4xl md:text-5xl leading-tight text-[#1D2B24]">
-      KactusLabs Brings Smarter Tools for <br />
+      Kactus AI Brings Smarter Tools for <br />
       Better Buying Decisions
     </h2>
 
@@ -190,7 +190,7 @@ export default function AiPhotoShoot() {
 
     {/* DESCRIPTION */}
     <p className="text-white text-sm md:text-base leading-relaxed max-w-xl md:text-justify">
-      KactusLabs stands apart with its AI-powered Virtual Try-On,
+      Kactus AI stands apart with its AI-powered Virtual Try-On,
       combining instant visualization of outfits and smart size
       recommendations to boost buyer confidence. It also leverages
       try-on data for Whatsapp marketing, while brand logos as
@@ -220,7 +220,7 @@ export default function AiPhotoShoot() {
 </div>
     {/* ================= SUB TEXT ================= */}
     <p className="text-center mt-12 text-[32px] md:text-[38px] text-[#05231C] font-serif leading-relaxed ">
-      Not just a Virtual Try-On, KactusLabs delivers a complete,
+      Not just a Virtual Try-On, Kactus AI delivers a complete,
       intelligent shopping experience
     </p>
 
@@ -266,7 +266,7 @@ Users instantly see how an outfit looks on their own body with a single click, e
     </div>
 
     <p className="text-[15px] leading-relaxed text-[#1D2B24]/80">
-      KactusLabs analyze the user’s BMI and use AI algorithms to recommend the most accurate size for that individual.
+      Kactus AI analyze the user’s BMI and use AI algorithms to recommend the most accurate size for that individual.
     </p>
 
     <p className="mt-9  text-[14px] text-[#1D2B24]/80 ">
@@ -314,7 +314,7 @@ Users instantly see how an outfit looks on their own body with a single click, e
     {/* HEADING */}
     <h2 className="font-serif text-4xl md:text-5xl text-[#1D2B24] 
                    text-center leading-tight mb-16">
-      Why Kactuslabs Virtual Try-On <br />
+      Why Kactus AI Virtual Try-On <br />
       Outperforms Traditional Try-On
     </h2>
 
@@ -355,7 +355,7 @@ Users instantly see how an outfit looks on their own body with a single click, e
                       min-h-[340px] flex flex-col justify-start">
 
         <h3 className="font-serif text-[26px] mb-8 text-[#D4E5C0]">
-          Kactuslabs
+          Kactus AI
         </h3>
 
         <ul className="space-y-6 text-[15px] text-white/90 leading-relaxed">

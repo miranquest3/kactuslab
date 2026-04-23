@@ -1,7 +1,8 @@
-﻿import { useRef, useState } from "react"
-import { motion, AnimatePresence, useMotionTemplate, useMotionValue, useScroll, useTransform } from "framer-motion"
+import { useRef, useState } from "react"
+import { motion, AnimatePresence, useInView, useMotionTemplate, useMotionValue, useScroll, useTransform } from "framer-motion"
 import { MagneticButton, SectionTitle, RevealImage, StaggerText } from "../components/AnimatedElements"
 import HeroMain from "../assets/images/Home/Hero-Main.png";
+
 import DemoModal from "../components/DemoModal";
 
 import shopifyl from "../assets/images/Home/Icons/shopify.png";
@@ -14,11 +15,11 @@ import marketResearchIcon from "../assets/images/Home/market resecher.svg";
 import websiteManagementIcon from "../assets/images/Home/web-management 1.png";
 import vtoFeatureIcon from "../assets/images/Home/vto.png";
 import inventoryManagementIcon from "../assets/images/Home/inventory-management 2.png";
-import EnterpriseReadyBg from "../assets/images/Home/Enterprise Ready.svg";
 import enterpriceFast from "../assets/images/Home/enterpriceFast.svg";
 import enterpriceRealtime from "../assets/images/Home/enterpriceRealtime.svg";
+import enterpriceDown from "../assets/images/Home/enterpricedown.svg";
 import enterpriseApi from "../assets/images/Home/enterpriseApi.svg";
-import hero from "../assets/images/Home/hero.png";
+import hero from "../assets/images/Home/homeHerobg.png";
 import handPhone from "../assets/images/Home/handPhone.png";
 import cardsOutcome from "../assets/images/Home/cardsOutcome.png";
 import miranBanne from "../assets/images/Home/MIRAN BANNE.png";
@@ -38,27 +39,38 @@ const enterpriseCards = [
     title: "Fast Implementation",
     description: "Launch faster with minimal effort",
     icon: enterpriceFast,
-    position: "md:left-[14%] md:top-[1%]"
+    position: "left-[3.5%] top-[28%] xl:left-[6%] xl:top-[26.5%] 2xl:left-[8%] 2xl:top-[25.5%]",
+    entryDelay: 0.34
   },
   {
     title: "API-based Integration",
     description: "Quick setup with API integration",
     icon: enterpriseApi,
-    position: "md:right-[14%] md:top-[1%]"
+    position: "right-[3.5%] top-[28%] xl:right-[6%] xl:top-[26.5%] 2xl:right-[8%] 2xl:top-[25.5%]",
+    entryDelay: 0.38
   },
   {
     title: "Real-time Brand Audit",
     description: "Real-time insights into your brand performance",
     icon: enterpriceRealtime,
-    position: "md:left-[31%] md:top-[58%]"
+    position: "left-[22.5%] top-[66%] xl:left-[26%] xl:top-[64%] 2xl:left-[28.5%] 2xl:top-[63%]",
+    entryDelay: 0.46
   },
   {
     title: "Zero Downtime",
     description: "Stay live without interruptions",
-    icon: null,
-    iconType: "zero-downtime",
-    position: "md:right-[31%] md:top-[58%]"
+    icon: enterpriceDown,
+    position: "right-[22.5%] top-[66%] xl:right-[26%] xl:top-[64%] 2xl:right-[28.5%] 2xl:top-[63%]",
+    entryDelay: 0.5
   }
+];
+
+const enterpriseOrbitRings = [
+  { radius: 467, strokeOpacity: 1 },
+  { radius: 526, strokeOpacity: 1 },
+  { radius: 577, strokeOpacity: 0.34 },
+  { radius: 629, strokeOpacity: 0.16 },
+  { radius: 680, strokeOpacity: 0.10 }
 ];
 
 const orbitDots = [
@@ -68,6 +80,28 @@ const orbitDots = [
   { size: 312, color: "bg-[#F5A3A7]", duration: 11, delay: 0.4, dotSize: "w-3 h-3" },
   { size: 232, color: "bg-[#9BCBFF]", duration: 9, delay: 1.6, dotSize: "w-3 h-3" }
 ];
+
+const faqListVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.28,
+      delayChildren: 0.16
+    }
+  }
+};
+
+const faqItemVariants = {
+  hidden: { opacity: 0, x: -64 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 1.3,
+      ease: [0.22, 1, 0.36, 1]
+    }
+  }
+};
 
 const aiTestimonials = [
   {
@@ -144,7 +178,7 @@ const testimonialAccentStyles = [
 const featureCards = [
   {
     title: "Virtual Try On",
-    description: "Kactuslabs Virtual Try-On, let your customers visualize the fit before checkout. Confidence cuts returns. Boosts conversions. With brand watermark, every share becomes an ad.",
+    description: "Kactus AI Virtual Try-On, let your customers visualize the fit before checkout. Confidence cuts returns. Boosts conversions. With brand watermark, every share becomes an ad.",
     iconKey: "camera",
     orbitAngle: 180,
     accent: {
@@ -194,7 +228,7 @@ const featureCards = [
   },
   {
     title: "Commerce Automation",
-    description: "Let KactusLabs handle next actions from engagement through conversion in a single flow.",
+    description: "Let Kactus AI handle next actions from engagement through conversion in a single flow.",
     iconKey: "workflow",
     orbitAngle: 120,
     accent: {
@@ -207,7 +241,7 @@ const featureCards = [
 const featureShowcaseCards = [
   {
     title: "VIRTUAL TRY - ON",
-    description: "KactusLab provides customers with a visual representation of the outfit along with AI size recommendations before they check out.",
+    description: "Kactus AI provides customers with a visual representation of the outfit along with AI size recommendations before they check out.",
     icon: vtoFeatureIcon,
     iconAlt: "Virtual try-on",
     buttonLabel: "Know more",
@@ -223,7 +257,7 @@ const featureShowcaseCards = [
   },
   {
     title: "AI PRODUCT PHOTOSHOOT",
-    description: "Studio-quality product photoshoot on WhatsApp. KactusLab AI turns your product images into high-quality photos saving time and resources.",
+    description: "Studio-quality product photoshoot on WhatsApp. Kactus AI turns your product images into high-quality photos saving time and resources.",
     icon: aiProductIcon,
     iconAlt: "AI product photoshoot",
     buttonLabel: "Know more",
@@ -231,7 +265,7 @@ const featureShowcaseCards = [
   },
   {
     title: "MARKET RESEARCH",
-    description: "KactusLab Market Research helps businesses grow by analysing target audiences, competitors, and market trends.",
+    description: "Kactus AI Market Research helps businesses grow by analysing target audiences, competitors, and market trends.",
     icon: marketResearchIcon,
     iconAlt: "Market research",
     buttonLabel: "Coming soon",
@@ -240,7 +274,7 @@ const featureShowcaseCards = [
   },
   {
     title: "SOCIAL MEDIA MARKETING",
-    description: "Manage Instagram, Facebook, and Gmail accounts by creating posts, engaging with followers, and posting. KactusLab AI handles it all.",
+    description: "Manage Instagram, Facebook, and Gmail accounts by creating posts, engaging with followers, and posting. Kactus AI handles it all.",
     iconType: "social-media",
     buttonLabel: "Coming soon",
     comingSoon: true,
@@ -257,7 +291,7 @@ const featureShowcaseCards = [
   },
   {
     title: "INVENTORY MANAGEMENT",
-    description: "KactusLab helps brands avoid stockouts and overstocking of inventories.",
+    description: "Kactus AI helps brands avoid stockouts and overstocking of inventories.",
     icon: inventoryManagementIcon,
     iconAlt: "Inventory management",
     buttonLabel: "Coming soon",
@@ -278,7 +312,7 @@ const reviewCards = [
     handle: "@Sam.Payne90",
     image: "https://randomuser.me/api/portraits/women/44.jpg",
     badge: "Verified Purchase",
-    text: "KactusLabs made product discovery smoother and helped customers shop with more confidence from the start.",
+    text: "Kactus AI made product discovery smoother and helped customers shop with more confidence from the start.",
     date: "23 Nov 2021"
   },
   {
@@ -309,71 +343,236 @@ const reviewCards = [
 
 const faqItems = [
   {
-    question: "Is there a free trial available?",
-    answer: "Yes, you can try us for free for 30 days. If you want, we will provide a free, personalized onboarding call to get you up and running as soon as possible."
+    question: "Does Kactus AI work across different product categories and collections?",
+    answer: "Yes. Kactus AI adapts across product types and collections, ensuring a seamless AI-driven merchandising experience across your entire catalog."
   },
   {
-    question: "What is your cancellation policy?",
-    answer: "You can cancel anytime. Your access remains active through the current billing period with no hidden penalties."
+    question: "Is customer data secure and compliant with privacy standards?",
+    answer: "Absolutely. We follow strict encryption and compliance standards to ensure all customer data is protected and privacy-safe."
   },
   {
-    question: "How long does implementation take?",
-    answer: "Most brands can get started quickly. The timeline depends on your catalog, storefront setup, and the workflows you want to launch."
+    question: "How quickly does Kactus AI enhance the product experience?",
+    answer: "Most brands see improved engagement and conversion metrics within days of integration."
   },
   {
-    question: "Do you support custom integrations?",
-    answer: "Yes. We support platform connections, custom APIs, and tailored workflows for growing fashion and commerce brands."
+    question: "Can my team manage and update Kactus AI content easily?",
+    answer: "Yes. The platform is built for non-technical teams, allowing easy updates and content control without engineering support."
   },
   {
-    question: "Can my team get onboarding support?",
-    answer: "Absolutely. We help your team with onboarding, setup guidance, and best practices so adoption feels smooth from day one."
+    question: "Does Kactus AI work across mobile, desktop, and storefront views?",
+    answer: "Kactus AI is fully responsive and optimized for all devices including embedded storefront environments."
   }
 ];
 
-function EnterpriseReadyIcon({ item }) {
-  if (item.iconType === "zero-downtime") {
-    return (
-      <svg
-        viewBox="0 0 37 37"
-        className="h-4 w-4"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        aria-hidden="true"
-      >
-        <rect
-          x="12.2812"
-          y="3.83594"
-          width="12.2812"
-          height="18.4237"
-          rx="6.14062"
-          stroke="#F9FAF7"
-          strokeWidth="3.07067"
-        />
-        <path
-          d="M18.4219 24.5654V33.7774"
-          stroke="#F9FAF7"
-          strokeWidth="3.07067"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M13.8164 29.1709L18.4224 33.7769L23.0284 29.1709"
-          stroke="#F9FAF7"
-          strokeWidth="3.07067"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-    )
-  }
-
+function EnterpriseReadyIcon({ item, className = "h-4 w-4" }) {
   return (
     <img
       src={item.icon}
       alt=""
       aria-hidden="true"
-      className="h-4 w-4 object-contain brightness-0 invert opacity-95"
+      className={`${className} object-contain brightness-0 invert opacity-95`}
     />
+  )
+}
+
+function EnterpriseReadyOrbitBackground() {
+  return (
+    <motion.div
+      initial={{ opacity: 0.45, scale: 0.985 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 1.05, ease: [0.22, 1, 0.36, 1] }}
+      viewport={{ once: false, amount: 0.45 }}
+      className="absolute inset-0 pointer-events-none"
+    >
+      <div className="absolute inset-0 bg-[#06231C]" />
+      <motion.div
+        className="absolute inset-0"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 1.1, ease: "easeOut" }}
+        viewport={{ once: false, amount: 0.45 }}
+        style={{
+          background: `
+            radial-gradient(72% 88% at 50% -24%, rgba(212, 229, 192, 0.68) 0%, rgba(118, 127, 106, 0.22) 36%, rgba(6, 35, 28, 0) 67%),
+            radial-gradient(24% 54% at 2% 64%, rgba(212, 229, 192, 0.18) 0%, rgba(6, 35, 28, 0) 76%),
+            radial-gradient(24% 54% at 98% 100%, rgba(212, 229, 192, 0.26) 0%, rgba(6, 35, 28, 0) 74%)
+          `
+        }}
+      />
+      <svg
+        viewBox="0 0 1440 544"
+        className="absolute inset-0 h-full w-full"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        {enterpriseOrbitRings.map((ring, index) => (
+          <motion.circle
+            key={ring.radius}
+            cx="720"
+            cy="-137"
+            r={ring.radius}
+            fill="none"
+            stroke="white"
+            strokeWidth="2"
+            strokeOpacity={ring.strokeOpacity}
+            style={{ opacity: 0.09 }}
+            initial={{ opacity: 0, pathLength: 0.92 }}
+            whileInView={{ opacity: 0.09, pathLength: 1 }}
+            transition={{
+              duration: 1.05,
+              delay: 0.04 * index,
+              ease: [0.22, 1, 0.36, 1]
+            }}
+            viewport={{ once: false, amount: 0.45 }}
+          />
+        ))}
+      </svg>
+    </motion.div>
+  )
+}
+
+function EnterpriseReadyCenterGlow({ wrapperClassName = "", glowClassName = "" }) {
+  const glowRef = useRef(null)
+  const isInView = useInView(glowRef, { amount: 0.35 })
+
+  return (
+    <div
+      ref={glowRef}
+      aria-hidden="true"
+      className={`pointer-events-none absolute inset-x-0 z-[1] flex justify-center ${wrapperClassName}`}
+    >
+      <motion.div
+        initial={false}
+        animate={
+          isInView
+            ? {
+                opacity: [0.18, 0.34, 0.58, 0.34],
+                scale: [0.9, 0.97, 1.05, 0.98],
+                y: [0, 0, 6, 0]
+              }
+            : {
+                opacity: 0,
+                scale: 0.84,
+                y: -12
+              }
+        }
+        transition={
+          isInView
+            ? {
+                duration: 6.2,
+                delay: 0.12,
+                times: [0, 0.2, 0.6, 1],
+                ease: "easeInOut",
+                repeat: Infinity,
+                repeatType: "mirror"
+              }
+            : { duration: 0.22, ease: "easeOut" }
+        }
+        className={`rounded-[1145.655px] ${glowClassName}`}
+        style={{
+          borderRadius: "1145.655px",
+          background: "linear-gradient(180deg, rgba(212, 229, 192, 0.67) 112.39%, rgba(118, 127, 106, 0.67) 124.06%)",
+          filter: "blur(100px)",
+          willChange: "transform, opacity"
+        }}
+      />
+    </div>
+  )
+}
+
+function EnterpriseReadyHeading({ mobile = false, className = "" }) {
+  const headingRef = useRef(null)
+  const isInView = useInView(headingRef, { amount: mobile ? 0.2 : 0.45 })
+
+  return (
+    <motion.div
+      ref={headingRef}
+      initial={false}
+      animate={
+        isInView
+          ? { opacity: 1, y: 0, filter: "blur(0px)" }
+          : { opacity: 0, y: -28, filter: "blur(8px)" }
+      }
+      transition={
+        isInView
+          ? { duration: mobile ? 0.78 : 0.82, delay: 0.14, ease: [0.22, 1, 0.36, 1] }
+          : { duration: 0.22, ease: "easeOut" }
+      }
+      className={`relative isolate text-center ${className}`}
+      style={{ willChange: "transform, opacity, filter" }}
+    >
+      <div className="relative z-10">
+        <h2
+          className={mobile
+            ? "text-[40px] font-normal leading-[0.98] tracking-[-0.04em] text-white"
+            : "text-[48px] font-normal leading-[1.04] tracking-[-0.035em] text-white lg:text-[54px]"}
+          style={{ fontFamily: '"SF Pro", sans-serif' }}
+        >
+          Enterprise-Ready
+        </h2>
+        <p
+          className={mobile
+            ? "mt-3 text-[15px] leading-[1.4] text-white/72"
+            : "mt-2 text-[16px] leading-[1.35] text-white/80 lg:text-[17px]"}
+          style={{ fontFamily: '"SF Pro", sans-serif' }}
+        >
+          Built for scale. Designed for reliability.
+        </p>
+      </div>
+    </motion.div>
+  )
+}
+
+function EnterpriseReadyCard({ item, index, mobile = false, desktopClassName = "" }) {
+  return (
+    <motion.div
+      initial={{
+        opacity: 0,
+        y: 42,
+        filter: "blur(10px)"
+      }}
+      whileInView={{
+        opacity: 1,
+        y: 0,
+        filter: "blur(0px)"
+      }}
+      transition={{
+        duration: 0.8,
+        delay: mobile ? index * 0.08 : item.entryDelay,
+        ease: [0.22, 1, 0.36, 1]
+      }}
+      viewport={{ once: false, amount: mobile ? 0.15 : 0.45 }}
+      className={
+        mobile
+          ? "mx-auto w-full max-w-[280px] text-center"
+          : desktopClassName || `absolute w-[190px] text-center ${item.position}`
+      }
+      style={{ willChange: "transform, opacity, filter" }}
+    >
+      <div className="mx-auto flex items-center justify-center">
+        <EnterpriseReadyIcon
+          item={item}
+          className={mobile ? "h-[28px] w-[28px]" : "h-[34px] w-[34px] lg:h-[36px] lg:w-[36px]"}
+        />
+      </div>
+
+      <h3
+        className={`text-white ${mobile ? "mt-4 text-[24px] leading-[1.12]" : "mt-[14px] text-[17px] leading-[1.14]"}`}
+        style={{
+          fontFamily: '"SF Pro", sans-serif',
+          fontWeight: 400
+        }}
+      >
+        {item.title}
+      </h3>
+
+      <p
+        className={`mx-auto text-white/70 ${mobile ? "mt-2 max-w-[230px] text-[15px] leading-[1.45]" : "mt-1.5 max-w-[188px] text-[12.5px] leading-[1.34]"}`}
+        style={{ fontFamily: '"SF Pro", sans-serif' }}
+      >
+        {item.description}
+      </p>
+    </motion.div>
   )
 }
 
@@ -413,28 +612,32 @@ function FeatureShowcaseCard({
     color: "#FFF",
     textAlign: "center",
     fontFamily: '"SF Pro"',
-    fontSize: compact ? "12.6px" : "18px",
+    fontSize: compact ? "14px" : "20px",
     fontStyle: "normal",
-    fontWeight: 860,
-    lineHeight: compact ? "13px" : "18.5px",
+    fontWeight: 700,
+    lineHeight: compact ? "16px" : "22px",
     letterSpacing: "-0.187px",
     textTransform: "uppercase",
     whiteSpace: "nowrap"
   }
   const descriptionStyle = {
-    width: compact ? "205px" : "272px",
-    maxWidth: "100%",
+    width: "100%",
+    maxWidth: compact ? "239px" : "312px",
     textAlign: "center",
     fontFamily: '"SF Pro"',
-    fontSize: compact ? "11.6px" : "13.5px",
+    fontSize: compact ? "12.75px" : "18px",
     fontStyle: "normal",
     fontWeight: 400,
-    lineHeight: compact ? "16.2px" : "20px",
+    lineHeight: compact ? "17.5px" : "24px",
     background: "linear-gradient(90deg, #ECEFFF 25.19%, #FFF 43.88%, #FFC3A9 93.56%)",
     backgroundClip: "text",
     WebkitBackgroundClip: "text",
     WebkitTextFillColor: "transparent",
-    textWrap: "balance"
+    textWrap: "wrap",
+    display: compact ? "-webkit-box" : "block",
+    WebkitBoxOrient: compact ? "vertical" : "initial",
+    WebkitLineClamp: compact ? 4 : "initial",
+    overflow: compact ? "hidden" : "visible"
   }
 
   const handleMouseEnter = () => {
@@ -511,13 +714,14 @@ function FeatureShowcaseCard({
         <div className="flex w-full flex-col items-center">
           <h3
             style={titleStyle}
-            className={`mx-auto flex w-full items-center justify-center ${compact ? "min-h-[16px]" : "min-h-[20px]"}`}
+            className={`mx-auto flex w-full items-center justify-center ${compact ? "min-h-[18px]" : "min-h-[24px]"}`}
           >
             {card.title}
           </h3>
           <p
             style={descriptionStyle}
-            className={`mx-auto ${compact ? "mt-[18px] min-h-[68px]" : "mt-[24px] min-h-[84px]"}`}
+            title={compact ? card.description : undefined}
+            className={`mx-auto ${compact ? "mt-[18px] min-h-[74px]" : "mt-[24px] min-h-[96px]"}`}
           >
             {card.description}
           </p>
@@ -822,7 +1026,7 @@ function InteractiveFeatureOrbit({ cards, activeIndex, setActiveIndex }) {
 
               <div className="absolute left-1/2 top-1/2 z-10 flex h-[92px] w-[92px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-[#dce6de] bg-white shadow-[0_18px_45px_rgba(11,47,37,0.12)]">
                 <div className="flex h-[58px] w-[58px] items-center justify-center rounded-full bg-[#06231C] shadow-[0_12px_28px_rgba(6,47,37,0.28)]">
-                  <img src={logoWithoutName} alt="KactusLab" className="h-8 w-8 object-contain md:h-9 md:w-9" />
+                  <img src={logoWithoutName} alt="Kactus AI" className="h-8 w-8 object-contain md:h-9 md:w-9" />
                 </div>
               </div>
             </div>
@@ -941,10 +1145,10 @@ export default function Home() {
 
   {/* BACKGROUND IMAGE */}
   <div
-    className="absolute inset-0 bg-cover"
+    className="absolute inset-0 bg-cover bg-no-repeat"
     style={{
       backgroundImage: `url(${hero})`,
-      backgroundPosition: "center 18%",
+      backgroundPosition: "center center",
     }}
   />
 
@@ -960,10 +1164,10 @@ export default function Home() {
   {/* CONTENT */}
   {/* CONTENT */}
 <div className="relative z-10 flex min-h-[100svh] items-center md:h-full">
-  <div className="w-full px-5 pt-[60px] sm:px-8 md:px-0">
-      <div className="flex flex-col gap-4 md:pl-[66px] md:gap-[18px] lg:pl-[68px]">
+  <div className="w-full px-5 py-[60px] sm:px-8 md:px-0 md:py-[60px]">
+      <div className="flex flex-col md:pl-[120px] lg:pl-[122px] xl:pl-[120px]">
       <h1
-        className="max-w-[310px] text-[32px] leading-[0.96] tracking-[-0.03em] text-white sm:max-w-[360px] sm:text-[42px] md:max-w-[430px] md:text-[54px] md:leading-[0.95]"
+        className="max-w-[310px] text-[32px] leading-[0.96] tracking-[-0.03em] text-white sm:max-w-[360px] sm:text-[42px] md:max-w-none md:w-fit md:text-[54px] md:leading-[0.95] md:whitespace-nowrap"
         style={{
           color: "#FFF",
           fontFamily: "SF Pro",
@@ -971,18 +1175,18 @@ export default function Home() {
           fontWeight: 400,
         }}
       >
-        KactusLab For <br /> Businesses
+        Kactus AI For Businesses
       </h1>
 
       <p
-        className="max-w-[308px] text-[15px] leading-[1.35] text-white/85 sm:max-w-[360px] md:max-w-[455px] md:text-[16px] md:leading-[1.22]"
+        className="mt-[10px] max-w-[308px] text-[15px] leading-[1.35] text-white/85 sm:max-w-[360px] md:mt-[8px] md:max-w-[432px] md:text-[16px] md:leading-[1.22]"
         style={{
           fontFamily: "SF Pro",
           fontStyle: "normal",
           fontWeight: 274,
         }}
       >
-        KactusLab AI provides an autonomous system to manage
+        Kactus AI provides an autonomous system to manage
         <br />
         businesses via WhatsApp.
       </p>
@@ -990,7 +1194,7 @@ export default function Home() {
       <button
         type="button"
         onClick={() => setIsDemoOpen(true)}
-        className="inline-flex items-center justify-center rounded-[4px] bg-[#DCE8B7] text-[#06231C] uppercase tracking-[0.02em] transition-transform duration-300 hover:-translate-y-0.5"
+        className="mt-[18px] inline-flex items-center justify-center rounded-[4px] bg-[#DCE8B7] text-[#06231C] uppercase tracking-[0.02em] transition-transform duration-300 hover:-translate-y-0.5"
         style={{
           width: "132px",
           height: "35px",
@@ -1043,7 +1247,7 @@ export default function Home() {
               <span className="block">Smarter Than Automation</span>
             </h2>
             <p className="mt-5 text-slate-500 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
-              KactusLabs turns a single WhatsApp message into complete business execution on its own through the following features:
+              Kactus AI turns a single WhatsApp message into complete business execution on its own through the following features:
             </p>
           </motion.div>
 
@@ -1078,7 +1282,7 @@ export default function Home() {
                 className="relative z-10 flex items-center justify-center w-24 h-24 rounded-full bg-white shadow-[0_18px_45px_rgba(11,47,37,0.12)] border border-[#e5ebe5]"
               >
                 <div className="flex items-center justify-center w-14 h-14 rounded-full bg-[#062f25] shadow-[0_10px_25px_rgba(6,47,37,0.28)]">
-                  <img src={logoWithoutName} alt="KactusLab" className="h-8 w-8 object-contain" />
+                  <img src={logoWithoutName} alt="Kactus AI" className="h-8 w-8 object-contain" />
                 </div>
               </motion.div>
             </div>
@@ -1094,7 +1298,7 @@ export default function Home() {
                   style={{ transformOrigin: "0 60px" }}
                 />
                 <div className="relative z-10 flex items-center justify-center w-16 h-16 rounded-full bg-[#062f25]">
-                  <img src={logoWithoutName} alt="KactusLab" className="h-9 w-9 object-contain" />
+                  <img src={logoWithoutName} alt="Kactus AI" className="h-9 w-9 object-contain" />
                 </div>
               </div>
             </div>
@@ -1159,7 +1363,7 @@ export default function Home() {
               <span className="block">Smarter Than Automation</span>
             </h2>
             <p className="mt-5 text-slate-500 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
-              KactusLabs turns a single WhatsApp message into complete business execution on its own through the following features:
+              Kactus AI turns a single WhatsApp message into complete business execution on its own through the following features:
             </p>
           </motion.div>
 
@@ -1215,7 +1419,7 @@ export default function Home() {
         className="text-white text-[48px] font-normal leading-[52.5px]"
         style={{ fontFamily: '"SF Pro", sans-serif' }}
       >
-        KactusLabs won’t make you switch tabs
+        Run your business via WhatsApp, <br /> End to End
       </h2>
 
       <button className="mt-6 bg-[#dfeac6] text-[#123126] px-6 py-3 rounded-md text-sm font-medium hover:bg-[#ebf3d8] transition">
@@ -1237,7 +1441,7 @@ export default function Home() {
             >
               <motion.img
                 src={cardsOutcome}
-                alt="KactusLabs outcome cards"
+                alt="Kactus AI outcome cards"
                 whileHover={{ scale: 1.08 }}
                 transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
                 className="relative z-10 h-auto w-full max-w-[420px] object-contain drop-shadow-[0_24px_42px_rgba(8,39,31,0.14)] lg:max-w-[450px]"
@@ -1269,7 +1473,7 @@ export default function Home() {
                     fontFamily: '"SF Pro", sans-serif'
                   }}
                 >
-                  Discover how KactusLab streamlines your daily business tasks and enhances your workflow with AI.
+                  Discover how Kactus AI streamlines your daily business tasks and enhances your workflow with AI.
                 </p>
 
                 <button
@@ -1287,54 +1491,58 @@ export default function Home() {
      
 
       {/* ENTERPRISE READY */}
-      <section className="relative overflow-hidden bg-[#08271f] py-0">
-        <div
-          className="relative min-h-[460px] w-full bg-cover bg-center bg-no-repeat md:min-h-[440px] lg:min-h-[446px]"
-          style={{ backgroundImage: `url(${EnterpriseReadyBg})` }}
-        >
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(230,243,202,0.12),transparent_46%)]" />
+      <section className="relative overflow-hidden bg-[#06231C] py-0">
+        <div className="relative isolate min-h-[540px] overflow-hidden md:min-h-[544px]">
+          <EnterpriseReadyOrbitBackground />
+          <EnterpriseReadyCenterGlow
+            wrapperClassName="top-0 -translate-y-[34%] md:-translate-y-[42%]"
+            glowClassName="h-[220px] w-[360px] md:h-[300px] md:w-[860px]"
+          />
 
-          <div className="relative z-10 mx-auto flex min-h-[460px] w-full max-w-[1400px] flex-col px-5 py-10 sm:px-6 md:min-h-[440px] md:px-10 md:py-8 lg:min-h-[446px]">
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7 }}
-              viewport={{ once: true }}
-              className="mx-auto text-center md:pt-5"
-            >
-              <h2
-                className="text-center text-white text-[50px] font-normal leading-normal"
-                style={{ fontFamily: '"SF Pro", sans-serif' }}
-              >
-                Enterprise-Ready
-              </h2>
-              <p className="mt-1 text-[16px] font-medium leading-relaxed text-white/85 md:text-[18px]">
-                Built for scale. Designed for reliability.
-              </p>
-            </motion.div>
+          <EnterpriseReadyHeading
+            mobile
+            className="absolute left-1/2 top-[68px] z-20 w-full max-w-[340px] -translate-x-1/2 md:hidden"
+          />
 
-            <div className="relative mt-10 grid gap-8 pb-8 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 md:mt-0 md:block md:flex-1 md:pb-0">
+          <div className="relative z-10 mx-auto hidden h-[544px] w-full max-w-[1440px] md:block">
+            <div className="absolute inset-x-0 top-[54px] grid grid-cols-[1fr_auto_1fr] items-start">
+              <div className="flex justify-center pt-[92px]">
+                <EnterpriseReadyCard
+                  item={enterpriseCards[0]}
+                  index={0}
+                  desktopClassName="w-[184px] text-center lg:w-[196px] xl:w-[220px] 2xl:w-[248px]"
+                />
+              </div>
+
+              <EnterpriseReadyHeading className="mt-[12px] w-full max-w-[460px]" />
+
+              <div className="flex justify-center pt-[92px]">
+                <EnterpriseReadyCard
+                  item={enterpriseCards[1]}
+                  index={1}
+                  desktopClassName="w-[184px] text-center lg:w-[196px] xl:w-[220px] 2xl:w-[248px]"
+                />
+              </div>
+            </div>
+
+            {enterpriseCards.slice(2).map((item, index) => (
+              <EnterpriseReadyCard
+                key={`${item.title}-${index + 2}`}
+                item={item}
+                index={index + 2}
+              />
+            ))}
+          </div>
+
+          <div className="relative z-10 mx-auto max-w-[560px] px-5 pb-12 pt-[188px] sm:px-6 md:hidden">
+            <div className="mt-10 grid gap-9 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10">
               {enterpriseCards.map((item, index) => (
-                <motion.div
-                  key={`${item.title}-${index}`}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.55, delay: index * 0.08 }}
-                  viewport={{ once: true }}
-                  className={`group mx-auto w-full max-w-[265px] text-center sm:max-w-[280px] md:absolute md:m-0 md:max-w-[265px] ${item.position}`}
-                >
-                  <div className="mx-auto flex h-9 w-9 items-center justify-center border-[0.676px] border-[#D4E5C0] bg-white/6 transition-all duration-300 group-hover:border-[#D4E5C0] group-hover:bg-[#D4E4BF]">
-                    <EnterpriseReadyIcon item={item} />
-                  </div>
-
-                  <h3 className="mt-5 text-[18px] font-bold leading-tight text-white md:text-[17px] lg:text-[18px]">
-                    {item.title}
-                  </h3>
-
-                  <p className="mx-auto mt-2 max-w-[245px] text-[15px] leading-[1.4] text-white md:text-[14px] lg:text-[15px]">
-                    {item.description}
-                  </p>
-                </motion.div>
+                <EnterpriseReadyCard
+                  key={`${item.title}-mobile-${index}`}
+                  item={item}
+                  index={index}
+                  mobile
+                />
               ))}
             </div>
           </div>
@@ -1363,7 +1571,7 @@ export default function Home() {
               Compatible With
             </h2>
             <p className="mx-auto mt-5 max-w-[620px] text-[16px] leading-relaxed text-[#595959] md:text-[18px]">
-              KactusLabs turns a single WhatsApp message into complete business.
+              Kactus AI turns a single WhatsApp message into complete business.
             </p>
           </motion.div>
 
@@ -1392,16 +1600,7 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="mt-12 flex justify-center">
-            <button
-              className="min-w-[181px] rounded-[6px] border-[0.75px] border-[#D4E5C0] px-8 py-3 text-[16px] font-medium text-white transition-transform duration-300 hover:-translate-y-0.5"
-              style={{
-                background: "linear-gradient(89deg, #06231C 0.85%, #D4E5C0 175.94%)"
-              }}
-            >
-              Learn more
-            </button>
-          </div>
+          
         </div>
       </section>
 
@@ -1440,10 +1639,10 @@ export default function Home() {
                 WebkitTextFillColor: "transparent"
               }}
             >
-              Why Fashion Brands Love KactusLabs
+              Why Fashion Brands Love Kactus AI
             </h2>
             <p className="mx-auto mt-5 max-w-[700px] text-[16px] leading-relaxed text-[#595959] md:text-[18px]">
-              Real stories from brands that reduced returns and increased conversions with KactusLabs.
+              Real stories from brands that reduced returns and increased conversions with Kactus AI.
             </p>
           </motion.div>
 
@@ -1538,7 +1737,7 @@ export default function Home() {
             className="mx-auto text-center"
           >
             <h2
-              className="text-[34px] font-medium leading-none md:text-[54px]"
+              className="text-[34px] font-300 leading-none md:text-[54px]"
               style={{
                 background: "linear-gradient(90deg, #000 0%, #4C7663 90.05%)",
                 backgroundClip: "text",
@@ -1549,16 +1748,26 @@ export default function Home() {
               Frequently Asked Questions
             </h2>
             <p className="mx-auto mt-5 max-w-[620px] text-[16px] leading-relaxed text-[#595959] md:text-[18px]">
-              Find answers to common questions about KactusLabs, onboarding, integrations, and support.
+              Find answers to common questions about Kactus AI, onboarding, integrations, and support.
             </p>
           </motion.div>
 
-          <div className="mt-12 border-t border-[#edf0f2]">
+          <motion.div
+            className="mt-12 border-t border-[#edf0f2]"
+            variants={faqListVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.2 }}
+          >
             {faqItems.map((item, index) => {
               const isOpen = openFaqIndex === index;
 
               return (
-                <div key={item.question} className="border-b border-[#edf0f2]">
+                <motion.div
+                  key={item.question}
+                  className="border-b border-[#edf0f2]"
+                  variants={faqItemVariants}
+                >
                   <button
                     type="button"
                     onClick={() => setOpenFaqIndex(isOpen ? -1 : index)}
@@ -1600,10 +1809,10 @@ export default function Home() {
                       )}
                     </span>
                   </button>
-                </div>
+                </motion.div>
               );
             })}
-          </div>
+          </motion.div>
         </div>
       </section>
 

@@ -57,7 +57,7 @@ export default function Login() {
               Finally, intelligence built for modern brands.
             </h1>
             <p className="mt-5 text-base text-slate-200/90 max-w-xl">
-              KactusLabs helps teams understand markets clearly and make confident decisions.
+              Kactus AI helps teams understand markets clearly and make confident decisions.
             </p>
           </div>
         </div>

@@ -18,12 +18,16 @@ body,
 }
 
 /* Default Body Font */
-body {
+body,
+button,
+input,
+textarea,
+select {
   margin: 0;
   overflow-x: hidden;
   -ms-overflow-style: none;
   scrollbar-width: none;
-  font-family: "Space Grotesk";
+  font-family: "SF Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 * {
@@ -43,7 +47,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Instrument Serif";
+  font-family: "SF Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 @font-face {
@@ -54,6 +58,16 @@ h6 {
     local("SF Pro"),
     local("SFProDisplay-Regular"),
     local("SFProText-Regular");
+}
+
+.font-sans,
+.font-serif {
+  font-family: "SF Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+}
+
+.sf-pro-page,
+.sf-pro-page * {
+  font-family: "SF Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
 }
 
 .demo-page,

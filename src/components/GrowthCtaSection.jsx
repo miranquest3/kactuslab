@@ -15,7 +15,7 @@ export default function GrowthCtaSection({
   points = defaultPoints,
   primaryLabel = "Schedule a Demo",
   secondaryLabel = "Outcome",
-  imageAlt = "KactusLabs dashboard call-to-action preview"
+  imageAlt = "Kactus AI dashboard call-to-action preview"
 }) {
   return (
     <section className="relative overflow-hidden bg-white px-6 pb-14 pt-6 sm:px-8 md:px-14 md:pb-[72px] md:pt-8 lg:px-20 xl:px-24">
