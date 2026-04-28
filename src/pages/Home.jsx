@@ -1,5 +1,5 @@
-import { useRef, useState } from "react"
-import { motion, AnimatePresence, useInView, useMotionTemplate, useMotionValue, useScroll, useTransform } from "framer-motion"
+import { useEffect, useRef, useState } from "react"
+import { motion, AnimatePresence, useInView, useMotionTemplate, useMotionValue, useScroll, useSpring, useTransform } from "framer-motion"
 import { MagneticButton, SectionTitle, RevealImage, StaggerText } from "../components/AnimatedElements"
 import HeroMain from "../assets/images/Home/Hero-Main.png";
 
@@ -19,10 +19,16 @@ import enterpriceFast from "../assets/images/Home/enterpriceFast.svg";
 import enterpriceRealtime from "../assets/images/Home/enterpriceRealtime.svg";
 import enterpriceDown from "../assets/images/Home/enterpricedown.svg";
 import enterpriseApi from "../assets/images/Home/enterpriseApi.svg";
-import hero from "../assets/images/Home/homeHerobg.png";
-import handPhone from "../assets/images/Home/handPhone.png";
+import finalBg from "../assets/images/Home/finalBg.png";
+import finalHand from "../assets/images/Home/finalHand.png";
+import thirdContainerBg from "../assets/images/Home/3rdContainer.png";
+import handPhoneF from "../assets/images/Home/handPhoneF.png";
 import cardsOutcome from "../assets/images/Home/cardsOutcome.png";
-import miranBanne from "../assets/images/Home/MIRAN BANNE.png";
+import graphicAnimation from "../assets/images/Home/graphic animation.mp4";
+import poweredBg from "../assets/images/Home/poweredBg.png";
+import poweredLeft from "../assets/images/Home/poweredLeft.png";
+import poweredRight from "../assets/images/Home/poweredRight.png";
+import miranLogo from "../assets/images/Home/MIRAN LOGO.png";
 import orbitCardBg from "../assets/images/Home/orbitcard.png";
 import logoWithoutName from "../assets/images/logowithoutname.svg";
 
@@ -306,6 +312,10 @@ const featureShowcaseLayoutMap = featureShowcaseCards.map((_, index) => ({
   columnCount: index < 3 ? 3 : 4
 }));
 
+const FEATURE_SEQUENCE_TOTAL = 2.2;
+const FEATURE_CARD_REVEAL_DELAY = 0;
+const FEATURE_CARDS_HANDOFF_MS = 220;
+
 const reviewCards = [
   {
     name: "Samantha Payne",
@@ -582,62 +592,56 @@ function FeatureShowcaseCard({
   activeCard,
   setActiveCard,
   layout,
-  activeLayoutMap,
-  compact = false
+  activeLayoutMap: _activeLayoutMap,
+  compact = false,
+  sequenceActive = false
 }) {
   const isActive = activeCard === index
-  const hasActiveCard = activeCard !== null
-  const activeLayout = hasActiveCard ? activeLayoutMap[activeCard] : null
-  const glowX = useMotionValue(compact ? 138 : 186)
-  const glowY = useMotionValue(compact ? 88 : 96)
+  const glowX = useMotionValue(compact ? 128 : 152)
+  const glowY = useMotionValue(compact ? 82 : 90)
   const glowBackground = useMotionTemplate`radial-gradient(circle at ${glowX}px ${glowY}px, ${card.glow} 0%, rgba(255,255,255,0) 46%)`
   const cardSizeClass = compact ? "rounded-[12px]" : "rounded-[14px]"
   const contentClass = compact
-    ? "px-[18px] pt-[46px] pb-[22px]"
-    : "px-[30px] pt-[68px] pb-[32px]"
-  const iconClass = compact
-    ? "h-[64px] w-[64px]"
-    : "h-[92px] w-[92px]"
-  const rowDistance =
-    activeLayout && activeCard !== index
-      ? Math.abs(activeLayout.row - layout.row) + Math.abs(activeLayout.column - layout.column)
-      : 0
-  const siblingOpacity = !hasActiveCard || isActive
-    ? 1
-    : Math.max(0.72, 0.92 - rowDistance * 0.08)
+    ? "px-[12px] pt-[22px] pb-[12px]"
+    : "px-[18px] pt-[32px] pb-[18px]"
+  const iconClass = compact ? "h-[42px] w-[42px]" : "h-[58px] w-[58px]"
   const columnCenter = (layout.columnCount - 1) / 2
-  const hoverRotateY = (layout.column - columnCenter) * (compact ? 3.2 : 4.4)
-  const hoverRotateX = compact ? 4 : 5.5
+  const rowDirection = layout.row === 0 ? -1 : 1
+  const hoverRotateY = (layout.column - columnCenter) * (compact ? 3.2 : 4)
+  const hoverRotateX = compact ? 4 : 4.6
+  const revealDelay = FEATURE_CARD_REVEAL_DELAY
+  const fromCenterX = -(layout.column - columnCenter) * (compact ? 90 : 110)
+  const fromCenterY = -rowDirection * (compact ? 58 : 72)
   const titleStyle = {
     color: "#FFF",
     textAlign: "center",
     fontFamily: '"SF Pro"',
-    fontSize: compact ? "14px" : "20px",
+    fontSize: compact ? "13px" : "16px",
     fontStyle: "normal",
     fontWeight: 700,
-    lineHeight: compact ? "16px" : "22px",
+    lineHeight: compact ? "15px" : "19px",
     letterSpacing: "-0.187px",
     textTransform: "uppercase",
     whiteSpace: "nowrap"
   }
   const descriptionStyle = {
     width: "100%",
-    maxWidth: compact ? "239px" : "312px",
+    maxWidth: compact ? "212px" : "252px",
     textAlign: "center",
     fontFamily: '"SF Pro"',
-    fontSize: compact ? "12.75px" : "18px",
+    fontSize: compact ? "9.5px" : "12.5px",
     fontStyle: "normal",
     fontWeight: 400,
-    lineHeight: compact ? "17.5px" : "24px",
+    lineHeight: compact ? "13px" : "18px",
     background: "linear-gradient(90deg, #ECEFFF 25.19%, #FFF 43.88%, #FFC3A9 93.56%)",
     backgroundClip: "text",
     WebkitBackgroundClip: "text",
     WebkitTextFillColor: "transparent",
     textWrap: "wrap",
-    display: compact ? "-webkit-box" : "block",
-    WebkitBoxOrient: compact ? "vertical" : "initial",
-    WebkitLineClamp: compact ? 4 : "initial",
-    overflow: compact ? "hidden" : "visible"
+    display: "-webkit-box",
+    WebkitBoxOrient: "vertical",
+    WebkitLineClamp: compact ? 3 : 4,
+    overflow: "hidden"
   }
 
   const handleMouseEnter = () => {
@@ -652,30 +656,40 @@ function FeatureShowcaseCard({
 
   const handleMouseLeave = () => {
     setActiveCard(null)
-    glowX.set(compact ? 138 : 186)
-    glowY.set(compact ? 88 : 96)
+    glowX.set(compact ? 128 : 152)
+    glowY.set(compact ? 82 : 90)
   }
 
   return (
     <motion.article
-      initial={{ opacity: 0, y: 28 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.15 }}
+      initial={{ opacity: 0, x: fromCenterX, y: fromCenterY, scale: 0.97 }}
       transition={{
-        opacity: { duration: 0.55, delay: index * 0.06 }
+        opacity: { duration: 0.62, delay: revealDelay, ease: [0.22, 1, 0.36, 1] },
+        x: { duration: 0.62, delay: revealDelay, ease: [0.22, 1, 0.36, 1] },
+        y: { duration: 0.62, delay: revealDelay, ease: [0.22, 1, 0.36, 1] },
+        scale: { duration: 0.62, delay: revealDelay, ease: [0.22, 1, 0.36, 1] },
+        boxShadow: { duration: 0.32 }
       }}
       animate={{
-        opacity: siblingOpacity,
-        scale: hasActiveCard && !isActive ? 0.985 : 1,
+        opacity: sequenceActive ? 1 : 0,
+        x: sequenceActive ? 0 : fromCenterX,
+        y: sequenceActive ? 0 : fromCenterY,
+        scale: sequenceActive ? 1 : 0.97,
         boxShadow: isActive
           ? `0 24px 70px ${card.glow}`
-          : compact
-            ? "0 14px 36px rgba(4, 36, 26, 0.08)"
-            : "0 18px 48px rgba(4, 36, 26, 0.10)"
+          : "0 18px 48px rgba(4, 36, 26, 0.10)"
+      }}
+      style={{
+        width: compact ? "min(100%, 192px)" : "min(100%, 256px)",
+        maxWidth: compact ? "192px" : "256px",
+        minHeight: compact ? "255px" : "346px",
+        height: compact ? "255px" : "346px",
+        transformPerspective: 1400,
+        transformStyle: "preserve-3d"
       }}
       whileHover={{
-        y: compact ? -7 : -10,
-        scale: compact ? 1.02 : 1.025,
+        y: compact ? -5 : -7,
+        scale: compact ? 1.02 : 1.024,
         rotateX: hoverRotateX,
         rotateY: hoverRotateY
       }}
@@ -683,13 +697,6 @@ function FeatureShowcaseCard({
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       className={`group relative mx-auto w-full overflow-hidden ${cardSizeClass}`}
-      style={{
-        maxWidth: compact ? "275.959px" : "372.545px",
-        minHeight: compact ? "376.251px" : "507.939px",
-        height: compact ? "376.251px" : "507.939px",
-        transformPerspective: 1400,
-        transformStyle: "preserve-3d"
-      }}
     >
       <img
         src={cardBg}
@@ -714,53 +721,55 @@ function FeatureShowcaseCard({
         <div className="flex w-full flex-col items-center">
           <h3
             style={titleStyle}
-            className={`mx-auto flex w-full items-center justify-center ${compact ? "min-h-[18px]" : "min-h-[24px]"}`}
+            className={`mx-auto flex w-full items-center justify-center ${compact ? "min-h-[16px]" : "min-h-[20px]"}`}
           >
             {card.title}
           </h3>
           <p
             style={descriptionStyle}
             title={compact ? card.description : undefined}
-            className={`mx-auto ${compact ? "mt-[18px] min-h-[74px]" : "mt-[24px] min-h-[96px]"}`}
+            className={`mx-auto ${compact ? "mt-[8px] min-h-[40px]" : "mt-[12px] min-h-[66px]"}`}
           >
             {card.description}
           </p>
-          <div className={compact ? "mt-[32px] flex h-[74px] items-center justify-center" : "mt-[56px] flex h-[106px] items-center justify-center"}>
-            {card.iconType === "social-media" ? (
-              <svg
-                viewBox="0 0 64 64"
-                className={iconClass}
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true"
-              >
-                <rect x="12" y="12" width="40" height="40" rx="10" stroke="#E8E8E8" strokeWidth="2.5" />
-                <circle cx="32" cy="32" r="9.5" stroke="#E8E8E8" strokeWidth="2.5" />
-                <circle cx="43.5" cy="20.5" r="2.5" fill="#E8E8E8" />
-              </svg>
-            ) : (
-              <img
-                src={card.icon}
-                alt={card.iconAlt}
-                className={`${iconClass} object-contain`}
-              />
-            )}
-          </div>
         </div>
 
-        <div className="mt-auto flex w-full justify-center">
+        <div className={compact ? "flex w-full flex-1 items-center justify-center pt-[8px]" : "flex w-full flex-1 items-center justify-center pt-[10px]"}>
+          {card.iconType === "social-media" ? (
+            <svg
+              viewBox="0 0 64 64"
+              className={iconClass}
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <rect x="12" y="12" width="40" height="40" rx="10" stroke="#E8E8E8" strokeWidth="2.5" />
+              <circle cx="32" cy="32" r="9.5" stroke="#E8E8E8" strokeWidth="2.5" />
+              <circle cx="43.5" cy="20.5" r="2.5" fill="#E8E8E8" />
+            </svg>
+          ) : (
+            <img
+              src={card.icon}
+              alt={card.iconAlt}
+              className={`${iconClass} object-contain`}
+            />
+          )}
+        </div>
+
+        <div className={compact ? "mt-[2px] flex w-full justify-center" : "mt-[4px] flex w-full justify-center"}>
           <button
             className="inline-flex items-center justify-center gap-2 text-[13px] text-white transition-all duration-300 hover:translate-y-[-1px]"
             style={{
-              width: "178px",
-              height: "39px",
+              width: compact ? "102px" : "132px",
+              height: compact ? "24px" : "30px",
               borderRadius: "6px",
               border: "0.841px solid rgba(243, 238, 255, 0.08)",
               background: "linear-gradient(90deg, rgba(212, 229, 192, 0.39) 0.24%, rgba(118, 127, 106, 0.22) 127.22%)",
               fontFamily: '"SF Pro"',
               fontStyle: "normal",
               fontWeight: 510,
-              lineHeight: "normal"
+              lineHeight: "normal",
+              fontSize: compact ? "10px" : "11.5px"
             }}
           >
             {card.comingSoon ? (
@@ -778,6 +787,111 @@ function FeatureShowcaseCard({
         </div>
       </div>
     </motion.article>
+  )
+}
+
+function FeatureShowcaseIntroPanel({ active }) {
+  return (
+    <div className="pointer-events-none absolute inset-0 z-20 overflow-hidden rounded-[16px]">
+      <motion.div
+        className="absolute inset-0"
+        initial={false}
+        animate={active ? { opacity: [1, 1, 1, 1, 0], scale: [1, 1, 1, 1, 1.01] } : { opacity: 1, scale: 1 }}
+        transition={{
+          duration: FEATURE_SEQUENCE_TOTAL,
+          times: [0, 0.86, 0.94, 0.98, 1],
+          ease: [0.22, 1, 0.36, 1]
+        }}
+      >
+        <div className="absolute inset-0 bg-[#042f25]" />
+        <div className="absolute -left-16 -top-14 h-[300px] w-[300px] rounded-full bg-[radial-gradient(circle,rgba(212,229,192,0.34)_0%,rgba(212,229,192,0)_72%)] blur-[54px]" />
+        <div className="absolute -bottom-20 -right-14 h-[340px] w-[340px] rounded-full bg-[radial-gradient(circle,rgba(212,229,192,0.20)_0%,rgba(212,229,192,0)_74%)] blur-[62px]" />
+        <FeatureShowcaseCutLines active={active} />
+
+        <div className="absolute inset-0 flex items-center justify-center px-6">
+            <motion.p
+              className="max-w-[1040px] text-center text-[42px] leading-[1.03] tracking-[-0.01em] text-white sm:text-[64px] lg:text-[92px]"
+              initial={{ opacity: 1, filter: "blur(16px)", scale: 1 }}
+            animate={active
+              ? {
+                  opacity: [1, 1, 1, 1, 0],
+                  filter: ["blur(16px)", "blur(16px)", "blur(0px)", "blur(0px)", "blur(0px)"],
+                  scale: [1, 1, 1, 1, 1]
+                }
+              : { opacity: 1, filter: "blur(18px)", scale: 1 }}
+            transition={{
+              duration: FEATURE_SEQUENCE_TOTAL,
+              times: [0, 0.2, 0.48, 0.78, 1],
+              ease: [0.22, 1, 0.36, 1]
+            }}
+            style={{ fontFamily: '"SF Pro", sans-serif', fontWeight: 400 }}
+          >
+            <span className="block">We honor the hands</span>
+            <span className="block">that build your brand</span>
+          </motion.p>
+        </div>
+      </motion.div>
+    </div>
+  )
+}
+
+function FeatureShowcaseCutLines({ active }) {
+  const cutLines = [
+    "M0 190 L1000 190",
+    "M0 400 L1000 400",
+    "M333 72 L333 410",
+    "M666 72 L666 410",
+    "M250 410 L250 650",
+    "M500 410 L500 650",
+    "M750 410 L750 650",
+    "M0 650 L140 650 L210 520 L260 650 L1000 650",
+    "M0 370 L115 370 L190 330 L220 650",
+    "M1000 370 L885 650 L860 420 L700 650",
+    "M370 650 L620 330",
+    "M430 650 L760 440"
+  ]
+  return (
+    <motion.svg
+      viewBox="0 0 1000 650"
+      preserveAspectRatio="none"
+      className="absolute inset-0 h-full w-full"
+      initial={false}
+      animate={
+        active
+          ? { opacity: [0, 0, 0.42, 0.22, 0] }
+          : { opacity: 0 }
+      }
+      transition={{
+        duration: FEATURE_SEQUENCE_TOTAL,
+        times: [0, 0.5, 0.72, 0.9, 1],
+        ease: [0.22, 1, 0.36, 1]
+      }}
+      aria-hidden="true"
+    >
+      {cutLines.map((path, index) => (
+        <motion.path
+          key={path}
+          d={path}
+          fill="none"
+          stroke="rgba(206, 225, 197, 0.42)"
+          strokeWidth={index < 8 ? 1 : 1.25}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeDasharray={index >= 8 ? "6 6" : "0"}
+          initial={false}
+          animate={
+            active
+              ? { pathLength: [0, 0, 1, 1], opacity: [0, 0, 1, 0.78] }
+              : { pathLength: 0, opacity: 0 }
+          }
+          transition={{
+            duration: FEATURE_SEQUENCE_TOTAL,
+            times: [0, 0.54 + index * 0.008, 0.82 + index * 0.003, 1],
+            ease: [0.22, 1, 0.36, 1]
+          }}
+        />
+      ))}
+    </motion.svg>
   )
 }
 
@@ -886,6 +1000,70 @@ function FeatureIcon({ iconKey, className = "h-7 w-7", stroke = "currentColor" }
     default:
       return null
   }
+}
+
+function CompatibleLogoCard({ item, index }) {
+  const rotateX = useMotionValue(0)
+  const rotateY = useMotionValue(0)
+  const translateZ = useMotionValue(0)
+
+  const springConfig = { stiffness: 200, damping: 18, mass: 0.6 }
+  const smoothRotateX = useSpring(rotateX, springConfig)
+  const smoothRotateY = useSpring(rotateY, springConfig)
+  const smoothTranslateZ = useSpring(translateZ, springConfig)
+
+  const handleMouseMove = (event) => {
+    const bounds = event.currentTarget.getBoundingClientRect()
+    const x = event.clientX - bounds.left
+    const y = event.clientY - bounds.top
+    const halfWidth = bounds.width / 2
+    const halfHeight = bounds.height / 2
+
+    rotateY.set(((x - halfWidth) / halfWidth) * 7)
+    rotateX.set(-((y - halfHeight) / halfHeight) * 7)
+    translateZ.set(10)
+  }
+
+  const handleMouseLeave = () => {
+    rotateX.set(0)
+    rotateY.set(0)
+    translateZ.set(0)
+  }
+
+  return (
+    <motion.div
+      key={`${item.label}-${index}`}
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: index * 0.08 }}
+      viewport={{ once: false, amount: 0.35 }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{
+        transformPerspective: 1000,
+        rotateX: smoothRotateX,
+        rotateY: smoothRotateY,
+        z: smoothTranslateZ
+      }}
+      className="group flex h-[164px] items-center justify-center rounded-[12px] border-2 border-[#B4BDBB] bg-white px-[45px] py-[48px] shadow-[0_14px_36px_rgba(4,36,26,0.08)] transition-shadow duration-300 hover:shadow-[0_22px_42px_rgba(4,36,26,0.16)]"
+    >
+      {item.type === "text" ? (
+        <motion.span
+          style={{ z: smoothTranslateZ }}
+          className="text-center text-[18px] font-semibold text-[#16362D] md:text-[20px]"
+        >
+          {item.label}
+        </motion.span>
+      ) : (
+        <motion.img
+          src={item.src}
+          alt={item.label}
+          style={{ z: smoothTranslateZ }}
+          className="max-h-[68px] w-full object-contain"
+        />
+      )}
+    </motion.div>
+  )
 }
 
 function InteractiveFeatureOrbit({ cards, activeIndex, setActiveIndex }) {
@@ -1025,9 +1203,20 @@ function InteractiveFeatureOrbit({ cards, activeIndex, setActiveIndex }) {
               </div>
 
               <div className="absolute left-1/2 top-1/2 z-10 flex h-[92px] w-[92px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-[#dce6de] bg-white shadow-[0_18px_45px_rgba(11,47,37,0.12)]">
-                <div className="flex h-[58px] w-[58px] items-center justify-center rounded-full bg-[#06231C] shadow-[0_12px_28px_rgba(6,47,37,0.28)]">
+                <motion.div
+                  className="flex h-[58px] w-[58px] items-center justify-center rounded-full bg-[#06231C] shadow-[0_12px_28px_rgba(6,47,37,0.28)]"
+                  animate={{
+                    opacity: [1, 0.55, 1],
+                    scale: [1, 1.06, 1]
+                  }}
+                  transition={{
+                    duration: 1.4,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                >
                   <img src={logoWithoutName} alt="Kactus AI" className="h-8 w-8 object-contain md:h-9 md:w-9" />
-                </div>
+                </motion.div>
               </div>
             </div>
 
@@ -1129,10 +1318,40 @@ function InteractiveFeatureOrbit({ cards, activeIndex, setActiveIndex }) {
 
 export default function Home() {
   const { scrollY } = useScroll();
+  const featureSequenceRef = useRef(null);
   const [isDemoOpen, setIsDemoOpen] = useState(false);
   const [activeFeatureCard, setActiveFeatureCard] = useState(null);
+  const [featureCardsVisible, setFeatureCardsVisible] = useState(false);
+  const [featureSequencePlaying, setFeatureSequencePlaying] = useState(false);
   const [activeReviewCard, setActiveReviewCard] = useState(null);
   const [openFaqIndex, setOpenFaqIndex] = useState(0);
+  const featureSequenceInView = useInView(featureSequenceRef, { amount: 0.18 });
+
+  useEffect(() => {
+    if (!featureSequenceInView) {
+      setFeatureSequencePlaying(false);
+      setFeatureCardsVisible(false);
+      setActiveFeatureCard(null);
+      return;
+    }
+
+    setFeatureSequencePlaying(true);
+    setFeatureCardsVisible(false);
+    setActiveFeatureCard(null);
+
+    const handoffTimer = setTimeout(() => {
+      setFeatureCardsVisible(true);
+    }, Math.max(0, FEATURE_SEQUENCE_TOTAL * 1000 - FEATURE_CARDS_HANDOFF_MS));
+
+    const doneTimer = setTimeout(() => {
+      setFeatureSequencePlaying(false);
+    }, FEATURE_SEQUENCE_TOTAL * 1000);
+
+    return () => {
+      clearTimeout(handoffTimer);
+      clearTimeout(doneTimer);
+    };
+  }, [featureSequenceInView]);
 
   const heroRevealY = useTransform(scrollY, [0, 500], [0, 150]);
   const blobY1 = useTransform(scrollY, [0, 500], [0, 100]);
@@ -1147,7 +1366,7 @@ export default function Home() {
   <div
     className="absolute inset-0 bg-cover bg-no-repeat"
     style={{
-      backgroundImage: `url(${hero})`,
+      backgroundImage: `url(${finalBg})`,
       backgroundPosition: "center center",
     }}
   />
@@ -1206,6 +1425,54 @@ export default function Home() {
         Book A Demo
       </button>
       </div>
+    </div>
+  </div>
+
+  <div
+    aria-hidden="true"
+    className="pointer-events-none absolute bottom-0 right-[4%] z-[9] h-[58svh] max-h-[640px] md:right-[6%] md:h-[72svh] lg:right-[7%] lg:h-[78svh]"
+  >
+    <img
+      src={finalHand}
+      alt=""
+      className="h-full w-auto object-contain"
+    />
+
+    <div className="absolute left-[30.6%] top-[0.4%] h-[38%] w-[45%]">
+      <motion.div
+        className="absolute inset-0"
+        style={{
+          borderRadius: "672.42px",
+          background: "radial-gradient(77.33% 77.33% at 50% 50%, #F6FFEB 0%, #5E9E6D 62.07%)",
+          filter: "blur(73.17869567871094px)"
+        }}
+        animate={{
+          opacity: [0.12, 0.34, 0.2, 0.38, 0.14],
+          scale: [0.98, 1.06, 1, 1.09, 0.99]
+        }}
+        transition={{
+          duration: 5.8,
+          ease: "easeInOut",
+          repeat: Infinity
+        }}
+      />
+      <motion.div
+        className="absolute inset-[6%] rounded-full"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(241,255,225,0.72) 0%, rgba(200,247,207,0.22) 54%, rgba(143,222,163,0.06) 72%, rgba(143,222,163,0) 100%)",
+          filter: "blur(8px)"
+        }}
+        animate={{
+          opacity: [0.16, 0.46, 0.24, 0.5, 0.18],
+          scale: [0.99, 1.04, 1.01, 1.05, 1]
+        }}
+        transition={{
+          duration: 5.8,
+          ease: "easeInOut",
+          repeat: Infinity
+        }}
+      />
     </div>
   </div>
 
@@ -1334,14 +1601,14 @@ export default function Home() {
       </section> */}
      
 
-      <section className="bg-white px-4 pb-14 pt-14 sm:px-6 lg:px-8 md:pb-20 md:pt-20">
+      <section className="relative bg-[#F5F6F2] px-4 py-14 sm:px-6 md:py-20 lg:px-8">
         <div className="mx-auto max-w-[1190px]">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
             viewport={{ once: true }}
-            className="max-w-3xl mx-auto text-center"
+            className="mx-auto max-w-3xl text-center"
           >
             <h2
               className="text-center font-normal inline-block"
@@ -1367,26 +1634,23 @@ export default function Home() {
             </p>
           </motion.div>
 
-          <div className="mt-[56px] space-y-[18px]">
-            <div className="grid grid-cols-1 justify-items-center gap-x-[22px] gap-y-6 xl:grid-cols-3">
-              {featureShowcaseCards.slice(0, 3).map((card, index) => (
-                <FeatureShowcaseCard
-                  key={card.title}
-                  card={card}
-                  index={index}
-                  activeCard={activeFeatureCard}
-                  setActiveCard={setActiveFeatureCard}
-                  layout={featureShowcaseLayoutMap[index]}
-                  activeLayoutMap={featureShowcaseLayoutMap}
-                />
-              ))}
-            </div>
-
-            <div className="grid grid-cols-1 justify-items-center gap-x-[18px] gap-y-6 sm:grid-cols-2 xl:grid-cols-4">
-              {featureShowcaseCards.slice(3).map((card, localIndex) => {
-                const index = localIndex + 3;
-
-                return (
+          <div ref={featureSequenceRef} className="relative mt-[56px] min-h-[660px] xl:min-h-[640px]">
+            <motion.div
+              className="pointer-events-none absolute inset-0 rounded-[16px] bg-[#042f25]"
+              initial={false}
+              animate={{ opacity: featureCardsVisible ? 0 : 1 }}
+              transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+            />
+            <motion.div
+              className="relative z-10 mx-auto w-full origin-top space-y-[18px] px-2 sm:px-3 md:px-4 xl:px-0"
+              initial={{ opacity: 0, y: 18 }}
+              animate={featureCardsVisible
+                ? { opacity: 1, y: 0 }
+                : { opacity: 0, y: 18 }}
+              transition={{ duration: 0.36, delay: 0, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <div className="mx-auto grid w-full max-w-[810px] grid-cols-1 justify-items-center gap-x-[21px] gap-y-[14px] xl:grid-cols-3">
+                {featureShowcaseCards.slice(0, 3).map((card, index) => (
                   <FeatureShowcaseCard
                     key={card.title}
                     card={card}
@@ -1395,26 +1659,53 @@ export default function Home() {
                     setActiveCard={setActiveFeatureCard}
                     layout={featureShowcaseLayoutMap[index]}
                     activeLayoutMap={featureShowcaseLayoutMap}
-                    compact
+                    sequenceActive={featureCardsVisible}
                   />
-                );
-              })}
-            </div>
+                ))}
+              </div>
+
+              <div className="mx-auto grid w-full max-w-[810px] grid-cols-1 justify-items-center gap-x-[14px] gap-y-[14px] sm:grid-cols-2 xl:grid-cols-4">
+                {featureShowcaseCards.slice(3).map((card, localIndex) => {
+                  const index = localIndex + 3;
+
+                  return (
+                    <FeatureShowcaseCard
+                      key={card.title}
+                      card={card}
+                      index={index}
+                      activeCard={activeFeatureCard}
+                      setActiveCard={setActiveFeatureCard}
+                      layout={featureShowcaseLayoutMap[index]}
+                      activeLayoutMap={featureShowcaseLayoutMap}
+                      compact
+                      sequenceActive={featureCardsVisible}
+                    />
+                  );
+                })}
+              </div>
+            </motion.div>
+            {featureSequencePlaying && <FeatureShowcaseIntroPanel active />}
           </div>
         </div>
       </section>
 
  <section className="w-full bg-white py-[40px]">
   <div
-    className="relative flex h-[396px] w-full items-center overflow-hidden px-6 sm:px-10 md:px-[80px]"
+    className="relative flex h-[396px] w-full items-center overflow-visible px-6 sm:px-10 md:px-[80px]"
     style={{
-      backgroundImage: `url(${handPhone})`,
+      backgroundImage: `url(${thirdContainerBg})`,
       backgroundPosition: "center",
       backgroundRepeat: "no-repeat",
       backgroundSize: "cover"
     }}
   >
-    <div className="max-w-[997px] text-white">
+    <motion.div
+      initial={{ opacity: 0, x: -52 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+      viewport={{ once: false, amount: 0.35 }}
+      className="relative z-10 max-w-[997px] text-white"
+    >
       <h2
         className="text-white text-[48px] font-normal leading-[52.5px]"
         style={{ fontFamily: '"SF Pro", sans-serif' }}
@@ -1425,6 +1716,38 @@ export default function Home() {
       <button className="mt-6 bg-[#dfeac6] text-[#123126] px-6 py-3 rounded-md text-sm font-medium hover:bg-[#ebf3d8] transition">
         Book A Demo
       </button>
+    </motion.div>
+
+    <motion.img
+      src={handPhoneF}
+      alt="Hand holding phone"
+      initial={{ opacity: 0, x: 72 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.82, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+      viewport={{ once: false, amount: 0.35 }}
+      className="pointer-events-none absolute bottom-0 right-[3%] z-[9] h-[501.744px] w-auto object-contain"
+    />
+    <div
+      aria-hidden="true"
+      className="pointer-events-none absolute bottom-[252px] right-[11.2%] z-[10] h-[116px] w-[116px]"
+    >
+      <motion.div
+        className="absolute inset-0 rounded-full"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(174, 255, 186, 0.9) 0%, rgba(116, 239, 132, 0.48) 40%, rgba(116, 239, 132, 0.12) 68%, rgba(116, 239, 132, 0) 100%)",
+          filter: "blur(16px)"
+        }}
+        animate={{
+          opacity: [0.2, 0.62, 0.28, 0.72, 0.24],
+          scale: [0.95, 1.04, 0.98, 1.06, 0.96]
+        }}
+        transition={{
+          duration: 2.8,
+          ease: "easeInOut",
+          repeat: Infinity
+        }}
+      />
     </div>
   </div>
 </section>
@@ -1439,12 +1762,13 @@ export default function Home() {
               viewport={{ once: true, amount: 0.2 }}
               className="group relative flex min-h-[260px] items-center justify-center overflow-hidden px-4 py-4 sm:min-h-[300px] sm:px-8 md:min-h-[360px] md:px-10 md:py-6 lg:px-6 lg:py-4 xl:px-8"
             >
-              <motion.img
-                src={cardsOutcome}
-                alt="Kactus AI outcome cards"
-                whileHover={{ scale: 1.08 }}
-                transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-                className="relative z-10 h-auto w-full max-w-[420px] object-contain drop-shadow-[0_24px_42px_rgba(8,39,31,0.14)] lg:max-w-[450px]"
+              <motion.video
+                src={graphicAnimation}
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="relative z-10 h-full min-h-[240px] w-full object-contain sm:min-h-[280px] md:min-h-[340px] lg:min-h-[360px]"
               />
             </motion.div>
 
@@ -1548,14 +1872,13 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       <section className="bg-white px-5 py-16 sm:px-6 md:px-10 md:py-20">
         <div className="mx-auto max-w-[1180px]">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.35 }}
             className="mx-auto max-w-[760px] text-center"
           >
             <h2
@@ -1577,26 +1900,11 @@ export default function Home() {
 
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:gap-10">
             {logos.map((item, index) => (
-              <motion.div
+              <CompatibleLogoCard
                 key={`${item.label}-${index}`}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.08 }}
-                viewport={{ once: true }}
-                className="flex h-[164px] items-center justify-center rounded-[12px] border-2 border-[#B4BDBB] bg-white px-[45px] py-[48px]"
-              >
-                {item.type === "text" ? (
-                  <span className="text-center text-[18px] font-semibold text-[#16362D] md:text-[20px]">
-                    {item.label}
-                  </span>
-                ) : (
-                  <img
-                    src={item.src}
-                    alt={item.label}
-                    className="max-h-[68px] w-full object-contain"
-                  />
-                )}
-              </motion.div>
+                item={item}
+                index={index}
+              />
             ))}
           </div>
 
@@ -1605,19 +1913,57 @@ export default function Home() {
       </section>
 
       <section className="bg-white pb-16 md:pb-20">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.65 }}
-          viewport={{ once: true }}
-          className="w-full overflow-hidden"
+        <div
+          className="relative mx-auto w-full max-w-[1920px] overflow-hidden"
+          style={{
+            backgroundImage: `url(${poweredBg})`,
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover"
+          }}
         >
-          <img
-            src={miranBanne}
-            alt="Powered by MIRAN"
-            className="block h-[220px] w-full object-cover md:h-[280px] lg:h-[320px]"
-          />
-        </motion.div>
+          <div className="relative h-[220px] md:h-[280px] lg:h-[320px]">
+            <motion.div
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+              viewport={{ once: false, amount: 0.45 }}
+              className="absolute inset-0 z-[25] flex flex-col items-center justify-center"
+            >
+              <p className="text-[15px] font-medium uppercase tracking-[0.26em] text-white/95 md:text-[18px]">
+                Powered By
+              </p>
+              <img
+                src={miranLogo}
+                alt="MIRAN logo"
+                className="mt-4 h-[64px] w-auto object-contain md:h-[84px] lg:h-[106px]"
+              />
+            </motion.div>
+
+            <motion.img
+              src={poweredLeft}
+              alt=""
+              aria-hidden="true"
+              initial={{ opacity: 0, x: -90, y: 90 }}
+              whileInView={{ opacity: 1, x: 0, y: 0 }}
+              transition={{ duration: 0.95, ease: [0.22, 1, 0.36, 1] }}
+              viewport={{ once: false, amount: 0.2 }}
+              className="pointer-events-none absolute -bottom-[48%] -left-[24%] z-[10] h-[245%] w-auto max-w-none object-contain object-left-bottom opacity-95 md:-bottom-[52%] md:-left-[22%] md:h-[258%] lg:-bottom-[56%] lg:-left-[20%] lg:h-[272%]"
+            />
+
+            <motion.img
+              src={poweredRight}
+              alt=""
+              aria-hidden="true"
+              initial={{ opacity: 0, x: 90, y: -90 }}
+              whileInView={{ opacity: 1, x: 0, y: 0 }}
+              transition={{ duration: 0.95, ease: [0.22, 1, 0.36, 1], delay: 0.05 }}
+              viewport={{ once: false, amount: 0.2 }}
+              className="pointer-events-none absolute -right-[24%] -top-[28%] z-[10] h-[245%] w-auto max-w-none object-contain object-right-top opacity-95 md:-right-[22%] md:-top-[32%] md:h-[258%] lg:-right-[20%] lg:-top-[36%] lg:h-[272%]"
+            />
+
+          </div>
+        </div>
       </section>
 
       {/* <section className="overflow-hidden bg-white px-5 pb-16 sm:px-6 md:px-10 md:pb-24">
@@ -1822,12 +2168,6 @@ export default function Home() {
     </main>
   );
 }
-
-
-
-
-
-
 
 
 

@@ -19,11 +19,11 @@ import rightIcon from "../assets/images/Vto/right.svg";
 import wrongIcon from "../assets/images/Vto/wrong.svg";
 import vtoImg from "../assets/images/Vto/vtoImg.png";
 import lastSectionBg from "../assets/images/Shopify/lastSection.png";
-import outcomeHeroBg from "../assets/images/About/outcomebg.png";
+import outcomeHeroBg from "../assets/images/Outcomes/outcomebg.png";
 import leftPopupBg from "../assets/images/whatsapp/leftpopup.png";
 import rightPopupBg from "../assets/images/whatsapp/rightpopup.png";
 import whatsappSectionBg from "../assets/images/whatsapp/whatsappSec2.png";
-import outcomeWhatsapp from "../assets/images/About/outcomeWhatsapp.svg";
+import outcomeWhatsapp from "../assets/images/Outcomes/outcomeWhatsapp.svg";
 import logo from "../assets/logo.svg";
 import logo2 from "../assets/logo2.svg";
 import ftlock from "../assets/images/Features/VTO.png";
@@ -280,25 +280,38 @@ const businessExecutionSlides = [
         title: "Visual Rejuvenation",
         subtitle: "Breathing New Life into Stagnant Stock",
         answer:
-          "We refresh weak-performing products with sharper styling, new campaign angles, and AI-generated creative that makes old inventory feel new again."
+          "According to the AI Market Research Report, Our AI generates high-end, professional re-photoshoots for your dead inventory, creating trend-aligned visuals that capture attention without the cost of a traditional studio session. These assets are custom-built to fuel your Social Media Marketing and WhatsApp campaigns, ensuring every image is aesthetically aligned with current trends and optimized for the specific platform where it will be seen."
       },
       {
         title: "Dynamic Storefront Optimization",
         subtitle: "Placing the Right Products in the Spotlight",
         answer:
-          "Product ordering, landing page focus, and collection visibility are adjusted so slower stock gets intentional, conversion-ready exposure."
+          'Kactus AI autonomously updates your digital storefront to prioritize items identified in the research phase. From SEO-optimized descriptions to strategic homepage placement, we ensure your "hidden gems" are seen by the right shoppers.'
       },
       {
         title: "Personalized Communication",
         subtitle: "Bringing Creative Visuals Directly To Your Inbox",
         answer:
-          "Customers receive tailored outreach through WhatsApp and owned channels using product-specific messaging, visuals, and urgency triggers."
+          "Based on the AI Market Research report, AI identifies the right customer segments for your dead inventory. It then autonomously crafts personalized messages featuring fresh AI Product Photoshoot visuals. It sends them directly to your customers to trigger immediate interest and sales for previously overlooked stock."
       },
       {
         title: "Autonomous Content Deployment",
         subtitle: "From Data Insight to Viral Visuals",
         answer:
-          "Kactus AI turns the reduction strategy into approved content assets and publishes them across the right surfaces without slowing your team down."
+          <>
+            kactus AI eliminates the gap between strategy and execution. Using the specific visual assets generated in the{" "}
+            <strong>AI Product Photoshoot</strong> which are tailored to the findings of the{" "}
+            <strong>Market Research Report</strong> our AI autonomously designs, captions, and uploads posts to your Instagram and Facebook pages.
+            <br />
+            <br />
+            Beyond organic reach, kactus AI optimizes and manages <strong>Meta and Google Ads</strong> automatically. This ensures your dead inventory is transformed into high-performing digital campaigns without you lifting a finger.
+            <br />
+            <br />
+            <strong>One command. Total Autonomy.</strong>{" "}
+            <em>
+              From your WhatsApp bot, tell kactus AI to 'Reduce Dead Inventory.' Our AI Lab handles the research, the photography, the social ads, and the customer outreach all working in sync to turn stagnant stock into revenue.
+            </em>
+          </>
       }
     ]
   },
@@ -642,7 +655,7 @@ function FeatureShowcaseCard({ card, index, activeCard, setActiveCard }) {
   )
 }
 
-export default function About() {
+export default function Outcomes() {
   const { scrollY } = useScroll();
   const [isDemoOpen, setIsDemoOpen] = useState(false);
   const [showFeaturesDropdown, setShowFeaturesDropdown] = useState(false);
@@ -667,49 +680,20 @@ export default function About() {
   const introOverlayMarkAnimation = heroPhase === 1
     ? { opacity: 1, scale: 8.6 }
     : heroPhase >= 2
-      ? { opacity: 0, scale: 0.42 }
+      ? { opacity: 0, scale: 1 }
       : { opacity: 0, scale: 11.6 };
-  const introOverlayShortMaskAnimation = heroPhase === 1
-    ? { opacity: 1, x: 0, scaleY: 1, scaleX: 1 }
-    : heroPhase >= 2
-      ? { opacity: 0, x: -12, scaleY: 0.86, scaleX: 0.92 }
-      : { opacity: 0, x: 42, scaleY: 1.96, scaleX: 1.42 };
-  const introOverlayTallMaskAnimation = heroPhase === 1
-    ? { opacity: 1, scaleY: 1, scaleX: 1 }
-    : heroPhase >= 2
-      ? { opacity: 0, scaleY: 0.86, scaleX: 0.92 }
-      : { opacity: 0, scaleY: 2.22, scaleX: 1.48 };
-  const introOverlayDotMaskAnimation = heroPhase === 1
-    ? { opacity: 1, x: 0, y: 0, scale: 1 }
-    : heroPhase >= 2
-      ? { opacity: 0, x: 14, y: 6, scale: 0.72 }
-      : { opacity: 0, x: -26, y: 22, scale: 2.05 };
   const heroNavAnimation = heroPhase >= 1
     ? { opacity: 1, y: 0 }
     : { opacity: 0, y: -8 };
   const heroCopyAnimation = heroPhase >= 1
     ? { opacity: 1, y: 0, scale: 1 }
     : { opacity: 0, y: 12, scale: 0.992 };
-  const leftHeroIconAnimation = isHeroFinal
+  const leftHeroIconAnimation = heroPhase >= 2
     ? { opacity: 1, scale: 1, x: 0, y: 0, filter: "blur(0px)" }
-    : heroPhase === 2
-      ? { opacity: 1, scale: 1.7, x: -8, y: 0, filter: "blur(0px)" }
-      : { opacity: 0, scale: 0.72, x: 42, y: 0, filter: "blur(0px)" };
-  const kactusShortBarAnimation = isHeroFinal
-    ? { opacity: 1, x: 0, y: 0, scaleY: 1, scaleX: 1 }
-    : heroPhase === 2
-      ? { opacity: 1, x: 0, y: 0, scaleY: 1.02, scaleX: 1.02 }
-      : { opacity: 0.7, x: -9, y: 0, scaleY: 0.9, scaleX: 0.96 };
-  const kactusTallBarAnimation = isHeroFinal
-    ? { opacity: 1, x: 0, y: 0, scaleY: 1, scaleX: 1 }
-    : heroPhase === 2
-      ? { opacity: 1, x: 0, y: 0, scaleY: 1.02, scaleX: 1.02 }
-      : { opacity: 0.96, x: 0, y: 0, scaleY: 1.28, scaleX: 1.06 };
-  const kactusDotAnimation = isHeroFinal
-    ? { opacity: 1, x: 0, y: 0, scale: 1 }
-    : heroPhase === 2
-      ? { opacity: 1, x: 0, y: 0, scale: 1.02 }
-      : { opacity: 0.22, x: 16, y: 10, scale: 0.42 };
+    : { opacity: 0, scale: 1, x: 0, y: 0, filter: "blur(0px)" };
+  const kactusShortBarAnimation = { opacity: 1, x: 0, y: 0, scaleY: 1, scaleX: 1 };
+  const kactusTallBarAnimation = { opacity: 1, x: 0, y: 0, scaleY: 1, scaleX: 1 };
+  const kactusDotAnimation = { opacity: 1, x: 0, y: 0, scale: 1 };
   const rightHeroIconAnimation = heroPhase >= 2
     ? { opacity: 1, scale: 1, x: 0, y: 0, filter: "blur(0px)" }
     : { opacity: 0, scale: 0.86, x: 12, y: 0, filter: "blur(0px)" };
@@ -792,7 +776,7 @@ export default function About() {
               <Link to="/" className="flex items-center gap-3 shrink-0">
                 <img src={logo} alt="Kactus Logo" className="h-8 w-auto" />
               </Link>
-              <div className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-10 font-medium text-slate-900 md:flex">
+              <div className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-10 font-normal text-slate-900 md:flex">
                 <div
                   className="relative"
                   onMouseEnter={() => setShowFeaturesDropdown(true)}
@@ -978,34 +962,58 @@ export default function About() {
         </motion.div>
 
         <div
-          className="pointer-events-none absolute left-1/2 top-1/2 z-[55] -translate-x-1/2 -translate-y-1/2"
+          className="pointer-events-none absolute inset-0 z-[55] flex min-h-screen box-border items-center justify-center px-6 pb-16 pt-20 sm:px-8 md:px-14 md:pt-24 lg:px-20 xl:px-24"
           aria-hidden="true"
         >
-          <motion.div
-            initial={false}
-            animate={introOverlayMarkAnimation}
-            transition={{ duration: 0.52, ease: heroEase }}
-            className="flex items-end gap-[20px] md:gap-[22px]"
-          >
-            <motion.div
-              initial={false}
-              animate={introOverlayShortMaskAnimation}
-              transition={{ duration: 0.42, ease: heroEase }}
-              className="h-[118px] w-[26px] origin-bottom rounded-full bg-white"
-            />
-            <motion.div
-              initial={false}
-              animate={introOverlayTallMaskAnimation}
-              transition={{ duration: 0.44, delay: 0.02, ease: heroEase }}
-              className="h-[190px] w-[30px] origin-bottom rounded-full bg-white"
-            />
-            <motion.div
-              initial={false}
-              animate={introOverlayDotMaskAnimation}
-              transition={{ duration: 0.38, delay: 0.04, ease: heroEase }}
-              className="mb-[34px] h-[30px] w-[30px] rounded-full bg-white"
-            />
-          </motion.div>
+          <div className="mx-auto flex w-full max-w-[620px] flex-col items-center text-center">
+            <div className="invisible self-stretch select-none">
+              <h1
+                className="self-stretch text-center"
+                style={{
+                  textAlign: "center",
+                  fontFamily: "SF Pro",
+                  fontSize: "48px",
+                  fontStyle: "normal",
+                  fontWeight: 400,
+                  lineHeight: "48px"
+                }}
+              >
+                AI Autonomous Lab <br /> For Businesses
+              </h1>
+
+              <p
+                className="mt-5 self-stretch text-center"
+                style={{
+                  textAlign: "center",
+                  fontFamily: "SF Pro",
+                  fontSize: "16.5px",
+                  fontStyle: "normal",
+                  fontWeight: 274,
+                  lineHeight: "21px"
+                }}
+              >
+                Kactus AI turns a single WhatsApp message into complete business execution on its own through:
+              </p>
+            </div>
+
+            <div className="relative mt-10 grid grid-cols-[112px_1px_112px] items-center justify-center gap-5 md:mt-11 md:grid-cols-[132px_1px_132px] md:gap-7">
+              <div className="relative flex h-[150px] w-full items-center justify-center">
+                <motion.svg
+                  initial={false}
+                  animate={introOverlayMarkAnimation}
+                  transition={{ duration: 0.52, ease: heroEase }}
+                  viewBox="0 0 46 105"
+                  aria-hidden="true"
+                  className="relative h-[128px] w-[58px] md:h-[136px] md:w-[62px]"
+                  style={{ overflow: "visible" }}
+                >
+                  <path d="M0 23.7432C0 20.2304 2.84763 17.3828 6.36035 17.3828C9.87308 17.3828 12.7207 20.2304 12.7207 23.7432V73.8762C5.69525 73.8762 0 68.1809 0 61.1555V23.7432Z" fill="white" />
+                  <path d="M16.9609 6.36036C16.9609 2.84763 19.8086 0 23.3213 0C26.834 0 29.6816 2.84763 29.6816 6.36035V91.5748C29.6816 98.6002 23.9864 104.295 16.9609 104.295V6.36036Z" fill="white" />
+                  <circle cx="39.4938" cy="77.7946" r="5.64221" fill="white" />
+                </motion.svg>
+              </div>
+            </div>
+          </div>
         </div>
 
         <motion.div
@@ -1018,7 +1026,7 @@ export default function About() {
               <img src={logo2} alt="Kactus Logo" className="h-8 w-auto" />
             </Link>
 
-            <div className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-10 font-medium text-white md:flex">
+            <div className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-10 font-normal text-white md:flex">
                 <div
                   className="relative"
                   onMouseEnter={() => setShowFeaturesDropdown(true)}
@@ -1203,7 +1211,7 @@ export default function About() {
               <motion.div
                 initial={false}
                 animate={leftHeroIconAnimation}
-                transition={{ duration: 0.42, delay: 0.06, ease: heroEase }}
+                transition={{ duration: 1.5, delay: 0.06, ease: heroEase }}
                 className="relative flex h-[150px] w-full items-center justify-center"
               >
                 <div className="absolute inset-x-3 top-1/2 h-24 -translate-y-1/2 rounded-full bg-white/16 blur-[36px]" />
@@ -1216,7 +1224,7 @@ export default function About() {
                   <motion.g
                     initial={false}
                     animate={kactusShortBarAnimation}
-                    transition={{ duration: 0.3, delay: 0.08, ease: heroEase }}
+                    transition={{ duration: 1.5, delay: 0.08, ease: heroEase }}
                     style={{ transformOrigin: "6px 46px" }}
                   >
                     <path d="M0 23.7432C0 20.2304 2.84763 17.3828 6.36035 17.3828C9.87308 17.3828 12.7207 20.2304 12.7207 23.7432V73.8762C5.69525 73.8762 0 68.1809 0 61.1555V23.7432Z" fill="white" />
@@ -1224,7 +1232,7 @@ export default function About() {
                   <motion.g
                     initial={false}
                     animate={kactusTallBarAnimation}
-                    transition={{ duration: 0.32, delay: 0.04, ease: heroEase }}
+                    transition={{ duration: 1.5, delay: 0.04, ease: heroEase }}
                     style={{ transformOrigin: "23px 52px" }}
                   >
                     <path d="M16.9609 6.36036C16.9609 2.84763 19.8086 0 23.3213 0C26.834 0 29.6816 2.84763 29.6816 6.36035V91.5748C29.6816 98.6002 23.9864 104.295 16.9609 104.295V6.36036Z" fill="white" />
@@ -1232,7 +1240,7 @@ export default function About() {
                   <motion.g
                     initial={false}
                     animate={kactusDotAnimation}
-                    transition={{ duration: 0.28, delay: 0.1, ease: heroEase }}
+                    transition={{ duration: 1.5, delay: 0.1, ease: heroEase }}
                     style={{ transformOrigin: "39px 78px" }}
                   >
                     <circle cx="39.4938" cy="77.7946" r="5.64221" fill="white" />

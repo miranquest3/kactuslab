@@ -1,6 +1,6 @@
 import { Link, useLocation, useNavigate } from "react-router-dom"
 import { useAuth } from "../context/AuthContext"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import logo from "../assets/logo.svg"
 import logo2 from "../assets/logo2.svg"
@@ -17,8 +17,9 @@ export default function Navbar() {
 
   const [open, setOpen] = useState(false)
   const [showNav, setShowNav] = useState(true)
-  const [lastScrollY, setLastScrollY] = useState(0)
   const [scrolled, setScrolled] = useState(false)
+  const lastScrollYRef = useRef(0)
+  const tickingRef = useRef(false)
 
   // ✅ NEW: dropdown state
   const [showDropdown, setShowDropdown] = useState(false)
@@ -26,24 +27,25 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > lastScrollY) {
-        setShowNav(false)
-      } else {
-        setShowNav(true)
+      if (tickingRef.current) {
+        return
       }
 
-      setLastScrollY(window.scrollY)
+      tickingRef.current = true
+      window.requestAnimationFrame(() => {
+        const currentScrollY = window.scrollY
 
-      if (window.scrollY > 20) {
-        setScrolled(true)
-      } else {
-        setScrolled(false)
-      }
+        setShowNav(currentScrollY <= lastScrollYRef.current || currentScrollY < 8)
+        setScrolled(currentScrollY > 20)
+
+        lastScrollYRef.current = currentScrollY
+        tickingRef.current = false
+      })
     }
 
-    window.addEventListener("scroll", handleScroll)
+    window.addEventListener("scroll", handleScroll, { passive: true })
     return () => window.removeEventListener("scroll", handleScroll)
-  }, [lastScrollY])
+  }, [])
 
   const menuVariants = {
     closed: {
@@ -101,7 +103,7 @@ export default function Navbar() {
 
       {/* Center Tabs */}
       <div
-        className={`absolute left-1/2 hidden -translate-x-1/2 items-center gap-10 font-medium md:flex ${useTransparentNavbarStyle ? "text-white" : "text-slate-700"}`}
+        className={`absolute left-1/2 hidden -translate-x-1/2 items-center gap-10 font-normal md:flex ${useTransparentNavbarStyle ? "text-white" : "text-slate-700"}`}
       >
 
         {/* ✅ Features with dropdown */}
@@ -169,8 +171,10 @@ export default function Navbar() {
                 </Link>
 
                 {/* AI Product Photoshoot */}
-                <Link to="/">
-                  <div className="group flex items-center gap-3 p-2 rounded-lg cursor-pointer transition-all duration-300 hover:scale-105">
+                <div
+                  className="group flex items-center gap-3 rounded-lg p-2 opacity-80 cursor-not-allowed"
+                  aria-disabled="true"
+                >
 
                     <div className="relative w-5 h-5 flex-shrink-0">
                       <img
@@ -186,7 +190,7 @@ export default function Navbar() {
                     </div>
 
                     <div className="flex items-center justify-between w-full gap-3">
-                      <h4 className="font-semibold text-slate-900 whitespace-nowrap overflow-hidden text-ellipsis transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-[#05231C] group-hover:to-[#D4E4BF] group-hover:bg-clip-text group-hover:text-transparent">
+                      <h4 className="font-semibold text-slate-900 whitespace-nowrap overflow-hidden text-ellipsis">
                         AI Product Photoshoot
                       </h4>
 
@@ -195,8 +199,7 @@ export default function Navbar() {
                       </span>
                     </div>
 
-                  </div>
-                </Link>
+                </div>
 
               </div>
 
@@ -232,8 +235,10 @@ export default function Navbar() {
                 </Link>
 
                 {/* AI Market Research */}
-                <Link to="/">
-                  <div className="group flex items-center gap-3 p-2 rounded-lg cursor-pointer transition-all duration-300 hover:scale-105">
+                <div
+                  className="group flex items-center gap-3 rounded-lg p-2 opacity-80 cursor-not-allowed"
+                  aria-disabled="true"
+                >
 
                     <div className="relative w-5 h-5 flex-shrink-0">
                       <img
@@ -249,7 +254,7 @@ export default function Navbar() {
                     </div>
 
                     <div className="flex items-center justify-between w-full gap-3">
-                      <h4 className="font-semibold text-slate-900 whitespace-nowrap overflow-hidden text-ellipsis transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-[#05231C] group-hover:to-[#D4E4BF] group-hover:bg-clip-text group-hover:text-transparent">
+                      <h4 className="font-semibold text-slate-900 whitespace-nowrap overflow-hidden text-ellipsis">
                         AI Market Research
                       </h4>
 
@@ -258,8 +263,7 @@ export default function Navbar() {
                       </span>
                     </div>
 
-                  </div>
-                </Link>
+                </div>
 
               </div>
 

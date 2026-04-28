@@ -5,30 +5,28 @@ import DemoModal from "../components/DemoModal";
 import GrowthCtaSection from "../components/GrowthCtaSection";
 
 // Icons
-import EnterpriseVector from "../assets/images/Home/vector.svg";
-import EnterpriseVectorHover from "../assets/images/Home/vectorHover.svg";
+import EnterpriseVector from "../assets/images/WhatsAppMarketing/vector.svg";
+import EnterpriseVectorHover from "../assets/images/WhatsAppMarketing/vectorHover.svg";
 
-import shopifyl from "../assets/images/Home/Icons/shopify.png";
-import magentol from "../assets/images/Home/Icons/magento.png";
-import woocoml from "../assets/images/Home/Icons/woocom.png";
-import EnterpriseReadyBg from "../assets/images/Home/Enterprise Ready.svg";
-import ShopifyCard from "../assets/images/Shopify/ShopifyCard.svg";
-import HowItWorksBg from "../assets/images/Shopify/HowitWorks.svg.svg";
-import vtoSectionBg from "../assets/images/Vto/sec 2.svg";
-import rightIcon from "../assets/images/Vto/right.svg";
-import wrongIcon from "../assets/images/Vto/wrong.svg";
-import vtoImg from "../assets/images/Vto/vtoImg.png";
-import whatsappTopSectionBg from "../assets/images/whatsapp/topsectionbg.png";
-import logoWithoutName from "../assets/images/logowithoutname.svg";
-import whatsappBrandIcon from "../assets/images/whatsapp/WHATSAPP logo.svg";
-import marketingFlowBg from "../assets/images/whatsapp/Marketing Flow.png";
-import userEngagementIcon from "../assets/images/whatsapp/User Engagement.svg";
-import imageCollectionIcon from "../assets/images/whatsapp/Image Collection.svg";
-import contentGenerationIcon from "../assets/images/whatsapp/Content Generation.svg";
-import automatedDeliveryIcon from "../assets/images/whatsapp/Automated Delivery.svg";
-import leftPopupBg from "../assets/images/whatsapp/leftpopup.png";
-import rightPopupBg from "../assets/images/whatsapp/rightpopup.png";
-import whatsappSectionBg from "../assets/images/whatsapp/whatsappSec2.png";
+import shopifyl from "../assets/images/WhatsAppMarketing/shopify.png";
+import magentol from "../assets/images/WhatsAppMarketing/magento.png";
+import woocoml from "../assets/images/WhatsAppMarketing/woocom.png";
+import ShopifyCard from "../assets/images/WhatsAppMarketing/ShopifyCard.svg";
+import vtoSectionBg from "../assets/images/WhatsAppMarketing/sec 2.svg";
+import vtoImg from "../assets/images/WhatsAppMarketing/vtoImg.png";
+import whatsappTopSectionBg from "../assets/images/WhatsAppMarketing/topsectionbg.png";
+import logoWithoutName from "../assets/images/WhatsAppMarketing/logowithoutname.svg";
+import whatsappBrandIcon from "../assets/images/WhatsAppMarketing/WHATSAPP logo.svg";
+import whatsappSectionLogo from "../assets/images/WhatsAppMarketing/logo.svg";
+import whatsappCardBigBg from "../assets/images/WhatsAppMarketing/CardBig.png";
+import whatsappCardSmallBg from "../assets/images/WhatsAppMarketing/Cardsmall.png";
+import marketingFlowBg from "../assets/images/WhatsAppMarketing/Marketing Flow.png";
+import userEngagementIcon from "../assets/images/WhatsAppMarketing/User Engagement.svg";
+import imageCollectionIcon from "../assets/images/WhatsAppMarketing/Image Collection.svg";
+import contentGenerationIcon from "../assets/images/WhatsAppMarketing/Content Generation.svg";
+import automatedDeliveryIcon from "../assets/images/WhatsAppMarketing/Automated Delivery.svg";
+import otherMobile from "../assets/images/WhatsAppMarketing/otherMobile.png";
+import kactusMobile from "../assets/images/WhatsAppMarketing/kactusMobile.png";
 
 
 const logos = [
@@ -255,35 +253,16 @@ const shopifyFeatureCards = [
   }
 ];
 
-const comparisonRows = [
-  "Choose your workspace plan according to your organisational plan",
-  "AI-Autonomous Campaigns",
-  "Interactive Experience",
-  "Real User Behavior Data",
-  "Behaviour-Driven Personalised Campaigns"
+const whatsappAdvantageOtherBrandMessages = [
+  "Generic product photo",
+  "\"Hi Priya, new arrivals\"",
+  "Customer imagines fit"
 ];
 
-const whatsappGapMessages = [
-  {
-    text: "Lack of personalization",
-    position: "left-0 top-[14%] md:left-[3%] md:top-[20%]",
-    side: "left"
-  },
-  {
-    text: "Low engagement and conversion",
-    position: "right-0 top-[24%] md:right-[3%] md:top-[31%]",
-    side: "right"
-  },
-  {
-    text: "No smart suggestions tailored to user behavior",
-    position: "left-0 bottom-[15%] md:left-[3%] md:bottom-[19%]",
-    side: "left"
-  },
-  {
-    text: "Inconsistent Outreach",
-    position: "right-0 bottom-[4%] md:right-[3%] md:bottom-[3%]",
-    side: "right"
-  }
+const whatsappAdvantageKactusMessages = [
+  "Customer's own image with\nnew shirt",
+  "\"Here's how this looks on you\"",
+  "Customer sees fit"
 ];
 
 const whatsappMarketingFlowSteps = [
@@ -458,8 +437,11 @@ export default function WhatsAppMarketing() {
   const [activeFeatureCard, setActiveFeatureCard] = useState(null);
   const [activeReviewCard, setActiveReviewCard] = useState(null);
   const [openFaqIndex, setOpenFaqIndex] = useState(0);
+  const [activeWhatsappAdvantageStage, setActiveWhatsappAdvantageStage] = useState(0);
   const [isMarketingFlowActive, setIsMarketingFlowActive] = useState(false);
+  const whatsappAdvantageRef = useRef(null);
   const marketingFlowRef = useRef(null);
+  const isWhatsappAdvantageInView = useInView(whatsappAdvantageRef, { amount: 0.45 });
   const isMarketingFlowInView = useInView(marketingFlowRef, { amount: 0.7 });
 
   const heroRevealY = useTransform(scrollY, [0, 500], [0, 110]);
@@ -467,6 +449,22 @@ export default function WhatsAppMarketing() {
   useEffect(() => {
     setIsMarketingFlowActive(isMarketingFlowInView);
   }, [isMarketingFlowInView]);
+
+  useEffect(() => {
+    if (!isWhatsappAdvantageInView) {
+      setActiveWhatsappAdvantageStage(0);
+      return undefined;
+    }
+
+    const interval = window.setInterval(() => {
+      setActiveWhatsappAdvantageStage((current) => (current === 0 ? 1 : 0));
+    }, 2000);
+
+    return () => window.clearInterval(interval);
+  }, [isWhatsappAdvantageInView]);
+
+  const isKactusCardActive = activeWhatsappAdvantageStage === 0;
+  const isOtherBrandsCardActive = !isKactusCardActive;
 
   return (
     <main className="demo-page bg-[#F5F6F2] text-slate-800">
@@ -499,7 +497,7 @@ export default function WhatsAppMarketing() {
                   lineHeight: "56px"
                 }}
               >
-                {"Boost Conversions with\nAI-Driven WhatsApp Marketing"}
+                {"Boost Conversions with\nAI WhatsApp Marketing"}
               </h1>
 
               <p
@@ -513,11 +511,11 @@ export default function WhatsAppMarketing() {
                   lineHeight: "28px"
                 }}
               >
-                Kactus AI introduces a fresh approach to WhatsApp marketing.
+                A fresh approach to WhatsApp Marketing.
               </p>
 
               <p className="mt-7 max-w-[620px] self-stretch text-[15px] leading-[24px] text-white">
-                New arrivals are displayed on the customer&apos;s own photo instead of static images. This creates a more immersive and relevant experience that engages users and facilitates quicker purchasing decisions.
+                  KactusAI WhatsApp Marketing isn’t just messaging, it is an AI-powered  personalization built around user interactions. It uses customers past virtual try-on  images to display new arrivals and trending styles on their own photos, turning generic  campaigns into engaging and impactful experiences that boost conversions.
               </p>
 
               <button
@@ -558,73 +556,217 @@ export default function WhatsAppMarketing() {
         </div>
       </section>
 
-      <section
-        className="relative overflow-hidden px-6 pb-20 pt-10 sm:px-8 md:px-14 md:pb-24 md:pt-14 lg:px-20 xl:px-24"
-        style={{
-          backgroundImage: `url(${whatsappSectionBg})`,
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "center",
-          backgroundSize: "cover"
-        }}
-      >
-        <div className="relative mx-auto max-w-[1320px]">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true, amount: 0.3 }}
-            className="mx-auto flex max-w-[658px] flex-col items-center"
-          >
-            <h2
-              className="text-center"
-              style={{
-                width: "658px",
-                height: "110px",
-                maxWidth: "100%",
-                textAlign: "center",
-                fontFamily: "SF Pro",
-                fontSize: "46px",
-                fontStyle: "normal",
-                fontWeight: 400,
-                lineHeight: "48px",
-                textTransform: "capitalize",
-                background: "linear-gradient(90deg, #06231C 48.13%, #D4E5C0 120.12%)",
-                backgroundClip: "text",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent"
-              }}
-            >
-              Gaps In The Current WhatsApp <br /> Marketing Strategy
-            </h2>
-          </motion.div>
+      <section className="relative overflow-hidden bg-white">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_74%_30%,rgba(223,205,255,0.34),transparent_24%),radial-gradient(circle_at_74%_78%,rgba(204,244,192,0.42),transparent_18%),linear-gradient(180deg,#ffffff_0%,#fdfefd_100%)]" />
 
-          <div className="relative mt-4 min-h-[620px] md:mt-6 md:min-h-[740px]">
-            {whatsappGapMessages.map((message, index) => (
-              <motion.div
-                key={message.text}
-                initial={{
-                  opacity: 0,
-                  y: 34,
-                  x: message.side === "left" ? -36 : 36,
-                  scale: 0.92
+        <div
+          ref={whatsappAdvantageRef}
+          className="relative mx-auto w-full max-w-[1440px] px-6 pt-7 pb-14 sm:px-8 sm:pt-8 sm:pb-14 md:px-14 md:pt-8 md:pb-16 lg:px-20 lg:pt-8 lg:pb-14 xl:h-[773px] xl:px-24 xl:pt-8 xl:pb-0"
+        >
+          <div className="grid h-full items-start gap-9 lg:grid-cols-[minmax(0,60%)_minmax(0,40%)] lg:items-end lg:gap-4">
+            <div className="flex max-w-[700px] flex-col lg:h-full lg:max-w-none">
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true, amount: 0.4 }}
+                className="w-full whitespace-pre-line pb-2"
+                style={{
+                  width: "671px",
+                  maxWidth: "100%",
+                  fontFamily: "SF Pro",
+                  fontSize: "46px",
+                  fontStyle: "normal",
+                  fontWeight: 400,
+                  lineHeight: "52px",
+                  background: "var(--they, linear-gradient(90deg, #06231C 48.13%, #D4E5C0 120.12%))",
+                  backgroundClip: "text",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent"
                 }}
-                whileInView={{ opacity: 1, y: 0, x: 0, scale: 1 }}
-                transition={{ duration: 0.6, delay: index * 0.14, ease: [0.22, 1, 0.36, 1] }}
-                viewport={{ once: false, amount: 0.4 }}
-                className={`relative z-20 mt-6 md:mt-0 md:absolute ${message.position}`}
               >
-                <div
-                  className="relative h-[113px] w-full max-w-[398px] bg-contain bg-center bg-no-repeat px-6 py-6"
-                  style={{
-                    backgroundImage: `url(${message.side === "left" ? leftPopupBg : rightPopupBg})`
-                  }}
-                >
-                  <p className="max-w-[285px] text-[17px] leading-[1.4] text-[#06231C] md:text-[18px]">
-                    {message.text}
+                {"Why This Beats Standard\nWhatsApp Marketing"}
+              </motion.h2>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.08 }}
+                viewport={{ once: true, amount: 0.4 }}
+                className="mt-3 w-full max-w-[671px] text-left"
+                style={{
+                  color: "rgba(0, 0, 0, 0.70)",
+                  textAlign: "left",
+                  fontFamily: "SF Pro",
+                  fontSize: "20px",
+                  fontStyle: "normal",
+                  fontWeight: 400,
+                  lineHeight: "32.5px"
+                }}
+              >
+                Built for scale. Designed for reliability.
+              </motion.p>
+
+              <div className="relative mt-10 h-[392px] sm:h-[430px] md:h-[462px] lg:mt-auto lg:h-[476px]">
+                <div className="absolute bottom-0 left-0 w-full max-w-[379px] lg:left-[4%]">
+                  <p
+                    className="pb-1 text-center"
+                    style={{
+                      color: "#06231C",
+                      fontFamily: "SF Pro",
+                      fontSize: "26px",
+                      fontStyle: "normal",
+                      fontWeight: 400,
+                      lineHeight: "52px"
+                    }}
+                  >
+                    Other Brands
                   </p>
+                  <motion.div
+                    initial={{ opacity: 0, x: -28, y: 20 }}
+                    whileInView={{ opacity: 1, x: 0, y: 0 }}
+                    viewport={{ once: true, amount: 0.35 }}
+                    animate={{
+                      y: 0,
+                      x: isOtherBrandsCardActive ? 0 : -10,
+                      scale: isOtherBrandsCardActive ? 1 : 0.965,
+                      opacity: isOtherBrandsCardActive ? 1 : 0.72,
+                      filter: isOtherBrandsCardActive ? "blur(0px)" : "blur(4px)"
+                    }}
+                    transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                    style={{ width: "379px", maxWidth: "100%", height: "357px", transformOrigin: "bottom center" }}
+                    className="relative overflow-hidden rounded-t-[22px] rounded-b-none shadow-[0_20px_60px_rgba(12,45,37,0.08)]"
+                  >
+                    <img
+                      src={whatsappCardSmallBg}
+                      alt=""
+                      aria-hidden="true"
+                      className="absolute inset-0 h-full w-full object-fill"
+                    />
+                    {whatsappAdvantageOtherBrandMessages.map((message, index) => (
+                      <div
+                        key={message}
+                        className="absolute flex items-center justify-center px-5 text-center"
+                        style={{
+                          color: "#000",
+                          fontFamily: "SF Pro",
+                          fontSize: "20px",
+                          fontStyle: "normal",
+                          fontWeight: 400,
+                          lineHeight: "normal",
+                          left: "5.8%",
+                          width: "71.8%",
+                          height: "22.5%",
+                          top: `${18.3 + index * 22.5}%`
+                        }}
+                      >
+                        {message}
+                      </div>
+                    ))}
+                  </motion.div>
                 </div>
-              </motion.div>
-            ))}
+
+                <div className="absolute bottom-0 left-[31%] z-10 w-full max-w-[379px] md:left-[32%] lg:left-[43%]">
+                  <div className="mb-3 flex items-center justify-center gap-3 text-[#111111]">
+                    <img src={whatsappSectionLogo} alt="Kactus AI" className="h-[38px] w-[38px] object-contain" />
+                    <span
+                      style={{
+                        color: "#000",
+                        textAlign: "center",
+                        fontFamily: "SF Pro",
+                        fontSize: "31.92px",
+                        fontStyle: "normal",
+                        fontWeight: 400,
+                        lineHeight: "normal"
+                      }}
+                    >
+                      Kactus AI
+                    </span>
+                  </div>
+
+                  <motion.div
+                    initial={{ opacity: 0, x: 26, y: 18 }}
+                    whileInView={{ opacity: 1, x: 0, y: 0 }}
+                    viewport={{ once: true, amount: 0.35 }}
+                    animate={{
+                      x: isKactusCardActive ? 0 : 8,
+                      y: 0,
+                      scale: isKactusCardActive ? 1 : 0.97,
+                      opacity: isKactusCardActive ? 1 : 0.74,
+                      filter: isKactusCardActive ? "blur(0px)" : "blur(4px)"
+                    }}
+                    transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                    style={{ width: "379px", maxWidth: "100%", height: "417px", transformOrigin: "bottom center" }}
+                    className="relative overflow-hidden rounded-t-[26px] rounded-b-none shadow-[0_30px_90px_rgba(10,47,37,0.24)]"
+                  >
+                    <img
+                      src={whatsappCardBigBg}
+                      alt=""
+                      aria-hidden="true"
+                      className="absolute inset-0 h-full w-full object-fill"
+                    />
+                    {whatsappAdvantageKactusMessages.map((message, index) => (
+                      <motion.div
+                        key={`${message}-${index}`}
+                        animate={{ opacity: 1, filter: "blur(0px)" }}
+                        transition={{ duration: 0.55, delay: index * 0.03 }}
+                        className="absolute left-1/2 flex -translate-x-1/2 items-center justify-center px-5 text-center"
+                        style={{
+                          color: "#000",
+                          fontFamily: "SF Pro",
+                          fontSize: "18.072px",
+                          fontStyle: "normal",
+                          fontWeight: 510,
+                          lineHeight: "normal",
+                          width: "min(275px, 88.7%)",
+                          height: "26.5%",
+                          top: `${6 + index * 30.8}%`
+                        }}
+                      >
+                        <span className="whitespace-pre-line">{message}</span>
+                      </motion.div>
+                    ))}
+                  </motion.div>
+                </div>
+              </div>
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 26 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+              viewport={{ once: true, amount: 0.35 }}
+              className="relative flex justify-center lg:h-full lg:items-end lg:justify-end"
+            >
+              <div className="absolute left-[8%] top-[18%] h-[220px] w-[220px] rounded-full bg-[#ddccf6]/42 blur-[108px]" />
+              <div className="absolute right-[0%] top-[62%] h-[220px] w-[220px] rounded-full bg-[#d2efb8]/52 blur-[108px]" />
+
+              <div className="relative w-full max-w-[412px] lg:translate-x-1">
+                <AnimatePresence mode="wait" initial={false}>
+                  <motion.img
+                    key={isKactusCardActive ? "kactus-mobile" : "other-mobile"}
+                    src={isKactusCardActive ? kactusMobile : otherMobile}
+                    alt={isKactusCardActive ? "Kactus AI WhatsApp example" : "Standard WhatsApp example"}
+                    initial={{
+                      opacity: 0,
+                      x: isKactusCardActive ? 34 : -34,
+                      scale: 0.985,
+                      filter: "blur(10px)"
+                    }}
+                    animate={{ opacity: 1, x: 0, scale: 1, filter: "blur(0px)" }}
+                    exit={{
+                      opacity: 0,
+                      x: isKactusCardActive ? -26 : 26,
+                      scale: 0.985,
+                      filter: "blur(10px)"
+                    }}
+                    transition={{ duration: 0.72, ease: [0.22, 1, 0.36, 1] }}
+                    className="relative ml-auto block w-full max-w-[412px] object-contain drop-shadow-[0_28px_72px_rgba(0,0,0,0.14)]"
+                    style={{ width: "412px", maxWidth: "100%", height: "692px" }}
+                  />
+                </AnimatePresence>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -757,80 +899,16 @@ export default function WhatsAppMarketing() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-white px-6 py-24 sm:px-8 md:px-14 md:py-28 lg:px-20 xl:px-24">
-        <div className="relative mx-auto max-w-[1320px]">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65 }}
-            viewport={{ once: true }}
-            className="overflow-hidden rounded-[20px] border border-white/60 bg-white/55 shadow-[0_18px_70px_rgba(10,47,37,0.08)] backdrop-blur-[14px]"
-          >
-            <div className="grid grid-cols-[minmax(0,1.2fr)_minmax(220px,1fr)_minmax(220px,1.15fr)] border-b border-[#dbe3ea]">
-              <div className="px-6 py-8 md:px-8">
-                <h3 className="text-[#1d2433] text-[20px] font-medium leading-[1.25]">Features</h3>
-              </div>
-
-              <div className="flex items-center justify-center border-l border-[#dbe3ea] px-6 py-8">
-                <h3 className="text-center text-[#232636] text-[24px] font-medium leading-[1.2]">Other Brands</h3>
-              </div>
-
-              <div className="flex items-center justify-center gap-3 border-l border-[#dbe3ea] px-6 py-8">
-                <img
-                  src={logoWithoutName}
-                  alt="Kactus AI"
-                  className="h-11 w-11 object-contain"
-                />
-                <h3 className="text-center text-[#173A31] text-[24px] font-medium leading-[1.2]">Kactus AI</h3>
-              </div>
-            </div>
-
-            {comparisonRows.map((label, index) => (
-              <div
-                key={label}
-                className={`grid grid-cols-[minmax(0,1.2fr)_minmax(220px,1fr)_minmax(220px,1.15fr)] ${index !== comparisonRows.length - 1 ? "border-b border-[#e4eaf0]" : ""}`}
-              >
-                <div className="px-6 py-5 md:px-8">
-                  <p
-                    className={index === 0 ? "max-w-[250px]" : ""}
-                    style={{
-                      color: index === 0 ? "#8B95AF" : "#232636",
-                      fontFamily: "SF Pro",
-                      fontSize: index === 0 ? "14px" : "16px",
-                      fontStyle: "normal",
-                      fontWeight: index === 0 ? 274 : 400,
-                      lineHeight: index === 0 ? "20px" : "24px"
-                    }}
-                  >
-                    {label}
-                  </p>
-                </div>
-
-                <div className="flex items-center justify-center border-l border-[#e4eaf0] px-6 py-5">
-                  <img
-                    src={wrongIcon}
-                    alt="Not included"
-                    className="h-4 w-4 object-contain"
-                  />
-                </div>
-
-                <div className="flex items-center justify-center border-l border-[#e4eaf0] px-6 py-5">
-                  <img
-                    src={rightIcon}
-                    alt="Included"
-                    className="h-4 w-4 object-contain"
-                  />
-                </div>
-              </div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      
-
-     
-      <GrowthCtaSection onPrimaryClick={() => setIsDemoOpen(true)} />
+      <GrowthCtaSection
+        onPrimaryClick={() => setIsDemoOpen(true)}
+        titleLines={["AI does the work,", "You stay in control"]}
+        subtitle="Scale Your Growth Today."
+        points={[
+          "Grow consistently",
+          "150+ Handcoded",
+          "Optimize intelligently"
+        ]}
+      />
 
       <DemoModal isOpen={isDemoOpen} onClose={() => setIsDemoOpen(false)} />
     </main>

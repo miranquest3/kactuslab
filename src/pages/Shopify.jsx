@@ -1,23 +1,19 @@
 import { useRef, useState } from "react"
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion"
 import { MagneticButton, SectionTitle, RevealImage, StaggerText } from "../components/AnimatedElements"
-import HeroMain from "../assets/images/Home/Hero-Main.png";
 import DemoModal from "../components/DemoModal";
 import GrowthCtaSection from "../components/GrowthCtaSection";
 
 // Icons
-import EnterpriseVector from "../assets/images/Home/vector.svg";
-import EnterpriseVectorHover from "../assets/images/Home/vectorHover.svg";
+import EnterpriseVector from "../assets/images/Shopify/vector.svg";
+import EnterpriseVectorHover from "../assets/images/Shopify/vectorHover.svg";
 
-import shopifyl from "../assets/images/Home/Icons/shopify.png";
-import magentol from "../assets/images/Home/Icons/magento.png";
-import woocoml from "../assets/images/Home/Icons/woocom.png";
-import EnterpriseReadyBg from "../assets/images/Home/Enterprise Ready.svg";
-import demoBg from "../assets/images/Home/demoBg.svg";
-import demoRight from "../assets/images/Home/demoRight.svg";
-import hero from "../assets/images/Home/hero.png";
-import logoWithoutName from "../assets/images/logowithoutname.svg";
-import iphone from "../assets/images/Home/phone.png";
+import shopifyl from "../assets/images/Shopify/shopify.png";
+import magentol from "../assets/images/Shopify/magento.png";
+import woocoml from "../assets/images/Shopify/woocom.png";
+import demoBg from "../assets/images/Shopify/demoBg.svg";
+import demoRight from "../assets/images/Shopify/demoRight.svg";
+import hero from "../assets/images/Shopify/hero.png";
 import ShopifyHeroCard from "../assets/images/Shopify/shopify&WhatsApp.svg";
 import ShopifyCard from "../assets/images/Shopify/ShopifyCard.svg";
 import HowItWorksBg from "../assets/images/Shopify/HowitWorks.svg.svg";

@@ -5,15 +5,13 @@ import DemoModal from "../components/DemoModal";
 import GrowthCtaSection from "../components/GrowthCtaSection";
 
 // Icons
-import EnterpriseVector from "../assets/images/Home/vector.svg";
-import EnterpriseVectorHover from "../assets/images/Home/vectorHover.svg";
+import EnterpriseVector from "../assets/images/Vto/vector.svg";
+import EnterpriseVectorHover from "../assets/images/Vto/vectorHover.svg";
 
-import shopifyl from "../assets/images/Home/Icons/shopify.png";
-import magentol from "../assets/images/Home/Icons/magento.png";
-import woocoml from "../assets/images/Home/Icons/woocom.png";
-import EnterpriseReadyBg from "../assets/images/Home/Enterprise Ready.svg";
-import ShopifyCard from "../assets/images/Shopify/ShopifyCard.svg";
-import HowItWorksBg from "../assets/images/Shopify/HowitWorks.svg.svg";
+import shopifyl from "../assets/images/Vto/shopify.png";
+import magentol from "../assets/images/Vto/magento.png";
+import woocoml from "../assets/images/Vto/woocom.png";
+import ShopifyCard from "../assets/images/Vto/ShopifyCard.svg";
 import browseIcon from "../assets/images/Vto/browse.svg";
 import shouldIBuyIcon from "../assets/images/Vto/Should I buy this.svg";
 import orderPlacedIcon from "../assets/images/Vto/order placed.svg";
@@ -31,8 +29,8 @@ import vtoSectionVector from "../assets/images/Vto/Vector.svg";
 import rightIcon from "../assets/images/Vto/right.svg";
 import wrongIcon from "../assets/images/Vto/wrong.svg";
 import vtoImg from "../assets/images/Vto/vtoImg.png";
-import ShopifyHeroBg from "../assets/images/Shopify/shopifyhero.png";
-import logoWithoutName from "../assets/images/logowithoutname.svg";
+import ShopifyHeroBg from "../assets/images/Vto/shopifyhero.png";
+import logoWithoutName from "../assets/images/Vto/logowithoutname.svg";
 
 
 const logos = [
@@ -334,11 +332,10 @@ const vtoFeatureHighlights = [
 ];
 
 const comparisonRows = [
-  "Choose your workspace plan according to your organisational plan",
-  "Try-On to Discounted Instant Purchase",
-  "Easy Share & Download with Watermark",
-  "Try-On with AI Size Recommendations",
-  "Consistent & Cohesive Brand Experience"
+  "Purchase with instant discounts",
+  "Downloadable watermark",
+  "Smart Size recommendation",
+  "Consistent and cohesive brand experience"
 ];
 
 const shopifyHowItWorksSteps = [
@@ -1104,7 +1101,7 @@ export default function Vto() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.55, delay: index * 0.08 }}
                 viewport={{ once: true }}
-                className="px-6 py-6 text-center"
+                className="transform-gpu rounded-[12px] border border-white/20 bg-white/[0.03] px-6 py-7 text-center transition-all duration-500 ease-out hover:scale-[1.04] hover:border-white/45 hover:bg-white/[0.07] hover:shadow-[0_20px_45px_rgba(0,0,0,0.28)]"
               >
                 <img src={card.icon} alt={card.title} className="mx-auto h-[40.667px] w-[40.667px] object-contain" />
 
@@ -1146,10 +1143,10 @@ export default function Vto() {
       <section className="relative overflow-hidden bg-white px-6 py-24 sm:px-8 md:px-14 md:py-28 lg:px-20 xl:px-24">
         <div className="relative mx-auto max-w-[1320px]">
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: -64 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65 }}
-            viewport={{ once: true }}
+            transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: false, amount: 0.35 }}
             className="overflow-hidden rounded-[20px] border border-white/60 bg-white/55 shadow-[0_18px_70px_rgba(10,47,37,0.08)] backdrop-blur-[14px]"
           >
             <div className="grid grid-cols-[minmax(0,1.2fr)_minmax(220px,1fr)_minmax(220px,1.15fr)] border-b border-[#dbe3ea]">
@@ -1167,7 +1164,7 @@ export default function Vto() {
                   alt="Kactus AI"
                   className="h-11 w-11 object-contain"
                 />
-                <h3 className="text-center text-[#173A31] text-[24px] font-medium leading-[1.2]">Kactus AI</h3>
+                <h3 className="text-center text-[#173A31] text-[24px] font-medium leading-[1.2]">KactusAI</h3>
               </div>
             </div>
 
@@ -1178,14 +1175,14 @@ export default function Vto() {
               >
                 <div className="px-6 py-5 md:px-8">
                   <p
-                    className={index === 0 ? "max-w-[250px]" : ""}
+                    className="max-w-[250px]"
                     style={{
-                      color: index === 0 ? "#8B95AF" : "#232636",
+                      color: "#232636",
                       fontFamily: "SF Pro",
-                      fontSize: index === 0 ? "14px" : "16px",
+                      fontSize: "16px",
                       fontStyle: "normal",
-                      fontWeight: index === 0 ? 274 : 400,
-                      lineHeight: index === 0 ? "20px" : "24px"
+                      fontWeight: 400,
+                      lineHeight: "24px"
                     }}
                   >
                     {label}
@@ -1196,7 +1193,7 @@ export default function Vto() {
                   <img
                     src={wrongIcon}
                     alt="Not included"
-                    className="h-4 w-4 object-contain"
+                    className="h-[36px] w-[36px] object-contain"
                   />
                 </div>
 
@@ -1204,7 +1201,7 @@ export default function Vto() {
                   <img
                     src={rightIcon}
                     alt="Included"
-                    className="h-4 w-4 object-contain"
+                    className="h-[36px] w-[36px] object-contain"
                   />
                 </div>
               </div>
@@ -1216,7 +1213,16 @@ export default function Vto() {
       
 
      
-      <GrowthCtaSection onPrimaryClick={() => setIsDemoOpen(true)} />
+      <GrowthCtaSection
+        onPrimaryClick={() => setIsDemoOpen(true)}
+        titleLines={["AI does the work,", "You stay in control"]}
+        subtitle="Scale Your Growth Today."
+        points={[
+          "Grow consistently",
+          "150+ Handcoded",
+          "Optimize intelligently"
+        ]}
+      />
 
       <DemoModal isOpen={isDemoOpen} onClose={() => setIsDemoOpen(false)} />
     </main>
