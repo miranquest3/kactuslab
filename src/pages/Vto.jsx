@@ -1150,8 +1150,8 @@ export default function Vto() {
             className="overflow-hidden rounded-[20px] border border-white/60 bg-white/55 shadow-[0_18px_70px_rgba(10,47,37,0.08)] backdrop-blur-[14px]"
           >
             <div className="grid grid-cols-[minmax(0,1.2fr)_minmax(220px,1fr)_minmax(220px,1.15fr)] border-b border-[#dbe3ea]">
-              <div className="px-6 py-8 md:px-8">
-                <h3 className="text-[#1d2433] text-[20px] font-medium leading-[1.25]">Features</h3>
+              <div className="flex items-center justify-center px-6 py-8 md:px-8">
+                <h3 className="text-center text-[#232636] text-[24px] font-medium leading-[1.2]">Features</h3>
               </div>
 
               <div className="flex items-center justify-center border-l border-[#dbe3ea] px-6 py-8">
@@ -1173,13 +1173,13 @@ export default function Vto() {
                 key={label}
                 className={`grid grid-cols-[minmax(0,1.2fr)_minmax(220px,1fr)_minmax(220px,1.15fr)] ${index !== comparisonRows.length - 1 ? "border-b border-[#e4eaf0]" : ""}`}
               >
-                <div className="px-6 py-5 md:px-8">
+                <div className="flex items-center px-6 py-5 md:px-8">
                   <p
-                    className="max-w-[250px]"
+                    className="max-w-none whitespace-nowrap"
                     style={{
                       color: "#232636",
                       fontFamily: "SF Pro",
-                      fontSize: "16px",
+                      fontSize: "18px",
                       fontStyle: "normal",
                       fontWeight: 400,
                       lineHeight: "24px"

@@ -8,6 +8,7 @@ import Home from './pages/Home.jsx'
 
 const Outcomes = lazy(() => import('./pages/Outcomes.jsx'))
 const Contact = lazy(() => import('./pages/Contact.jsx'))
+const Integrations = lazy(() => import('./pages/Integrations.jsx'))
 const Feelings = lazy(() => import('./pages/Feelings.jsx'))
 const Shopify = lazy(() => import('./pages/Shopify.jsx'))
 const NotFound = lazy(() => import('./pages/NotFound.jsx'))
@@ -31,6 +32,7 @@ export default function App() {
   const hideGlobalNavbarRoutes = ['/about', '/outcomes']
   const shouldOverlayNavbar = transparentNavbarRoutes.includes(location.pathname)
   const shouldShowGlobalNavbar = !hideGlobalNavbarRoutes.includes(location.pathname)
+  const shouldPreserveStickyScroll = location.pathname === '/feelings'
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -44,13 +46,13 @@ export default function App() {
       {/* Navbar always visible */}
       {shouldShowGlobalNavbar && <Navbar />}
 
-      <div className={`flex-1 overflow-x-hidden ${shouldOverlayNavbar ? '' : 'pt-16'}`}>
+      <div className={`flex-1 ${shouldPreserveStickyScroll ? 'overflow-x-clip' : 'overflow-x-hidden'} ${shouldOverlayNavbar ? '' : 'pt-16'}`}>
         <AnimatePresence mode="wait">
           <motion.div
             key={location.pathname}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
+            initial={shouldPreserveStickyScroll ? { opacity: 0 } : { opacity: 0, y: 20 }}
+            animate={shouldPreserveStickyScroll ? { opacity: 1 } : { opacity: 1, y: 0 }}
+            exit={shouldPreserveStickyScroll ? { opacity: 0 } : { opacity: 0, y: -20 }}
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           >
             <Suspense fallback={<RouteLoader />}>
@@ -60,7 +62,7 @@ export default function App() {
                 <Route path="/about" element={<Navigate to="/outcomes" replace />} />
                 <Route path="/outcomes" element={<Outcomes />} />
                 <Route path="/contact" element={<Contact />} />
-                <Route path="/integrations" element={<Navigate to="/feelings" replace />} />
+                <Route path="/integrations" element={<Integrations />} />
                 <Route path="/feelings" element={<Feelings />} />
                 <Route path="/shopify" element={<Shopify />} />
                 <Route path="/vto" element={<Vto />} />
@@ -77,7 +79,7 @@ export default function App() {
         </AnimatePresence>
       </div>
 
-      {/* Footer always visible */}
+      {/* Footer */}
       <Footer />
     </div>
   )

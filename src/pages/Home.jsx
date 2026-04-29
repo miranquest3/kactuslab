@@ -11,10 +11,11 @@ import woocoml from "../assets/images/Home/Icons/woocom.png";
 import cardBg from "../assets/images/Home/cardbg.png";
 import whatsappIcon from "../assets/images/Home/whatsapp.svg";
 import aiProductIcon from "../assets/images/Home/aiProduct.svg";
-import marketResearchIcon from "../assets/images/Home/market resecher.svg";
+import marketResearchIcon from "../assets/images/Home/MARKET RESEARCH.png";
+import socialMediaMarketingIcon from "../assets/images/Home/SOCIAL MEDIA MARKETING.png";
 import websiteManagementIcon from "../assets/images/Home/web-management 1.png";
 import vtoFeatureIcon from "../assets/images/Home/vto.png";
-import inventoryManagementIcon from "../assets/images/Home/inventory-management 2.png";
+import inventoryManagementIcon from "../assets/images/Home/INVENTORY MANAGEMENT.png";
 import enterpriceFast from "../assets/images/Home/enterpriceFast.svg";
 import enterpriceRealtime from "../assets/images/Home/enterpriceRealtime.svg";
 import enterpriceDown from "../assets/images/Home/enterpricedown.svg";
@@ -22,7 +23,7 @@ import enterpriseApi from "../assets/images/Home/enterpriseApi.svg";
 import finalBg from "../assets/images/Home/finalBg.png";
 import finalHand from "../assets/images/Home/finalHand.png";
 import thirdContainerBg from "../assets/images/Home/3rdContainer.png";
-import handPhoneF from "../assets/images/Home/handPhoneF.png";
+import finalWhatsapp from "../assets/images/Home/finalWhatsapp.png";
 import cardsOutcome from "../assets/images/Home/cardsOutcome.png";
 import graphicAnimation from "../assets/images/Home/graphic animation.mp4";
 import poweredBg from "../assets/images/Home/poweredBg.png";
@@ -250,6 +251,7 @@ const featureShowcaseCards = [
     description: "Kactus AI provides customers with a visual representation of the outfit along with AI size recommendations before they check out.",
     icon: vtoFeatureIcon,
     iconAlt: "Virtual try-on",
+    iconClassName: "h-[72px] w-[72px]",
     buttonLabel: "Know more",
     glow: "rgba(214, 233, 200, 0.34)"
   },
@@ -274,6 +276,7 @@ const featureShowcaseCards = [
     description: "Kactus AI Market Research helps businesses grow by analysing target audiences, competitors, and market trends.",
     icon: marketResearchIcon,
     iconAlt: "Market research",
+    titleWeight: 560,
     buttonLabel: "Coming soon",
     comingSoon: true,
     glow: "rgba(206, 232, 214, 0.28)"
@@ -281,7 +284,9 @@ const featureShowcaseCards = [
   {
     title: "SOCIAL MEDIA MARKETING",
     description: "Manage Instagram, Facebook, and Gmail accounts by creating posts, engaging with followers, and posting. Kactus AI handles it all.",
-    iconType: "social-media",
+    icon: socialMediaMarketingIcon,
+    iconAlt: "Social media marketing",
+    titleWeight: 560,
     buttonLabel: "Coming soon",
     comingSoon: true,
     glow: "rgba(211, 233, 223, 0.28)"
@@ -291,6 +296,7 @@ const featureShowcaseCards = [
     description: "Manage and update your website entirely through WhatsApp. Change theme, layout, and content hassle free. No developers. No delays.",
     icon: websiteManagementIcon,
     iconAlt: "Website management",
+    titleWeight: 560,
     buttonLabel: "Coming soon",
     comingSoon: true,
     glow: "rgba(219, 236, 223, 0.28)"
@@ -300,6 +306,7 @@ const featureShowcaseCards = [
     description: "Kactus AI helps brands avoid stockouts and overstocking of inventories.",
     icon: inventoryManagementIcon,
     iconAlt: "Inventory management",
+    titleWeight: 560,
     buttonLabel: "Coming soon",
     comingSoon: true,
     glow: "rgba(228, 236, 210, 0.28)"
@@ -618,7 +625,7 @@ function FeatureShowcaseCard({
     fontFamily: '"SF Pro"',
     fontSize: compact ? "13px" : "16px",
     fontStyle: "normal",
-    fontWeight: 700,
+    fontWeight: card.titleWeight || 700,
     lineHeight: compact ? "15px" : "19px",
     letterSpacing: "-0.187px",
     textTransform: "uppercase",
@@ -751,7 +758,7 @@ function FeatureShowcaseCard({
             <img
               src={card.icon}
               alt={card.iconAlt}
-              className={`${iconClass} object-contain`}
+              className={`${card.iconClassName || iconClass} object-contain`}
             />
           )}
         </div>
@@ -1601,7 +1608,7 @@ export default function Home() {
       </section> */}
      
 
-      <section className="relative bg-[#F5F6F2] px-4 py-14 sm:px-6 md:py-20 lg:px-8">
+      <section className="relative bg-[#ffffff] px-4 py-14 sm:px-6 md:py-20 lg:px-8">
         <div className="mx-auto max-w-[1190px]">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -1719,7 +1726,7 @@ export default function Home() {
     </motion.div>
 
     <motion.img
-      src={handPhoneF}
+      src={finalWhatsapp}
       alt="Hand holding phone"
       initial={{ opacity: 0, x: 72 }}
       whileInView={{ opacity: 1, x: 0 }}
