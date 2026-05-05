@@ -1,4 +1,5 @@
 import { useRef, useState } from "react"
+import { Link } from "react-router-dom"
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion"
 import { MagneticButton, SectionTitle, RevealImage, StaggerText } from "../components/AnimatedElements"
 import DemoModal from "../components/DemoModal";
@@ -18,6 +19,7 @@ import ShopifyHeroCard from "../assets/images/Shopify/shopify&WhatsApp.svg";
 import ShopifyCard from "../assets/images/Shopify/ShopifyCard.svg";
 import HowItWorksBg from "../assets/images/Shopify/HowitWorks.svg.svg";
 import ShopifyHeroBg from "../assets/images/Shopify/shopifyhero.png";
+import whatsappMobileBg from "../assets/images/WhatsAppMarketing/mobileBg.png";
 
 
 const logos = [
@@ -383,6 +385,42 @@ function FeatureShowcaseCard({ card, index, activeCard, setActiveCard }) {
   )
 }
 
+function ShopifyHowItWorksMobileCard({ step, index }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 42, filter: "blur(10px)" }}
+      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+      transition={{ duration: 0.8, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
+      viewport={{ once: false, amount: 0.15 }}
+      className="mx-auto w-full text-center"
+      style={{ willChange: "transform, opacity, filter" }}
+    >
+      <div className="mx-auto flex h-[31px] w-[31px] items-center justify-center">
+        <img
+          src={EnterpriseVector}
+          alt=""
+          aria-hidden="true"
+          className="h-[31px] w-[31px] object-contain brightness-0 invert opacity-95"
+        />
+      </div>
+
+      <h3
+        className="mt-4 text-[16px] font-semibold leading-[1.18] text-white"
+        style={{ fontFamily: '"SF Pro", sans-serif' }}
+      >
+        {step.title}
+      </h3>
+
+      <p
+        className="mx-auto mt-2 max-w-[170px] text-[15px] leading-[1.34] text-white"
+        style={{ fontFamily: '"SF Pro", sans-serif' }}
+      >
+        {step.description}
+      </p>
+    </motion.div>
+  )
+}
+
 export default function Shopify() {
   const { scrollY } = useScroll();
   const [isDemoOpen, setIsDemoOpen] = useState(false);
@@ -401,19 +439,29 @@ export default function Shopify() {
           alt=""
           aria-hidden="true"
           style={{ y: heroRevealY }}
-          className="absolute inset-0 h-full w-full object-cover object-left"
+          className="absolute inset-0 hidden h-full w-full object-cover object-left md:block"
+        />
+        <motion.img
+          src={whatsappMobileBg}
+          alt=""
+          aria-hidden="true"
+          style={{ y: heroRevealY }}
+          className="absolute inset-0 h-full w-full object-cover object-center md:hidden"
         />
 
-        <div className="relative z-10 flex min-h-screen items-center pb-16 pt-28 pl-6 pr-0 sm:pl-8 sm:pr-0 md:pl-14 md:pr-0 md:pt-32 lg:pl-20 lg:pr-0 xl:pl-24 xl:pr-0">
-          <div className="grid w-full items-center gap-14 lg:grid-cols-[minmax(0,1fr)_577px] lg:gap-12">
+        <div className="relative z-10 flex min-h-[100svh] items-center justify-center px-4 pb-14 pt-24 sm:px-6 md:min-h-screen md:items-center md:justify-start md:pb-16 md:pt-32 md:pl-14 md:pr-0 lg:pl-20 lg:pr-0 xl:pl-24 xl:pr-0">
+          <div className="mx-auto grid w-full max-w-[340px] items-center gap-5 md:mx-0 md:max-w-none md:gap-14 lg:grid-cols-[minmax(0,1fr)_577px] lg:gap-12">
             <motion.div
               initial={{ opacity: 0, y: 28 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
-              className="max-w-[540px]"
+              className="order-2 mx-auto max-w-[296px] text-center md:order-none md:mx-0 md:max-w-[540px] md:text-left"
             >
+              <h1 className="text-center text-[26px] font-normal leading-[1.05] text-white md:hidden">
+                KactusAI + Shopify
+              </h1>
               <h1
-                className="whitespace-nowrap self-stretch text-white"
+                className="hidden whitespace-nowrap self-stretch text-white md:block"
                 style={{
                   color: "#FFF",
                   fontFamily: "SF Pro",
@@ -426,36 +474,44 @@ export default function Shopify() {
                 Kactus AI + Shopify
               </h1>
 
-              <p className="mt-4 max-w-[500px] text-[18px] leading-[1.22] text-white md:text-[18px]">
+              <p className="mx-auto mt-1.5 max-w-[270px] text-center text-[12px] leading-[1.2] text-white/80 md:hidden">
+                Turn every product page into an interactive try-on experience.
+              </p>
+
+              <p className="mt-4 hidden max-w-[500px] text-[18px] leading-[1.22] text-white md:block md:text-[18px]">
                 Kactus AI turns a single WhatsApp message into complete business execution on its own through:
               </p>
 
-              <button
-                type="button"
-                onClick={() => setIsDemoOpen(true)}
-                className="mt-7 inline-flex h-12 items-center justify-center rounded-[4px] bg-[#D4E5C0] px-[27px] text-[15px] font-medium text-[#06231C] transition-all duration-300 hover:translate-y-[-1px] hover:bg-[#dbe9ca]"
+              <p className="mx-auto mt-5 max-w-[292px] text-center text-[12px] leading-[1.18] text-white/80 md:hidden">
+                Install Try on by Kactus and your Shopify store can instantly offer virtual try-on for your products. Customers can see how items look in real time, increasing confidence, engagement, and conversions without complex setup.
+              </p>
+
+              <Link
+                to="/contact"
+                className="mt-11 inline-flex h-[29px] items-center justify-center rounded-[3px] bg-[#D4E5C0] px-[21px] text-[10px] font-medium uppercase text-[#06231C] transition-all duration-300 hover:translate-y-[-1px] hover:bg-[#dbe9ca] md:mt-7 md:h-12 md:rounded-[4px] md:px-[27px] md:text-[15px] md:normal-case"
               >
-                Connect Shopify
-              </button>
+                <span className="md:hidden">Book a Demo</span>
+                <span className="hidden md:inline">Connect Shopify</span>
+              </Link>
             </motion.div>
 
             <motion.div
               initial={{ opacity: 0, x: 40 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-              className="flex justify-center lg:justify-end"
+              className="order-1 flex justify-center md:order-none lg:justify-end"
             >
               <img
                 src={ShopifyHeroCard}
                 alt="Kactus AI and Shopify integration"
-                className="w-full max-w-[577px] rounded-[7px] object-contain shadow-[0_24px_80px_rgba(6,35,28,0.28)] lg:mr-0"
+                className="w-full max-w-[310px] rounded-[8px] object-contain shadow-[0_20px_55px_rgba(6,35,28,0.22)] md:max-w-[577px] md:rounded-[7px] md:shadow-[0_24px_80px_rgba(6,35,28,0.28)] lg:mr-0"
               />
             </motion.div>
           </div>
         </div>
       </section>
 
-      <section className="bg-white px-6 py-16 sm:px-8 md:px-14 md:py-20 lg:px-20 xl:px-24">
+      <section className="bg-white px-6 py-7 sm:px-8 md:px-14 md:py-20 lg:px-20 xl:px-24">
         <div className="mx-auto max-w-[1320px]">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -464,8 +520,13 @@ export default function Shopify() {
             viewport={{ once: true }}
             className="mx-auto flex w-full justify-center text-center"
           >
+            <h2 className="text-center text-[22px] font-normal leading-[1.18] tracking-[-0.01em] text-[#06231C] md:hidden">
+              What You Can Do <span className="text-[#7F9588]">With</span>
+              <br />
+              Shopify + KactusAI
+            </h2>
             <h2
-              className="text-center"
+              className="hidden text-center md:block"
               style={{
                 width: "658px",
                 height: "110px",
@@ -485,15 +546,16 @@ export default function Shopify() {
             </h2>
           </motion.div>
 
-          <div className="mt-12 grid gap-7 lg:grid-cols-3">
-            {shopifyFeatureCards.map((card, index) => (
+          <div className="mt-6 overflow-hidden lg:mt-12 lg:overflow-visible">
+            <div className="flex w-max gap-5 animate-shopify-mobile-scroll lg:grid lg:w-full lg:animate-none lg:grid-cols-3 lg:gap-7">
+            {[...shopifyFeatureCards, ...shopifyFeatureCards].map((card, index) => (
               <motion.article
-                key={card.title}
+                key={`${card.title}-${index}`}
                 initial={{ opacity: 0, y: 28 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.55, delay: index * 0.08 }}
                 viewport={{ once: true }}
-                className="min-h-[218px] bg-cover bg-center bg-no-repeat px-5 pb-6 pt-5 text-white"
+                className={`${index >= shopifyFeatureCards.length ? "lg:hidden" : ""} min-h-[193px] w-[277px] shrink-0 overflow-hidden rounded-[6px] bg-cover bg-center bg-no-repeat px-5 pb-5 pt-7 text-white lg:min-h-[218px] lg:w-auto lg:rounded-none lg:pb-6 lg:pt-5`}
                 style={{ backgroundImage: `url(${ShopifyCard})` }}
               >
                 <div className="flex h-full flex-col">
@@ -523,11 +585,114 @@ export default function Shopify() {
                 </div>
               </motion.article>
             ))}
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="bg-white px-0 py-0">
+      <section className="relative overflow-hidden bg-[#06231C] py-0 md:hidden">
+        <div className="relative isolate min-h-[516px] overflow-hidden">
+          <div className="pointer-events-none absolute inset-0">
+            <div className="absolute inset-0 bg-[#06231C]" />
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 1.1, ease: "easeOut" }}
+              viewport={{ once: false, amount: 0.45 }}
+              className="absolute inset-0"
+              style={{
+                background: `
+                  radial-gradient(72% 88% at 50% -24%, rgba(212, 229, 192, 0.68) 0%, rgba(118, 127, 106, 0.22) 36%, rgba(6, 35, 28, 0) 67%),
+                  radial-gradient(24% 54% at 2% 64%, rgba(212, 229, 192, 0.18) 0%, rgba(6, 35, 28, 0) 76%),
+                  radial-gradient(24% 54% at 98% 100%, rgba(212, 229, 192, 0.26) 0%, rgba(6, 35, 28, 0) 74%)
+                `
+              }}
+            />
+            <svg
+              viewBox="0 0 390 516"
+              className="absolute inset-0 h-full w-full"
+              preserveAspectRatio="none"
+              aria-hidden="true"
+            >
+              {[205, 260, 315].map((radius, index) => (
+                <circle
+                  key={`shopify-how-mobile-ring-${radius}`}
+                  cx="195"
+                  cy="-34"
+                  r={radius}
+                  fill="none"
+                  stroke="white"
+                  strokeWidth="1.2"
+                  strokeOpacity={index === 0 ? 0.12 : index === 1 ? 0.09 : 0.07}
+                />
+              ))}
+            </svg>
+          </div>
+
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-x-0 top-0 z-[1] flex -translate-y-[30%] justify-center"
+          >
+            <motion.div
+              animate={{
+                opacity: [0.18, 0.34, 0.58, 0.34],
+                scale: [0.9, 0.97, 1.05, 0.98],
+                y: [0, 0, 6, 0]
+              }}
+              transition={{
+                duration: 6.2,
+                delay: 0.12,
+                times: [0, 0.2, 0.6, 1],
+                ease: "easeInOut",
+                repeat: Infinity,
+                repeatType: "mirror"
+              }}
+              className="h-[190px] w-[360px] rounded-[1145.655px]"
+              style={{
+                background: "linear-gradient(180deg, rgba(212, 229, 192, 0.67) 112.39%, rgba(118, 127, 106, 0.67) 124.06%)",
+                filter: "blur(100px)",
+                willChange: "transform, opacity"
+              }}
+            />
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: -28, filter: "blur(8px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ duration: 0.78, delay: 0.14, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: false, amount: 0.2 }}
+            className="absolute inset-x-0 top-[35px] z-20 mx-auto w-full px-5 text-center"
+            style={{ willChange: "transform, opacity, filter" }}
+          >
+            <h2
+              className="whitespace-nowrap text-[34px] font-normal leading-[1.05] tracking-[-0.035em] text-white"
+              style={{ fontFamily: '"SF Pro", sans-serif' }}
+            >
+              How it Works
+            </h2>
+            <p
+              className="mx-auto mt-4 max-w-[260px] text-[16px] leading-[1.35] text-white"
+              style={{ fontFamily: '"SF Pro", sans-serif' }}
+            >
+              Built for scale. Designed for reliability.
+            </p>
+          </motion.div>
+
+          <div className="relative z-10 mx-auto max-w-[430px] px-5 pb-10 pt-[145px]">
+            <div className="grid grid-cols-2 gap-x-6 gap-y-[47px]">
+              {[shopifyHowItWorksSteps[0], shopifyHowItWorksSteps[2], shopifyHowItWorksSteps[3], shopifyHowItWorksSteps[1]].map((step, index) => (
+                <ShopifyHowItWorksMobileCard
+                  key={`${step.title}-mobile-how-${index}`}
+                  step={step}
+                  index={index}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="hidden bg-white px-0 py-0 md:block">
         <div
           className="mx-auto min-h-[392px] w-full bg-cover bg-center bg-no-repeat px-6 py-16 sm:px-8 md:px-14 lg:px-20 xl:px-24"
           style={{ backgroundImage: `url(${HowItWorksBg})` }}
@@ -597,7 +762,7 @@ export default function Shopify() {
         </div>
       </section>
 
-      <GrowthCtaSection onPrimaryClick={() => setIsDemoOpen(true)} />
+      <GrowthCtaSection />
 
       <DemoModal isOpen={isDemoOpen} onClose={() => setIsDemoOpen(false)} />
     </main>

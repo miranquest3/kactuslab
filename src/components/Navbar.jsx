@@ -10,6 +10,84 @@ import ftlockHover from "../assets/images/Features/VTO G.png"
 import lock from "../assets/images/Features/lock.png"
 import lockHover from "../assets/images/Features/Lock G.png"
 
+const featureMenuItems = [
+  {
+    label: "Virtual Try-On",
+    to: "/vto",
+    icon: ftlock,
+    iconHover: ftlockHover
+  },
+  {
+    label: "AI Whatsapp Marketing",
+    to: "/ai-whatsapp-marketing",
+    icon: lock,
+    iconHover: lockHover
+  },
+  {
+    label: "AI Product Photoshoot",
+    to: "/ai-photoshoot",
+    icon: lock,
+    iconHover: lockHover
+  },
+  {
+    label: "AI Marketing Research",
+    comingSoon: true,
+    icon: lock,
+    iconHover: lockHover
+  }
+]
+
+function FeatureMenuIcon({ item }) {
+  return (
+    <span className="relative flex h-[clamp(36px,2.35vw,44px)] w-[clamp(36px,2.35vw,44px)] shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#14382e] shadow-[inset_0_0_16px_rgba(212,228,191,0.42)]">
+      <img
+        src={item.icon}
+        alt=""
+        aria-hidden="true"
+        className="absolute h-[clamp(17px,1.2vw,21px)] w-[clamp(17px,1.2vw,21px)] object-contain brightness-0 invert transition duration-300 group-hover:opacity-0"
+      />
+      <img
+        src={item.iconHover}
+        alt=""
+        aria-hidden="true"
+        className="absolute h-[clamp(17px,1.2vw,21px)] w-[clamp(17px,1.2vw,21px)] object-contain opacity-0 transition duration-300 group-hover:opacity-100"
+      />
+    </span>
+  )
+}
+
+function FeatureMenuItem({ item }) {
+  const content = (
+    <div className="group flex min-h-[clamp(46px,3.35vw,54px)] w-full items-center gap-[clamp(9px,0.75vw,14px)] rounded-md px-2 py-1 transition duration-200 hover:bg-[#f6faf1]">
+      <FeatureMenuIcon item={item} />
+      <div className="flex min-w-0 flex-1 items-center gap-[clamp(8px,0.7vw,12px)]">
+        <span className="min-w-0 flex-1 overflow-hidden text-[clamp(14px,0.92vw,17px)] font-medium leading-[1.12] text-[#171717] [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2]">
+          {item.label}
+        </span>
+        {item.comingSoon && (
+          <span className="shrink-0 rounded-full bg-[#eaf1e3] px-[clamp(8px,0.7vw,13px)] py-[clamp(4px,0.36vw,7px)] text-[clamp(8px,0.5vw,9px)] font-medium text-[#17362d]">
+            Coming Soon
+          </span>
+        )}
+      </div>
+    </div>
+  )
+
+  if (item.to) {
+    return (
+      <Link to={item.to} className="block">
+        {content}
+      </Link>
+    )
+  }
+
+  return (
+    <div aria-disabled="true" className="cursor-not-allowed">
+      {content}
+    </div>
+  )
+}
+
 export default function Navbar() {
   const { user, logout } = useAuth()
   const navigate = useNavigate()
@@ -20,10 +98,23 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const lastScrollYRef = useRef(0)
   const tickingRef = useRef(false)
+  const dropdownCloseTimerRef = useRef(null)
 
-  // ✅ NEW: dropdown state
   const [showDropdown, setShowDropdown] = useState(false)
   const [showMobileFeatures, setShowMobileFeatures] = useState(false)
+
+  const openFeatureDropdown = () => {
+    if (dropdownCloseTimerRef.current) {
+      clearTimeout(dropdownCloseTimerRef.current)
+    }
+    setShowDropdown(true)
+  }
+
+  const closeFeatureDropdown = () => {
+    dropdownCloseTimerRef.current = setTimeout(() => {
+      setShowDropdown(false)
+    }, 90)
+  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -44,7 +135,12 @@ export default function Navbar() {
     }
 
     window.addEventListener("scroll", handleScroll, { passive: true })
-    return () => window.removeEventListener("scroll", handleScroll)
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+      if (dropdownCloseTimerRef.current) {
+        clearTimeout(dropdownCloseTimerRef.current)
+      }
+    }
   }, [])
 
   const menuVariants = {
@@ -76,26 +172,28 @@ export default function Navbar() {
     open: { opacity: 1, x: 0 }
   }
 
-  const transparentNavbarRoutes = ["/", "/integrations", "/feelings", "/shopify", "/vto", "/ai-whatsapp-marketing"]
+  const transparentNavbarRoutes = ["/", "/outcomes", "/integrations", "/feelings", "/shopify", "/vto", "/ai-whatsapp-marketing"]
   const shouldOverlayHero = transparentNavbarRoutes.includes(location.pathname)
-  const useTransparentNavbarStyle = shouldOverlayHero && !scrolled
+  const useTransparentNavbarStyle = shouldOverlayHero && !scrolled && !showDropdown
 
   return (
     <motion.nav
       initial={{ y: 0 }}
       animate={{ y: showNav ? 0 : -100 }}
       transition={{ duration: 0.3 }}
-      className={`${useTransparentNavbarStyle ? "absolute" : "fixed"} top-0 left-0 w-full z-40 px-4 py-4 sm:px-6 lg:px-10 flex items-center justify-between transition-colors duration-300
+      className={`${useTransparentNavbarStyle ? "absolute" : "fixed"} top-0 left-0 w-full z-[90] px-4 py-4 sm:px-6 lg:px-10 flex items-center justify-between transition-colors duration-300
       ${useTransparentNavbarStyle
           ? "bg-transparent border-transparent shadow-none backdrop-blur-none"
-          : "bg-white/80 backdrop-blur-lg border-b border-slate-200 shadow-sm"
+          : showDropdown
+            ? "bg-white border-b border-dashed border-[#dfe5df] shadow-none backdrop-blur-none"
+            : "bg-white/80 backdrop-blur-lg border-b border-slate-200 shadow-sm"
         }`}
     >
       {/* Logo */}
       <Link to="/" className="group flex items-center gap-3">
         <motion.img
           whileHover={{ scale: 1.08 }}
-          src={useTransparentNavbarStyle ? logo2 : logo}
+          src={open ? logo : useTransparentNavbarStyle ? logo2 : logo}
           alt="Kactus Logo"
           className="h-8 w-auto"
         />
@@ -103,26 +201,25 @@ export default function Navbar() {
 
       {/* Center Tabs */}
       <div
-        className={`absolute left-1/2 hidden -translate-x-1/2 items-center gap-10 font-normal md:flex ${useTransparentNavbarStyle ? "text-white" : "text-slate-700"}`}
+        className={`absolute left-1/2 hidden -translate-x-1/2 items-center gap-10 font-normal md:flex ${useTransparentNavbarStyle ? "text-white" : "text-[#111111]"}`}
       >
 
-        {/* ✅ Features with dropdown */}
+        {/* Features with dropdown */}
         <div
           className="relative"
-          onMouseEnter={() => setShowDropdown(true)}
-          onMouseLeave={() => setShowDropdown(false)}
+          onMouseEnter={openFeatureDropdown}
+          onMouseLeave={closeFeatureDropdown}
         >
           <motion.div whileHover={{ y: -2 }}>
             <button
               type="button"
               aria-expanded={showDropdown}
               onClick={() => setShowDropdown((prev) => !prev)}
-              className="cursor-pointer hover:text-emerald-600 transition flex items-center gap-1"
+              className="flex cursor-pointer items-center gap-1 transition hover:text-emerald-600"
             >
               Features
-              {/* Small arrow icon */}
               <svg
-                className="w-4 h-4 mt-[2px]"
+                className={`mt-[1px] h-3.5 w-3.5 transition-transform duration-200 ${showDropdown ? "rotate-180" : ""}`}
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="2"
@@ -132,143 +229,6 @@ export default function Navbar() {
               </svg>
             </button>
           </motion.div>
-
-          {/* Invisible hover bridge */}
-          {showDropdown && (
-            <div className="absolute top-full left-0 w-full h-4"></div>
-          )}
-
-          {/* Dropdown */}
-          {showDropdown && (
-            <div className="absolute top-[calc(100%+8px)] left-1/2 -translate-x-1/2 w-[560px] bg-white shadow-xl rounded-2xl p-6 grid grid-cols-2 gap-6 border border-slate-200 transition-all duration-200">
-
-              {/* Column 1 */}
-              <div className="space-y-4">
-
-                {/* Virtual Try-On */}
-                <Link to="/vto">
-                  <div className="group flex items-center gap-3 p-2 rounded-lg cursor-pointer transition-all duration-300 hover:scale-105">
-
-                    {/* ICON FIX */}
-                    <div className="relative w-5 h-5 flex-shrink-0">
-                      <img
-                        src={ftlock}
-                        alt="vto"
-                        className="absolute inset-0 w-5 h-5 object-contain transition duration-300 group-hover:opacity-0"
-                      />
-                      <img
-                        src={ftlockHover}
-                        alt="vto"
-                        className="absolute inset-0 w-5 h-5 object-contain opacity-0 transition duration-300 group-hover:opacity-100"
-                      />
-                    </div>
-
-                    <h4 className="font-semibold text-slate-900 whitespace-nowrap transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-[#05231C] group-hover:to-[#D4E4BF] group-hover:bg-clip-text group-hover:text-transparent">
-                      Virtual Try-On
-                    </h4>
-
-                  </div>
-                </Link>
-
-                {/* AI Product Photoshoot */}
-                <div
-                  className="group flex items-center gap-3 rounded-lg p-2 opacity-80 cursor-not-allowed"
-                  aria-disabled="true"
-                >
-
-                    <div className="relative w-5 h-5 flex-shrink-0">
-                      <img
-                        src={lock}
-                        alt="photoshoot"
-                        className="absolute inset-0 w-5 h-5 object-contain transition group-hover:opacity-0"
-                      />
-                      <img
-                        src={lockHover}
-                        alt="photoshoot"
-                        className="absolute inset-0 w-5 h-5 object-contain opacity-0 transition group-hover:opacity-100"
-                      />
-                    </div>
-
-                    <div className="flex items-center justify-between w-full gap-3">
-                      <h4 className="font-semibold text-slate-900 whitespace-nowrap overflow-hidden text-ellipsis">
-                        AI Product Photoshoot
-                      </h4>
-
-                      <span className="text-[10px] font-medium text-[#06231C] bg-[#D4E4BF]/40 px-2 py-[2px] rounded-full whitespace-nowrap shrink-0">
-                        Coming Soon
-                      </span>
-                    </div>
-
-                </div>
-
-              </div>
-
-              {/* Column 2 */}
-              <div className="space-y-4">
-
-                {/* AI WhatsApp Marketing */}
-                <Link to="/ai-whatsapp-marketing">
-                  <div className="group flex items-center gap-3 p-2 rounded-lg cursor-pointer transition-all duration-300 hover:scale-105">
-
-                    <div className="relative w-5 h-5 flex-shrink-0">
-                      <img
-                        src={ftlock}
-                        alt="whatsapp"
-                        className="absolute inset-0 w-5 h-5 object-contain transition group-hover:opacity-0"
-                      />
-                      <img
-                        src={ftlockHover}
-                        alt="whatsapp"
-                        className="absolute inset-0 w-5 h-5 object-contain opacity-0 transition group-hover:opacity-100"
-                      />
-                    </div>
-
-                    <div className="flex items-center justify-between w-full gap-3">
-                      <h4 className="font-semibold text-slate-900 whitespace-nowrap overflow-hidden text-ellipsis transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-[#05231C] group-hover:to-[#D4E4BF] group-hover:bg-clip-text group-hover:text-transparent">
-                        AI WhatsApp Marketing
-                      </h4>
-
-                      
-                    </div>
-
-                  </div>
-                </Link>
-
-                {/* AI Market Research */}
-                <div
-                  className="group flex items-center gap-3 rounded-lg p-2 opacity-80 cursor-not-allowed"
-                  aria-disabled="true"
-                >
-
-                    <div className="relative w-5 h-5 flex-shrink-0">
-                      <img
-                        src={lock}
-                        alt="research"
-                        className="absolute inset-0 w-5 h-5 object-contain transition group-hover:opacity-0"
-                      />
-                      <img
-                        src={lockHover}
-                        alt="research"
-                        className="absolute inset-0 w-5 h-5 object-contain opacity-0 transition group-hover:opacity-100"
-                      />
-                    </div>
-
-                    <div className="flex items-center justify-between w-full gap-3">
-                      <h4 className="font-semibold text-slate-900 whitespace-nowrap overflow-hidden text-ellipsis">
-                        AI Market Research
-                      </h4>
-
-                      <span className="text-[10px] font-medium text-[#06231C] bg-[#D4E4BF]/40 px-2 py-[2px] rounded-full whitespace-nowrap shrink-0">
-                        Coming Soon
-                      </span>
-                    </div>
-
-                </div>
-
-              </div>
-
-            </div>
-          )}
 
         </div>
         {/* Other Tabs (unchanged) */}
@@ -292,6 +252,73 @@ export default function Navbar() {
 
       </div>
 
+      <AnimatePresence>
+        {showDropdown && (
+          <motion.div
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.18, ease: "easeOut" }}
+            onMouseEnter={openFeatureDropdown}
+            onMouseLeave={closeFeatureDropdown}
+            className="absolute left-0 top-full z-40 hidden w-screen border-y border-dashed border-[#dfe5df] bg-white text-[#111111] shadow-none md:block"
+          >
+            <div className="relative mx-auto grid h-[clamp(136px,9vw,160px)] max-w-[1920px] grid-cols-[16.7%_21.3%_20.2%_22.6%_14.7%_1fr] border-b border-dashed border-[#dfe5df]">
+              <div className="border-r border-dashed border-[#dfe5df]" />
+
+              <div className="grid grid-rows-2 border-r border-dashed border-[#dfe5df] px-[clamp(14px,1.25vw,24px)] py-[clamp(10px,0.9vw,16px)]">
+                <div className="flex items-center">
+                  <FeatureMenuItem item={featureMenuItems[0]} />
+                </div>
+                <div className="flex items-center border-t border-dashed border-[#dfe5df]">
+                  <FeatureMenuItem item={featureMenuItems[1]} />
+                </div>
+              </div>
+
+              <div className="grid grid-rows-2 border-r border-dashed border-[#dfe5df] px-[clamp(14px,1.25vw,24px)] py-[clamp(10px,0.9vw,16px)]">
+                <div className="flex items-center">
+                  <FeatureMenuItem item={featureMenuItems[2]} />
+                </div>
+                <div className="flex items-center border-t border-dashed border-[#dfe5df]">
+                  <FeatureMenuItem item={featureMenuItems[3]} />
+                </div>
+              </div>
+
+              <div className="flex items-center border-r border-dashed border-[#dfe5df] px-[clamp(10px,0.75vw,14px)]">
+                <button
+                  type="button"
+                  onClick={() => navigate("/contact")}
+                  className="group relative flex h-[clamp(92px,6.8vw,108px)] w-full flex-col items-start justify-start overflow-hidden rounded-[14px] bg-[#0d2c23] px-[clamp(16px,1.1vw,22px)] py-[clamp(14px,0.9vw,18px)] text-left text-white"
+                >
+                  <span className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_86%_74%,rgba(212,228,191,0.84)_0%,rgba(132,157,122,0.46)_27%,rgba(13,44,35,0)_57%)]" />
+                  <span className="relative flex items-center gap-3 text-[clamp(15px,0.92vw,17px)] font-semibold leading-none">
+                    BOOK A DEMO
+                    <svg
+                      viewBox="0 0 16 16"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.8"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                    >
+                      <path d="M5 11L11 5" />
+                      <path d="M6 5H11V10" />
+                    </svg>
+                  </span>
+                  <span className="relative mt-2 overflow-hidden text-[clamp(12px,0.78vw,14px)] leading-none text-white/75 [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2]">
+                    Loram ipsum lorme ipsum
+                  </span>
+                </button>
+              </div>
+
+              <div className="border-r border-dashed border-[#dfe5df] bg-[repeating-linear-gradient(120deg,rgba(12,35,29,0.08)_0,rgba(12,35,29,0.08)_1px,transparent_1px,transparent_7px)]" />
+              <div className="border-r border-dashed border-[#dfe5df]" />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Right Area */}
       <div className="flex items-center gap-4 md:w-[120px] md:justify-end">
         <button
@@ -299,7 +326,11 @@ export default function Navbar() {
           aria-expanded={open}
           aria-label="Toggle menu"
           className={`md:hidden p-2 rounded-full inline-flex items-center justify-center transition-all active:scale-90 ${
-            useTransparentNavbarStyle ? "text-white hover:bg-white/10" : "text-slate-700 hover:bg-slate-100"
+            open
+              ? "text-[#06231C] hover:bg-[#06231C]/10"
+              : useTransparentNavbarStyle
+                ? "text-white hover:bg-white/10"
+                : "text-slate-700 hover:bg-slate-100"
           }`}
         >
           <div className="w-6 h-6 relative">
@@ -370,9 +401,16 @@ export default function Navbar() {
                     >
                       AI WhatsApp Marketing
                     </Link>
-                    <span className="block text-xl text-slate-400">
+                    <Link
+                      to="/ai-photoshoot"
+                      onClick={() => {
+                        setShowMobileFeatures(false)
+                        setOpen(false)
+                      }}
+                      className="block text-xl text-slate-800"
+                    >
                       AI Product Photoshoot
-                    </span>
+                    </Link>
                     <span className="block text-xl text-slate-400">
                       AI Market Research
                     </span>

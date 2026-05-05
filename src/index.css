@@ -84,3 +84,19 @@ h6 {
 .container-p {
   @apply container mx-auto px-4;
 }
+
+@keyframes shopify-mobile-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(calc(-50% - 10px));
+  }
+}
+
+@media (max-width: 1023px) {
+  .animate-shopify-mobile-scroll {
+    animation: shopify-mobile-scroll 18s linear infinite;
+  }
+}

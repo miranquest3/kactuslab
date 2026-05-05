@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react"
+import { Link } from "react-router-dom"
 import { motion, AnimatePresence, useInView, useScroll, useTransform } from "framer-motion"
 import { MagneticButton, SectionTitle, RevealImage, StaggerText } from "../components/AnimatedElements"
 import DemoModal from "../components/DemoModal";
@@ -30,6 +31,7 @@ import rightIcon from "../assets/images/Vto/right.svg";
 import wrongIcon from "../assets/images/Vto/wrong.svg";
 import vtoImg from "../assets/images/Vto/vtoImg.png";
 import ShopifyHeroBg from "../assets/images/Vto/shopifyhero.png";
+import whatsappMobileBg from "../assets/images/WhatsAppMarketing/mobileBg.png";
 import logoWithoutName from "../assets/images/Vto/logowithoutname.svg";
 
 
@@ -704,19 +706,37 @@ export default function Vto() {
           alt=""
           aria-hidden="true"
           style={{ y: heroRevealY }}
-          className="absolute inset-0 h-full w-full object-cover object-left"
+          className="absolute inset-0 hidden h-full w-full object-cover object-left md:block"
+        />
+        <motion.img
+          src={whatsappMobileBg}
+          alt=""
+          aria-hidden="true"
+          style={{ y: heroRevealY }}
+          className="absolute inset-0 h-full w-full object-cover object-left-top md:hidden"
         />
 
-        <div className="relative z-10 flex min-h-[720px] items-center px-6 pb-20 pt-28 sm:px-8 md:px-14 md:pt-32 lg:px-20 xl:px-24">
-          <div className="mx-auto grid w-full max-w-[1320px] items-center gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(420px,580px)] lg:gap-16">
+        <div className="relative z-10 flex min-h-[663px] items-start px-[11px] pb-8 pt-[146px] sm:px-8 md:min-h-[720px] md:items-center md:px-14 md:pb-20 md:pt-32 lg:px-20 xl:px-24">
+          <div className="mx-auto grid w-full max-w-[1320px] items-center gap-[86px] md:gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(420px,580px)] lg:gap-16">
             <motion.div
               initial={{ opacity: 0, y: 28 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
-              className="max-w-[560px]"
+              className="mx-auto max-w-[286px] text-center md:mx-0 md:max-w-[560px] md:text-left"
             >
               <h1
-                className="self-stretch text-white"
+                className="self-stretch text-center text-[22px] font-normal leading-[22px] text-white md:hidden"
+                style={{
+                  color: "#FFF",
+                  fontStyle: "normal",
+                  fontWeight: 400
+                }}
+              >
+                Higher Conversions Fewer Returns
+              </h1>
+
+              <h1
+                className="hidden self-stretch text-white md:block"
                 style={{
                   color: "#FFF",
                   fontFamily: "SF Pro",
@@ -730,7 +750,18 @@ export default function Vto() {
               </h1>
 
               <p
-                className="mt-8 self-stretch text-white"
+                className="mt-2 self-stretch text-center text-[8px] leading-[11px] text-white md:hidden"
+                style={{
+                  color: "#FFF",
+                  fontStyle: "normal",
+                  fontWeight: 274
+                }}
+              >
+                Stop guesswork and purchase confidently.
+              </p>
+
+              <p
+                className="hidden mt-8 self-stretch text-white md:block"
                 style={{
                   color: "#FFF",
                   fontFamily: "SF Pro",
@@ -743,19 +774,15 @@ export default function Vto() {
                 Stop guesswork and purchase confidently.
               </p>
 
-              <p className="mt-6 max-w-[430px] self-stretch text-[15px] leading-[24px] text-white">
+              <p className="mx-auto mt-3 max-w-[270px] self-stretch text-center text-[9px] leading-[12px] text-white/85 md:mx-0 md:mt-6 md:max-w-[430px] md:text-left md:text-[15px] md:leading-[24px] md:text-white">
                 Kactus AI virtual try-on lets customers see how products look on them in one click and get a precise size recommendation using body data, improving accuracy, boosting confidence, and reducing returns.
               </p>
 
-              <button
-                type="button"
-                onClick={() => setIsDemoOpen(true)}
-                className="mt-8 flex items-center justify-center rounded-[4px] bg-[#D4E5C0] text-[15px] font-medium text-[#06231C] transition-all duration-300 hover:translate-y-[-1px] hover:bg-[#dbe9ca]"
+              <Link
+                to="/contact"
+                className="mx-auto mt-6 flex h-[27px] w-[100px] items-center justify-center rounded-[4px] bg-[#D4E5C0] px-0 py-0 text-[8px] font-medium uppercase text-[#06231C] transition-all duration-300 hover:translate-y-[-1px] hover:bg-[#dbe9ca] md:mx-0 md:mt-8 md:h-[48px] md:w-[181.53px] md:px-[40px] md:py-[12px] md:text-[15px] md:normal-case"
                 style={{
                   display: "flex",
-                  width: "181.53px",
-                  height: "48px",
-                  padding: "12px 40.53px 12px 40px",
                   justifyContent: "center",
                   alignItems: "center",
                   borderRadius: "4px",
@@ -763,7 +790,7 @@ export default function Vto() {
                 }}
               >
                 Book a Demo
-              </button>
+              </Link>
             </motion.div>
 
             <motion.div
@@ -772,12 +799,12 @@ export default function Vto() {
               transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
               className="flex justify-center lg:justify-end"
             >
-              <div className="relative w-full max-w-[580px]">
-                <div className="absolute inset-0 translate-x-4 translate-y-4 rounded-[12px] bg-black/10 blur-[20px]" />
+              <div className="relative w-full max-w-[286px] md:max-w-[580px]">
+                <div className="absolute inset-0 hidden translate-x-4 translate-y-4 rounded-[12px] bg-black/10 blur-[20px] md:block" />
                 <img
                   src={vtoImg}
                   alt="Customer trying on clothing in front of a mirror"
-                  className="relative aspect-[1.28/1] w-full rounded-[10px] object-cover shadow-[0_24px_80px_rgba(6,35,28,0.28)]"
+                  className="relative aspect-[1.64/1] w-full rounded-[4px] object-cover shadow-[0_18px_52px_rgba(6,35,28,0.22)] md:aspect-[1.28/1] md:rounded-[10px] md:shadow-[0_24px_80px_rgba(6,35,28,0.28)]"
                 />
               </div>
             </motion.div>
@@ -798,7 +825,19 @@ export default function Vto() {
             className="mx-auto flex max-w-[658px] flex-col items-center"
           >
             <h2
-              className="h-[110px] w-full text-center text-[#173A31]"
+              className="w-full text-center text-[32px] font-normal leading-[35px] text-[#173A31] md:hidden"
+              style={{
+                fontFamily: "SF Pro",
+                fontStyle: "normal",
+                fontWeight: 400,
+                textTransform: "capitalize"
+              }}
+            >
+              Challenges Every Fashion <br /> Brand Faces
+            </h2>
+
+            <h2
+              className="hidden h-[110px] w-full text-center text-[#173A31] md:block"
               style={{
                 width: "658px",
                 maxWidth: "100%",
@@ -958,7 +997,7 @@ export default function Vto() {
             </AnimatePresence>
           </div>
 
-          <div className="mx-auto mt-12 grid max-w-[1260px] gap-4 sm:grid-cols-2 lg:hidden">
+          <div className="mx-auto mt-10 grid w-full max-w-[382px] gap-2.5 px-1 sm:max-w-[640px] sm:grid-cols-2 lg:hidden">
             {vtoChallenges.map((item, index) => {
               const isActive = activeVtoChallenge === index;
               const isInteractive = item.interactive;
@@ -970,43 +1009,43 @@ export default function Vto() {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.45, delay: index * 0.06 }}
                   viewport={{ once: true }}
-                  className={`rounded-[16px] border px-5 py-5 text-left transition-colors duration-300 ${isActive ? "border-[#0B2D24] bg-[#0B2D24] text-white" : "border-[#dce4dd] bg-white text-[#06231C]"}`}
+                  className={`min-h-[77px] rounded-[8px] border px-4 py-3 text-left transition-colors duration-300 ${isActive ? "border-[#0B2D24] bg-[#0B2D24] text-white" : "border-[#dce4dd] bg-white text-[#06231C]"}`}
                 >
-                  <div className={`flex gap-4 ${isActive ? "flex-col items-center text-center" : "items-start"}`}>
-                    <div className={`relative shrink-0 ${isActive ? "mt-0" : "mt-1"}`}>
+                  <div className={`flex gap-3 ${isActive ? "h-full flex-col items-center justify-center text-center" : "items-center"}`}>
+                    <div className="relative flex h-[34px] w-[34px] shrink-0 items-center justify-center">
                       <img
-                        src={item.cardIcon ?? item.icon}
+                        src={isActive ? item.cardIcon ?? item.icon : item.icon}
                         alt={item.title}
-                        className="h-[43.09px] w-[42.663px] object-contain"
+                        className="h-[34px] w-[34px] object-contain"
                       />
                       {isInteractive && (
-                        <span className="pointer-events-none absolute -right-[6px] -top-[6px] flex h-3.5 w-3.5 items-center justify-center">
-                          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#E76363]/60" />
-                          <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#E76363]" />
+                        <span className="pointer-events-none absolute -right-[3px] -top-[3px] flex h-2.5 w-2.5 items-center justify-center">
+                          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#E76363]/50" />
+                          <span className="relative inline-flex h-2 w-2 rounded-full bg-[#E76363]" />
                         </span>
                       )}
                     </div>
-                    <div className={isActive ? "text-center" : ""}>
+                    <div className={isActive ? "text-center" : "min-w-0"}>
                       <p
                         style={{
                           fontFamily: "SF Pro",
-                          fontSize: "18px",
+                          fontSize: "12px",
                           fontStyle: "normal",
                           fontWeight: 510,
-                          lineHeight: "24px"
+                          lineHeight: "16px"
                         }}
                       >
                         {item.title}
                       </p>
                       {item.issue && (
                         <p
-                          className={isActive ? "mt-3 text-center text-white" : "mt-3 text-[#173A31]"}
+                          className={isActive ? "mt-1 text-center text-white" : "mt-1.5 text-[#173A31]"}
                           style={{
                             fontFamily: "SF Pro",
-                            fontSize: "15px",
+                            fontSize: "9px",
                             fontStyle: "normal",
                             fontWeight: 400,
-                            lineHeight: "21px"
+                            lineHeight: "13px"
                           }}
                         >
                           {item.issue}
@@ -1084,16 +1123,75 @@ export default function Vto() {
               Kactus AI Virtual Try-On drives buyer confidence through instant outfit visualization and smart sizing while turning try-on data into WhatsApp marketing fuel and branding every image with your logo.
             </p>
 
-            <button
-              type="button"
-              onClick={() => setIsDemoOpen(true)}
+            <Link
+              to="/ai-whatsapp-marketing"
               className="mt-8 inline-flex h-12 items-center justify-center rounded-[4px] bg-[#D4E5C0] px-8 text-[15px] font-medium text-[#06231C] transition-all duration-300 hover:translate-y-[-1px] hover:bg-[#dbe9ca]"
             >
               Explore Whatsapp Marketing
-            </button>
+            </Link>
           </motion.div>
 
-          <div className="mt-16 grid gap-6 md:grid-cols-3">
+          <div className="mt-12 overflow-hidden md:hidden">
+            <style>{`
+              @keyframes vto-mobile-highlight-scroll {
+                from { transform: translateX(-50%); }
+                to { transform: translateX(0); }
+              }
+
+              @media (prefers-reduced-motion: reduce) {
+                .vto-mobile-highlight-track {
+                  animation: none !important;
+                  transform: translateX(0) !important;
+                }
+              }
+            `}</style>
+
+            <div
+              className="vto-mobile-highlight-track flex w-max gap-4 pr-4"
+              style={{ animation: "vto-mobile-highlight-scroll 22s linear infinite" }}
+            >
+              {[...vtoFeatureHighlights, ...vtoFeatureHighlights].map((card, index) => (
+                <article
+                  key={`${card.title}-mobile-${index}`}
+                  className="w-[258px] shrink-0 rounded-[12px] border border-white/20 bg-white/[0.03] px-5 py-6 text-center shadow-[0_16px_34px_rgba(0,0,0,0.18)]"
+                >
+                  <img src={card.icon} alt={card.title} className="mx-auto h-[36px] w-[36px] object-contain" />
+
+                  <h3
+                    className="mt-4 text-center text-white"
+                    style={{
+                      color: "#FFF",
+                      textAlign: "center",
+                      fontFamily: "SF Pro",
+                      fontSize: "18px",
+                      fontStyle: "normal",
+                      fontWeight: 510,
+                      lineHeight: "24px"
+                    }}
+                  >
+                    {card.title}
+                  </h3>
+
+                  <p
+                    className="mt-2 text-center"
+                    style={{
+                      color: "rgba(255, 255, 255, 0.74)",
+                      textAlign: "center",
+                      fontFamily: "SF Pro",
+                      fontSize: "14px",
+                      fontStyle: "normal",
+                      fontWeight: 274,
+                      lineHeight: "20px"
+                    }}
+                  >
+                    {card.description}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-16 hidden gap-6 md:grid md:grid-cols-3">
             {vtoFeatureHighlights.map((card, index) => (
               <motion.article
                 key={card.title}
@@ -1140,68 +1238,68 @@ export default function Vto() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-white px-6 py-24 sm:px-8 md:px-14 md:py-28 lg:px-20 xl:px-24">
+      <section className="relative overflow-hidden bg-white px-2 py-16 sm:px-6 md:px-8 md:py-24 lg:px-20 lg:py-28 xl:px-24">
         <div className="relative mx-auto max-w-[1320px]">
           <motion.div
             initial={{ opacity: 0, y: -64 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
             viewport={{ once: false, amount: 0.35 }}
-            className="overflow-hidden rounded-[20px] border border-white/60 bg-white/55 shadow-[0_18px_70px_rgba(10,47,37,0.08)] backdrop-blur-[14px]"
+            className="overflow-hidden rounded-[14px] border border-white/60 bg-white/55 shadow-[0_18px_70px_rgba(10,47,37,0.08)] backdrop-blur-[14px] lg:rounded-[20px]"
           >
-            <div className="grid grid-cols-[minmax(0,1.2fr)_minmax(220px,1fr)_minmax(220px,1.15fr)] border-b border-[#dbe3ea]">
-              <div className="flex items-center justify-center px-6 py-8 md:px-8">
-                <h3 className="text-center text-[#232636] text-[24px] font-medium leading-[1.2]">Features</h3>
+            <div className="grid grid-cols-[42%_29%_29%] border-b border-[#dbe3ea] lg:grid-cols-[minmax(0,1.2fr)_minmax(220px,1fr)_minmax(220px,1.15fr)]">
+              <div className="flex items-center justify-center px-2 py-5 md:px-4 md:py-6 lg:px-8 lg:py-8">
+                <h3 className="text-center text-[14px] font-medium leading-[1.2] text-[#232636] md:text-[18px] lg:text-[24px]">Features</h3>
               </div>
 
-              <div className="flex items-center justify-center border-l border-[#dbe3ea] px-6 py-8">
-                <h3 className="text-center text-[#232636] text-[24px] font-medium leading-[1.2]">Other Brands</h3>
+              <div className="flex items-center justify-center border-l border-[#dbe3ea] px-1 py-5 md:px-3 md:py-6 lg:px-6 lg:py-8">
+                <h3 className="text-center text-[14px] font-medium leading-[1.15] text-[#232636] md:text-[18px] lg:text-[24px] lg:leading-[1.2]">Other Brands</h3>
               </div>
 
-              <div className="flex items-center justify-center gap-3 border-l border-[#dbe3ea] px-6 py-8">
+              <div className="flex items-center justify-center gap-1.5 border-l border-[#dbe3ea] px-1 py-5 md:gap-2 md:px-3 md:py-6 lg:gap-3 lg:px-6 lg:py-8">
                 <img
                   src={logoWithoutName}
                   alt="Kactus AI"
-                  className="h-11 w-11 object-contain"
+                  className="h-7 w-7 object-contain md:h-9 md:w-9 lg:h-11 lg:w-11"
                 />
-                <h3 className="text-center text-[#173A31] text-[24px] font-medium leading-[1.2]">KactusAI</h3>
+                <h3 className="text-center text-[14px] font-medium leading-[1.15] text-[#173A31] md:text-[18px] lg:text-[24px] lg:leading-[1.2]">KactusAI</h3>
               </div>
             </div>
 
             {comparisonRows.map((label, index) => (
               <div
                 key={label}
-                className={`grid grid-cols-[minmax(0,1.2fr)_minmax(220px,1fr)_minmax(220px,1.15fr)] ${index !== comparisonRows.length - 1 ? "border-b border-[#e4eaf0]" : ""}`}
+                className={`grid grid-cols-[42%_29%_29%] lg:grid-cols-[minmax(0,1.2fr)_minmax(220px,1fr)_minmax(220px,1.15fr)] ${index !== comparisonRows.length - 1 ? "border-b border-[#e4eaf0]" : ""}`}
               >
-                <div className="flex items-center px-6 py-5 md:px-8">
+                <div className="flex items-center px-2 py-4 md:px-4 md:py-5 lg:px-8">
                   <p
-                    className="max-w-none whitespace-nowrap"
+                    className="max-w-full"
                     style={{
                       color: "#232636",
                       fontFamily: "SF Pro",
-                      fontSize: "18px",
+                      fontSize: "clamp(11px, 3.1vw, 18px)",
                       fontStyle: "normal",
                       fontWeight: 400,
-                      lineHeight: "24px"
+                      lineHeight: "1.25"
                     }}
                   >
                     {label}
                   </p>
                 </div>
 
-                <div className="flex items-center justify-center border-l border-[#e4eaf0] px-6 py-5">
+                <div className="flex items-center justify-center border-l border-[#e4eaf0] px-1 py-4 md:px-3 md:py-5 lg:px-6">
                   <img
                     src={wrongIcon}
                     alt="Not included"
-                    className="h-[36px] w-[36px] object-contain"
+                    className="h-[28px] w-[28px] object-contain md:h-[32px] md:w-[32px] lg:h-[36px] lg:w-[36px]"
                   />
                 </div>
 
-                <div className="flex items-center justify-center border-l border-[#e4eaf0] px-6 py-5">
+                <div className="flex items-center justify-center border-l border-[#e4eaf0] px-1 py-4 md:px-3 md:py-5 lg:px-6">
                   <img
                     src={rightIcon}
                     alt="Included"
-                    className="h-[36px] w-[36px] object-contain"
+                    className="h-[28px] w-[28px] object-contain md:h-[32px] md:w-[32px] lg:h-[36px] lg:w-[36px]"
                   />
                 </div>
               </div>
@@ -1214,9 +1312,9 @@ export default function Vto() {
 
      
       <GrowthCtaSection
-        onPrimaryClick={() => setIsDemoOpen(true)}
         titleLines={["AI does the work,", "You stay in control"]}
         subtitle="Scale Your Growth Today."
+        mobileDashboardLayout
         points={[
           "Grow consistently",
           "150+ Handcoded",

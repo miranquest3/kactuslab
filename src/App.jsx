@@ -16,6 +16,8 @@ const AdminDemoRequests = lazy(() => import('./pages/AdminDemoRequests.jsx'))
 const Vto = lazy(() => import('./pages/Vto.jsx'))
 const WhatsAppMarketing = lazy(() => import('./pages/WhatsAppMarketing.jsx'))
 const AiPhotoShoot = lazy(() => import('./pages/AiPhotoShoot.jsx'))
+const Login = lazy(() => import('./pages/Login.jsx'))
+const Register = lazy(() => import('./pages/Register.jsx'))
 
 function RouteLoader() {
   return (
@@ -68,6 +70,8 @@ export default function App() {
                 <Route path="/vto" element={<Vto />} />
                 <Route path="/ai-whatsapp-marketing" element={<WhatsAppMarketing />} />
                 <Route path="/ai-photoshoot" element={<AiPhotoShoot />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
                 {/* Hidden Admin Views */}
                 <Route path="/admin/demo-requests" element={<AdminDemoRequests />} />
 

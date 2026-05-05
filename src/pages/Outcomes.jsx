@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react"
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion"
+import { useEffect, useRef, useState } from "react"
+import { motion, AnimatePresence, useMotionTemplate, useMotionValue, useScroll, useTransform } from "framer-motion"
 import { Link } from "react-router-dom"
 import { MagneticButton, SectionTitle, RevealImage, StaggerText } from "../components/AnimatedElements"
 import DemoModal from "../components/DemoModal";
@@ -30,6 +30,164 @@ import ftlock from "../assets/images/Features/VTO.png";
 import ftlockHover from "../assets/images/Features/VTO G.png";
 import lock from "../assets/images/Features/lock.png";
 import lockHover from "../assets/images/Features/Lock G.png";
+import cardBg from "../assets/images/Home/cardbg.png";
+import whatsappIcon from "../assets/images/Home/whatsapp.svg";
+import aiProductIcon from "../assets/images/Home/aiProduct.svg";
+import marketResearchIcon from "../assets/images/Home/MARKET RESEARCH.png";
+import socialMediaMarketingIcon from "../assets/images/Home/SOCIAL MEDIA MARKETING.png";
+import websiteManagementIcon from "../assets/images/Home/web-management 1.png";
+import vtoFeatureIcon from "../assets/images/Home/vto.png";
+import inventoryManagementIcon from "../assets/images/Home/INVENTORY MANAGEMENT.png";
+
+
+const outcomeFeatureMenuItems = [
+  {
+    label: "Virtual Try-On",
+    to: "/vto",
+    icon: ftlock,
+    iconHover: ftlockHover
+  },
+  {
+    label: "AI Whatsapp Marketing",
+    to: "/ai-whatsapp-marketing",
+    icon: lock,
+    iconHover: lockHover
+  },
+  {
+    label: "AI Product Photoshoot",
+    to: "/ai-photoshoot",
+    icon: lock,
+    iconHover: lockHover
+  },
+  {
+    label: "AI Marketing Research",
+    comingSoon: true,
+    icon: lock,
+    iconHover: lockHover
+  }
+];
+
+function OutcomeFeatureMenuIcon({ item }) {
+  return (
+    <span className="relative flex h-[clamp(36px,2.35vw,44px)] w-[clamp(36px,2.35vw,44px)] shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#14382e] shadow-[inset_0_0_16px_rgba(212,228,191,0.42)]">
+      <img
+        src={item.icon}
+        alt=""
+        aria-hidden="true"
+        className="absolute h-[clamp(17px,1.2vw,21px)] w-[clamp(17px,1.2vw,21px)] object-contain brightness-0 invert transition duration-300 group-hover:opacity-0"
+      />
+      <img
+        src={item.iconHover}
+        alt=""
+        aria-hidden="true"
+        className="absolute h-[clamp(17px,1.2vw,21px)] w-[clamp(17px,1.2vw,21px)] object-contain opacity-0 transition duration-300 group-hover:opacity-100"
+      />
+    </span>
+  );
+}
+
+function OutcomeFeatureMenuItem({ item, onClose }) {
+  const content = (
+    <div className="group flex min-h-[clamp(46px,3.35vw,54px)] w-full items-center gap-[clamp(9px,0.75vw,14px)] rounded-md px-2 py-1 transition duration-200 hover:bg-[#f6faf1]">
+      <OutcomeFeatureMenuIcon item={item} />
+      <div className="flex min-w-0 flex-1 items-center gap-[clamp(8px,0.7vw,12px)]">
+        <span className="min-w-0 flex-1 overflow-hidden text-[clamp(14px,0.92vw,17px)] font-medium leading-[1.12] text-[#171717] [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2]">
+          {item.label}
+        </span>
+        {item.comingSoon && (
+          <span className="shrink-0 rounded-full bg-[#eaf1e3] px-[clamp(8px,0.7vw,13px)] py-[clamp(4px,0.36vw,7px)] text-[clamp(8px,0.5vw,9px)] font-medium text-[#17362d]">
+            Coming Soon
+          </span>
+        )}
+      </div>
+    </div>
+  );
+
+  if (item.to) {
+    return (
+      <Link to={item.to} onClick={onClose} className="block">
+        {content}
+      </Link>
+    );
+  }
+
+  return (
+    <div aria-disabled="true" className="cursor-not-allowed">
+      {content}
+    </div>
+  );
+}
+
+function OutcomeFeatureMegaMenu({ visible, onMouseEnter, onMouseLeave, onClose }) {
+  return (
+    <AnimatePresence>
+      {visible && (
+        <motion.div
+          initial={{ opacity: 0, y: -8 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -8 }}
+          transition={{ duration: 0.18, ease: "easeOut" }}
+          onMouseEnter={onMouseEnter}
+          onMouseLeave={onMouseLeave}
+          className="fixed left-0 top-[64px] z-[90] hidden w-screen border-y border-dashed border-[#dfe5df] bg-white text-[#111111] shadow-none md:block"
+        >
+          <div className="relative mx-auto grid h-[clamp(136px,9vw,160px)] max-w-[1920px] grid-cols-[16.7%_21.3%_20.2%_22.6%_14.7%_1fr] border-b border-dashed border-[#dfe5df]">
+            <div className="border-r border-dashed border-[#dfe5df]" />
+
+            <div className="grid grid-rows-2 border-r border-dashed border-[#dfe5df] px-[clamp(14px,1.25vw,24px)] py-[clamp(10px,0.9vw,16px)]">
+              <div className="flex items-center">
+                <OutcomeFeatureMenuItem item={outcomeFeatureMenuItems[0]} onClose={onClose} />
+              </div>
+              <div className="flex items-center border-t border-dashed border-[#dfe5df]">
+                <OutcomeFeatureMenuItem item={outcomeFeatureMenuItems[1]} onClose={onClose} />
+              </div>
+            </div>
+
+            <div className="grid grid-rows-2 border-r border-dashed border-[#dfe5df] px-[clamp(14px,1.25vw,24px)] py-[clamp(10px,0.9vw,16px)]">
+              <div className="flex items-center">
+                <OutcomeFeatureMenuItem item={outcomeFeatureMenuItems[2]} onClose={onClose} />
+              </div>
+              <div className="flex items-center border-t border-dashed border-[#dfe5df]">
+                <OutcomeFeatureMenuItem item={outcomeFeatureMenuItems[3]} onClose={onClose} />
+              </div>
+            </div>
+
+            <div className="flex items-center border-r border-dashed border-[#dfe5df] px-[clamp(10px,0.75vw,14px)]">
+              <Link
+                to="/contact"
+                onClick={onClose}
+                className="group relative flex h-[clamp(92px,6.8vw,108px)] w-full flex-col items-start justify-start overflow-hidden rounded-[14px] bg-[#0d2c23] px-[clamp(16px,1.1vw,22px)] py-[clamp(14px,0.9vw,18px)] text-left text-white"
+              >
+                <span className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_86%_74%,rgba(212,228,191,0.84)_0%,rgba(132,157,122,0.46)_27%,rgba(13,44,35,0)_57%)]" />
+                <span className="relative flex items-center gap-3 text-[clamp(15px,0.92vw,17px)] font-semibold leading-none">
+                  BOOK A DEMO
+                  <svg
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                  >
+                    <path d="M5 11L11 5" />
+                    <path d="M6 5H11V10" />
+                  </svg>
+                </span>
+                <span className="relative mt-2 overflow-hidden text-[clamp(12px,0.78vw,14px)] leading-none text-white/75 [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2]">
+                  Loram ipsum lorme ipsum
+                </span>
+              </Link>
+            </div>
+
+            <div className="border-r border-dashed border-[#dfe5df] bg-[repeating-linear-gradient(120deg,rgba(12,35,29,0.08)_0,rgba(12,35,29,0.08)_1px,transparent_1px,transparent_7px)]" />
+            <div className="border-r border-dashed border-[#dfe5df]" />
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}
 
 
 const logos = [
@@ -240,6 +398,425 @@ const faqItems = [
     answer: "Absolutely. We help your team with onboarding, setup guidance, and best practices so adoption feels smooth from day one."
   }
 ];
+
+const SplitLockIcon = () => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="white"
+    strokeWidth="2.2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className="h-[11px] w-[11px] shrink-0"
+  >
+    <rect x="3" y="11" width="18" height="11" rx="2" />
+    <path d="M7 11V7a5 5 0 0110 0v4" />
+  </svg>
+);
+
+const splitCards = [
+  {
+    id: 1,
+    row: "top",
+    title: "VIRTUAL TRY - ON",
+    desc: "Kactus AI provides customers with a visual representation of the outfit along with AI size recommendations before they check out.",
+    icon: vtoFeatureIcon,
+    iconAlt: "Virtual try-on",
+    iconClassName: "h-[58px] w-[58px]",
+    btn: "Know more",
+    to: "/vto",
+    glow: "rgba(214, 233, 200, 0.34)"
+  },
+  {
+    id: 2,
+    row: "top",
+    title: "WHATSAPP MARKETING",
+    desc: "Provide customers with customized shopping experiences by displaying outfits on their own images in WhatsApp marketing campaigns.",
+    icon: whatsappIcon,
+    iconAlt: "WhatsApp marketing",
+    btn: "Know more",
+    to: "/ai-whatsapp-marketing",
+    glow: "rgba(194, 233, 220, 0.34)"
+  },
+  {
+    id: 3,
+    row: "top",
+    title: "AI PRODUCT PHOTOSHOOT",
+    desc: "Studio-quality product photoshoot on WhatsApp. Kactus AI turns your product images into high-quality photos saving time and resources.",
+    icon: aiProductIcon,
+    iconAlt: "AI product photoshoot",
+    btn: "Know more",
+    to: "/ai-photoshoot",
+    glow: "rgba(233, 242, 220, 0.34)"
+  },
+  {
+    id: 4,
+    row: "bot",
+    title: "MARKET RESEARCH",
+    desc: "Kactus AI Market Research helps businesses grow by analysing target audiences, competitors, and market trends.",
+    icon: marketResearchIcon,
+    iconAlt: "Market research",
+    coming: true,
+    glow: "rgba(206, 232, 214, 0.28)"
+  },
+  {
+    id: 5,
+    row: "bot",
+    title: "SOCIAL MEDIA MARKETING",
+    desc: "Manage Instagram, Facebook, and Gmail accounts by creating posts, engaging with followers, and posting. Kactus AI handles it all.",
+    icon: socialMediaMarketingIcon,
+    iconAlt: "Social media marketing",
+    coming: true,
+    glow: "rgba(211, 233, 223, 0.28)"
+  },
+  {
+    id: 6,
+    row: "bot",
+    title: "WEBSITE MANAGEMENT",
+    desc: "Manage and update your website entirely through WhatsApp. Change theme, layout, and content hassle free. No developers. No delays.",
+    icon: websiteManagementIcon,
+    iconAlt: "Website management",
+    coming: true,
+    glow: "rgba(219, 236, 223, 0.28)"
+  },
+  {
+    id: 7,
+    row: "bot",
+    title: "INVENTORY MANAGEMENT",
+    desc: "Kactus AI helps brands avoid stockouts and overstocking of inventories.",
+    icon: inventoryManagementIcon,
+    iconAlt: "Inventory management",
+    coming: true,
+    glow: "rgba(228, 236, 210, 0.28)"
+  }
+];
+
+function CardSplitSection() {
+  const [phase, setPhase] = useState("blur");
+
+  useEffect(() => {
+    const clearTimer = window.setTimeout(() => setPhase("clear"), 1600);
+    const fadeTimer = window.setTimeout(() => setPhase("fade"), 3300);
+    const linesTimer = window.setTimeout(() => setPhase("lines"), 4050);
+    const spreadTimer = window.setTimeout(() => setPhase("spread"), 5700);
+
+    return () => {
+      window.clearTimeout(clearTimer);
+      window.clearTimeout(fadeTimer);
+      window.clearTimeout(linesTimer);
+      window.clearTimeout(spreadTimer);
+    };
+  }, []);
+
+  const spreading = phase === "spread";
+  const textVisible = phase === "blur" || phase === "clear";
+  const linesVisible = phase === "lines";
+  const topCards = splitCards.filter((card) => card.row === "top");
+  const bottomCards = splitCards.filter((card) => card.row === "bot");
+
+  return (
+    <section
+      className="relative overflow-visible bg-white px-4 py-14 font-['SF_Pro',sans-serif] sm:px-6 md:py-20 lg:px-8"
+    >
+      <div className="mx-auto max-w-[1190px]">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          viewport={{ once: true }}
+          className="mx-auto max-w-3xl text-center"
+        >
+          <p className="mx-auto max-w-2xl text-base leading-relaxed text-slate-500 md:text-lg">
+            Kactus AI turns a single WhatsApp message into complete business execution on its own through the following features:
+          </p>
+        </motion.div>
+
+        <div
+          className="relative mx-auto mt-[56px] h-[625px] min-h-[625px] w-full max-w-[810px] overflow-visible transition-colors duration-700"
+          style={{
+            backgroundColor: "transparent",
+            borderTopLeftRadius: 0,
+            borderTopRightRadius: 0,
+            borderBottomRightRadius: 0,
+            borderBottomLeftRadius: 0,
+            boxShadow: spreading ? "none" : "0 22px 70px rgba(4, 36, 26, 0.10)",
+            transition: "background-color 1.25s ease, border-radius 0.9s ease, box-shadow 0.9s ease"
+          }}
+        >
+          <div
+            className="pointer-events-none absolute inset-0 z-[15]"
+            style={{
+              opacity: spreading ? 0 : 1,
+              transition: "opacity 1.25s cubic-bezier(0.22,1,0.36,1)",
+              borderTopLeftRadius: 0,
+              borderTopRightRadius: 0,
+              borderBottomRightRadius: 0,
+              borderBottomLeftRadius: 0,
+              backgroundImage: `
+                radial-gradient(circle at 0% 2%, rgba(203,223,197,0.42) 0%, rgba(130,161,136,0.26) 16%, rgba(5,43,31,0) 38%),
+                radial-gradient(circle at 100% 100%, rgba(203,223,197,0.38) 0%, rgba(127,157,132,0.24) 18%, rgba(5,43,31,0) 42%),
+                linear-gradient(135deg, #0b2f22 0%, #062d22 45%, #082f23 100%)
+              `
+            }}
+          />
+          <div
+            className="pointer-events-none absolute inset-0 z-[16]"
+            style={{
+              opacity: spreading ? 0 : 0.16,
+              transition: "opacity 1.25s cubic-bezier(0.22,1,0.36,1)",
+              borderTopLeftRadius: 0,
+              borderTopRightRadius: 0,
+              borderBottomRightRadius: 0,
+              borderBottomLeftRadius: 0,
+              backgroundImage: `url(${cardBg})`,
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "cover",
+              mixBlendMode: "soft-light"
+            }}
+          />
+
+          <div
+            className="pointer-events-none absolute inset-0 z-30 flex items-center justify-center px-6 transition-opacity duration-500"
+            style={{ opacity: textVisible ? 1 : 0 }}
+          >
+            <p
+              className="max-w-[660px] text-center text-[clamp(24px,3.2vw,44px)] font-normal italic leading-[1.35] text-white"
+              style={{
+                filter: phase === "blur" ? "blur(12px)" : "blur(0px)",
+                opacity: phase === "blur" ? 0.82 : 1,
+                transform: phase === "blur" ? "scale(1.015)" : "scale(1)",
+                transition: "filter 1.15s cubic-bezier(0.22,1,0.36,1), opacity 1.15s ease, transform 1.15s cubic-bezier(0.22,1,0.36,1)"
+              }}
+            >
+              " We honor the hands that build your brand "
+            </p>
+          </div>
+
+          {["33.33%", "66.66%"].map((left) => (
+            <div
+              key={`top-${left}`}
+              className="absolute top-0 z-20 h-[346px] w-px bg-white/20 transition-opacity duration-300"
+              style={{ left, opacity: linesVisible ? 1 : 0, transition: "opacity 0.9s ease" }}
+            />
+          ))}
+          {["25%", "50%", "75%"].map((left) => (
+            <div
+              key={`bottom-${left}`}
+              className="absolute top-[346px] z-20 h-[279px] w-px bg-white/20 transition-opacity duration-300"
+              style={{ left, opacity: linesVisible ? 1 : 0, transition: "opacity 0.9s ease" }}
+            />
+          ))}
+
+          <div
+            className="absolute left-0 top-[346px] z-[21] h-px bg-white/30"
+            style={{
+              width: phase === "lines" || spreading ? "100%" : 0,
+              opacity: phase === "lines" ? 1 : 0,
+              transition:
+                phase === "lines"
+                  ? "width 1.15s cubic-bezier(0.4,0,0.2,1)"
+                  : spreading
+                    ? "opacity 0.55s ease"
+                    : "none"
+            }}
+          />
+
+          <div
+            className="absolute top-0 z-10 flex"
+            style={{
+              left: 0,
+              right: 0,
+              width: "100%",
+              height: "346px",
+              transform: "translateY(0)",
+              gap: spreading ? "21px" : 0,
+              padding: 0,
+              transition: spreading
+                ? "gap 1.25s cubic-bezier(0.22,1,0.36,1)"
+                : "none"
+            }}
+          >
+            {topCards.map((card, index) => (
+              <SplitCard key={card.id} card={card} index={index} count={topCards.length} spreading={spreading} top />
+            ))}
+          </div>
+
+          <div
+            className="absolute z-10 flex"
+            style={{
+              left: 0,
+              right: 0,
+              top: spreading ? "370px" : "346px",
+              bottom: spreading ? "auto" : 0,
+              width: "100%",
+              height: spreading ? "255px" : "auto",
+              transform: "translateY(0)",
+              gap: spreading ? "14px" : 0,
+              padding: 0,
+              transition: spreading
+                ? "top 1.25s cubic-bezier(0.22,1,0.36,1), height 1.25s cubic-bezier(0.22,1,0.36,1), gap 1.25s cubic-bezier(0.22,1,0.36,1)"
+                : "none"
+            }}
+          >
+            {bottomCards.map((card, index) => (
+              <SplitCard key={card.id} card={card} index={index} count={bottomCards.length} spreading={spreading} />
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function SplitCard({ card, index, count, spreading, top = false }) {
+  const glowX = useMotionValue(top ? 152 : 128);
+  const glowY = useMotionValue(top ? 90 : 82);
+  const glowBackground = useMotionTemplate`radial-gradient(circle at ${glowX}px ${glowY}px, ${card.glow || "rgba(214,233,200,0.24)"} 0%, rgba(255,255,255,0) 46%)`;
+  const closedRadius = top
+    ? index === 0
+      ? "14px 0 0 0"
+      : index === count - 1
+        ? "0 14px 0 0"
+        : 0
+    : index === 0
+      ? "0 0 0 14px"
+      : index === count - 1
+        ? "0 0 14px 0"
+        : 0;
+
+  return (
+    <motion.article
+      className="group relative overflow-hidden"
+      style={{
+        flex: "1 1 0",
+        width: "auto",
+        height: "100%",
+        borderRadius: spreading ? 14 : closedRadius,
+        boxShadow: spreading ? "0 18px 48px rgba(4,36,26,0.10)" : "none",
+        transition: `border-radius 0.85s ease, box-shadow 0.9s ease ${index * 0.08}s`
+      }}
+      whileHover={spreading ? { y: top ? -7 : 7, scale: 1.018, rotateX: top ? 3 : -3 } : undefined}
+      transition={{ type: "spring", stiffness: 230, damping: 24 }}
+      onMouseMove={(event) => {
+        if (!spreading) return;
+        const bounds = event.currentTarget.getBoundingClientRect();
+        glowX.set(event.clientX - bounds.left);
+        glowY.set(event.clientY - bounds.top);
+      }}
+      onMouseLeave={() => {
+        glowX.set(top ? 152 : 128);
+        glowY.set(top ? 90 : 82);
+      }}
+    >
+      <img src={cardBg} alt="" aria-hidden="true" className="absolute inset-0 h-full w-full object-cover" />
+      <motion.div
+        className="pointer-events-none absolute inset-0 opacity-80 transition-opacity duration-300 group-hover:opacity-100"
+        style={{ backgroundImage: glowBackground }}
+      />
+      <div className="pointer-events-none absolute inset-0 border border-white/10" />
+
+      <div
+        className="relative z-[1] flex h-full w-full flex-col items-center text-center"
+        style={{
+          padding: top ? "32px 18px 18px" : "22px 12px 12px"
+        }}
+      >
+        <h3
+          className="flex min-h-[20px] w-full items-center justify-center whitespace-nowrap text-white transition-all"
+          style={{
+            opacity: spreading ? 1 : 0,
+            transform: spreading ? "translateY(0)" : `translateY(${top ? "-4px" : "4px"})`,
+            transition: `opacity 0.75s ease ${0.55 + index * 0.08}s, transform 0.75s ease ${0.55 + index * 0.08}s`,
+            fontFamily: "SF Pro",
+            fontSize: top ? "16px" : "13px",
+            fontWeight: 700,
+            lineHeight: top ? "19px" : "15px",
+            letterSpacing: "-0.187px"
+          }}
+        >
+          {card.title}
+        </h3>
+        <p
+          className="line-clamp-4 w-full bg-[linear-gradient(90deg,#ECEFFF_25.19%,#FFF_43.88%,#FFC3A9_93.56%)] bg-clip-text text-transparent transition-opacity"
+          style={{
+            opacity: spreading ? 1 : 0,
+            transition: `opacity 0.75s ease ${0.68 + index * 0.08}s`,
+            maxWidth: top ? "252px" : "172px",
+            minHeight: top ? "66px" : "40px",
+            marginTop: top ? "12px" : "8px",
+            fontFamily: "SF Pro",
+            fontSize: top ? "12.5px" : "9.5px",
+            lineHeight: top ? "18px" : "13px"
+          }}
+        >
+          {card.desc}
+        </p>
+        <div
+          className="flex w-full flex-1 items-center justify-center transition-opacity"
+          style={{
+            opacity: spreading ? 1 : 0,
+            transition: `opacity 0.75s ease ${0.78 + index * 0.08}s`,
+            paddingTop: top ? "10px" : "8px"
+          }}
+        >
+          <img
+            src={card.icon}
+            alt={card.iconAlt}
+            className={`${top ? card.iconClassName || "h-[58px] w-[58px]" : "h-[42px] w-[42px]"} object-contain`}
+          />
+        </div>
+        <div
+          className="transition-opacity"
+          style={{
+            opacity: spreading ? 1 : 0,
+            transition: `opacity 0.75s ease ${0.9 + index * 0.08}s`
+          }}
+        >
+          {card.to && !card.coming ? (
+            <Link
+              to={card.to}
+              className="inline-flex items-center justify-center whitespace-nowrap rounded-[6px] border border-white/10 font-medium text-white transition-transform duration-300 group-hover:-translate-y-0.5"
+              style={{
+                width: top ? "132px" : "124px",
+                height: top ? "30px" : "24px",
+                background: "linear-gradient(90deg, rgba(212, 229, 192, 0.39) 0.24%, rgba(118, 127, 106, 0.22) 127.22%)",
+                fontSize: top ? "11.5px" : "10px",
+                fontFamily: "SF Pro",
+                gap: top ? "8px" : "6px",
+                paddingInline: top ? "16px" : "10px"
+              }}
+            >
+              {card.btn}
+            </Link>
+          ) : (
+            <button
+              type="button"
+              className="inline-flex items-center justify-center whitespace-nowrap rounded-[6px] border border-white/10 font-medium text-white transition-transform duration-300 group-hover:-translate-y-0.5"
+              style={{
+                width: top ? "132px" : "124px",
+                height: top ? "30px" : "24px",
+                background: "linear-gradient(90deg, rgba(212, 229, 192, 0.39) 0.24%, rgba(118, 127, 106, 0.22) 127.22%)",
+                fontSize: top ? "11.5px" : "10px",
+                fontFamily: "SF Pro",
+                gap: top ? "8px" : "6px",
+                paddingInline: top ? "16px" : "10px"
+              }}
+            >
+              {card.coming ? (
+                <>
+                  <SplitLockIcon /> Coming soon
+                </>
+              ) : (
+                card.btn
+              )}
+            </button>
+          )}
+        </div>
+      </div>
+    </motion.article>
+  );
+}
 
 const shopifyFeatureCards = [
   {
@@ -659,6 +1236,7 @@ export default function Outcomes() {
   const { scrollY } = useScroll();
   const [isDemoOpen, setIsDemoOpen] = useState(false);
   const [showFeaturesDropdown, setShowFeaturesDropdown] = useState(false);
+  const featuresDropdownCloseTimerRef = useRef(null);
   const [activeFeatureCard, setActiveFeatureCard] = useState(null);
   const [activeReviewCard, setActiveReviewCard] = useState(null);
   const [openFaqIndex, setOpenFaqIndex] = useState(0);
@@ -667,6 +1245,19 @@ export default function Outcomes() {
     () => businessExecutionSlides.map(() => -1)
   );
   const [heroPhase, setHeroPhase] = useState(0);
+
+  const openFeaturesDropdown = () => {
+    if (featuresDropdownCloseTimerRef.current) {
+      window.clearTimeout(featuresDropdownCloseTimerRef.current);
+    }
+    setShowFeaturesDropdown(true);
+  };
+
+  const closeFeaturesDropdown = () => {
+    featuresDropdownCloseTimerRef.current = window.setTimeout(() => {
+      setShowFeaturesDropdown(false);
+    }, 90);
+  };
 
   const heroRevealY = useTransform(scrollY, [0, 500], [0, 110]);
   const heroEase = [0.18, 1, 0.28, 1];
@@ -710,6 +1301,9 @@ export default function Outcomes() {
 
     return () => {
       timers.forEach((timer) => window.clearTimeout(timer));
+      if (featuresDropdownCloseTimerRef.current) {
+        window.clearTimeout(featuresDropdownCloseTimerRef.current);
+      }
     };
   }, []);
 
@@ -779,19 +1373,19 @@ export default function Outcomes() {
               <div className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-10 font-normal text-slate-900 md:flex">
                 <div
                   className="relative"
-                  onMouseEnter={() => setShowFeaturesDropdown(true)}
-                  onMouseLeave={() => setShowFeaturesDropdown(false)}
+                  onMouseEnter={openFeaturesDropdown}
+                  onMouseLeave={closeFeaturesDropdown}
                 >
                   <motion.div whileHover={{ y: -2 }}>
                     <button
                       type="button"
                       aria-expanded={showFeaturesDropdown}
                       onClick={() => setShowFeaturesDropdown((prev) => !prev)}
-                      className="cursor-pointer hover:text-emerald-600 transition flex items-center gap-1"
+                      className="flex cursor-pointer items-center gap-1 transition hover:text-emerald-600"
                     >
                       Features
                       <svg
-                        className="w-4 h-4 mt-[2px]"
+                        className={`mt-[1px] h-3.5 w-3.5 transition-transform duration-200 ${showFeaturesDropdown ? "rotate-180" : ""}`}
                         fill="none"
                         stroke="currentColor"
                         strokeWidth="2"
@@ -802,11 +1396,11 @@ export default function Outcomes() {
                     </button>
                   </motion.div>
 
-                  {showFeaturesDropdown && (
+                  {false && showFeaturesDropdown && (
                     <div className="absolute left-0 top-full h-4 w-full" />
                   )}
 
-                  {showFeaturesDropdown && (
+                  {false && showFeaturesDropdown && (
                     <div className="absolute left-1/2 top-[calc(100%+8px)] z-30 grid w-[560px] -translate-x-1/2 grid-cols-2 gap-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-xl transition-all duration-200">
                       <div className="space-y-4">
                         <Link to="/vto" onClick={() => setShowFeaturesDropdown(false)}>
@@ -913,6 +1507,12 @@ export default function Outcomes() {
                   <Link to="/feelings" className="hover:text-emerald-600 transition">Feelings</Link>
                 </motion.div>
               </div>
+              <OutcomeFeatureMegaMenu
+                visible={showFeaturesDropdown && heroPhase <= 1}
+                onMouseEnter={openFeaturesDropdown}
+                onMouseLeave={closeFeaturesDropdown}
+                onClose={() => setShowFeaturesDropdown(false)}
+              />
               <div className="hidden w-[120px] shrink-0 md:block" />
             </div>
           </motion.div>
@@ -1019,29 +1619,35 @@ export default function Outcomes() {
         <motion.div
           animate={heroNavAnimation}
           transition={{ duration: 0.28, delay: 0.04, ease: heroEase }}
-          className="pointer-events-auto absolute inset-x-0 top-0 z-[60]"
+          className={`pointer-events-auto absolute inset-x-0 top-0 z-[60] transition-colors duration-300 ${
+            showFeaturesDropdown
+              ? "border-b border-dashed border-[#dfe5df] bg-white"
+              : "bg-transparent"
+          }`}
         >
           <div className="relative flex items-center justify-between px-4 py-4 sm:px-6 lg:px-10">
             <Link to="/" className="flex items-center gap-3 shrink-0">
-              <img src={logo2} alt="Kactus Logo" className="h-8 w-auto" />
+              <img src={showFeaturesDropdown ? logo : logo2} alt="Kactus Logo" className="h-8 w-auto" />
             </Link>
 
-            <div className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-10 font-normal text-white md:flex">
+            <div className={`absolute left-1/2 hidden -translate-x-1/2 items-center gap-10 font-normal md:flex ${
+              showFeaturesDropdown ? "text-[#111111]" : "text-white"
+            }`}>
                 <div
                   className="relative"
-                  onMouseEnter={() => setShowFeaturesDropdown(true)}
-                  onMouseLeave={() => setShowFeaturesDropdown(false)}
+                  onMouseEnter={openFeaturesDropdown}
+                  onMouseLeave={closeFeaturesDropdown}
                 >
                   <motion.div whileHover={{ y: -2 }}>
                     <button
                       type="button"
                       aria-expanded={showFeaturesDropdown}
                       onClick={() => setShowFeaturesDropdown((prev) => !prev)}
-                      className="cursor-pointer hover:text-emerald-600 transition flex items-center gap-1"
+                      className="flex cursor-pointer items-center gap-1 transition hover:text-emerald-600"
                     >
                       Features
                       <svg
-                        className="w-4 h-4 mt-[2px]"
+                        className={`mt-[1px] h-3.5 w-3.5 transition-transform duration-200 ${showFeaturesDropdown ? "rotate-180" : ""}`}
                         fill="none"
                         stroke="currentColor"
                         strokeWidth="2"
@@ -1052,11 +1658,11 @@ export default function Outcomes() {
                     </button>
                   </motion.div>
 
-                  {showFeaturesDropdown && (
+                  {false && showFeaturesDropdown && (
                     <div className="absolute left-0 top-full h-4 w-full" />
                   )}
 
-                  {showFeaturesDropdown && (
+                  {false && showFeaturesDropdown && (
                     <div className="absolute left-1/2 top-[calc(100%+8px)] z-30 grid w-[560px] -translate-x-1/2 grid-cols-2 gap-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-xl transition-all duration-200">
                       <div className="space-y-4">
                         <Link to="/vto" onClick={() => setShowFeaturesDropdown(false)}>
@@ -1164,6 +1770,12 @@ export default function Outcomes() {
                 </motion.div>
               </div>
 
+            <OutcomeFeatureMegaMenu
+              visible={showFeaturesDropdown && heroPhase >= 2}
+              onMouseEnter={openFeaturesDropdown}
+              onMouseLeave={closeFeaturesDropdown}
+              onClose={() => setShowFeaturesDropdown(false)}
+            />
             <div className="hidden w-[120px] shrink-0 md:block" />
           </div>
         </motion.div>
@@ -1484,7 +2096,6 @@ export default function Outcomes() {
           </div>
         </div>
       </section>
-
 
       <DemoModal isOpen={isDemoOpen} onClose={() => setIsDemoOpen(false)} />
     </main>

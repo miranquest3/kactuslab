@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { Link } from "react-router-dom"
 import { motion } from "framer-motion"
 
 // image
@@ -65,14 +66,14 @@ export default function AiPhotoShoot() {
         transition={{ delay: 0.6, duration: 0.8 }}
         className="mt-7"
       >
-        <button
-          onClick={() => setIsDemoOpen(true)}
+        <Link
+          to="/contact"
           className="bg-[#05231C] text-white px-7 py-3 rounded-full 
                      font-medium shadow-md hover:shadow-lg 
                      transition-all duration-300 hover:-translate-y-0.5"
         >
           BOOK A DEMO
-        </button>
+        </Link>
       </motion.div>
     </motion.div>
 
@@ -199,9 +200,9 @@ export default function AiPhotoShoot() {
     </p>
 
     {/* LINK TEXT */}
-    <p className="mt-6 text-sm text-[#D4E5C0] hover:text-white transition cursor-pointer">
+    <Link to="/ai-whatsapp-marketing" className="mt-6 inline-flex text-sm text-[#D4E5C0] transition hover:text-white">
       Explore Try On Whatsapp Marketing →
-    </p>
+    </Link>
 
   </div>
 
@@ -401,7 +402,8 @@ Users instantly see how an outfit looks on their own body with a single click, e
 
       {/* BUTTON */}
       <div className="mt-10">
-        <button
+        <Link
+          to="/contact"
           className="border border-[#E6EFE3]/40 
                      text-[#E6EFE3]
                      px-7 py-3 rounded-full text-sm
@@ -409,7 +411,7 @@ Users instantly see how an outfit looks on their own body with a single click, e
                      transition-all duration-300"
         >
           Contact us
-        </button>
+        </Link>
       </div>
 
     </div>

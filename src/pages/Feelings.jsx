@@ -14,27 +14,30 @@ const Feelings = () => {
     offset: ["start start", "end start"]
   });
 
-  const firstBgOpacity = useTransform(scrollYProgress, [0, 0.3, 0.38], [1, 1, 0]);
-  const secondBgOpacity = useTransform(scrollYProgress, [0.22, 0.36, 0.72, 0.8], [0, 1, 1, 0]);
-  const thirdBgOpacity = useTransform(scrollYProgress, [0.6, 0.72], [0, 1]);
-  const heroTextOpacity = useTransform(scrollYProgress, [0, 0.2, 0.32], [1, 1, 0]);
-  const heroTextY = useTransform(scrollYProgress, [0, 0.32], [0, -42]);
-  const secondSceneOpacity = useTransform(scrollYProgress, [0.34, 0.46, 0.62, 0.72], [0, 1, 1, 0]);
-  const secondSceneY = useTransform(scrollYProgress, [0.34, 0.48, 0.72], [42, 0, -34]);
-  const leftTextX = useTransform(scrollYProgress, [0.4, 0.54], [-88, 0]);
-  const rightTextX = useTransform(scrollYProgress, [0.4, 0.54], [88, 0]);
-  const personY = useTransform(scrollYProgress, [0.36, 0.58], [170, 0]);
-  const personOpacity = useTransform(scrollYProgress, [0.36, 0.48, 0.64, 0.73], [0, 1, 1, 0]);
-  const thirdSceneOpacity = useTransform(scrollYProgress, [0.68, 0.76], [0, 1]);
-  const thirdSceneY = useTransform(scrollYProgress, [0.68, 0.78], [46, 0]);
-  const thirdHeadingY = useTransform(scrollYProgress, [0.7, 0.78], [-70, 0]);
-  const thirdCopyY = useTransform(scrollYProgress, [0.74, 0.82], [70, 0]);
-  const manHandX = useTransform(scrollYProgress, [0.72, 0.84], ["-38%", "0%"]);
-  const robotHandX = useTransform(scrollYProgress, [0.72, 0.84], ["38%", "0%"]);
-
+  const firstBgOpacity = useTransform(scrollYProgress, [0, 0.24, 0.32], [1, 1, 0]);
+  const secondBgOpacity = useTransform(scrollYProgress, [0.24, 0.34, 0.78, 0.86], [0, 1, 1, 0]);
+  const thirdBgOpacity = useTransform(scrollYProgress, [0.76, 0.84], [0, 1]);
+  const heroTextOpacity = useTransform(scrollYProgress, [0, 0.18, 0.26], [1, 1, 0]);
+  const heroTextY = useTransform(scrollYProgress, [0, 0.26], [0, -42]);
+  const firstOrderSceneOpacity = useTransform(scrollYProgress, [0.28, 0.38, 0.7, 0.78], [0, 1, 1, 0]);
+  const firstOrderSceneY = useTransform(scrollYProgress, [0.28, 0.4, 0.78], [42, 0, -34]);
+  const oldTextOpacity = useTransform(scrollYProgress, [0.3, 0.38, 0.48, 0.56], [0, 1, 1, 0]);
+  const newTextOpacity = useTransform(scrollYProgress, [0.52, 0.62, 0.68, 0.76], [0, 1, 1, 0]);
+  const firstOrderLeftTextX = useTransform(scrollYProgress, [0.32, 0.44], [-88, 0]);
+  const firstOrderRightTextX = useTransform(scrollYProgress, [0.32, 0.44], [88, 0]);
+  const firstOrderPersonY = useTransform(scrollYProgress, [0.3, 0.44], [170, 0]);
+  const firstOrderPersonOpacity = useTransform(scrollYProgress, [0.3, 0.4, 0.72, 0.8], [0, 1, 1, 0]);
+  const leftTextX = useTransform(scrollYProgress, [0.56, 0.68], [-88, 0]);
+  const rightTextX = useTransform(scrollYProgress, [0.56, 0.68], [88, 0]);
+  const thirdSceneOpacity = useTransform(scrollYProgress, [0.78, 0.86], [0, 1]);
+  const thirdSceneY = useTransform(scrollYProgress, [0.78, 0.88], [46, 0]);
+  const thirdHeadingY = useTransform(scrollYProgress, [0.8, 0.88], [-70, 0]);
+  const thirdCopyY = useTransform(scrollYProgress, [0.84, 0.92], [70, 0]);
+  const manHandX = useTransform(scrollYProgress, [0.82, 0.94], ["-38%", "0%"]);
+  const robotHandX = useTransform(scrollYProgress, [0.82, 0.94], ["38%", "0%"]);
   return (
     <main className="bg-[#07131a]">
-      <section ref={introRef} className="relative h-[760vh] bg-[#07131a]">
+      <section ref={introRef} className="relative h-[1040vh] bg-[#07131a]">
         <div className="sticky top-0 h-screen overflow-hidden">
           <motion.img
             src={bgImage}
@@ -89,12 +92,12 @@ const Feelings = () => {
           </motion.div>
 
           <motion.div
-            className="relative z-20 min-h-screen"
-            style={{ opacity: secondSceneOpacity, y: secondSceneY }}
+            className="absolute inset-0 z-20 min-h-screen"
+            style={{ opacity: firstOrderSceneOpacity, y: firstOrderSceneY }}
           >
             <motion.p
               className="absolute left-6 top-[46%] z-20 w-[190px] max-w-[calc(100vw-48px)] text-[24px] text-white sm:left-10 sm:w-[220px] sm:text-[28px] md:left-[12.4%] md:top-[49%] md:w-[260px] md:text-[32px] lg:left-[10.8%] lg:top-[51%] lg:text-[36px]"
-              style={{ x: leftTextX, fontFamily: '"SF Pro", sans-serif', fontWeight: 500, lineHeight: "1.12" }}
+              style={{ opacity: oldTextOpacity, x: firstOrderLeftTextX, fontFamily: '"SF Pro", sans-serif', fontWeight: 500, lineHeight: "1.12" }}
             >
               The late
               <br />
@@ -105,7 +108,7 @@ const Feelings = () => {
 
             <motion.p
               className="absolute right-6 top-[46%] z-20 w-[250px] max-w-[calc(100vw-48px)] text-left text-[24px] text-white sm:right-10 sm:w-[300px] sm:text-[28px] md:right-[4.2%] md:top-[49%] md:w-[360px] md:text-[32px] lg:right-[3.8%] lg:top-[51%] lg:w-[410px] lg:text-[36px]"
-              style={{ x: rightTextX, fontFamily: '"SF Pro", sans-serif', fontWeight: 500, lineHeight: "1.12" }}
+              style={{ opacity: oldTextOpacity, x: firstOrderRightTextX, fontFamily: '"SF Pro", sans-serif', fontWeight: 500, lineHeight: "1.12" }}
             >
               The fabric was
               <br />
@@ -114,12 +117,48 @@ const Feelings = () => {
               up against the light.
             </motion.p>
 
+            <motion.p
+              className="absolute left-6 top-[24%] z-20 w-[255px] max-w-[calc(100vw-48px)] text-[22px] font-semibold text-white sm:left-10 sm:w-[300px] sm:text-[26px] md:left-[11.7%] md:top-[31.5%] md:w-[330px] md:text-[30px] lg:w-[360px] lg:text-[32px]"
+              style={{ opacity: newTextOpacity, x: leftTextX, fontFamily: '"SF Pro", sans-serif', lineHeight: "1.12" }}
+            >
+              The first order was
+              <br />
+              packed, the first thank-
+              <br />
+              you note was written,
+              <br />
+              the first time a customer
+              <br />
+              said "I love it" and you
+              <br />
+              didn't quite believe
+              <br />
+              them.
+            </motion.p>
+
+            <motion.p
+              className="absolute right-6 top-[58%] z-20 w-[280px] max-w-[calc(100vw-48px)] text-left text-[21px] font-semibold text-white sm:right-10 sm:top-[54%] sm:w-[330px] sm:text-[25px] md:right-[8.8%] md:top-[31.5%] md:w-[390px] md:text-[30px] lg:w-[420px] lg:text-[32px]"
+              style={{ opacity: newTextOpacity, x: rightTextX, fontFamily: '"SF Pro", sans-serif', lineHeight: "1.12" }}
+            >
+              The years of working when
+              <br />
+              the numbers didn't work yet.
+              <br />
+              When your family asks when
+              <br />
+              you'll get a real job. When
+              <br />
+              samples came back wrong,
+              <br />
+              again.
+            </motion.p>
+
             <div className="pointer-events-none absolute bottom-0 left-1/2 z-10 h-[76vh] max-h-[690px] w-auto max-w-none -translate-x-1/2 sm:h-[82vh] sm:max-h-[760px] md:h-[92vh] md:max-h-[850px] lg:h-[100vh] lg:max-h-[930px]">
               <motion.img
                 src={headphoneManImage}
                 alt="Man wearing headphones"
                 className="h-full w-auto object-contain"
-                style={{ opacity: personOpacity, y: personY, aspectRatio: "117 / 139" }}
+                style={{ opacity: firstOrderPersonOpacity, y: firstOrderPersonY, aspectRatio: "117 / 139" }}
               />
             </div>
           </motion.div>
@@ -172,6 +211,7 @@ const Feelings = () => {
           </motion.div>
         </div>
       </section>
+
     </main>
   );
 };

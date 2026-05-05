@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react"
+import { Link } from "react-router-dom"
 import { motion, AnimatePresence, useInView, useMotionTemplate, useMotionValue, useScroll, useSpring, useTransform } from "framer-motion"
 import { MagneticButton, SectionTitle, RevealImage, StaggerText } from "../components/AnimatedElements"
 import HeroMain from "../assets/images/Home/Hero-Main.png";
@@ -253,6 +254,7 @@ const featureShowcaseCards = [
     iconAlt: "Virtual try-on",
     iconClassName: "h-[72px] w-[72px]",
     buttonLabel: "Know more",
+    to: "/vto",
     glow: "rgba(214, 233, 200, 0.34)"
   },
   {
@@ -261,6 +263,7 @@ const featureShowcaseCards = [
     icon: whatsappIcon,
     iconAlt: "WhatsApp marketing",
     buttonLabel: "Know more",
+    to: "/ai-whatsapp-marketing",
     glow: "rgba(194, 233, 220, 0.34)"
   },
   {
@@ -269,6 +272,7 @@ const featureShowcaseCards = [
     icon: aiProductIcon,
     iconAlt: "AI product photoshoot",
     buttonLabel: "Know more",
+    to: "/ai-photoshoot",
     glow: "rgba(233, 242, 220, 0.34)"
   },
   {
@@ -318,6 +322,98 @@ const featureShowcaseLayoutMap = featureShowcaseCards.map((_, index) => ({
   column: index < 3 ? index : index - 3,
   columnCount: index < 3 ? 3 : 4
 }));
+
+const SplitLockIcon = () => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="white"
+    strokeWidth="2.2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className="h-[11px] w-[11px] shrink-0"
+  >
+    <rect x="3" y="11" width="18" height="11" rx="2" />
+    <path d="M7 11V7a5 5 0 0110 0v4" />
+  </svg>
+);
+
+const splitCards = [
+  {
+    id: 1,
+    row: "top",
+    title: "VIRTUAL TRY - ON",
+    desc: "Kactus AI provides customers with a visual representation of the outfit along with AI size recommendations before they check out.",
+    icon: vtoFeatureIcon,
+    iconAlt: "Virtual try-on",
+    iconClassName: "h-[58px] w-[58px]",
+    btn: "Know more",
+    to: "/vto",
+    glow: "rgba(214, 233, 200, 0.34)"
+  },
+  {
+    id: 2,
+    row: "top",
+    title: "WHATSAPP MARKETING",
+    desc: "Provide customers with customized shopping experiences by displaying outfits on their own images in WhatsApp marketing campaigns.",
+    icon: whatsappIcon,
+    iconAlt: "WhatsApp marketing",
+    btn: "Know more",
+    to: "/ai-whatsapp-marketing",
+    glow: "rgba(194, 233, 220, 0.34)"
+  },
+  {
+    id: 3,
+    row: "top",
+    title: "AI PRODUCT PHOTOSHOOT",
+    desc: "Studio-quality product photoshoot on WhatsApp. Kactus AI turns your product images into high-quality photos saving time and resources.",
+    icon: aiProductIcon,
+    iconAlt: "AI product photoshoot",
+    btn: "Know more",
+    to: "/ai-photoshoot",
+    glow: "rgba(233, 242, 220, 0.34)"
+  },
+  {
+    id: 4,
+    row: "bot",
+    title: "MARKET RESEARCH",
+    desc: "Kactus AI Market Research helps businesses grow by analysing target audiences, competitors, and market trends.",
+    icon: marketResearchIcon,
+    iconAlt: "Market research",
+    coming: true,
+    glow: "rgba(206, 232, 214, 0.28)"
+  },
+  {
+    id: 5,
+    row: "bot",
+    title: "SOCIAL MEDIA MARKETING",
+    desc: "Manage Instagram, Facebook, and Gmail accounts by creating posts, engaging with followers, and posting. Kactus AI handles it all.",
+    icon: socialMediaMarketingIcon,
+    iconAlt: "Social media marketing",
+    coming: true,
+    glow: "rgba(211, 233, 223, 0.28)"
+  },
+  {
+    id: 6,
+    row: "bot",
+    title: "WEBSITE MANAGEMENT",
+    desc: "Manage and update your website entirely through WhatsApp. Change theme, layout, and content hassle free. No developers. No delays.",
+    icon: websiteManagementIcon,
+    iconAlt: "Website management",
+    coming: true,
+    glow: "rgba(219, 236, 223, 0.28)"
+  },
+  {
+    id: 7,
+    row: "bot",
+    title: "INVENTORY MANAGEMENT",
+    desc: "Kactus AI helps brands avoid stockouts and overstocking of inventories.",
+    icon: inventoryManagementIcon,
+    iconAlt: "Inventory management",
+    coming: true,
+    glow: "rgba(228, 236, 210, 0.28)"
+  }
+];
 
 const FEATURE_SEQUENCE_TOTAL = 2.2;
 const FEATURE_CARD_REVEAL_DELAY = 0;
@@ -418,7 +514,7 @@ function EnterpriseReadyOrbitBackground() {
       />
       <svg
         viewBox="0 0 1440 544"
-        className="absolute inset-0 h-full w-full"
+        className="absolute inset-0 hidden h-full w-full md:block"
         preserveAspectRatio="none"
         aria-hidden="true"
       >
@@ -441,6 +537,25 @@ function EnterpriseReadyOrbitBackground() {
               ease: [0.22, 1, 0.36, 1]
             }}
             viewport={{ once: false, amount: 0.45 }}
+          />
+        ))}
+      </svg>
+      <svg
+        viewBox="0 0 390 516"
+        className="absolute inset-0 h-full w-full md:hidden"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        {[205, 260, 315].map((radius, index) => (
+          <circle
+            key={`mobile-enterprise-ring-${radius}`}
+            cx="195"
+            cy="-34"
+            r={radius}
+            fill="none"
+            stroke="white"
+            strokeWidth="1.2"
+            strokeOpacity={index === 0 ? 0.12 : index === 1 ? 0.09 : 0.07}
           />
         ))}
       </svg>
@@ -521,7 +636,7 @@ function EnterpriseReadyHeading({ mobile = false, className = "" }) {
       <div className="relative z-10">
         <h2
           className={mobile
-            ? "text-[40px] font-normal leading-[0.98] tracking-[-0.04em] text-white"
+            ? "whitespace-nowrap text-center text-[34px] font-normal leading-[1.05] tracking-[-0.035em] text-white"
             : "text-[48px] font-normal leading-[1.04] tracking-[-0.035em] text-white lg:text-[54px]"}
           style={{ fontFamily: '"SF Pro", sans-serif' }}
         >
@@ -529,7 +644,7 @@ function EnterpriseReadyHeading({ mobile = false, className = "" }) {
         </h2>
         <p
           className={mobile
-            ? "mt-3 text-[15px] leading-[1.4] text-white/72"
+            ? "mt-4 text-center text-[16px] leading-[1.35] text-white"
             : "mt-2 text-[16px] leading-[1.35] text-white/80 lg:text-[17px]"}
           style={{ fontFamily: '"SF Pro", sans-serif' }}
         >
@@ -561,7 +676,7 @@ function EnterpriseReadyCard({ item, index, mobile = false, desktopClassName = "
       viewport={{ once: false, amount: mobile ? 0.15 : 0.45 }}
       className={
         mobile
-          ? "mx-auto w-full max-w-[280px] text-center"
+          ? "mx-auto w-full text-center"
           : desktopClassName || `absolute w-[190px] text-center ${item.position}`
       }
       style={{ willChange: "transform, opacity, filter" }}
@@ -569,22 +684,22 @@ function EnterpriseReadyCard({ item, index, mobile = false, desktopClassName = "
       <div className="mx-auto flex items-center justify-center">
         <EnterpriseReadyIcon
           item={item}
-          className={mobile ? "h-[28px] w-[28px]" : "h-[34px] w-[34px] lg:h-[36px] lg:w-[36px]"}
+          className={mobile ? "h-[31px] w-[31px]" : "h-[34px] w-[34px] lg:h-[36px] lg:w-[36px]"}
         />
       </div>
 
       <h3
-        className={`text-white ${mobile ? "mt-4 text-[24px] leading-[1.12]" : "mt-[14px] text-[17px] leading-[1.14]"}`}
+        className={`text-white ${mobile ? "mt-4 text-[16px] leading-[1.18]" : "mt-[14px] text-[17px] leading-[1.14]"}`}
         style={{
           fontFamily: '"SF Pro", sans-serif',
-          fontWeight: 400
+          fontWeight: mobile ? 600 : 400
         }}
       >
         {item.title}
       </h3>
 
       <p
-        className={`mx-auto text-white/70 ${mobile ? "mt-2 max-w-[230px] text-[15px] leading-[1.45]" : "mt-1.5 max-w-[188px] text-[12.5px] leading-[1.34]"}`}
+        className={`mx-auto text-white ${mobile ? "mt-2 max-w-[170px] text-[15px] leading-[1.34]" : "mt-1.5 max-w-[188px] text-[12.5px] leading-[1.34]"}`}
         style={{ fontFamily: '"SF Pro", sans-serif' }}
       >
         {item.description}
@@ -764,33 +879,55 @@ function FeatureShowcaseCard({
         </div>
 
         <div className={compact ? "mt-[2px] flex w-full justify-center" : "mt-[4px] flex w-full justify-center"}>
-          <button
-            className="inline-flex items-center justify-center gap-2 text-[13px] text-white transition-all duration-300 hover:translate-y-[-1px]"
-            style={{
-              width: compact ? "102px" : "132px",
-              height: compact ? "24px" : "30px",
-              borderRadius: "6px",
-              border: "0.841px solid rgba(243, 238, 255, 0.08)",
-              background: "linear-gradient(90deg, rgba(212, 229, 192, 0.39) 0.24%, rgba(118, 127, 106, 0.22) 127.22%)",
-              fontFamily: '"SF Pro"',
-              fontStyle: "normal",
-              fontWeight: 510,
-              lineHeight: "normal",
-              fontSize: compact ? "10px" : "11.5px"
-            }}
-          >
-            {card.comingSoon ? (
-              <>
-                <svg viewBox="0 0 16 16" className="h-3.5 w-3.5" fill="none" aria-hidden="true">
-                  <path d="M4.75 7V5.75a3.25 3.25 0 1 1 6.5 0V7" stroke="currentColor" strokeWidth="1.35" strokeLinecap="round" strokeLinejoin="round" />
-                  <rect x="3" y="7" width="10" height="7" rx="1.5" stroke="currentColor" strokeWidth="1.35" />
-                </svg>
-                {card.buttonLabel}
-              </>
-            ) : (
-              card.buttonLabel
-            )}
-          </button>
+          {card.to && !card.comingSoon ? (
+            <Link
+              to={card.to}
+              className="inline-flex items-center justify-center gap-2 text-[13px] text-white transition-all duration-300 hover:translate-y-[-1px]"
+              style={{
+                width: compact ? "102px" : "132px",
+                height: compact ? "24px" : "30px",
+                borderRadius: "6px",
+                border: "0.841px solid rgba(243, 238, 255, 0.08)",
+                background: "linear-gradient(90deg, rgba(212, 229, 192, 0.39) 0.24%, rgba(118, 127, 106, 0.22) 127.22%)",
+                fontFamily: '"SF Pro"',
+                fontStyle: "normal",
+                fontWeight: 510,
+                lineHeight: "normal",
+                fontSize: compact ? "10px" : "11.5px"
+              }}
+            >
+              {card.buttonLabel}
+            </Link>
+          ) : (
+            <button
+              type="button"
+              className="inline-flex items-center justify-center gap-2 text-[13px] text-white transition-all duration-300 hover:translate-y-[-1px]"
+              style={{
+                width: compact ? "102px" : "132px",
+                height: compact ? "24px" : "30px",
+                borderRadius: "6px",
+                border: "0.841px solid rgba(243, 238, 255, 0.08)",
+                background: "linear-gradient(90deg, rgba(212, 229, 192, 0.39) 0.24%, rgba(118, 127, 106, 0.22) 127.22%)",
+                fontFamily: '"SF Pro"',
+                fontStyle: "normal",
+                fontWeight: 510,
+                lineHeight: "normal",
+                fontSize: compact ? "10px" : "11.5px"
+              }}
+            >
+              {card.comingSoon ? (
+                <>
+                  <svg viewBox="0 0 16 16" className="h-3.5 w-3.5" fill="none" aria-hidden="true">
+                    <path d="M4.75 7V5.75a3.25 3.25 0 1 1 6.5 0V7" stroke="currentColor" strokeWidth="1.35" strokeLinecap="round" strokeLinejoin="round" />
+                    <rect x="3" y="7" width="10" height="7" rx="1.5" stroke="currentColor" strokeWidth="1.35" />
+                  </svg>
+                  {card.buttonLabel}
+                </>
+              ) : (
+                card.buttonLabel
+              )}
+            </button>
+          )}
         </div>
       </div>
     </motion.article>
@@ -817,7 +954,7 @@ function FeatureShowcaseIntroPanel({ active }) {
 
         <div className="absolute inset-0 flex items-center justify-center px-6">
             <motion.p
-              className="max-w-[1040px] text-center text-[42px] leading-[1.03] tracking-[-0.01em] text-white sm:text-[64px] lg:text-[92px]"
+              className="text-white"
               initial={{ opacity: 1, filter: "blur(16px)", scale: 1 }}
             animate={active
               ? {
@@ -831,7 +968,18 @@ function FeatureShowcaseIntroPanel({ active }) {
               times: [0, 0.2, 0.48, 0.78, 1],
               ease: [0.22, 1, 0.36, 1]
             }}
-            style={{ fontFamily: '"SF Pro", sans-serif', fontWeight: 400 }}
+            style={{
+              width: "880px",
+              maxWidth: "100%",
+              color: "#FFF",
+              textAlign: "center",
+              fontFamily: "Helvetica, Arial, sans-serif",
+              fontSize: "67px",
+              fontStyle: "normal",
+              fontWeight: 400,
+              lineHeight: "80px",
+              letterSpacing: "-2.01px"
+            }}
           >
             <span className="block">We honor the hands</span>
             <span className="block">that build your brand</span>
@@ -900,6 +1048,466 @@ function FeatureShowcaseCutLines({ active }) {
       ))}
     </motion.svg>
   )
+}
+
+function CardSplitSection() {
+  const sectionRef = useRef(null);
+  const [phase, setPhase] = useState("blur");
+  const [mobileCarouselPaused, setMobileCarouselPaused] = useState(false);
+  const [activeMobileCardIndex, setActiveMobileCardIndex] = useState(0);
+  const sectionInView = useInView(sectionRef, { amount: 0.35, once: true });
+
+  useEffect(() => {
+    if (!sectionInView) return;
+
+    setPhase("blur");
+    const clearTimer = setTimeout(() => setPhase("clear"), 700);
+    const linesTimer = setTimeout(() => setPhase("lines"), 1900);
+    const spreadTimer = setTimeout(() => setPhase("spread"), 3300);
+
+    return () => {
+      clearTimeout(clearTimer);
+      clearTimeout(linesTimer);
+      clearTimeout(spreadTimer);
+    };
+  }, [sectionInView]);
+
+  useEffect(() => {
+    if (mobileCarouselPaused) return undefined;
+
+    const activeTimer = setInterval(() => {
+      setActiveMobileCardIndex((current) => (current + 1) % splitCards.length);
+    }, 30000 / splitCards.length);
+
+    return () => clearInterval(activeTimer);
+  }, [mobileCarouselPaused]);
+
+  const spreading = phase === "spread";
+  const textVisible = phase === "blur" || phase === "clear";
+  const linesVisible = phase === "lines";
+  const topCards = splitCards.filter((card) => card.row === "top");
+  const bottomCards = splitCards.filter((card) => card.row === "bot");
+
+  return (
+    <section ref={sectionRef} className="relative overflow-visible bg-white px-4 py-14 font-['SF_Pro',sans-serif] sm:px-6 md:py-20 lg:px-8">
+      <div className="mx-auto w-full max-w-[1190px]">
+        <div className="mx-auto max-w-3xl text-center">
+          <h2
+            className="inline-block text-center text-[34px] font-normal leading-[38px] capitalize md:text-[46px] md:leading-[48px]"
+            style={{
+              background: "linear-gradient(90deg, #000 0%, #47DDBD 90.05%)",
+              color: "transparent",
+              backgroundClip: "text",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              fontFamily: "SF Pro",
+              fontStyle: "normal",
+              fontWeight: 400
+            }}
+          >
+            More Than Traditional AI,
+            <span className="block">Smarter Than Automation</span>
+          </h2>
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-slate-500 md:text-lg">
+            Kactus AI turns a single WhatsApp message into complete business execution on its own through the following features:
+          </p>
+        </div>
+      </div>
+
+      <div className="mt-8 overflow-hidden md:hidden">
+        <style>{`
+          @keyframes kactus-mobile-card-scroll {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+          }
+
+          @media (prefers-reduced-motion: reduce) {
+            .kactus-mobile-card-track {
+              animation: none !important;
+            }
+          }
+        `}</style>
+
+        <div
+          className="-mx-4 overflow-hidden pl-4 sm:-mx-6 sm:pl-6"
+          onMouseEnter={() => setMobileCarouselPaused(true)}
+          onMouseLeave={() => setMobileCarouselPaused(false)}
+          onTouchStart={() => setMobileCarouselPaused(true)}
+          onTouchEnd={() => setMobileCarouselPaused(false)}
+          onTouchCancel={() => setMobileCarouselPaused(false)}
+        >
+          <div
+            className="kactus-mobile-card-track flex w-max gap-3 pr-3"
+            style={{
+              animation: "kactus-mobile-card-scroll 30s linear infinite",
+              animationPlayState: mobileCarouselPaused ? "paused" : "running"
+            }}
+          >
+            {[...splitCards, ...splitCards].map((card, index) => (
+              <MobileFeatureCard
+                key={`${card.id}-mobile-${index}`}
+                card={card}
+                duplicate={index >= splitCards.length}
+              />
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-6 flex items-center justify-center gap-[9px]" aria-hidden="true">
+          {splitCards.map((card, index) => (
+            <span
+              key={`mobile-feature-dot-${card.id}`}
+              className={`h-[10px] rounded-full transition-all duration-300 ${
+                activeMobileCardIndex === index ? "w-[24px] bg-[#062f25]" : "w-[10px] bg-[#d9ded8]"
+              }`}
+            />
+          ))}
+        </div>
+      </div>
+
+      <div className="mt-[56px] hidden items-center justify-center md:flex">
+        <div
+          className="relative mx-auto h-[625px] min-h-[625px] w-full max-w-[810px] transition-colors duration-700"
+          style={{
+            backgroundColor: "transparent",
+            borderRadius: spreading ? 0 : "14px",
+            overflow: spreading ? "visible" : "hidden",
+            boxShadow: spreading ? "none" : "0 22px 70px rgba(4, 36, 26, 0.10)",
+            transition: "background-color 1.25s ease, border-radius 0.9s ease, box-shadow 0.9s ease"
+          }}
+        >
+          <div
+            className="pointer-events-none absolute inset-0 z-[15]"
+            style={{
+              opacity: spreading ? 0 : 1,
+              transition: "opacity 1.25s cubic-bezier(0.22,1,0.36,1)",
+              backgroundImage: `
+                radial-gradient(circle at 0% 2%, rgba(203,223,197,0.42) 0%, rgba(130,161,136,0.26) 16%, rgba(5,43,31,0) 38%),
+                radial-gradient(circle at 100% 100%, rgba(203,223,197,0.38) 0%, rgba(127,157,132,0.24) 18%, rgba(5,43,31,0) 42%),
+                linear-gradient(135deg, #0b2f22 0%, #062d22 45%, #082f23 100%)
+              `
+            }}
+          />
+          <div
+            className="pointer-events-none absolute inset-0 z-[16]"
+            style={{
+              opacity: spreading ? 0 : 0.16,
+              transition: "opacity 1.25s cubic-bezier(0.22,1,0.36,1)",
+              backgroundImage: `url(${cardBg})`,
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "cover",
+              mixBlendMode: "soft-light"
+            }}
+          />
+
+          <div className="pointer-events-none absolute inset-0 z-30 flex items-center justify-center px-6 transition-opacity duration-500" style={{ opacity: textVisible ? 1 : 0 }}>
+            <p
+              className="max-w-[880px] text-center font-normal text-white"
+              style={{
+                fontFamily: "Helvetica, Arial, sans-serif",
+                fontSize: "clamp(34px, 4.05vw, 52px)",
+                fontStyle: "normal",
+                lineHeight: "1.2",
+                letterSpacing: "-1.56px",
+                filter: phase === "blur" ? "blur(12px)" : "blur(0px)",
+                opacity: phase === "blur" ? 0.82 : 1,
+                transform: phase === "blur" ? "scale(1.015)" : "scale(1)",
+                transition: "filter 1.15s cubic-bezier(0.22,1,0.36,1), opacity 1.15s ease, transform 1.15s cubic-bezier(0.22,1,0.36,1)"
+              }}
+            >
+              <span className="block whitespace-nowrap">&ldquo; We honor the hands that build</span>
+              <span className="block">your brand &rdquo;</span>
+            </p>
+          </div>
+
+          {["33.33%", "66.66%"].map((left) => (
+            <div key={`top-${left}`} className="absolute top-0 z-20 h-[346px] w-px bg-white/20 transition-opacity duration-300" style={{ left, opacity: linesVisible ? 1 : 0, transition: "opacity 0.9s ease" }} />
+          ))}
+          {["25%", "50%", "75%"].map((left) => (
+            <div key={`bottom-${left}`} className="absolute top-[346px] z-20 h-[279px] w-px bg-white/20 transition-opacity duration-300" style={{ left, opacity: linesVisible ? 1 : 0, transition: "opacity 0.9s ease" }} />
+          ))}
+
+          <div
+            className="absolute left-0 top-[346px] z-[21] h-px bg-white/30"
+            style={{
+              width: phase === "lines" || spreading ? "100%" : 0,
+              opacity: phase === "lines" ? 1 : 0,
+              transition: phase === "lines" ? "width 1.15s cubic-bezier(0.4,0,0.2,1)" : spreading ? "opacity 0.55s ease" : "none"
+            }}
+          />
+
+          <div
+            className="absolute top-0 z-10 flex"
+            style={{
+              left: 0,
+              right: 0,
+              width: "100%",
+              height: "346px",
+              transform: "translateY(0)",
+              gap: spreading ? "21px" : 0,
+              padding: 0,
+              transition: spreading ? "gap 1.25s cubic-bezier(0.22,1,0.36,1)" : "none"
+            }}
+          >
+            {topCards.map((card, index) => (
+              <SplitCard key={card.id} card={card} index={index} count={topCards.length} spreading={spreading} top />
+            ))}
+          </div>
+
+          <div
+            className="absolute z-10 flex"
+            style={{
+              left: 0,
+              right: 0,
+              top: spreading ? "370px" : "346px",
+              bottom: spreading ? "auto" : 0,
+              width: "100%",
+              height: spreading ? "255px" : "auto",
+              transform: "translateY(0)",
+              gap: spreading ? "14px" : 0,
+              padding: 0,
+              transition: spreading ? "top 1.25s cubic-bezier(0.22,1,0.36,1), height 1.25s cubic-bezier(0.22,1,0.36,1), gap 1.25s cubic-bezier(0.22,1,0.36,1)" : "none"
+            }}
+          >
+            {bottomCards.map((card, index) => (
+              <SplitCard key={card.id} card={card} index={index} count={bottomCards.length} spreading={spreading} />
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function MobileFeatureCard({ card, duplicate = false }) {
+  return (
+    <article
+      aria-hidden={duplicate ? "true" : undefined}
+      className="relative h-[402px] w-[292px] flex-none overflow-hidden rounded-[8px] bg-[#052d23] px-6 pb-9 pt-[50px] text-center shadow-[0_18px_48px_rgba(4,36,26,0.12)]"
+    >
+      <img
+        src={cardBg}
+        alt=""
+        aria-hidden="true"
+        className="absolute inset-0 h-full w-full object-cover"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 bg-[radial-gradient(circle_at_18%_0%,rgba(214,233,200,0.34)_0%,rgba(118,127,106,0.22)_28%,rgba(6,47,37,0)_58%)]"
+      />
+
+      <div className="relative z-10 flex h-full flex-col items-center">
+        <h3
+          className="min-h-[22px] whitespace-nowrap text-[17px] font-[700] leading-[22px] text-white"
+          style={{ fontFamily: "SF Pro", letterSpacing: "-0.187px" }}
+        >
+          {card.title}
+        </h3>
+
+        <p
+          className="mt-5 min-h-[74px] max-w-[236px] bg-[linear-gradient(90deg,#ECEFFF_25.19%,#FFF_43.88%,#FFC3A9_93.56%)] bg-clip-text text-[14px] font-normal leading-[17px] text-transparent"
+          style={{ fontFamily: "SF Pro" }}
+        >
+          {card.desc}
+        </p>
+
+        <div className="flex flex-1 items-center justify-center pb-2 pt-6">
+          <img
+            src={card.icon}
+            alt={card.iconAlt}
+            className={`${card.iconClassName || "h-[72px] w-[72px]"} object-contain opacity-90`}
+          />
+        </div>
+
+        {card.to && !card.coming ? (
+          <Link
+            to={card.to}
+            className="inline-flex h-[31px] w-[142px] items-center justify-center rounded-[5px] bg-[#D4E5C0]/65 text-[12px] font-[600] text-white"
+            style={{ fontFamily: "SF Pro" }}
+          >
+            {card.btn}
+          </Link>
+        ) : (
+          <button
+            type="button"
+            className="inline-flex h-[31px] w-[142px] items-center justify-center rounded-[5px] bg-[#D4E5C0]/65 text-[12px] font-[600] text-white"
+            style={{ fontFamily: "SF Pro" }}
+          >
+            {card.coming ? "Coming soon" : card.btn}
+          </button>
+        )}
+      </div>
+    </article>
+  );
+}
+
+function SplitCard({ card, index, count, spreading, top = false }) {
+  const [showContent, setShowContent] = useState(false);
+  const glowX = useMotionValue(top ? 152 : 128);
+  const glowY = useMotionValue(top ? 90 : 82);
+  const glowBackground = useMotionTemplate`radial-gradient(circle at ${glowX}px ${glowY}px, ${card.glow || "rgba(214,233,200,0.24)"} 0%, rgba(255,255,255,0) 46%)`;
+  const flipDelay = 1.05 + index * 0.12;
+  const flipDuration = 1.15;
+  const contentVisible = spreading && showContent;
+
+  useEffect(() => {
+    if (!spreading) {
+      setShowContent(false);
+      return undefined;
+    }
+
+    setShowContent(false);
+    const contentTimer = setTimeout(() => {
+      setShowContent(true);
+    }, (flipDelay + flipDuration) * 1000);
+
+    return () => clearTimeout(contentTimer);
+  }, [spreading, flipDelay, flipDuration]);
+
+  const closedRadius = top
+    ? index === 0
+      ? "14px 0 0 0"
+      : index === count - 1
+        ? "0 14px 0 0"
+        : 0
+    : index === 0
+      ? "0 0 0 14px"
+      : index === count - 1
+        ? "0 0 14px 0"
+        : 0;
+
+  return (
+    <motion.article
+      className="group relative overflow-hidden"
+      animate={spreading ? { rotateY: 180 } : { rotateY: 0 }}
+      style={{
+        flex: "1 1 0",
+        width: "auto",
+        height: "100%",
+        borderRadius: spreading ? 14 : closedRadius,
+        boxShadow: spreading ? "0 18px 48px rgba(4,36,26,0.10)" : "none",
+        transformPerspective: 1000,
+        transformStyle: "preserve-3d",
+        backfaceVisibility: "visible",
+        WebkitBackfaceVisibility: "visible",
+        willChange: "transform, border-radius, box-shadow",
+        transition: `border-radius 0.85s ease, box-shadow 0.9s ease ${index * 0.08}s`
+      }}
+      whileHover={spreading ? { y: top ? -7 : 7, scale: 1.018, rotateX: top ? 3 : -3 } : undefined}
+      transition={{
+        rotateY: {
+          duration: flipDuration,
+          delay: flipDelay,
+          ease: [0.22, 1, 0.36, 1]
+        },
+        type: "spring",
+        stiffness: 230,
+        damping: 24
+      }}
+      onMouseMove={(event) => {
+        if (!spreading) return;
+        const bounds = event.currentTarget.getBoundingClientRect();
+        glowX.set(event.clientX - bounds.left);
+        glowY.set(event.clientY - bounds.top);
+      }}
+      onMouseLeave={() => {
+        glowX.set(top ? 152 : 128);
+        glowY.set(top ? 90 : 82);
+      }}
+    >
+      <img src={cardBg} alt="" aria-hidden="true" className="absolute inset-0 h-full w-full object-cover" />
+      <motion.div className="pointer-events-none absolute inset-0 opacity-80 transition-opacity duration-300 group-hover:opacity-100" style={{ backgroundImage: glowBackground }} />
+      <div className="pointer-events-none absolute inset-0 border border-white/10" />
+
+      <div
+        className="relative z-[1] flex h-full w-full flex-col items-center text-center"
+        style={{
+          padding: top ? "32px 18px 18px" : "22px 12px 12px",
+          opacity: contentVisible ? 1 : 0,
+          transform: "rotateY(180deg)",
+          backfaceVisibility: "visible",
+          WebkitBackfaceVisibility: "visible",
+          transition: "opacity 0.22s ease"
+        }}
+      >
+        <h3
+          className="flex min-h-[20px] w-full items-center justify-center whitespace-nowrap text-white transition-all"
+          style={{
+            opacity: contentVisible ? 1 : 0,
+            transform: contentVisible ? "translateY(0)" : `translateY(${top ? "-4px" : "4px"})`,
+            transition: "opacity 0.18s ease, transform 0.18s ease",
+            fontFamily: "SF Pro",
+            fontSize: top ? "16px" : "13px",
+            fontWeight: 700,
+            lineHeight: top ? "19px" : "15px",
+            letterSpacing: "-0.187px"
+          }}
+        >
+          {card.title}
+        </h3>
+        <p
+          className="line-clamp-4 w-full bg-[linear-gradient(90deg,#ECEFFF_25.19%,#FFF_43.88%,#FFC3A9_93.56%)] bg-clip-text text-transparent transition-opacity"
+          style={{
+            opacity: contentVisible ? 1 : 0,
+            transition: "opacity 0.18s ease",
+            maxWidth: top ? "252px" : "172px",
+            minHeight: top ? "66px" : "40px",
+            marginTop: top ? "12px" : "8px",
+            fontFamily: "SF Pro",
+            fontSize: top ? "12.5px" : "9.5px",
+            lineHeight: top ? "18px" : "13px"
+          }}
+        >
+          {card.desc}
+        </p>
+        <div className="flex w-full flex-1 items-center justify-center transition-opacity" style={{ opacity: contentVisible ? 1 : 0, transition: "opacity 0.18s ease", paddingTop: top ? "10px" : "8px" }}>
+          <img src={card.icon} alt={card.iconAlt} className={`${top ? card.iconClassName || "h-[58px] w-[58px]" : "h-[42px] w-[42px]"} object-contain`} />
+        </div>
+        <div className="transition-opacity" style={{ opacity: contentVisible ? 1 : 0, transition: "opacity 0.18s ease" }}>
+          {card.to && !card.coming ? (
+            <Link
+              to={card.to}
+              className="inline-flex items-center justify-center whitespace-nowrap rounded-[6px] border border-white/10 font-medium text-white transition-transform duration-300 group-hover:-translate-y-0.5"
+              style={{
+                width: top ? "132px" : "124px",
+                height: top ? "30px" : "24px",
+                background: "linear-gradient(90deg, rgba(212, 229, 192, 0.39) 0.24%, rgba(118, 127, 106, 0.22) 127.22%)",
+                fontSize: top ? "11.5px" : "10px",
+                fontFamily: "SF Pro",
+                gap: top ? "8px" : "6px",
+                paddingInline: top ? "16px" : "10px"
+              }}
+            >
+              {card.btn}
+            </Link>
+          ) : (
+            <button
+              type="button"
+              className="inline-flex items-center justify-center whitespace-nowrap rounded-[6px] border border-white/10 font-medium text-white transition-transform duration-300 group-hover:-translate-y-0.5"
+              style={{
+                width: top ? "132px" : "124px",
+                height: top ? "30px" : "24px",
+                background: "linear-gradient(90deg, rgba(212, 229, 192, 0.39) 0.24%, rgba(118, 127, 106, 0.22) 127.22%)",
+                fontSize: top ? "11.5px" : "10px",
+                fontFamily: "SF Pro",
+                gap: top ? "8px" : "6px",
+                paddingInline: top ? "16px" : "10px"
+              }}
+            >
+              {card.coming ? (
+                <>
+                  <SplitLockIcon /> Coming soon
+                </>
+              ) : (
+                card.btn
+              )}
+            </button>
+          )}
+        </div>
+      </div>
+    </motion.article>
+  );
 }
 
 function FeatureIcon({ iconKey, className = "h-7 w-7", stroke = "currentColor" }) {
@@ -1009,7 +1617,7 @@ function FeatureIcon({ iconKey, className = "h-7 w-7", stroke = "currentColor" }
   }
 }
 
-function CompatibleLogoCard({ item, index }) {
+function CompatibleLogoCard({ item, index, compact = false }) {
   const rotateX = useMotionValue(0)
   const rotateY = useMotionValue(0)
   const translateZ = useMotionValue(0)
@@ -1052,12 +1660,16 @@ function CompatibleLogoCard({ item, index }) {
         rotateY: smoothRotateY,
         z: smoothTranslateZ
       }}
-      className="group flex h-[164px] items-center justify-center rounded-[12px] border-2 border-[#B4BDBB] bg-white px-[45px] py-[48px] shadow-[0_14px_36px_rgba(4,36,26,0.08)] transition-shadow duration-300 hover:shadow-[0_22px_42px_rgba(4,36,26,0.16)]"
+      className={`group flex items-center justify-center rounded-[8px] border-2 border-[#B4BDBB] bg-white shadow-[0_14px_36px_rgba(4,36,26,0.08)] transition-shadow duration-300 hover:shadow-[0_22px_42px_rgba(4,36,26,0.16)] ${
+        compact
+          ? "h-[116px] w-[178px] px-7 py-8 md:h-[164px] md:w-[260px] md:px-[45px] md:py-[48px]"
+          : "h-[164px] px-[45px] py-[48px]"
+      }`}
     >
       {item.type === "text" ? (
         <motion.span
           style={{ z: smoothTranslateZ }}
-          className="text-center text-[18px] font-semibold text-[#16362D] md:text-[20px]"
+          className="text-center text-[17px] font-semibold text-[#16362D] md:text-[20px]"
         >
           {item.label}
         </motion.span>
@@ -1066,7 +1678,7 @@ function CompatibleLogoCard({ item, index }) {
           src={item.src}
           alt={item.label}
           style={{ z: smoothTranslateZ }}
-          className="max-h-[68px] w-full object-contain"
+          className="max-h-[58px] w-full object-contain md:max-h-[68px]"
         />
       )}
     </motion.div>
@@ -1325,40 +1937,9 @@ function InteractiveFeatureOrbit({ cards, activeIndex, setActiveIndex }) {
 
 export default function Home() {
   const { scrollY } = useScroll();
-  const featureSequenceRef = useRef(null);
   const [isDemoOpen, setIsDemoOpen] = useState(false);
-  const [activeFeatureCard, setActiveFeatureCard] = useState(null);
-  const [featureCardsVisible, setFeatureCardsVisible] = useState(false);
-  const [featureSequencePlaying, setFeatureSequencePlaying] = useState(false);
   const [activeReviewCard, setActiveReviewCard] = useState(null);
   const [openFaqIndex, setOpenFaqIndex] = useState(0);
-  const featureSequenceInView = useInView(featureSequenceRef, { amount: 0.18 });
-
-  useEffect(() => {
-    if (!featureSequenceInView) {
-      setFeatureSequencePlaying(false);
-      setFeatureCardsVisible(false);
-      setActiveFeatureCard(null);
-      return;
-    }
-
-    setFeatureSequencePlaying(true);
-    setFeatureCardsVisible(false);
-    setActiveFeatureCard(null);
-
-    const handoffTimer = setTimeout(() => {
-      setFeatureCardsVisible(true);
-    }, Math.max(0, FEATURE_SEQUENCE_TOTAL * 1000 - FEATURE_CARDS_HANDOFF_MS));
-
-    const doneTimer = setTimeout(() => {
-      setFeatureSequencePlaying(false);
-    }, FEATURE_SEQUENCE_TOTAL * 1000);
-
-    return () => {
-      clearTimeout(handoffTimer);
-      clearTimeout(doneTimer);
-    };
-  }, [featureSequenceInView]);
 
   const heroRevealY = useTransform(scrollY, [0, 500], [0, 150]);
   const blobY1 = useTransform(scrollY, [0, 500], [0, 100]);
@@ -1367,7 +1948,7 @@ export default function Home() {
   return (
     <main className="demo-page bg-[#F5F6F2] text-slate-800">
 
-      <section className="relative min-h-[100svh] overflow-hidden md:h-screen">
+      <section className="relative min-h-[100svh] overflow-hidden lg:h-screen">
 
   {/* BACKGROUND IMAGE */}
   <div
@@ -1380,7 +1961,15 @@ export default function Home() {
 
   {/* DARK OVERLAY */}
   <div
-    className="absolute inset-0"
+    className="absolute inset-0 lg:hidden"
+    style={{
+      background:
+        "linear-gradient(180deg, rgba(70, 92, 73, 0.82) 0%, rgba(6, 35, 28, 0.7) 28%, rgba(0, 0, 0, 0.88) 100%)",
+    }}
+  />
+
+  <div
+    className="absolute inset-0 hidden lg:block"
     style={{
       background:
         "linear-gradient(90deg, rgba(2, 21, 16, 0.34) 0%, rgba(4, 40, 31, 0.14) 42%, rgba(17, 111, 96, 0.02) 100%)",
@@ -1389,11 +1978,11 @@ export default function Home() {
 
   {/* CONTENT */}
   {/* CONTENT */}
-<div className="relative z-10 flex min-h-[100svh] items-center md:h-full">
-  <div className="w-full px-5 py-[60px] sm:px-8 md:px-0 md:py-[60px]">
-      <div className="flex flex-col md:pl-[120px] lg:pl-[122px] xl:pl-[120px]">
+<div className="relative z-10 flex min-h-[100svh] items-start justify-center lg:h-full lg:items-center lg:justify-start">
+  <div className="w-full px-5 pb-[96px] pt-[108px] sm:px-8 sm:pt-[116px] md:pt-[128px] lg:px-0 lg:py-[60px]">
+      <div className="mx-auto flex max-w-[340px] flex-col items-center text-center sm:max-w-[420px] md:max-w-[520px] lg:mx-0 lg:max-w-none lg:items-start lg:pl-[122px] lg:text-left xl:pl-[120px]">
       <h1
-        className="max-w-[310px] text-[32px] leading-[0.96] tracking-[-0.03em] text-white sm:max-w-[360px] sm:text-[42px] md:max-w-none md:w-fit md:text-[54px] md:leading-[0.95] md:whitespace-nowrap"
+        className="max-w-[310px] text-[34px] leading-[0.96] tracking-[-0.03em] text-white sm:max-w-[360px] sm:text-[42px] md:max-w-[430px] md:text-[48px] lg:max-w-none lg:w-fit lg:text-[54px] lg:leading-[0.95] lg:whitespace-nowrap"
         style={{
           color: "#FFF",
           fontFamily: "SF Pro",
@@ -1405,22 +1994,20 @@ export default function Home() {
       </h1>
 
       <p
-        className="mt-[10px] max-w-[308px] text-[15px] leading-[1.35] text-white/85 sm:max-w-[360px] md:mt-[8px] md:max-w-[432px] md:text-[16px] md:leading-[1.22]"
+        className="mt-[12px] max-w-[calc(100vw-32px)] text-[clamp(12px,3.45vw,14px)] leading-[1.45] text-white sm:max-w-none sm:text-[16px] md:mt-[14px] md:text-[18px] lg:mt-[8px] lg:max-w-[432px] lg:text-[16px] lg:leading-[1.22] lg:text-white/85"
         style={{
           fontFamily: "SF Pro",
           fontStyle: "normal",
           fontWeight: 274,
         }}
       >
-        Kactus AI provides an autonomous system to manage
-        <br />
-        businesses via WhatsApp.
+        <span className="block whitespace-nowrap">Kactus AI provides an autonomous system to manage</span>
+        <span className="block whitespace-nowrap">businesses via WhatsApp</span>
       </p>
 
-      <button
-        type="button"
-        onClick={() => setIsDemoOpen(true)}
-        className="mt-[18px] inline-flex items-center justify-center rounded-[4px] bg-[#DCE8B7] text-[#06231C] uppercase tracking-[0.02em] transition-transform duration-300 hover:-translate-y-0.5"
+      <Link
+        to="/contact"
+        className="absolute bottom-[22px] left-1/2 inline-flex -translate-x-1/2 items-center justify-center rounded-[4px] bg-[#DCE8B7] text-[#06231C] uppercase tracking-[0.02em] transition-transform duration-300 hover:-translate-y-0.5 sm:bottom-[28px] md:bottom-[34px] lg:static lg:mt-[18px] lg:translate-x-0"
         style={{
           width: "132px",
           height: "35px",
@@ -1430,14 +2017,14 @@ export default function Home() {
         }}
       >
         Book A Demo
-      </button>
+      </Link>
       </div>
     </div>
   </div>
 
   <div
     aria-hidden="true"
-    className="pointer-events-none absolute bottom-0 right-[4%] z-[9] h-[58svh] max-h-[640px] md:right-[6%] md:h-[72svh] lg:right-[7%] lg:h-[78svh]"
+    className="pointer-events-none absolute bottom-[58px] left-1/2 z-[9] h-[58svh] max-h-[520px] -translate-x-1/2 sm:bottom-[62px] sm:h-[60svh] sm:max-h-[600px] md:bottom-[70px] md:h-[62svh] md:max-h-[680px] lg:bottom-0 lg:left-auto lg:right-[7%] lg:h-[78svh] lg:max-h-[640px] lg:translate-x-0"
   >
     <img
       src={finalHand}
@@ -1445,13 +2032,12 @@ export default function Home() {
       className="h-full w-auto object-contain"
     />
 
-    <div className="absolute left-[30.6%] top-[0.4%] h-[38%] w-[45%]">
+    <div className="absolute left-[36.5%] top-[14%] h-[18%] w-[27%] lg:left-[30.6%] lg:top-[0.4%] lg:h-[38%] lg:w-[45%]">
       <motion.div
-        className="absolute inset-0"
+        className="absolute inset-[8%] rounded-full blur-[12px] lg:inset-0 lg:blur-[73px]"
         style={{
           borderRadius: "672.42px",
-          background: "radial-gradient(77.33% 77.33% at 50% 50%, #F6FFEB 0%, #5E9E6D 62.07%)",
-          filter: "blur(73.17869567871094px)"
+          background: "radial-gradient(77.33% 77.33% at 50% 50%, #F6FFEB 0%, #5E9E6D 62.07%)"
         }}
         animate={{
           opacity: [0.12, 0.34, 0.2, 0.38, 0.14],
@@ -1464,11 +2050,10 @@ export default function Home() {
         }}
       />
       <motion.div
-        className="absolute inset-[6%] rounded-full"
+        className="absolute inset-[16%] rounded-full blur-[3px] lg:inset-[6%] lg:blur-[8px]"
         style={{
           background:
             "radial-gradient(circle, rgba(241,255,225,0.72) 0%, rgba(200,247,207,0.22) 54%, rgba(143,222,163,0.06) 72%, rgba(143,222,163,0) 100%)",
-          filter: "blur(8px)"
         }}
         animate={{
           opacity: [0.16, 0.46, 0.24, 0.5, 0.18],
@@ -1608,97 +2193,11 @@ export default function Home() {
       </section> */}
      
 
-      <section className="relative bg-[#ffffff] px-4 py-14 sm:px-6 md:py-20 lg:px-8">
-        <div className="mx-auto max-w-[1190px]">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            viewport={{ once: true }}
-            className="mx-auto max-w-3xl text-center"
-          >
-            <h2
-              className="text-center font-normal inline-block"
-              style={{
-                background: "linear-gradient(90deg, #000 0%, #47DDBD 90.05%)",
-                color: "transparent",
-                backgroundClip: "text",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                fontFamily: "SF Pro",
-                fontSize: "46px",
-                fontStyle: "normal",
-                fontWeight: 400,
-                lineHeight: "48px",
-                textTransform: "capitalize",
-              }}
-            >
-              More Than Traditional AI,
-              <span className="block">Smarter Than Automation</span>
-            </h2>
-            <p className="mt-5 text-slate-500 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
-              Kactus AI turns a single WhatsApp message into complete business execution on its own through the following features:
-            </p>
-          </motion.div>
+      <CardSplitSection />
 
-          <div ref={featureSequenceRef} className="relative mt-[56px] min-h-[660px] xl:min-h-[640px]">
-            <motion.div
-              className="pointer-events-none absolute inset-0 rounded-[16px] bg-[#042f25]"
-              initial={false}
-              animate={{ opacity: featureCardsVisible ? 0 : 1 }}
-              transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-            />
-            <motion.div
-              className="relative z-10 mx-auto w-full origin-top space-y-[18px] px-2 sm:px-3 md:px-4 xl:px-0"
-              initial={{ opacity: 0, y: 18 }}
-              animate={featureCardsVisible
-                ? { opacity: 1, y: 0 }
-                : { opacity: 0, y: 18 }}
-              transition={{ duration: 0.36, delay: 0, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <div className="mx-auto grid w-full max-w-[810px] grid-cols-1 justify-items-center gap-x-[21px] gap-y-[14px] xl:grid-cols-3">
-                {featureShowcaseCards.slice(0, 3).map((card, index) => (
-                  <FeatureShowcaseCard
-                    key={card.title}
-                    card={card}
-                    index={index}
-                    activeCard={activeFeatureCard}
-                    setActiveCard={setActiveFeatureCard}
-                    layout={featureShowcaseLayoutMap[index]}
-                    activeLayoutMap={featureShowcaseLayoutMap}
-                    sequenceActive={featureCardsVisible}
-                  />
-                ))}
-              </div>
-
-              <div className="mx-auto grid w-full max-w-[810px] grid-cols-1 justify-items-center gap-x-[14px] gap-y-[14px] sm:grid-cols-2 xl:grid-cols-4">
-                {featureShowcaseCards.slice(3).map((card, localIndex) => {
-                  const index = localIndex + 3;
-
-                  return (
-                    <FeatureShowcaseCard
-                      key={card.title}
-                      card={card}
-                      index={index}
-                      activeCard={activeFeatureCard}
-                      setActiveCard={setActiveFeatureCard}
-                      layout={featureShowcaseLayoutMap[index]}
-                      activeLayoutMap={featureShowcaseLayoutMap}
-                      compact
-                      sequenceActive={featureCardsVisible}
-                    />
-                  );
-                })}
-              </div>
-            </motion.div>
-            {featureSequencePlaying && <FeatureShowcaseIntroPanel active />}
-          </div>
-        </div>
-      </section>
-
- <section className="w-full bg-white py-[40px]">
+ <section className="w-full bg-white px-0 py-8 md:px-0 md:py-[40px]">
   <div
-    className="relative flex h-[396px] w-full items-center overflow-visible px-6 sm:px-10 md:px-[80px]"
+    className="relative flex h-[243px] w-full items-center overflow-visible px-6 md:h-[396px] md:px-[80px]"
     style={{
       backgroundImage: `url(${thirdContainerBg})`,
       backgroundPosition: "center",
@@ -1711,18 +2210,22 @@ export default function Home() {
       whileInView={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
       viewport={{ once: false, amount: 0.35 }}
-      className="relative z-10 max-w-[997px] text-white"
+      className="relative z-10 max-w-[178px] text-white md:max-w-[997px]"
     >
       <h2
-        className="text-white text-[48px] font-normal leading-[52.5px]"
+        className="text-[23px] font-[510] leading-[28px] text-white md:text-[48px] md:font-normal md:leading-[52.5px]"
         style={{ fontFamily: '"SF Pro", sans-serif' }}
       >
-        Run your business via WhatsApp, <br /> End to End
+        <span className="md:hidden">Run Your Business Via WhatsApp, End To End</span>
+        <span className="hidden md:inline">Run your business via WhatsApp, <br /> End to End</span>
       </h2>
 
-      <button className="mt-6 bg-[#dfeac6] text-[#123126] px-6 py-3 rounded-md text-sm font-medium hover:bg-[#ebf3d8] transition">
+      <Link
+        to="/contact"
+        className="mt-4 inline-flex h-[31px] w-[104px] items-center justify-center rounded-[3px] bg-[#dfeac6] px-0 py-0 text-[10px] font-medium uppercase text-[#123126] transition hover:bg-[#ebf3d8] md:mt-6 md:h-auto md:w-auto md:rounded-md md:px-6 md:py-3 md:text-sm md:normal-case"
+      >
         Book A Demo
-      </button>
+      </Link>
     </motion.div>
 
     <motion.img
@@ -1732,11 +2235,11 @@ export default function Home() {
       whileInView={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.82, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
       viewport={{ once: false, amount: 0.35 }}
-      className="pointer-events-none absolute bottom-0 right-[3%] z-[9] h-[501.744px] w-auto object-contain"
+      className="pointer-events-none absolute bottom-0 right-0 z-[9] h-[292px] w-auto object-contain md:right-[3%] md:h-[501.744px]"
     />
     <div
       aria-hidden="true"
-      className="pointer-events-none absolute bottom-[252px] right-[11.2%] z-[10] h-[116px] w-[116px]"
+      className="pointer-events-none absolute bottom-[148px] right-[20.5%] z-[10] h-[66px] w-[66px] md:bottom-[252px] md:right-[11.2%] md:h-[116px] md:w-[116px]"
     >
       <motion.div
         className="absolute inset-0 rounded-full"
@@ -1759,7 +2262,7 @@ export default function Home() {
   </div>
 </section>
 
-      <section className="bg-white px-4 py-6 sm:px-6 md:py-8 lg:px-8">
+      <section className="bg-white px-4 pb-8 pt-6 sm:px-6 md:py-8 lg:px-8">
         <div className="mx-auto w-full max-w-[1480px]">
           <div className="bg-white lg:grid lg:grid-cols-[minmax(0,0.84fr)_minmax(0,1.16fr)] lg:items-center">
             <motion.div
@@ -1767,7 +2270,7 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.65 }}
               viewport={{ once: true, amount: 0.2 }}
-              className="group relative flex min-h-[260px] items-center justify-center overflow-hidden px-4 py-4 sm:min-h-[300px] sm:px-8 md:min-h-[360px] md:px-10 md:py-6 lg:px-6 lg:py-4 xl:px-8"
+              className="group relative mx-auto flex min-h-[242px] w-full max-w-[280px] items-center justify-center overflow-hidden px-0 py-0 sm:min-h-[300px] sm:max-w-[360px] sm:px-8 md:min-h-[360px] md:max-w-none md:px-10 md:py-6 lg:px-6 lg:py-4 xl:px-8"
             >
               <motion.video
                 src={graphicAnimation}
@@ -1775,7 +2278,7 @@ export default function Home() {
                 loop
                 muted
                 playsInline
-                className="relative z-10 h-full min-h-[240px] w-full object-contain sm:min-h-[280px] md:min-h-[340px] lg:min-h-[360px]"
+                className="relative z-10 h-full min-h-[236px] w-full object-contain sm:min-h-[280px] md:min-h-[340px] lg:min-h-[360px]"
               />
             </motion.div>
 
@@ -1784,22 +2287,33 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.65, delay: 0.08 }}
               viewport={{ once: true, amount: 0.2 }}
-              className="flex items-center px-6 py-4 sm:px-10 md:px-14 md:py-6 lg:px-8 lg:py-4 xl:px-10"
+              className="flex items-center px-2 py-0 sm:px-10 md:px-14 md:py-6 lg:px-8 lg:py-4 xl:px-10"
             >
-              <div className="flex w-full max-w-[760px] flex-col items-start">
+              <div className="mx-auto flex w-full max-w-[300px] flex-col items-center text-center md:mx-0 md:max-w-[760px] md:items-start md:text-left">
                 <h2
-  className="w-full text-[22px] font-normal leading-[1.14] tracking-[-0.025em] text-[#101010] sm:text-[28px] md:text-[34px] lg:text-[38px] xl:text-[40px]"
-  style={{
-    fontFamily: '"SF Pro", sans-serif',
-    textTransform: "capitalize"
-  }}
->
-  <span className="block">From One Prompt To Complete Solution</span>
-  <span className="mt-1 block">Your Business, Just A Chat Away.</span>
-</h2>
+                  className="w-full md:hidden"
+                  style={{
+                    fontFamily: '"SF Pro", sans-serif',
+                    textTransform: "capitalize"
+                  }}
+                >
+                  <span className="block text-[13px] font-[600] leading-[16px] text-[#5f6c64]">From One Prompt To Complete Solution</span>
+                  <span className="mt-1 block text-[20px] font-[700] leading-[23px] tracking-[-0.02em] text-[#101010]">Your Business, Just A Chat Away</span>
+                </h2>
+
+                <h2
+                  className="hidden w-full text-[34px] font-normal leading-[1.14] tracking-[-0.025em] text-[#101010] md:block lg:text-[38px] xl:text-[40px]"
+                  style={{
+                    fontFamily: '"SF Pro", sans-serif',
+                    textTransform: "capitalize"
+                  }}
+                >
+                  <span className="block">From One Prompt To Complete Solution</span>
+                  <span className="mt-1 block">Your Business, Just A Chat Away.</span>
+                </h2>
 
                 <p
-                  className="mt-5 max-w-[620px] text-[16px] font-normal leading-[1.6] text-[#8E8E8E] sm:text-[17px] md:text-[18px] lg:text-[18px]"
+                  className="mt-3 max-w-[276px] text-[12px] font-normal leading-[1.45] text-[#8E8E8E] sm:text-[15px] md:mt-5 md:max-w-[620px] md:text-[18px] md:leading-[1.6] lg:text-[18px]"
                   style={{
                     fontFamily: '"SF Pro", sans-serif'
                   }}
@@ -1807,11 +2321,12 @@ export default function Home() {
                   Discover how Kactus AI streamlines your daily business tasks and enhances your workflow with AI.
                 </p>
 
-                <button
-                  className="mt-9 inline-flex h-[44px] min-w-[140px] items-center justify-center rounded-[4px] border border-[#D4E5C0] bg-[#D4E5C0] px-8 text-[12px] font-medium uppercase tracking-[0.06em] text-[#17362d] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#DCE9C9]"
+                <Link
+                  to="/outcomes"
+                  className="mt-5 inline-flex h-[31px] w-[196px] items-center justify-center rounded-[4px] border border-[#D4E5C0] bg-[#D4E5C0] px-8 text-[11px] font-medium uppercase tracking-[0.06em] text-[#17362d] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#DCE9C9] md:mt-9 md:h-[44px] md:w-auto md:min-w-[140px] md:text-[12px]"
                 >
                   Outcome
-                </button>
+                </Link>
               </div>
             </motion.div>
           </div>
@@ -1823,16 +2338,16 @@ export default function Home() {
 
       {/* ENTERPRISE READY */}
       <section className="relative overflow-hidden bg-[#06231C] py-0">
-        <div className="relative isolate min-h-[540px] overflow-hidden md:min-h-[544px]">
+        <div className="relative isolate min-h-[516px] overflow-hidden md:min-h-[544px]">
           <EnterpriseReadyOrbitBackground />
           <EnterpriseReadyCenterGlow
-            wrapperClassName="top-0 -translate-y-[34%] md:-translate-y-[42%]"
-            glowClassName="h-[220px] w-[360px] md:h-[300px] md:w-[860px]"
+            wrapperClassName="top-0 -translate-y-[30%] md:-translate-y-[42%]"
+            glowClassName="h-[190px] w-[360px] md:h-[300px] md:w-[860px]"
           />
 
           <EnterpriseReadyHeading
             mobile
-            className="absolute left-1/2 top-[68px] z-20 w-full max-w-[340px] -translate-x-1/2 md:hidden"
+            className="absolute inset-x-0 top-[35px] z-20 mx-auto w-full max-w-none px-5 md:hidden"
           />
 
           <div className="relative z-10 mx-auto hidden h-[544px] w-full max-w-[1440px] md:block">
@@ -1865,9 +2380,9 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="relative z-10 mx-auto max-w-[560px] px-5 pb-12 pt-[188px] sm:px-6 md:hidden">
-            <div className="mt-10 grid gap-9 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10">
-              {enterpriseCards.map((item, index) => (
+          <div className="relative z-10 mx-auto max-w-[430px] px-5 pb-10 pt-[145px] md:hidden">
+            <div className="grid grid-cols-2 gap-x-6 gap-y-[47px]">
+              {[enterpriseCards[0], enterpriseCards[2], enterpriseCards[3], enterpriseCards[1]].map((item, index) => (
                 <EnterpriseReadyCard
                   key={`${item.title}-mobile-${index}`}
                   item={item}
@@ -1905,14 +2420,42 @@ export default function Home() {
             </p>
           </motion.div>
 
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:gap-10">
-            {logos.map((item, index) => (
-              <CompatibleLogoCard
-                key={`${item.label}-${index}`}
-                item={item}
-                index={index}
-              />
-            ))}
+          <div className="mt-10 overflow-hidden md:mt-12">
+            <style>{`
+              @keyframes kactus-compatible-scroll {
+                from { transform: translateX(-50%); }
+                to { transform: translateX(0); }
+              }
+
+              @media (prefers-reduced-motion: reduce) {
+                .kactus-compatible-track {
+                  animation: none !important;
+                }
+              }
+            `}</style>
+
+            <div
+              className="kactus-compatible-track flex w-max gap-3 pr-3 sm:gap-5 md:gap-10"
+              style={{ animation: "kactus-compatible-scroll 28s linear infinite" }}
+            >
+              {[...logos, ...logos].map((item, index) => (
+                <CompatibleLogoCard
+                  key={`${item.label}-compatible-${index}`}
+                  item={item}
+                  index={index % logos.length}
+                  compact
+                />
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-10 flex justify-center">
+            <Link
+              to="/integrations"
+              className="inline-flex h-[41px] w-[212px] items-center justify-center rounded-[4px] bg-[#D4E5C0] text-[13px] font-medium uppercase tracking-[0.06em] text-[#17362d] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#DCE9C9] md:h-[44px] md:w-[240px] md:text-[14px]"
+            >
+              Integrations
+            </Link>
           </div>
 
           
@@ -1955,7 +2498,7 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0, y: 0 }}
               transition={{ duration: 0.95, ease: [0.22, 1, 0.36, 1] }}
               viewport={{ once: false, amount: 0.2 }}
-              className="pointer-events-none absolute -bottom-[48%] -left-[24%] z-[10] h-[245%] w-auto max-w-none object-contain object-left-bottom opacity-95 md:-bottom-[52%] md:-left-[22%] md:h-[258%] lg:-bottom-[56%] lg:-left-[20%] lg:h-[272%]"
+              className="pointer-events-none absolute -bottom-[48%] -left-[24%] z-[10] hidden h-[245%] w-auto max-w-none object-contain object-left-bottom opacity-95 md:block md:-bottom-[52%] md:-left-[22%] md:h-[258%] lg:-bottom-[56%] lg:-left-[20%] lg:h-[272%]"
             />
 
             <motion.img
@@ -1966,7 +2509,7 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0, y: 0 }}
               transition={{ duration: 0.95, ease: [0.22, 1, 0.36, 1], delay: 0.05 }}
               viewport={{ once: false, amount: 0.2 }}
-              className="pointer-events-none absolute -right-[24%] -top-[28%] z-[10] h-[245%] w-auto max-w-none object-contain object-right-top opacity-95 md:-right-[22%] md:-top-[32%] md:h-[258%] lg:-right-[20%] lg:-top-[36%] lg:h-[272%]"
+              className="pointer-events-none absolute -right-[24%] -top-[28%] z-[10] hidden h-[245%] w-auto max-w-none object-contain object-right-top opacity-95 md:block md:-right-[22%] md:-top-[32%] md:h-[258%] lg:-right-[20%] lg:-top-[36%] lg:h-[272%]"
             />
 
           </div>
