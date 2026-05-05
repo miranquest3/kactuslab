@@ -30,6 +30,7 @@ import vtoSectionVector from "../assets/images/Vto/Vector.svg";
 import rightIcon from "../assets/images/Vto/right.svg";
 import wrongIcon from "../assets/images/Vto/wrong.svg";
 import vtoImg from "../assets/images/Vto/vtoImg.png";
+import vtoCtaImage from "../assets/images/Vto/vtoCta.png";
 import ShopifyHeroBg from "../assets/images/Vto/shopifyhero.png";
 import whatsappMobileBg from "../assets/images/WhatsAppMarketing/mobileBg.png";
 import logoWithoutName from "../assets/images/Vto/logowithoutname.svg";
@@ -333,6 +334,29 @@ const vtoFeatureHighlights = [
   }
 ];
 
+const vtoConversationRules = [
+  {
+    title: "A Welcome that fits, not a pitch that doesn't",
+    description:
+      "When a first-time visitor tries on a piece, the AI might offer a small offer such as \"Try this on and we'll take ₹100 off your first order.\" It's not a discount strategy. It's a way of saying thank you for trying."
+  },
+  {
+    title: "A bundle suggestion when the moment is right",
+    description:
+      "If someone tries a kurta and keeps browsing matching bottoms, Kactus can suggest the complete look only when the intent is clear. The offer feels helpful because it follows what the shopper is already doing."
+  },
+  {
+    title: "A quiet message later, not a pop-up now",
+    description:
+      "When a shopper is still comparing styles, Kactus stays out of the way. If they leave without buying, it can follow up later with a calm WhatsApp reminder tied to the exact item they tried."
+  },
+  {
+    title: "The most significant feature is knowing when to do nothing.",
+    description:
+      "Not every visitor needs a nudge. If the customer is moving confidently toward checkout, Kactus avoids interrupting the purchase and lets the journey stay clean."
+  }
+];
+
 const comparisonRows = [
   "Purchase with instant discounts",
   "Downloadable watermark",
@@ -392,8 +416,35 @@ function VtoOrbitBackground() {
         }}
       />
       <svg
+        viewBox="0 0 390 760"
+        className="absolute inset-0 h-full w-full md:hidden"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        {[210, 255, 300].map((radius, index) => (
+          <motion.circle
+            key={`mobile-vto-ring-${radius}`}
+            cx="195"
+            cy="18"
+            r={radius}
+            fill="none"
+            stroke="white"
+            strokeWidth="1.2"
+            strokeOpacity={index === 0 ? 0.16 : index === 1 ? 0.11 : 0.07}
+            initial={{ opacity: 0, pathLength: 0.92 }}
+            whileInView={{ opacity: 1, pathLength: 1 }}
+            transition={{
+              duration: 1.05,
+              delay: 0.04 * index,
+              ease: [0.22, 1, 0.36, 1]
+            }}
+            viewport={{ once: false, amount: 0.3 }}
+          />
+        ))}
+      </svg>
+      <svg
         viewBox="0 0 1440 920"
-        className="absolute inset-0 h-full w-full"
+        className="absolute inset-0 hidden h-full w-full md:block"
         preserveAspectRatio="none"
         aria-hidden="true"
       >
@@ -591,6 +642,7 @@ export default function Vto() {
   const [activeVtoChallenge, setActiveVtoChallenge] = useState(null);
   const [hoveredVtoChallenge, setHoveredVtoChallenge] = useState(null);
   const [activeReviewCard, setActiveReviewCard] = useState(null);
+  const [activeVtoConversationRule, setActiveVtoConversationRule] = useState(0);
   const [openFaqIndex, setOpenFaqIndex] = useState(0);
   const vtoChallengesSectionRef = useRef(null);
   const desktopChallengeTrackRef = useRef(null);
@@ -722,14 +774,18 @@ export default function Vto() {
               initial={{ opacity: 0, y: 28 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
-              className="mx-auto max-w-[286px] text-center md:mx-0 md:max-w-[560px] md:text-left"
+              className="mx-auto w-full max-w-[340px] text-center md:mx-0 md:max-w-[560px] md:text-left"
             >
               <h1
-                className="self-stretch text-center text-[22px] font-normal leading-[22px] text-white md:hidden"
+                className="self-stretch text-center text-white md:hidden"
                 style={{
                   color: "#FFF",
+                  textAlign: "center",
+                  fontFamily: "SF Pro",
+                  fontSize: "32px",
                   fontStyle: "normal",
-                  fontWeight: 400
+                  fontWeight: 400,
+                  lineHeight: "34.3px"
                 }}
               >
                 Higher Conversions Fewer Returns
@@ -750,11 +806,15 @@ export default function Vto() {
               </h1>
 
               <p
-                className="mt-2 self-stretch text-center text-[8px] leading-[11px] text-white md:hidden"
+                className="mt-2 self-stretch text-center text-white md:hidden"
                 style={{
                   color: "#FFF",
+                  textAlign: "center",
+                  fontFamily: "SF Pro",
+                  fontSize: "13.15px",
                   fontStyle: "normal",
-                  fontWeight: 274
+                  fontWeight: 200,
+                  lineHeight: "16.736px"
                 }}
               >
                 Stop guesswork and purchase confidently.
@@ -774,7 +834,22 @@ export default function Vto() {
                 Stop guesswork and purchase confidently.
               </p>
 
-              <p className="mx-auto mt-3 max-w-[270px] self-stretch text-center text-[9px] leading-[12px] text-white/85 md:mx-0 md:mt-6 md:max-w-[430px] md:text-left md:text-[15px] md:leading-[24px] md:text-white">
+              <p
+                className="mx-auto mt-3 w-full max-w-[330px] self-stretch text-center md:hidden"
+                style={{
+                  color: "#FFF",
+                  textAlign: "center",
+                  fontFamily: "SF Pro",
+                  fontSize: "13.15px",
+                  fontStyle: "normal",
+                  fontWeight: 250,
+                  lineHeight: "16.736px"
+                }}
+              >
+                Kactus AI virtual try-on lets customers see how products look on them in one click and get a precise size recommendation using body data, improving accuracy, boosting confidence, and reducing returns.
+              </p>
+
+              <p className="hidden self-stretch text-white md:mx-0 md:mt-6 md:block md:max-w-[430px] md:text-left md:text-[15px] md:leading-[24px]">
                 Kactus AI virtual try-on lets customers see how products look on them in one click and get a precise size recommendation using body data, improving accuracy, boosting confidence, and reducing returns.
               </p>
 
@@ -1009,9 +1084,9 @@ export default function Vto() {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.45, delay: index * 0.06 }}
                   viewport={{ once: true }}
-                  className={`min-h-[77px] rounded-[8px] border px-4 py-3 text-left transition-colors duration-300 ${isActive ? "border-[#0B2D24] bg-[#0B2D24] text-white" : "border-[#dce4dd] bg-white text-[#06231C]"}`}
+                  className={`min-h-[77px] rounded-[8px] border px-4 py-3 text-center transition-colors duration-300 ${isActive ? "border-[#0B2D24] bg-[#0B2D24] text-white" : "border-[#dce4dd] bg-white text-[#06231C]"}`}
                 >
-                  <div className={`flex gap-3 ${isActive ? "h-full flex-col items-center justify-center text-center" : "items-center"}`}>
+                  <div className="flex h-full flex-col items-center justify-center gap-2 text-center">
                     <div className="relative flex h-[34px] w-[34px] shrink-0 items-center justify-center">
                       <img
                         src={isActive ? item.cardIcon ?? item.icon : item.icon}
@@ -1025,7 +1100,7 @@ export default function Vto() {
                         </span>
                       )}
                     </div>
-                    <div className={isActive ? "text-center" : "min-w-0"}>
+                    <div className="min-w-0 text-center">
                       <p
                         style={{
                           fontFamily: "SF Pro",
@@ -1037,9 +1112,9 @@ export default function Vto() {
                       >
                         {item.title}
                       </p>
-                      {item.issue && (
+                      {isActive && item.issue && (
                         <p
-                          className={isActive ? "mt-1 text-center text-white" : "mt-1.5 text-[#173A31]"}
+                          className="mt-1 text-center text-white"
                           style={{
                             fontFamily: "SF Pro",
                             fontSize: "9px",
@@ -1083,7 +1158,22 @@ export default function Vto() {
             />
 
             <h2
-              className="mt-4 text-center text-white"
+              className="mt-4 text-center text-white md:hidden"
+              style={{
+                color: "#FFF",
+                textAlign: "center",
+                fontFamily: "SF Pro",
+                fontSize: "32px",
+                fontStyle: "normal",
+                fontWeight: 400,
+                lineHeight: "34.3px"
+              }}
+            >
+              Virtual Try-On
+            </h2>
+
+            <h2
+              className="mt-4 hidden text-center text-white md:block"
               style={{
                 color: "#FFF",
                 textAlign: "center",
@@ -1097,7 +1187,22 @@ export default function Vto() {
               Virtual Try-On
             </h2>
 
-            <p className="mt-2.5 text-[18px] leading-[1.5] text-white/72">
+            <p
+              className="mt-2.5 md:hidden"
+              style={{
+                color: "#FFF",
+                textAlign: "center",
+                fontFamily: "SF Pro",
+                fontSize: "13.15px",
+                fontStyle: "normal",
+                fontWeight: 250,
+                lineHeight: "16.736px"
+              }}
+            >
+              Built for scale. Designed for reliability.
+            </p>
+
+            <p className="mt-2.5 hidden text-[18px] leading-[1.5] text-white/72 md:block">
               Built for scale. Designed for reliability.
             </p>
 
@@ -1119,7 +1224,22 @@ export default function Vto() {
               />
             </div>
 
-            <p className="mt-8 max-w-[860px] text-[20px] leading-[1.75] text-white/88">
+            <p
+              className="mt-8 w-full max-w-[330px] md:hidden"
+              style={{
+                color: "#FFF",
+                textAlign: "center",
+                fontFamily: "SF Pro",
+                fontSize: "13.15px",
+                fontStyle: "normal",
+                fontWeight: 250,
+                lineHeight: "16.736px"
+              }}
+            >
+              Kactus AI Virtual Try-On drives buyer confidence through instant outfit visualization and smart sizing while turning try-on data into WhatsApp marketing fuel and branding every image with your logo.
+            </p>
+
+            <p className="mt-8 hidden max-w-[860px] text-[20px] leading-[1.75] text-white/88 md:block">
               Kactus AI Virtual Try-On drives buyer confidence through instant outfit visualization and smart sizing while turning try-on data into WhatsApp marketing fuel and branding every image with your logo.
             </p>
 
@@ -1238,7 +1358,132 @@ export default function Vto() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-white px-2 py-16 sm:px-6 md:px-8 md:py-24 lg:px-20 lg:py-28 xl:px-24">
+      <section className="bg-white px-0 pt-4 pb-8 text-[#06231C] lg:px-20 lg:pt-20 lg:pb-10 xl:px-24">
+        <div className="mx-auto w-full max-w-none lg:max-w-[1200px]">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.65 }}
+            viewport={{ once: true }}
+            className="mx-auto max-w-[900px] text-center"
+          >
+            <h2
+              className="mx-auto max-w-[285px] text-[22px] font-normal leading-[1.18] tracking-normal lg:max-w-none lg:text-[38px] lg:leading-[1.08]"
+              style={{
+                background: "linear-gradient(90deg, #06231C 48.13%, #D4E5C0 120.12%)",
+                backgroundClip: "text",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent"
+              }}
+            >
+              Kactus Continues The Conversation
+              <br className="hidden sm:block" /> But Only When It Makes Sense.
+            </h2>
+
+            <p className="mx-auto mt-4 max-w-[270px] text-[11px] leading-[1.5] text-[#4F5753] lg:mt-3 lg:max-w-[960px] lg:text-[18px] lg:leading-[1.45]">
+              Our AI monitors your site in real time. How long has the customer been there? Did they try anything else? In their cart? No matter if they're returning or new. It knows how to respond based on what it sees.
+            </p>
+          </motion.div>
+
+          <div className="mt-9 grid w-full items-start gap-8 lg:mt-10 lg:grid-cols-[1fr_0.98fr] lg:gap-12">
+            <motion.div
+              initial={{ opacity: 0, x: -24 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.65, delay: 0.08 }}
+              viewport={{ once: true }}
+              className="border-t border-[#D8DED9]"
+            >
+              {vtoConversationRules.map((item, index) => {
+                const isActive = activeVtoConversationRule === index;
+
+                return (
+                  <article key={item.title} className="border-b border-[#D8DED9] px-3 py-4 lg:px-0 lg:py-6">
+                    <button
+                      type="button"
+                      className="flex w-full items-start justify-between gap-5 text-left"
+                      onClick={() => setActiveVtoConversationRule(isActive ? null : index)}
+                      aria-expanded={isActive}
+                    >
+                      <h3 className="text-[14px] font-semibold leading-[1.22] text-black lg:text-[22px] lg:font-medium lg:leading-[1.25]">
+                        {item.title}
+                      </h3>
+                      <span className="mt-0 text-[22px] font-light leading-none text-[#1C211F] lg:mt-1 lg:text-[24px] lg:text-[#7B827E]">
+                        {isActive ? "-" : "+"}
+                      </span>
+                    </button>
+
+                    {isActive && item.description && (
+                      <p className="mt-3 max-w-[540px] text-[11px] leading-[1.55] text-[#3F4642] lg:mt-5 lg:text-[14px] lg:leading-[1.7]">
+                        {item.description}
+                      </p>
+                    )}
+                  </article>
+                );
+              })}
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 24 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.65, delay: 0.14 }}
+              viewport={{ once: true }}
+              className="hidden min-h-[300px] items-center justify-center bg-[#B7B7B7] px-6 py-8 lg:flex lg:min-h-[365px]"
+            >
+              <div className="w-full max-w-[320px] rounded-[28px] border-[7px] border-white bg-[#F7F9FA] p-4 shadow-[0_2px_0_rgba(255,255,255,0.7),0_18px_45px_rgba(20,36,31,0.18)]">
+                <div className="rounded-[14px] bg-white px-4 py-3 shadow-[0_1px_12px_rgba(12,38,30,0.06)]">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#009C73] text-[10px] font-semibold text-white">K</span>
+                      <span className="text-[10px] font-semibold text-[#46524D]">Your Brand</span>
+                    </div>
+                    <span className="text-[18px] leading-none text-[#A8B0AD]">=</span>
+                  </div>
+                </div>
+
+                <div className="mt-10 rounded-[8px] border border-[#DCEFE8] bg-white p-3">
+                  <div className="flex gap-3">
+                    <div className="h-14 w-12 rounded-[5px] bg-[#F0F1F4]" />
+                    <div className="flex-1 pt-1">
+                      <div className="h-3 w-20 rounded-full bg-[#E4E8EC]" />
+                      <div className="mt-2 h-2.5 w-14 rounded-full bg-[#EFF2F4]" />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="ml-2 mt-3 max-w-[235px] rounded-[12px] border border-[#CFEEE1] bg-[#E6FCF2] px-4 py-3">
+                  <p className="text-[10px] font-semibold leading-[1.35] text-[#06745A]">
+                    Looks great on you! Try it on today and we'll take ₹100 off your first order.
+                  </p>
+                  <span className="mt-3 inline-flex h-7 items-center rounded-full bg-[#009C73] px-4 text-[10px] font-semibold text-white">
+                    Claim ₹100 Off
+                  </span>
+                </div>
+
+                <div className="mt-4 flex items-center gap-3 rounded-[12px] bg-white px-3 py-2 shadow-[0_1px_12px_rgba(12,38,30,0.06)]">
+                  <span className="flex h-5 w-5 items-center justify-center rounded-full border border-[#C7D7D2] text-[11px] text-[#8CA09A]">+</span>
+                  <span className="h-3 flex-1 rounded-full bg-[#E7ECF0]" />
+                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#BDF5DB] text-[15px] text-[#009C73]">›</span>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.65, delay: 0.08 }}
+            viewport={{ once: true }}
+            className="mt-10 hidden overflow-hidden rounded-[8px] bg-[radial-gradient(circle_at_82%_0%,rgba(212,229,192,0.55),transparent_32%),linear-gradient(110deg,#06231C_0%,#103A30_66%,#244438_100%)] px-7 py-8 text-white lg:block lg:px-9 lg:py-10"
+          >
+            <h3 className="text-[28px] font-semibold leading-[1.15] md:text-[34px]">You set the rules.</h3>
+            <p className="mt-4 max-w-[1120px] text-[16px] leading-[1.6] text-white/92 md:text-[19px]">
+              You set the rules. You set the floor for every offer. You define the timing, tone, and message. AI handles it all. Review every conversation. Pause any offer. <span className="text-[#DDFB47]">We didn't make a haggling bot.</span> We didn't make a haggling bot. With restraint, judgment, and respect for your customers' time, we built an AI that sells like your most trusted store associates.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      <section className="relative overflow-hidden bg-white px-2 pt-8 pb-16 sm:px-6 md:px-8 md:pt-10 md:pb-24 lg:px-20 lg:pt-12 lg:pb-28 xl:px-24">
         <div className="relative mx-auto max-w-[1320px]">
           <motion.div
             initial={{ opacity: 0, y: -64 }}
@@ -1311,16 +1556,78 @@ export default function Vto() {
       
 
      
-      <GrowthCtaSection
-        titleLines={["AI does the work,", "You stay in control"]}
-        subtitle="Scale Your Growth Today."
-        mobileDashboardLayout
-        points={[
-          "Grow consistently",
-          "150+ Handcoded",
-          "Optimize intelligently"
-        ]}
-      />
+      <section className="relative overflow-hidden bg-white px-6 pt-0 pb-0 lg:hidden">
+        <div className="mx-auto max-w-[430px]">
+          <div className="text-center">
+            <h2 className="text-[31px] font-normal leading-[1.13] text-[#06231C]">
+              AI Visual Engine <span className="text-[#64786E]">For</span>
+              <br />
+              Fashion Brands
+            </h2>
+            <p className="mt-2 text-[25px] font-normal leading-[1.2] text-[#00624E]">
+              Scale Your Growth Today.
+            </p>
+          </div>
+
+          <div className="mt-9 grid grid-cols-[48%_52%] items-start gap-2">
+            <div className="flex min-h-[322px] flex-col justify-center">
+              <div className="space-y-4">
+                {["Grow consistently", "Manage effortlessly", "Optimize intelligently"].map((point) => (
+                  <div key={point} className="flex items-center gap-3">
+                    <span className="flex h-[21px] w-[21px] shrink-0 items-center justify-center rounded-full border-[2px] border-[#5E6862] text-[#4E5C56]">
+                      <svg viewBox="0 0 16 16" className="h-3.5 w-3.5" aria-hidden="true">
+                        <path d="M4 8.1 6.7 10.8 12 5.5" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </span>
+                    <p className="whitespace-nowrap text-[16px] leading-[1.25] text-[#4F5B57]">
+                      {point}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-10 flex flex-col gap-3">
+                <Link
+                  to="/contact"
+                  className="flex h-[50px] w-full items-center justify-center rounded-[3px] bg-[#D4E5C0] text-[17px] font-normal text-[#06231C]"
+                >
+                  Schedule a Demo
+                </Link>
+                <Link
+                  to="/outcomes"
+                  className="flex h-[48px] w-full items-center justify-center rounded-[3px] border border-[#16362D] bg-white text-[17px] font-normal text-[#16362D]"
+                >
+                  Outcome
+                </Link>
+              </div>
+            </div>
+
+            <div className="relative min-h-[322px]">
+              <div className="absolute left-[-32px] top-[-22px] h-48 w-48 rounded-full bg-[#E8F1CF] blur-[88px]" />
+              <div className="relative mr-[-132px] overflow-hidden rounded-tl-[20px] border-t border-l border-[#EEF2E5] bg-white pt-2 pl-2 shadow-[0_0_40px_rgba(22,54,45,0.06)]">
+                <img
+                  src={vtoCtaImage}
+                  alt="Whatsapp Marketing Dashboard"
+                  className="block h-auto min-w-[338px]"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="absolute inset-x-0 bottom-0 h-[3px] bg-[#06231C]" />
+      </section>
+
+      <div className="hidden lg:block">
+        <GrowthCtaSection
+          titleLines={["AI Visual Engine For", "Fashion Brands"]}
+          subtitle="Scale Your Growth Today."
+          points={[
+            "Grow consistently",
+            "Manage effortlessly",
+            "Optimize intelligently"
+          ]}
+        />
+      </div>
 
       <DemoModal isOpen={isDemoOpen} onClose={() => setIsDemoOpen(false)} />
     </main>

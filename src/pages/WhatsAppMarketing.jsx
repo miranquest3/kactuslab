@@ -4,6 +4,7 @@ import { motion, AnimatePresence, useInView, useScroll, useTransform } from "fra
 import { MagneticButton, SectionTitle, RevealImage, StaggerText } from "../components/AnimatedElements"
 import DemoModal from "../components/DemoModal";
 import GrowthCtaSection from "../components/GrowthCtaSection";
+import vtoCtaImage from "../assets/images/Vto/vtoCta.png";
 
 // Icons
 import EnterpriseVector from "../assets/images/WhatsAppMarketing/vector.svg";
@@ -454,14 +455,9 @@ export default function WhatsAppMarketing() {
       return undefined;
     }
 
-    if (window.innerWidth >= 768) {
-      setIsMarketingFlowActive(true);
-      return undefined;
-    }
-
     const timer = window.setTimeout(() => {
       setIsMarketingFlowActive(true);
-    }, 1500);
+    }, 1000);
 
     return () => window.clearTimeout(timer);
   }, [isMarketingFlowInView]);
@@ -507,14 +503,18 @@ export default function WhatsAppMarketing() {
               initial={{ opacity: 0, y: 28 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
-              className="mx-auto max-w-[286px] text-center md:mx-0 md:max-w-[640px] md:text-left"
+              className="mx-auto w-full max-w-[340px] text-center md:mx-0 md:max-w-[640px] md:text-left"
             >
               <h1
-                className="self-stretch whitespace-pre-line text-center text-[22px] font-normal leading-[22px] text-white md:hidden"
+                className="self-stretch whitespace-pre-line text-center text-white md:hidden"
                 style={{
                   color: "#FFF",
+                  textAlign: "center",
+                  fontFamily: "SF Pro",
+                  fontSize: "32px",
                   fontStyle: "normal",
-                  fontWeight: 400
+                  fontWeight: 400,
+                  lineHeight: "34.3px"
                 }}
               >
                 {"Boost Conversions with\nAI-Driven WhatsApp\nMarketing"}
@@ -532,7 +532,37 @@ export default function WhatsAppMarketing() {
               </h1>
 
               <p
-                className="mt-2 max-w-[620px] self-stretch text-center text-[8px] leading-[11px] text-white md:mt-6 md:text-left md:text-[22px] md:leading-[28px]"
+                className="mt-2 self-stretch text-center text-white md:hidden"
+                style={{
+                  color: "#FFF",
+                  textAlign: "center",
+                  fontFamily: "SF Pro",
+                  fontSize: "13.15px",
+                  fontStyle: "normal",
+                  fontWeight: 250,
+                  lineHeight: "16.736px"
+                }}
+              >
+                A fresh approach to WhatsApp Marketing.
+              </p>
+
+              <p
+                className="mx-auto mt-3 w-full max-w-[330px] self-stretch text-center md:hidden"
+                style={{
+                  color: "#FFF",
+                  textAlign: "center",
+                  fontFamily: "SF Pro",
+                  fontSize: "13.15px",
+                  fontStyle: "normal",
+                  fontWeight: 250,
+                  lineHeight: "16.736px"
+                }}
+              >
+                KactusAI WhatsApp Marketing isn't just messaging, it is an AI-powered personalization built around user interactions. It uses customers past virtual try-on images to display new arrivals and trending styles on their own photos, turning generic campaigns into engaging and impactful experiences that boost conversions.
+              </p>
+
+              <p
+                className="hidden max-w-[620px] self-stretch text-white md:mt-6 md:block md:text-left md:text-[22px] md:leading-[28px]"
                 style={{
                   color: "#FFF",
                   fontStyle: "normal",
@@ -542,7 +572,7 @@ export default function WhatsAppMarketing() {
                 A fresh approach to WhatsApp Marketing.
               </p>
 
-              <p className="mx-auto mt-3 max-w-[270px] self-stretch text-center text-[9px] leading-[12px] text-white/85 md:mx-0 md:mt-7 md:max-w-[620px] md:text-left md:text-[15px] md:leading-[24px] md:text-white">
+              <p className="hidden self-stretch text-white md:mx-0 md:mt-7 md:block md:max-w-[620px] md:text-left md:text-[15px] md:leading-[24px]">
                 KactusAI WhatsApp Marketing isn't just messaging, it is an AI-powered personalization built around user interactions. It uses customers past virtual try-on images to display new arrivals and trending styles on their own photos, turning generic campaigns into engaging and impactful experiences that boost conversions.
               </p>
 
@@ -854,7 +884,7 @@ export default function WhatsAppMarketing() {
       </section>
 
       <section
-        className="relative overflow-hidden bg-[#0A3128] px-4 py-20 text-white sm:px-8 md:px-14 md:py-24 lg:px-20 xl:px-24"
+        className="relative overflow-hidden bg-[#0A3128] px-5 py-14 text-white sm:px-8 md:px-14 md:py-24 lg:px-20 xl:px-24"
         style={{
           backgroundImage: `linear-gradient(180deg,rgba(10,49,40,0.78)_0%,rgba(5,38,30,0.92)_100%), url(${vtoSectionBg})`,
           backgroundSize: "cover",
@@ -872,14 +902,33 @@ export default function WhatsAppMarketing() {
             className="mx-auto flex max-w-[584px] flex-col items-center"
           >
             <h2
-              className="text-center text-[40px] font-normal leading-[56px] text-white md:text-[46px] md:leading-normal"
+              className="text-center text-white md:hidden"
               style={{
                 width: "584px",
                 maxWidth: "100%",
                 color: "#FFF",
                 textAlign: "center",
+                fontFamily: "SF Pro",
+                fontSize: "32px",
                 fontStyle: "normal",
-                fontWeight: 400
+                fontWeight: 400,
+                lineHeight: "34.3px"
+              }}
+            >
+              Kactus AI WhatsApp Marketing Flow
+            </h2>
+            <h2
+              className="hidden text-center text-white md:block"
+              style={{
+                width: "584px",
+                maxWidth: "100%",
+                color: "#FFF",
+                textAlign: "center",
+                fontFamily: "SF Pro",
+                fontSize: "46px",
+                fontStyle: "normal",
+                fontWeight: 400,
+                lineHeight: "normal"
               }}
             >
               Kactus AI WhatsApp Marketing Flow
@@ -892,7 +941,7 @@ export default function WhatsAppMarketing() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65 }}
             viewport={{ once: true, amount: 0.25 }}
-            className={`relative mx-auto mt-12 max-w-[1120px] overflow-hidden rounded-[22px] bg-white shadow-[0_26px_80px_rgba(0,0,0,0.18)] transition-[min-height,box-shadow] duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] focus:outline-none focus:ring-2 focus:ring-[#d5e6c1]/60 md:rounded-[24px] ${isMarketingFlowActive ? "min-h-[560px] sm:min-h-[640px] md:min-h-[560px] shadow-[0_34px_100px_rgba(0,0,0,0.22)]" : "min-h-[236px] sm:min-h-[420px] md:min-h-[500px]"}`}
+            className={`relative mx-auto mt-8 max-w-[1120px] overflow-hidden rounded-[18px] bg-white shadow-[0_26px_80px_rgba(0,0,0,0.18)] transition-[min-height,box-shadow] duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] focus:outline-none focus:ring-2 focus:ring-[#d5e6c1]/60 md:mt-12 md:rounded-[24px] ${isMarketingFlowActive ? "min-h-[520px] sm:min-h-[640px] md:min-h-[560px] shadow-[0_34px_100px_rgba(0,0,0,0.22)]" : "min-h-[236px] sm:min-h-[420px] md:min-h-[500px]"}`}
           >
             <img
               src={marketingFlowBg}
@@ -905,34 +954,34 @@ export default function WhatsAppMarketing() {
                 <div className="absolute inset-x-4 top-1/2 flex -translate-y-1/2 items-center justify-center md:inset-x-8">
                   <div className="flex items-center justify-center gap-4 md:gap-8">
                     <div
-                      className={`flex items-center gap-2 px-1 py-2 transition-all duration-[1400ms] ease-[cubic-bezier(0.22,1,0.36,1)] md:gap-3 md:px-2 ${isMarketingFlowActive ? "-translate-x-[92px] scale-[0.72] opacity-0 sm:-translate-x-[180px] md:-translate-x-[320px] lg:-translate-x-[420px]" : "opacity-100"}`}
+                      className={`flex items-center gap-2 px-1 py-2 transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] md:gap-3 md:px-2 ${isMarketingFlowActive ? "-translate-x-[92px] scale-[0.72] opacity-0 sm:-translate-x-[180px] md:-translate-x-[320px] lg:-translate-x-[420px]" : "opacity-100"}`}
                     >
                       <img
                         src={logoWithoutName}
                         alt="Kactus AI"
-                        className={`object-contain transition-all duration-[1400ms] ${isMarketingFlowActive ? "h-9 w-9 md:h-11 md:w-11" : "h-11 w-11 md:h-16 md:w-16"}`}
+                        className={`object-contain transition-all duration-1000 ${isMarketingFlowActive ? "h-9 w-9 md:h-11 md:w-11" : "h-11 w-11 md:h-16 md:w-16"}`}
                       />
                       <span
-                        className={`font-normal leading-none text-[#0C2D25] transition-all duration-[1400ms] ${isMarketingFlowActive ? "text-[16px] md:text-[22px]" : "text-[25px] md:text-[40px]"}`}
+                        className={`font-normal leading-none text-[#0C2D25] transition-all duration-1000 ${isMarketingFlowActive ? "text-[16px] md:text-[22px]" : "text-[25px] md:text-[40px]"}`}
                       >
                         Kactus AI
                       </span>
                     </div>
 
                     <div
-                      className={`hidden w-px bg-[#a0aca2] transition-all duration-[1400ms] md:block ${isMarketingFlowActive ? "h-0 opacity-0" : "h-[110px] opacity-100"}`}
+                      className={`hidden w-px bg-[#a0aca2] transition-all duration-1000 md:block ${isMarketingFlowActive ? "h-0 opacity-0" : "h-[110px] opacity-100"}`}
                     />
 
                     <div
-                      className={`flex items-center gap-2 px-1 py-2 transition-all duration-[1400ms] ease-[cubic-bezier(0.22,1,0.36,1)] md:gap-3 md:px-2 ${isMarketingFlowActive ? "translate-x-[92px] scale-[0.72] opacity-0 sm:translate-x-[180px] md:translate-x-[320px] lg:translate-x-[420px]" : "opacity-100"}`}
+                      className={`flex items-center gap-2 px-1 py-2 transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] md:gap-3 md:px-2 ${isMarketingFlowActive ? "translate-x-[92px] scale-[0.72] opacity-0 sm:translate-x-[180px] md:translate-x-[320px] lg:translate-x-[420px]" : "opacity-100"}`}
                     >
                       <img
                         src={whatsappBrandIcon}
                         alt="WhatsApp"
-                        className={`object-contain transition-all duration-[1400ms] ${isMarketingFlowActive ? "h-9 w-9 md:h-11 md:w-11" : "h-11 w-11 md:h-16 md:w-16"}`}
+                        className={`object-contain transition-all duration-1000 ${isMarketingFlowActive ? "h-9 w-9 md:h-11 md:w-11" : "h-11 w-11 md:h-16 md:w-16"}`}
                       />
                       <span
-                        className={`font-normal leading-none text-[#111827] transition-all duration-[1400ms] ${isMarketingFlowActive ? "text-[16px] md:text-[22px]" : "text-[25px] md:text-[40px]"}`}
+                        className={`font-normal leading-none text-[#111827] transition-all duration-1000 ${isMarketingFlowActive ? "text-[16px] md:text-[22px]" : "text-[25px] md:text-[40px]"}`}
                       >
                         WhatsApp
                       </span>
@@ -942,11 +991,11 @@ export default function WhatsAppMarketing() {
               </div>
 
               <div
-                className={`absolute inset-x-6 inset-y-8 z-10 transition-all duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] md:inset-x-12 md:inset-y-10 ${isMarketingFlowActive ? "translate-y-0 scale-100 opacity-100" : "pointer-events-none translate-y-8 scale-[0.96] opacity-0"}`}
+                className={`absolute inset-x-4 inset-y-6 z-10 transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] md:inset-x-12 md:inset-y-10 ${isMarketingFlowActive ? "translate-y-0 scale-100 opacity-100" : "pointer-events-none translate-y-8 scale-[0.96] opacity-0"}`}
               >
-                <div className="mx-auto grid h-full max-w-[900px] content-center gap-5 sm:grid-cols-2 sm:gap-x-12 sm:gap-y-10">
+                <div className="mx-auto grid h-full max-w-[900px] content-center gap-4 sm:grid-cols-2 sm:gap-x-12 sm:gap-y-10">
                   {whatsappMarketingFlowSteps.map((step) => (
-                    <article key={step.number} className="relative mx-auto min-h-[108px] w-full max-w-[380px] px-1 py-1 md:min-h-[170px] md:px-3 md:py-2">
+                    <article key={step.number} className="relative mx-auto min-h-[92px] w-full max-w-[380px] px-1 py-1 md:min-h-[170px] md:px-3 md:py-2">
                       <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-[#5E6860] text-[11px] font-semibold text-white md:h-7 md:w-7 md:text-[12px]">
                         {step.number}
                       </span>
@@ -956,14 +1005,14 @@ export default function WhatsAppMarketing() {
                           src={step.icon}
                           alt=""
                           aria-hidden="true"
-                          className="h-[46px] w-[46px] shrink-0 object-contain md:h-[78px] md:w-[78px]"
+                          className="h-[40px] w-[40px] shrink-0 object-contain md:h-[78px] md:w-[78px]"
                         />
 
                         <div className="space-y-1 md:space-y-2">
-                          <h3 className="text-[18px] font-normal leading-[1.1] text-[#0C2D25] md:text-[22px]">
+                          <h3 className="text-[15px] font-normal leading-[1.15] text-[#0C2D25] md:text-[22px]">
                             {step.title}
                           </h3>
-                          <p className="max-w-[230px] text-[11px] leading-[1.35] text-[#45524D] md:max-w-[260px] md:text-[14px] md:leading-[1.45]">
+                          <p className="max-w-[230px] text-[10px] leading-[1.32] text-[#45524D] md:max-w-[260px] md:text-[14px] md:leading-[1.45]">
                             {step.description}
                           </p>
                         </div>
@@ -978,16 +1027,78 @@ export default function WhatsAppMarketing() {
         </div>
       </section>
 
-      <GrowthCtaSection
-        titleLines={["AI does the work,", "You stay in control"]}
-        subtitle="Scale Your Growth Today."
-        mobileDashboardLayout
-        points={[
-          "Grow consistently",
-          "150+ Handcoded",
-          "Optimize intelligently"
-        ]}
-      />
+      <section className="relative overflow-hidden bg-white px-6 pt-10 pb-0 md:pt-14 lg:hidden">
+        <div className="mx-auto max-w-[430px]">
+          <div className="text-center">
+            <h2 className="text-[31px] font-normal leading-[1.13] text-[#06231C]">
+              AI Visual Engine <span className="text-[#64786E]">For</span>
+              <br />
+              Fashion Brands
+            </h2>
+            <p className="mt-2 text-[25px] font-normal leading-[1.2] text-[#00624E]">
+              Scale Your Growth Today.
+            </p>
+          </div>
+
+          <div className="mt-9 grid grid-cols-[48%_52%] items-start gap-2">
+            <div className="flex min-h-[322px] flex-col justify-center">
+              <div className="space-y-4">
+                {["Grow consistently", "Manage effortlessly", "Optimize intelligently"].map((point) => (
+                  <div key={point} className="flex items-center gap-3">
+                    <span className="flex h-[21px] w-[21px] shrink-0 items-center justify-center rounded-full border-[2px] border-[#5E6862] text-[#4E5C56]">
+                      <svg viewBox="0 0 16 16" className="h-3.5 w-3.5" aria-hidden="true">
+                        <path d="M4 8.1 6.7 10.8 12 5.5" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </span>
+                    <p className="whitespace-nowrap text-[16px] leading-[1.25] text-[#4F5B57]">
+                      {point}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-10 flex flex-col gap-3">
+                <Link
+                  to="/contact"
+                  className="flex h-[50px] w-full items-center justify-center rounded-[3px] bg-[#D4E5C0] text-[17px] font-normal text-[#06231C]"
+                >
+                  Schedule a Demo
+                </Link>
+                <Link
+                  to="/outcomes"
+                  className="flex h-[48px] w-full items-center justify-center rounded-[3px] border border-[#16362D] bg-white text-[17px] font-normal text-[#16362D]"
+                >
+                  Outcome
+                </Link>
+              </div>
+            </div>
+
+            <div className="relative min-h-[322px]">
+              <div className="absolute left-[-32px] top-[-22px] h-48 w-48 rounded-full bg-[#E8F1CF] blur-[88px]" />
+              <div className="relative mr-[-132px] overflow-hidden rounded-tl-[20px] border-t border-l border-[#EEF2E5] bg-white pt-2 pl-2 shadow-[0_0_40px_rgba(22,54,45,0.06)]">
+                <img
+                  src={vtoCtaImage}
+                  alt="Whatsapp Marketing Dashboard"
+                  className="block h-auto min-w-[338px]"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="absolute inset-x-0 bottom-0 h-[3px] bg-[#06231C]" />
+      </section>
+
+      <div className="hidden lg:block">
+        <GrowthCtaSection
+          titleLines={["AI does the work,", "You stay in control"]}
+          subtitle="Scale Your Growth Today."
+          points={[
+            "Grow consistently",
+            "150+ Handcoded",
+            "Optimize intelligently"
+          ]}
+        />
+      </div>
 
       <DemoModal isOpen={isDemoOpen} onClose={() => setIsDemoOpen(false)} />
     </main>

@@ -4,55 +4,41 @@ import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import logo from "../assets/logo.svg"
 import logo2 from "../assets/logo2.svg"
-import ftlock from "../assets/images/Features/VTO.png"
-import ftlockHover from "../assets/images/Features/VTO G.png"
-
-import lock from "../assets/images/Features/lock.png"
-import lockHover from "../assets/images/Features/Lock G.png"
+import virtualTryOnIcon from "../assets/images/Virtual Try-On.png"
+import whatsappIcon from "../assets/images/whatsapp.png"
+import lockIcon from "../assets/images/lock.png"
 
 const featureMenuItems = [
   {
     label: "Virtual Try-On",
     to: "/vto",
-    icon: ftlock,
-    iconHover: ftlockHover
+    icon: virtualTryOnIcon
   },
   {
     label: "AI Whatsapp Marketing",
     to: "/ai-whatsapp-marketing",
-    icon: lock,
-    iconHover: lockHover
+    icon: whatsappIcon
   },
   {
     label: "AI Product Photoshoot",
-    to: "/ai-photoshoot",
-    icon: lock,
-    iconHover: lockHover
+    comingSoon: true,
+    icon: lockIcon
   },
   {
     label: "AI Marketing Research",
     comingSoon: true,
-    icon: lock,
-    iconHover: lockHover
+    icon: lockIcon
   }
 ]
 
 function FeatureMenuIcon({ item }) {
   return (
-    <span className="relative flex h-[clamp(36px,2.35vw,44px)] w-[clamp(36px,2.35vw,44px)] shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#14382e] shadow-[inset_0_0_16px_rgba(212,228,191,0.42)]">
-      <img
-        src={item.icon}
-        alt=""
-        aria-hidden="true"
-        className="absolute h-[clamp(17px,1.2vw,21px)] w-[clamp(17px,1.2vw,21px)] object-contain brightness-0 invert transition duration-300 group-hover:opacity-0"
-      />
-      <img
-        src={item.iconHover}
-        alt=""
-        aria-hidden="true"
-        className="absolute h-[clamp(17px,1.2vw,21px)] w-[clamp(17px,1.2vw,21px)] object-contain opacity-0 transition duration-300 group-hover:opacity-100"
-      />
-    </span>
+    <img
+      src={item.icon}
+      alt=""
+      aria-hidden="true"
+      className="h-[clamp(36px,2.35vw,44px)] w-[clamp(36px,2.35vw,44px)] shrink-0 object-contain transition duration-300 group-hover:scale-105"
+    />
   )
 }
 
@@ -102,6 +88,16 @@ export default function Navbar() {
 
   const [showDropdown, setShowDropdown] = useState(false)
   const [showMobileFeatures, setShowMobileFeatures] = useState(false)
+
+  const toggleMobileMenu = () => {
+    setOpen((prev) => {
+      const nextOpen = !prev
+      if (nextOpen) {
+        setShowMobileFeatures(true)
+      }
+      return nextOpen
+    })
+  }
 
   const openFeatureDropdown = () => {
     if (dropdownCloseTimerRef.current) {
@@ -174,7 +170,7 @@ export default function Navbar() {
 
   const transparentNavbarRoutes = ["/", "/outcomes", "/integrations", "/feelings", "/shopify", "/vto", "/ai-whatsapp-marketing"]
   const shouldOverlayHero = transparentNavbarRoutes.includes(location.pathname)
-  const useTransparentNavbarStyle = shouldOverlayHero && !scrolled && !showDropdown
+  const useTransparentNavbarStyle = shouldOverlayHero && !scrolled && !showDropdown && !open
 
   return (
     <motion.nav
@@ -182,7 +178,9 @@ export default function Navbar() {
       animate={{ y: showNav ? 0 : -100 }}
       transition={{ duration: 0.3 }}
       className={`${useTransparentNavbarStyle ? "absolute" : "fixed"} top-0 left-0 w-full z-[90] px-4 py-4 sm:px-6 lg:px-10 flex items-center justify-between transition-colors duration-300
-      ${useTransparentNavbarStyle
+      ${open
+          ? "bg-white border-b border-dashed border-[#dfe5df] shadow-none backdrop-blur-none"
+          : useTransparentNavbarStyle
           ? "bg-transparent border-transparent shadow-none backdrop-blur-none"
           : showDropdown
             ? "bg-white border-b border-dashed border-[#dfe5df] shadow-none backdrop-blur-none"
@@ -322,7 +320,7 @@ export default function Navbar() {
       {/* Right Area */}
       <div className="flex items-center gap-4 md:w-[120px] md:justify-end">
         <button
-          onClick={() => setOpen(!open)}
+          onClick={toggleMobileMenu}
           aria-expanded={open}
           aria-label="Toggle menu"
           className={`md:hidden p-2 rounded-full inline-flex items-center justify-center transition-all active:scale-90 ${
@@ -350,7 +348,7 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Menu (unchanged) */}
+      {/* Mobile Menu */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -358,18 +356,19 @@ export default function Navbar() {
             initial="closed"
             animate="open"
             exit="closed"
-            className="absolute top-0 left-0 right-0 h-screen bg-white/95 backdrop-blur-xl md:hidden z-[-1] flex flex-col justify-center px-10"
+            className="absolute left-0 right-0 top-full z-[-1] min-h-[calc(100vh-64px)] bg-white md:hidden"
           >
-            <div className="space-y-8">
-              <motion.div variants={itemVariants}>
+            <div className="min-h-[calc(100vh-64px)] w-[min(100%,250px)] border-r border-dashed border-[#dfe5df] bg-white">
+              <div className="border-b border-dashed border-[#dfe5df] px-7 pb-6 pt-6">
+                <motion.div variants={itemVariants}>
                 <button
                   type="button"
                   onClick={() => setShowMobileFeatures((prev) => !prev)}
-                  className="flex items-center gap-3 text-4xl font-serif text-slate-900"
+                    className="flex items-center gap-2 text-[20px] font-normal leading-none text-[#111111]"
                 >
                   Features
                   <svg
-                    className={`h-5 w-5 transition-transform ${showMobileFeatures ? "rotate-180" : ""}`}
+                      className={`mt-[2px] h-4 w-4 transition-transform ${showMobileFeatures ? "rotate-180" : ""}`}
                     fill="none"
                     stroke="currentColor"
                     strokeWidth="2"
@@ -380,59 +379,71 @@ export default function Navbar() {
                 </button>
 
                 {showMobileFeatures && (
-                  <div className="mt-5 space-y-4 pl-2">
-                    <Link
-                      to="/vto"
-                      onClick={() => {
-                        setShowMobileFeatures(false)
-                        setOpen(false)
-                      }}
-                      className="block text-xl text-slate-800"
-                    >
-                      Virtual Try-On
-                    </Link>
-                    <Link
-                      to="/ai-whatsapp-marketing"
-                      onClick={() => {
-                        setShowMobileFeatures(false)
-                        setOpen(false)
-                      }}
-                      className="block text-xl text-slate-800"
-                    >
-                      AI WhatsApp Marketing
-                    </Link>
-                    <Link
-                      to="/ai-photoshoot"
-                      onClick={() => {
-                        setShowMobileFeatures(false)
-                        setOpen(false)
-                      }}
-                      className="block text-xl text-slate-800"
-                    >
-                      AI Product Photoshoot
-                    </Link>
-                    <span className="block text-xl text-slate-400">
-                      AI Market Research
-                    </span>
+                    <div className="mt-5 space-y-4">
+                      {featureMenuItems.map((item) => {
+                        const rowContent = (
+                          <span className="flex min-h-[34px] w-full items-center gap-3">
+                            <img
+                              src={item.icon}
+                              alt=""
+                              aria-hidden="true"
+                              className="h-8 w-8 shrink-0 object-contain"
+                            />
+                            <span className="min-w-0 flex-1 text-[12px] font-normal leading-[1.2] text-[#111111]">
+                              {item.label}
+                            </span>
+                            {item.comingSoon && (
+                              <span className="ml-1 shrink-0 rounded-full bg-[#eaf1e3] px-3 py-1.5 text-[7px] font-medium leading-none text-[#17362d]">
+                                Coming Soon
+                              </span>
+                            )}
+                          </span>
+                        )
+
+                        if (item.to) {
+                          return (
+                            <Link
+                              key={item.label}
+                              to={item.to}
+                              onClick={() => {
+                                setShowMobileFeatures(false)
+                                setOpen(false)
+                              }}
+                              className="block"
+                            >
+                              {rowContent}
+                            </Link>
+                          )
+                        }
+
+                        return (
+                          <span key={item.label} aria-disabled="true" className="block cursor-not-allowed">
+                            {rowContent}
+                          </span>
+                        )
+                      })}
                   </div>
                 )}
-              </motion.div>
-
-              {[
-                { label: "Outcomes", to: "/outcomes" },
-                { label: "Feelings", to: "/feelings" },
-                { label: "Login", to: "/login" }
-              ].map((item) => (
-                <motion.div key={item.label} variants={itemVariants}>
-                  <Link
-                    to={item.to}
-                    onClick={() => setOpen(false)}
-                    className="text-4xl font-serif text-slate-900 block"
-                  >
-                    {item.label}
-                  </Link>
                 </motion.div>
-              ))}
+
+                <div className="mt-6 space-y-5">
+                  {[
+                    { label: "Outcomes", to: "/outcomes" },
+                    { label: "Feelings", to: "/feelings" }
+                  ].map((item) => (
+                    <motion.div key={item.label} variants={itemVariants}>
+                      <Link
+                        to={item.to}
+                        onClick={() => setOpen(false)}
+                        className="block text-[20px] font-normal leading-none text-[#111111]"
+                      >
+                        {item.label}
+                      </Link>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+              <div className="h-[120px] border-b border-dashed border-[#dfe5df] bg-[repeating-linear-gradient(120deg,rgba(12,35,29,0.06)_0,rgba(12,35,29,0.06)_1px,transparent_1px,transparent_5px)]" />
             </div>
           </motion.div>
         )}

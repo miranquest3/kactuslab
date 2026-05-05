@@ -689,7 +689,7 @@ function EnterpriseReadyCard({ item, index, mobile = false, desktopClassName = "
       </div>
 
       <h3
-        className={`text-white ${mobile ? "mt-4 text-[16px] leading-[1.18]" : "mt-[14px] text-[17px] leading-[1.14]"}`}
+        className={`text-white ${mobile ? "mt-3 text-[16px] leading-[1.18]" : "mt-[14px] text-[17px] leading-[1.14]"}`}
         style={{
           fontFamily: '"SF Pro", sans-serif',
           fontWeight: mobile ? 600 : 400
@@ -699,8 +699,11 @@ function EnterpriseReadyCard({ item, index, mobile = false, desktopClassName = "
       </h3>
 
       <p
-        className={`mx-auto text-white ${mobile ? "mt-2 max-w-[170px] text-[15px] leading-[1.34]" : "mt-1.5 max-w-[188px] text-[12.5px] leading-[1.34]"}`}
-        style={{ fontFamily: '"SF Pro", sans-serif' }}
+        className={`mx-auto ${mobile ? "mt-1.5 max-w-[170px] text-[15px] font-light leading-[1.26]" : "mt-1.5 max-w-[188px] text-[12.5px] leading-[1.34] text-white"}`}
+        style={{
+          fontFamily: '"SF Pro", sans-serif',
+          color: mobile ? "rgba(255, 255, 255, 0.68)" : undefined
+        }}
       >
         {item.description}
       </p>
@@ -1052,6 +1055,8 @@ function FeatureShowcaseCutLines({ active }) {
 
 function CardSplitSection() {
   const sectionRef = useRef(null);
+  const mobileScrollRef = useRef(null);
+  const mobileResumeTimerRef = useRef(null);
   const [phase, setPhase] = useState("blur");
   const [mobileCarouselPaused, setMobileCarouselPaused] = useState(false);
   const [activeMobileCardIndex, setActiveMobileCardIndex] = useState(0);
@@ -1073,13 +1078,107 @@ function CardSplitSection() {
   }, [sectionInView]);
 
   useEffect(() => {
+    return () => {
+      if (mobileResumeTimerRef.current) {
+        clearTimeout(mobileResumeTimerRef.current);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    const scroller = mobileScrollRef.current;
+    if (!scroller) return undefined;
+
+    const setInitialPosition = () => {
+      const loopWidth = scroller.scrollWidth / 3;
+      if (loopWidth > 0 && scroller.scrollLeft < 8) {
+        scroller.scrollLeft = loopWidth;
+      }
+    };
+
+    const initialTimer = window.setTimeout(setInitialPosition, 0);
+    window.addEventListener("resize", setInitialPosition);
+
+    return () => {
+      window.clearTimeout(initialTimer);
+      window.removeEventListener("resize", setInitialPosition);
+    };
+  }, []);
+
+  const pauseMobileCarousel = (resumeDelay = 0) => {
+    if (mobileResumeTimerRef.current) {
+      clearTimeout(mobileResumeTimerRef.current);
+    }
+
+    setMobileCarouselPaused(true);
+
+    if (resumeDelay > 0) {
+      mobileResumeTimerRef.current = setTimeout(() => {
+        setMobileCarouselPaused(false);
+      }, resumeDelay);
+    }
+  };
+
+  const resumeMobileCarousel = (delay = 900) => {
+    if (mobileResumeTimerRef.current) {
+      clearTimeout(mobileResumeTimerRef.current);
+    }
+
+    mobileResumeTimerRef.current = setTimeout(() => {
+      setMobileCarouselPaused(false);
+    }, delay);
+  };
+
+  const syncMobileCarouselIndex = () => {
+    const scroller = mobileScrollRef.current;
+    if (!scroller) return;
+
+    const loopWidth = scroller.scrollWidth / 3;
+    if (loopWidth <= 0) return;
+
+    if (scroller.scrollLeft >= loopWidth * 2) {
+      scroller.scrollLeft -= loopWidth;
+    } else if (scroller.scrollLeft <= 0) {
+      scroller.scrollLeft += loopWidth;
+    }
+
+    const firstCard = scroller.querySelector("[data-mobile-feature-card]");
+    const cardStep = firstCard ? firstCard.getBoundingClientRect().width + 12 : 304;
+    const normalizedScrollLeft = ((scroller.scrollLeft % loopWidth) + loopWidth) % loopWidth;
+    const nextIndex = Math.round(normalizedScrollLeft / cardStep) % splitCards.length;
+    setActiveMobileCardIndex(nextIndex);
+  };
+
+  useEffect(() => {
     if (mobileCarouselPaused) return undefined;
 
-    const activeTimer = setInterval(() => {
-      setActiveMobileCardIndex((current) => (current + 1) % splitCards.length);
-    }, 30000 / splitCards.length);
+    const scroller = mobileScrollRef.current;
+    if (!scroller) return undefined;
 
-    return () => clearInterval(activeTimer);
+    let frameId;
+    let previousTime;
+    const speed = 0.075;
+
+    const step = (time) => {
+      if (previousTime === undefined) previousTime = time;
+      const delta = time - previousTime;
+      previousTime = time;
+
+      const loopWidth = scroller.scrollWidth / 3;
+      if (loopWidth > 0) {
+        scroller.scrollLeft += delta * speed;
+        if (scroller.scrollLeft >= loopWidth * 2) {
+          scroller.scrollLeft -= loopWidth;
+        }
+        syncMobileCarouselIndex();
+      }
+
+      frameId = window.requestAnimationFrame(step);
+    };
+
+    frameId = window.requestAnimationFrame(step);
+
+    return () => window.cancelAnimationFrame(frameId);
   }, [mobileCarouselPaused]);
 
   const spreading = phase === "spread";
@@ -1108,7 +1207,7 @@ function CardSplitSection() {
             More Than Traditional AI,
             <span className="block">Smarter Than Automation</span>
           </h2>
-          <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-slate-500 md:text-lg">
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-[1.45] tracking-normal text-slate-500 md:text-lg md:leading-[1.45]">
             Kactus AI turns a single WhatsApp message into complete business execution on its own through the following features:
           </p>
         </div>
@@ -1116,38 +1215,37 @@ function CardSplitSection() {
 
       <div className="mt-8 overflow-hidden md:hidden">
         <style>{`
-          @keyframes kactus-mobile-card-scroll {
-            from { transform: translateX(0); }
-            to { transform: translateX(-50%); }
+          .kactus-mobile-card-scroller {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            overscroll-behavior-x: contain;
+            touch-action: pan-x pan-y;
+            -webkit-overflow-scrolling: touch;
           }
 
-          @media (prefers-reduced-motion: reduce) {
-            .kactus-mobile-card-track {
-              animation: none !important;
-            }
+          .kactus-mobile-card-scroller::-webkit-scrollbar {
+            display: none;
           }
         `}</style>
 
         <div
-          className="-mx-4 overflow-hidden pl-4 sm:-mx-6 sm:pl-6"
-          onMouseEnter={() => setMobileCarouselPaused(true)}
-          onMouseLeave={() => setMobileCarouselPaused(false)}
-          onTouchStart={() => setMobileCarouselPaused(true)}
-          onTouchEnd={() => setMobileCarouselPaused(false)}
-          onTouchCancel={() => setMobileCarouselPaused(false)}
+          ref={mobileScrollRef}
+          className="kactus-mobile-card-scroller -mx-4 overflow-x-auto pl-4 sm:-mx-6 sm:pl-6"
+          onPointerDown={() => pauseMobileCarousel()}
+          onPointerUp={() => resumeMobileCarousel()}
+          onPointerCancel={() => resumeMobileCarousel()}
+          onScroll={syncMobileCarouselIndex}
         >
           <div
-            className="kactus-mobile-card-track flex w-max gap-3 pr-3"
-            style={{
-              animation: "kactus-mobile-card-scroll 30s linear infinite",
-              animationPlayState: mobileCarouselPaused ? "paused" : "running"
-            }}
+            className="flex w-max gap-3 pr-3"
           >
-            {[...splitCards, ...splitCards].map((card, index) => (
+            {[...splitCards, ...splitCards, ...splitCards].map((card, index) => (
               <MobileFeatureCard
                 key={`${card.id}-mobile-${index}`}
                 card={card}
-                duplicate={index >= splitCards.length}
+                duplicate={index < splitCards.length || index >= splitCards.length * 2}
+                onPause={pauseMobileCarousel}
+                onResume={resumeMobileCarousel}
               />
             ))}
           </div>
@@ -1280,11 +1378,14 @@ function CardSplitSection() {
   );
 }
 
-function MobileFeatureCard({ card, duplicate = false }) {
+function MobileFeatureCard({ card, duplicate = false, onPause, onResume }) {
   return (
     <article
+      data-mobile-feature-card
       aria-hidden={duplicate ? "true" : undefined}
       className="relative h-[402px] w-[292px] flex-none overflow-hidden rounded-[8px] bg-[#052d23] px-6 pb-9 pt-[50px] text-center shadow-[0_18px_48px_rgba(4,36,26,0.12)]"
+      onFocus={() => onPause?.()}
+      onBlur={() => onResume?.()}
     >
       <img
         src={cardBg}
@@ -1299,7 +1400,7 @@ function MobileFeatureCard({ card, duplicate = false }) {
 
       <div className="relative z-10 flex h-full flex-col items-center">
         <h3
-          className="min-h-[22px] whitespace-nowrap text-[17px] font-[700] leading-[22px] text-white"
+          className="min-h-[22px] whitespace-nowrap text-[17px] font-[500] leading-[22px] text-white"
           style={{ fontFamily: "SF Pro", letterSpacing: "-0.187px" }}
         >
           {card.title}
@@ -1439,7 +1540,7 @@ function SplitCard({ card, index, count, spreading, top = false }) {
             transition: "opacity 0.18s ease, transform 0.18s ease",
             fontFamily: "SF Pro",
             fontSize: top ? "16px" : "13px",
-            fontWeight: 700,
+            fontWeight: 500,
             lineHeight: top ? "19px" : "15px",
             letterSpacing: "-0.187px"
           }}
@@ -1618,6 +1719,7 @@ function FeatureIcon({ iconKey, className = "h-7 w-7", stroke = "currentColor" }
 }
 
 function CompatibleLogoCard({ item, index, compact = false }) {
+  const isShopify = item.label === "Shopify"
   const rotateX = useMotionValue(0)
   const rotateY = useMotionValue(0)
   const translateZ = useMotionValue(0)
@@ -1661,18 +1763,29 @@ function CompatibleLogoCard({ item, index, compact = false }) {
         z: smoothTranslateZ
       }}
       className={`group flex items-center justify-center rounded-[8px] border-2 border-[#B4BDBB] bg-white shadow-[0_14px_36px_rgba(4,36,26,0.08)] transition-shadow duration-300 hover:shadow-[0_22px_42px_rgba(4,36,26,0.16)] ${
+        isShopify ? "cursor-pointer" : ""
+      } ${
         compact
           ? "h-[116px] w-[178px] px-7 py-8 md:h-[164px] md:w-[260px] md:px-[45px] md:py-[48px]"
           : "h-[164px] px-[45px] py-[48px]"
       }`}
     >
-      {item.type === "text" ? (
-        <motion.span
-          style={{ z: smoothTranslateZ }}
-          className="text-center text-[17px] font-semibold text-[#16362D] md:text-[20px]"
-        >
-          {item.label}
-        </motion.span>
+      {isShopify ? (
+        <Link to="/shopify" aria-label="Open Shopify page" className="flex h-full w-full items-center justify-center">
+          <motion.img
+            src={item.src}
+            alt={item.label}
+            style={{ z: smoothTranslateZ }}
+            className="max-h-[58px] w-full object-contain md:max-h-[68px]"
+          />
+        </Link>
+      ) : item.type === "text" ? (
+          <motion.span
+            style={{ z: smoothTranslateZ }}
+            className="text-center text-[17px] font-semibold text-[#16362D] md:text-[20px]"
+          >
+            {item.label}
+          </motion.span>
       ) : (
         <motion.img
           src={item.src}
@@ -2105,7 +2218,7 @@ export default function Home() {
               More Than Traditional AI,
               <span className="block">Smarter Than Automation</span>
             </h2>
-            <p className="mt-5 text-slate-500 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
+            <p className="mx-auto mt-5 max-w-2xl text-base leading-[1.45] tracking-normal text-slate-500 md:text-lg md:leading-[1.45]">
               Kactus AI turns a single WhatsApp message into complete business execution on its own through the following features:
             </p>
           </motion.div>
@@ -2197,7 +2310,7 @@ export default function Home() {
 
  <section className="w-full bg-white px-0 py-8 md:px-0 md:py-[40px]">
   <div
-    className="relative flex h-[243px] w-full items-center overflow-visible px-6 md:h-[396px] md:px-[80px]"
+    className="relative flex h-[243px] w-full items-center overflow-hidden px-6 md:h-[396px] md:px-[56px] lg:overflow-visible lg:px-[80px]"
     style={{
       backgroundImage: `url(${thirdContainerBg})`,
       backgroundPosition: "center",
@@ -2210,10 +2323,10 @@ export default function Home() {
       whileInView={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
       viewport={{ once: false, amount: 0.35 }}
-      className="relative z-10 max-w-[178px] text-white md:max-w-[997px]"
+      className="relative z-10 max-w-[178px] text-white md:max-w-[470px] lg:max-w-[997px]"
     >
       <h2
-        className="text-[23px] font-[510] leading-[28px] text-white md:text-[48px] md:font-normal md:leading-[52.5px]"
+        className="text-[23px] font-normal leading-[28px] text-white md:text-[36px] md:font-light md:leading-[40px] lg:text-[48px] lg:font-normal lg:leading-[52.5px]"
         style={{ fontFamily: '"SF Pro", sans-serif' }}
       >
         <span className="md:hidden">Run Your Business Via WhatsApp, End To End</span>
@@ -2235,11 +2348,11 @@ export default function Home() {
       whileInView={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.82, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
       viewport={{ once: false, amount: 0.35 }}
-      className="pointer-events-none absolute bottom-0 right-0 z-[9] h-[292px] w-auto object-contain md:right-[3%] md:h-[501.744px]"
+      className="pointer-events-none absolute bottom-0 right-0 z-[9] h-[292px] w-auto object-contain md:-right-[6%] md:h-[430px] lg:right-[3%] lg:h-[501.744px]"
     />
     <div
       aria-hidden="true"
-      className="pointer-events-none absolute bottom-[148px] right-[20.5%] z-[10] h-[66px] w-[66px] md:bottom-[252px] md:right-[11.2%] md:h-[116px] md:w-[116px]"
+      className="pointer-events-none absolute bottom-[148px] right-[20.5%] z-[10] h-[66px] w-[66px] md:bottom-[222px] md:right-[8.5%] md:h-[98px] md:w-[98px] lg:bottom-[252px] lg:right-[11.2%] lg:h-[116px] lg:w-[116px]"
     >
       <motion.div
         className="absolute inset-0 rounded-full"
@@ -2323,7 +2436,7 @@ export default function Home() {
 
                 <Link
                   to="/outcomes"
-                  className="mt-5 inline-flex h-[31px] w-[196px] items-center justify-center rounded-[4px] border border-[#D4E5C0] bg-[#D4E5C0] px-8 text-[11px] font-medium uppercase tracking-[0.06em] text-[#17362d] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#DCE9C9] md:mt-9 md:h-[44px] md:w-auto md:min-w-[140px] md:text-[12px]"
+                  className="mt-5 inline-flex h-[41px] w-fit min-w-[132px] items-center justify-center rounded-[4px] bg-[#D4E5C0] px-8 text-[13px] font-medium uppercase tracking-[0.06em] text-[#17362d] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#DCE9C9] md:mt-9 md:h-[44px] md:min-w-[148px] md:px-10 md:text-[14px]"
                 >
                   Outcome
                 </Link>
@@ -2347,7 +2460,7 @@ export default function Home() {
 
           <EnterpriseReadyHeading
             mobile
-            className="absolute inset-x-0 top-[35px] z-20 mx-auto w-full max-w-none px-5 md:hidden"
+            className="absolute inset-x-0 top-[44px] z-20 mx-auto w-full max-w-none px-5 md:hidden"
           />
 
           <div className="relative z-10 mx-auto hidden h-[544px] w-full max-w-[1440px] md:block">
@@ -2380,8 +2493,8 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="relative z-10 mx-auto max-w-[430px] px-5 pb-10 pt-[145px] md:hidden">
-            <div className="grid grid-cols-2 gap-x-6 gap-y-[47px]">
+          <div className="relative z-10 mx-auto max-w-[430px] px-5 pb-10 pt-[144px] md:hidden">
+            <div className="grid grid-cols-2 gap-x-6 gap-y-[34px]">
               {[enterpriseCards[0], enterpriseCards[2], enterpriseCards[3], enterpriseCards[1]].map((item, index) => (
                 <EnterpriseReadyCard
                   key={`${item.title}-mobile-${index}`}
@@ -2404,7 +2517,7 @@ export default function Home() {
             className="mx-auto max-w-[760px] text-center"
           >
             <h2
-              className="text-center text-[46px] font-normal leading-[48px] capitalize"
+              className="pb-1 text-center text-[40px] font-normal leading-[1.12] capitalize"
               style={{
                 fontFamily: '"SF Pro", sans-serif',
                 background: "linear-gradient(90deg, #000 0%, #4C7663 90.05%)",
@@ -2415,7 +2528,7 @@ export default function Home() {
             >
               Compatible With
             </h2>
-            <p className="mx-auto mt-5 max-w-[620px] text-[16px] leading-relaxed text-[#595959] md:text-[18px]">
+            <p className="mx-auto mt-1 max-w-[620px] text-[16px] leading-relaxed text-[#595959] md:mt-1 md:text-[18px]">
               Kactus AI turns a single WhatsApp message into complete business.
             </p>
           </motion.div>
@@ -2526,7 +2639,7 @@ export default function Home() {
             className="mx-auto max-w-[820px] text-center"
           >
             <h2
-              className="text-center text-[46px] font-normal leading-[48px] capitalize"
+              className="text-center text-[46px] font-normal leading-[48px] tracking-[-0.03em] capitalize"
               style={{
                 fontFamily: '"SF Pro", sans-serif',
                 background: "linear-gradient(90deg, #000 0%, #4C7663 90.05%)",
@@ -2633,7 +2746,7 @@ export default function Home() {
             className="mx-auto text-center"
           >
             <h2
-              className="text-[34px] font-300 leading-none md:text-[54px]"
+              className="pb-1 text-[34px] font-300 leading-[1.18] tracking-[-0.045em] md:pb-0 md:text-[54px] md:leading-none md:tracking-[-0.025em]"
               style={{
                 background: "linear-gradient(90deg, #000 0%, #4C7663 90.05%)",
                 backgroundClip: "text",
@@ -2643,7 +2756,7 @@ export default function Home() {
             >
               Frequently Asked Questions
             </h2>
-            <p className="mx-auto mt-5 max-w-[620px] text-[16px] leading-relaxed text-[#595959] md:text-[18px]">
+            <p className="mx-auto mt-5 max-w-[620px] text-[13px] leading-[1.35] tracking-[-0.01em] text-[#595959] md:text-[18px] md:leading-relaxed md:tracking-[0.01em]">
               Find answers to common questions about Kactus AI, onboarding, integrations, and support.
             </p>
           </motion.div>

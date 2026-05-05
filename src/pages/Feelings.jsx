@@ -73,16 +73,13 @@ const Feelings = () => {
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className="max-w-[760px] text-center text-[61px] font-normal text-white"
+              className="max-w-[760px] text-center text-[32px] font-normal leading-[34.3px] text-white md:text-[61px] md:leading-[65px] md:tracking-[-1.921px]"
               style={{
                 color: "#FFF",
                 textAlign: "center",
                 fontFamily: '"SF Pro", sans-serif',
-                fontSize: "61px",
                 fontStyle: "normal",
-                fontWeight: 400,
-                lineHeight: "65px",
-                letterSpacing: "-1.921px"
+                fontWeight: 400
               }}
             >
               We honor the hands
@@ -96,8 +93,8 @@ const Feelings = () => {
             style={{ opacity: firstOrderSceneOpacity, y: firstOrderSceneY }}
           >
             <motion.p
-              className="absolute left-6 top-[46%] z-20 w-[190px] max-w-[calc(100vw-48px)] text-[24px] text-white sm:left-10 sm:w-[220px] sm:text-[28px] md:left-[12.4%] md:top-[49%] md:w-[260px] md:text-[32px] lg:left-[10.8%] lg:top-[51%] lg:text-[36px]"
-              style={{ opacity: oldTextOpacity, x: firstOrderLeftTextX, fontFamily: '"SF Pro", sans-serif', fontWeight: 500, lineHeight: "1.12" }}
+              className="absolute left-6 top-[46%] z-20 w-[190px] max-w-[calc(100vw-48px)] text-[13.15px] font-[250] leading-[16.736px] text-white/80 sm:left-10 sm:w-[220px] md:left-[4.5%] md:top-[49%] md:w-[240px] md:text-[32px] md:font-medium md:leading-[1.12] md:text-white lg:left-[3.2%] lg:top-[51%] lg:w-[255px] lg:text-[36px]"
+              style={{ opacity: oldTextOpacity, x: firstOrderLeftTextX, fontFamily: '"SF Pro", sans-serif' }}
             >
               The late
               <br />
@@ -107,8 +104,8 @@ const Feelings = () => {
             </motion.p>
 
             <motion.p
-              className="absolute right-6 top-[46%] z-20 w-[250px] max-w-[calc(100vw-48px)] text-left text-[24px] text-white sm:right-10 sm:w-[300px] sm:text-[28px] md:right-[4.2%] md:top-[49%] md:w-[360px] md:text-[32px] lg:right-[3.8%] lg:top-[51%] lg:w-[410px] lg:text-[36px]"
-              style={{ opacity: oldTextOpacity, x: firstOrderRightTextX, fontFamily: '"SF Pro", sans-serif', fontWeight: 500, lineHeight: "1.12" }}
+              className="absolute right-6 top-[46%] z-20 w-[250px] max-w-[calc(100vw-48px)] text-left text-[13.15px] font-[250] leading-[16.736px] text-white/80 sm:right-10 sm:w-[300px] md:right-[1.8%] md:top-[49%] md:w-[310px] md:text-[32px] md:font-medium md:leading-[1.12] md:text-white lg:right-[1.2%] lg:top-[51%] lg:w-[345px] lg:text-[36px]"
+              style={{ opacity: oldTextOpacity, x: firstOrderRightTextX, fontFamily: '"SF Pro", sans-serif' }}
             >
               The fabric was
               <br />
@@ -118,8 +115,8 @@ const Feelings = () => {
             </motion.p>
 
             <motion.p
-              className="absolute left-6 top-[24%] z-20 w-[255px] max-w-[calc(100vw-48px)] text-[22px] font-semibold text-white sm:left-10 sm:w-[300px] sm:text-[26px] md:left-[11.7%] md:top-[31.5%] md:w-[330px] md:text-[30px] lg:w-[360px] lg:text-[32px]"
-              style={{ opacity: newTextOpacity, x: leftTextX, fontFamily: '"SF Pro", sans-serif', lineHeight: "1.12" }}
+              className="absolute left-6 top-[24%] z-20 w-[245px] max-w-[calc(100vw-48px)] text-[13.15px] font-[250] leading-[16.736px] text-white/80 sm:left-10 sm:w-[280px] md:left-[6.5%] md:top-[31.5%] md:w-[310px] md:text-[28px] md:font-medium md:leading-[1.12] md:text-white lg:left-[5.8%] lg:w-[330px] lg:text-[30px]"
+              style={{ opacity: newTextOpacity, x: leftTextX, fontFamily: '"SF Pro", sans-serif' }}
             >
               The first order was
               <br />
@@ -137,8 +134,8 @@ const Feelings = () => {
             </motion.p>
 
             <motion.p
-              className="absolute right-6 top-[58%] z-20 w-[280px] max-w-[calc(100vw-48px)] text-left text-[21px] font-semibold text-white sm:right-10 sm:top-[54%] sm:w-[330px] sm:text-[25px] md:right-[8.8%] md:top-[31.5%] md:w-[390px] md:text-[30px] lg:w-[420px] lg:text-[32px]"
-              style={{ opacity: newTextOpacity, x: rightTextX, fontFamily: '"SF Pro", sans-serif', lineHeight: "1.12" }}
+              className="absolute right-6 top-[58%] z-20 w-[260px] max-w-[calc(100vw-48px)] text-left text-[13.15px] font-[250] leading-[16.736px] text-white/80 sm:right-10 sm:top-[54%] sm:w-[300px] md:right-[4.8%] md:top-[31.5%] md:w-[350px] md:text-[28px] md:font-medium md:leading-[1.12] md:text-white lg:right-[4.2%] lg:w-[380px] lg:text-[30px]"
+              style={{ opacity: newTextOpacity, x: rightTextX, fontFamily: '"SF Pro", sans-serif' }}
             >
               The years of working when
               <br />
@@ -153,7 +150,7 @@ const Feelings = () => {
               again.
             </motion.p>
 
-            <div className="pointer-events-none absolute bottom-0 left-1/2 z-10 h-[76vh] max-h-[690px] w-auto max-w-none -translate-x-1/2 sm:h-[82vh] sm:max-h-[760px] md:h-[92vh] md:max-h-[850px] lg:h-[100vh] lg:max-h-[930px]">
+            <div className="pointer-events-none absolute bottom-[-7vh] left-1/2 z-10 h-[80vh] max-h-[730px] w-auto max-w-none -translate-x-1/2 sm:bottom-[-7vh] sm:h-[86vh] sm:max-h-[800px] md:bottom-[-8vh] md:h-[98vh] md:max-h-[900px] lg:bottom-[-9vh] lg:h-[108vh] lg:max-h-[980px]">
               <motion.img
                 src={headphoneManImage}
                 alt="Man wearing headphones"
@@ -191,7 +188,7 @@ const Feelings = () => {
 
             <div className="relative z-20 flex min-h-screen flex-col items-center justify-between px-6 pb-[12.5vh] pt-[11vh] text-center sm:px-8 md:px-12 md:pb-[9vh] md:pt-[10vh]">
           <motion.h2
-            className="max-w-[760px] text-[34px] font-normal leading-[1.14] text-white sm:text-[42px] md:text-[42px]"
+            className="max-w-[760px] text-[32px] font-normal leading-[34.3px] text-white md:text-[42px] md:leading-[1.14]"
             style={{ y: thirdHeadingY, fontFamily: '"SF Pro", sans-serif' }}
           >
             You built something real.
@@ -200,7 +197,7 @@ const Feelings = () => {
           </motion.h2>
 
           <motion.p
-            className="max-w-[760px] text-[24px] font-normal leading-[1.18] text-white sm:text-[30px] md:text-[30px]"
+            className="max-w-[330px] text-[13.15px] font-[250] leading-[16.736px] text-white/80 md:max-w-[760px] md:text-[30px] md:font-normal md:leading-[1.18] md:text-white"
             style={{ y: thirdCopyY, fontFamily: '"SF Pro", sans-serif' }}
           >
             We built Kactus to stand beside you.

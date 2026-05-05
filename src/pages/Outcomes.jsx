@@ -1526,14 +1526,11 @@ export default function Outcomes() {
             <div className="mx-auto flex w-full max-w-[620px] flex-col items-center text-center">
               <div className="self-stretch">
                 <h1
-                  className="self-stretch text-center"
+                  className="self-stretch text-center text-[32px] font-normal leading-[34.3px] md:text-[48px] md:leading-[48px]"
                   style={{
                     textAlign: "center",
                     fontFamily: "SF Pro",
-                    fontSize: "48px",
                     fontStyle: "normal",
-                    fontWeight: 400,
-                    lineHeight: "48px",
                     color: "#111111"
                   }}
                 >
@@ -1541,14 +1538,11 @@ export default function Outcomes() {
                 </h1>
 
                 <p
-                  className="mt-5 self-stretch text-center"
+                  className="mt-3 self-stretch text-center text-[13.15px] font-[250] leading-[16.736px] md:mt-5 md:text-[16.5px] md:font-[274] md:leading-[21px]"
                   style={{
                     textAlign: "center",
                     fontFamily: "SF Pro",
-                    fontSize: "16.5px",
                     fontStyle: "normal",
-                    fontWeight: 274,
-                    lineHeight: "21px",
                     color: "#4B5563"
                   }}
                 >
@@ -1568,28 +1562,23 @@ export default function Outcomes() {
           <div className="mx-auto flex w-full max-w-[620px] flex-col items-center text-center">
             <div className="invisible self-stretch select-none">
               <h1
-                className="self-stretch text-center"
+                className="self-stretch text-center text-[32px] font-normal leading-[34.3px] md:text-[48px] md:leading-[48px]"
                 style={{
                   textAlign: "center",
                   fontFamily: "SF Pro",
-                  fontSize: "48px",
                   fontStyle: "normal",
-                  fontWeight: 400,
-                  lineHeight: "48px"
+                  fontWeight: 400
                 }}
               >
                 AI Autonomous Lab <br /> For Businesses
               </h1>
 
               <p
-                className="mt-5 self-stretch text-center"
+                className="mt-3 self-stretch text-center text-[13.15px] font-[250] leading-[16.736px] md:mt-5 md:text-[16.5px] md:font-[274] md:leading-[21px]"
                 style={{
                   textAlign: "center",
                   fontFamily: "SF Pro",
-                  fontSize: "16.5px",
-                  fontStyle: "normal",
-                  fontWeight: 274,
-                  lineHeight: "21px"
+                  fontStyle: "normal"
                 }}
               >
                 Kactus AI turns a single WhatsApp message into complete business execution on its own through:
@@ -1789,14 +1778,11 @@ export default function Outcomes() {
               className="relative z-[60] self-stretch"
             >
               <h1
-                className="self-stretch text-center"
+                className="self-stretch text-center text-[32px] font-normal leading-[34.3px] md:text-[48px] md:leading-[48px]"
                 style={{
                   textAlign: "center",
                   fontFamily: "SF Pro",
-                  fontSize: "48px",
                   fontStyle: "normal",
-                  fontWeight: 400,
-                  lineHeight: "48px",
                   color: "#FFFFFF"
                 }}
               >
@@ -1804,14 +1790,11 @@ export default function Outcomes() {
               </h1>
 
               <p
-                className="mt-5 self-stretch text-center"
+                className="mt-3 self-stretch text-center text-[13.15px] font-[250] leading-[16.736px] md:mt-5 md:text-[16.5px] md:font-[274] md:leading-[21px]"
                 style={{
                   textAlign: "center",
                   fontFamily: "SF Pro",
-                  fontSize: "16.5px",
                   fontStyle: "normal",
-                  fontWeight: 274,
-                  lineHeight: "21px",
                   color: "rgba(255,255,255,0.82)"
                 }}
               >
@@ -1924,11 +1907,11 @@ export default function Outcomes() {
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: false, amount: 0.2 }}
-                  className="flex flex-col gap-10 pt-1 lg:self-start lg:gap-14"
+                  className="flex flex-col gap-6 pt-1 md:gap-10 lg:self-start lg:gap-14"
                 >
                   <div>
                     <h2
-                      className="block max-w-[250px] overflow-visible pb-[6px] text-[34px] leading-[44px] md:text-[41px] md:leading-[52px]"
+                      className="block max-w-[250px] overflow-visible pb-[6px] text-[32px] leading-[34.3px] md:text-[41px] md:leading-[52px]"
                       style={{
                         fontFamily: '"SF Pro", sans-serif',
                         fontStyle: "normal",
@@ -1945,17 +1928,17 @@ export default function Outcomes() {
 
                   <div>
                     <p
-                      className="text-[22px] leading-none text-[#D0D2CE]"
+                      className="text-[13.15px] leading-[16.736px] text-[#D0D2CE] md:text-[22px] md:leading-none"
                       style={{
                         fontFamily: '"SF Pro", sans-serif',
                         fontStyle: "normal",
-                        fontWeight: 510
+                        fontWeight: 400
                       }}
                     >
                       {activeBusinessExecutionContent.label}
                     </p>
                     <div
-                      className="mt-2 text-[112px] leading-none text-[#F0F1EE] sm:text-[136px] lg:text-[190px]"
+                      className="mt-1 text-[72px] leading-none text-[#F0F1EE] sm:text-[112px] md:mt-2 md:text-[136px] lg:text-[190px]"
                       style={{
                         fontFamily: '"SF Pro", sans-serif',
                         fontStyle: "normal",
@@ -1987,11 +1970,11 @@ export default function Outcomes() {
                         <button
                           type="button"
                           onClick={() => handleBusinessExecutionRowToggle(index)}
-                          className="flex w-full items-start justify-between gap-4 py-5 text-left md:items-center md:py-6"
+                          className="flex w-full items-start justify-between gap-3 py-4 text-left md:items-center md:gap-4 md:py-6"
                         >
                           <div className="min-w-0 pr-4">
                             <div
-                              className="text-[18px] leading-[1.35] text-[#161616] sm:text-[20px] md:text-[18px] lg:text-[20px]"
+                              className="text-[13.15px] leading-[16.736px] text-[#161616] sm:text-[18px] sm:leading-[1.35] md:text-[18px] lg:text-[20px]"
                               style={{
                                 fontFamily: '"SF Pro", sans-serif',
                                 fontStyle: "normal",
@@ -2000,11 +1983,11 @@ export default function Outcomes() {
                             >
                               {item.subtitle ? (
                                 <>
-                                  <span className="font-[590] text-[#111111]">{item.title}:</span>{" "}
+                                  <span className="font-normal text-[#111111] sm:font-[590]">{item.title}:</span>{" "}
                                   <span className="font-normal text-[#4B4B4B]">{item.subtitle}</span>
                                 </>
                               ) : (
-                                <span className="font-[590] text-[#111111]">{item.title}</span>
+                                <span className="font-normal text-[#111111] sm:font-[590]">{item.title}</span>
                               )}
                             </div>
 
@@ -2015,11 +1998,11 @@ export default function Outcomes() {
                                   animate={{ height: "auto", opacity: 1, marginTop: 14 }}
                                   exit={{ height: 0, opacity: 0, marginTop: 0 }}
                                   transition={{ duration: 0.24, ease: "easeInOut" }}
-                                  className="max-w-[770px] overflow-hidden text-[14px] leading-[1.75] text-[#5C5C5C] sm:text-[15px]"
+                                  className="max-w-[770px] overflow-hidden text-[13.15px] leading-[16.736px] text-[#5C5C5C] sm:text-[15px] sm:leading-[1.75]"
                                   style={{
                                     fontFamily: '"SF Pro", sans-serif',
                                     fontStyle: "normal",
-                                    fontWeight: 400
+                                    fontWeight: 250
                                   }}
                                 >
                                   {item.answer}

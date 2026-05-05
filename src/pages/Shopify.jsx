@@ -3,7 +3,6 @@ import { Link } from "react-router-dom"
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion"
 import { MagneticButton, SectionTitle, RevealImage, StaggerText } from "../components/AnimatedElements"
 import DemoModal from "../components/DemoModal";
-import GrowthCtaSection from "../components/GrowthCtaSection";
 
 // Icons
 import EnterpriseVector from "../assets/images/Shopify/vector.svg";
@@ -19,7 +18,12 @@ import ShopifyHeroCard from "../assets/images/Shopify/shopify&WhatsApp.svg";
 import ShopifyCard from "../assets/images/Shopify/ShopifyCard.svg";
 import HowItWorksBg from "../assets/images/Shopify/HowitWorks.svg.svg";
 import ShopifyHeroBg from "../assets/images/Shopify/shopifyhero.png";
+import shopifyCtaImage from "../assets/images/Shopify/shopifyCta.png";
+import shopifyCtaMobileImage from "../assets/images/Shopify/shopifyCtaMb.png";
 import whatsappMobileBg from "../assets/images/WhatsAppMarketing/mobileBg.png";
+import oneClickIcon from "../assets/images/Shopify/One-click.svg";
+import seamlessStoreIcon from "../assets/images/Shopify/Seamless store.svg";
+import virtualTryOnIcon from "../assets/images/Shopify/Virtual try-on.svg";
 
 
 const logos = [
@@ -234,15 +238,24 @@ const faqItems = [
 const shopifyFeatureCards = [
   {
     title: "One-click install, zero complexity",
-    description: "Install the app from the Shopify App Store and activate it in minutes."
+    description: "Install the app from the Shopify App Store and activate it in minutes.",
+    icon: oneClickIcon,
+    iconAlt: "One-click install",
+    to: "/integrations"
   },
   {
     title: "Virtual try-on that converts",
-    description: "Let customers see products on themselves before buying, directly on your product pages."
+    description: "Let customers see products on themselves before buying, directly on your product pages.",
+    icon: virtualTryOnIcon,
+    iconAlt: "Virtual try-on",
+    to: "/vto"
   },
   {
     title: "Seamless store integration",
-    description: "Works inside your Shopify theme with App Embed and optional product page blocks for full control."
+    description: "Works inside your Shopify theme with App Embed and optional product page blocks for full control.",
+    icon: seamlessStoreIcon,
+    iconAlt: "Seamless store integration",
+    to: "/integrations"
   }
 ];
 
@@ -457,7 +470,10 @@ export default function Shopify() {
               transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
               className="order-2 mx-auto max-w-[296px] text-center md:order-none md:mx-0 md:max-w-[540px] md:text-left"
             >
-              <h1 className="text-center text-[26px] font-normal leading-[1.05] text-white md:hidden">
+              <h1
+                className="text-center text-[32px] font-normal leading-[34.3px] text-white md:hidden"
+                style={{ fontFamily: '"SF Pro", sans-serif' }}
+              >
                 KactusAI + Shopify
               </h1>
               <h1
@@ -474,7 +490,10 @@ export default function Shopify() {
                 Kactus AI + Shopify
               </h1>
 
-              <p className="mx-auto mt-1.5 max-w-[270px] text-center text-[12px] leading-[1.2] text-white/80 md:hidden">
+              <p
+                className="mx-auto mt-2 max-w-[330px] text-center text-[13.15px] font-[250] leading-[16.736px] text-white/80 md:hidden"
+                style={{ fontFamily: '"SF Pro", sans-serif' }}
+              >
                 Turn every product page into an interactive try-on experience.
               </p>
 
@@ -482,7 +501,10 @@ export default function Shopify() {
                 Kactus AI turns a single WhatsApp message into complete business execution on its own through:
               </p>
 
-              <p className="mx-auto mt-5 max-w-[292px] text-center text-[12px] leading-[1.18] text-white/80 md:hidden">
+              <p
+                className="mx-auto mt-4 max-w-[330px] text-center text-[13.15px] font-[250] leading-[16.736px] text-white/80 md:hidden"
+                style={{ fontFamily: '"SF Pro", sans-serif' }}
+              >
                 Install Try on by Kactus and your Shopify store can instantly offer virtual try-on for your products. Customers can see how items look in real time, increasing confidence, engagement, and conversions without complex setup.
               </p>
 
@@ -520,7 +542,7 @@ export default function Shopify() {
             viewport={{ once: true }}
             className="mx-auto flex w-full justify-center text-center"
           >
-            <h2 className="text-center text-[22px] font-normal leading-[1.18] tracking-[-0.01em] text-[#06231C] md:hidden">
+            <h2 className="text-center text-[32px] font-normal leading-[34.3px] tracking-[-0.01em] text-[#06231C] md:hidden">
               What You Can Do <span className="text-[#7F9588]">With</span>
               <br />
               Shopify + KactusAI
@@ -559,10 +581,8 @@ export default function Shopify() {
                 style={{ backgroundImage: `url(${ShopifyCard})` }}
               >
                 <div className="flex h-full flex-col">
-                  <div className="flex h-8 w-8 items-center justify-center border border-[#A6BEA0] bg-[#15382F]/55">
-                    <svg viewBox="0 0 16 16" className="h-4 w-4 fill-[#E7F5D4]" aria-hidden="true">
-                      <path d="M8.95 1.5L4.9 8h2.66L6.96 14.5 11.1 7.92H8.45L8.95 1.5z" />
-                    </svg>
+                  <div className="flex h-9 w-9 items-center justify-center border border-[#A6BEA0] bg-[#15382F]/55">
+                    <img src={card.icon} alt={card.iconAlt} className="h-5 w-5 object-contain" />
                   </div>
 
                   <h3 className="mt-4 text-[18px] font-medium leading-[1.25] text-white">
@@ -573,15 +593,15 @@ export default function Shopify() {
                     {card.description}
                   </p>
 
-                  <button
-                    type="button"
+                  <Link
+                    to={card.to}
                     className="mt-auto inline-flex items-center gap-3 pt-8 text-[14px] font-medium text-[#EEF7DA]"
                   >
                     Learn More
                     <svg viewBox="0 0 14 14" className="h-3.5 w-3.5" aria-hidden="true">
                       <path d="M4 2.5L9 7L4 11.5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
-                  </button>
+                  </Link>
                 </div>
               </motion.article>
             ))}
@@ -762,7 +782,145 @@ export default function Shopify() {
         </div>
       </section>
 
-      <GrowthCtaSection />
+      <section className="relative overflow-hidden bg-white px-6 pt-10 pb-0 md:pt-12 lg:hidden">
+        <div className="mx-auto max-w-[430px]">
+          <div className="text-center">
+            <h2 className="text-[31px] font-normal leading-[1.13] text-[#06231C]">
+              Seamless Integrations <span className="text-[#64786E]">for</span>
+              <br />
+              AI-Driven Commerce
+            </h2>
+            <p className="mt-2 text-[23px] font-normal leading-[1.2] text-[#00624E]">
+              Unify Your Tools. Execute Faster.
+            </p>
+          </div>
+
+          <div className="mt-9 grid grid-cols-[48%_52%] items-start gap-2">
+            <div className="flex min-h-[322px] flex-col justify-center">
+              <div className="space-y-4">
+                {[
+                  "Connect in minutes",
+                  "Launch journeys",
+                  "Refine interactions"
+                ].map((point) => (
+                  <div key={point} className="flex items-center gap-3">
+                    <span className="flex h-[21px] w-[21px] shrink-0 items-center justify-center rounded-full border-[2px] border-[#5E6862] text-[#4E5C56]">
+                      <svg viewBox="0 0 16 16" className="h-3.5 w-3.5" aria-hidden="true">
+                        <path d="M4 8.1 6.7 10.8 12 5.5" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </span>
+                    <p className="whitespace-nowrap text-[16px] leading-[1.25] text-[#4F5B57]">
+                      {point}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-10 flex flex-col gap-3">
+                <button
+                  type="button"
+                  onClick={() => setIsDemoOpen(true)}
+                  className="flex h-[50px] w-full items-center justify-center rounded-[3px] bg-[#D4E5C0] text-[17px] font-normal text-[#06231C]"
+                >
+                  Schedule a Demo
+                </button>
+                <Link
+                  to="/outcomes"
+                  className="flex h-[48px] w-full items-center justify-center rounded-[3px] border border-[#16362D] bg-white text-[17px] font-normal text-[#16362D]"
+                >
+                  Outcome
+                </Link>
+              </div>
+            </div>
+
+            <div className="relative min-h-[322px]">
+              <div className="absolute left-[-28px] top-[-18px] h-44 w-44 rounded-full bg-[#E8F1CF] blur-[82px]" />
+              <div className="relative mr-[-54px] w-[210px] overflow-hidden rounded-tl-[20px] border-t border-l border-[#EEF2E5] bg-white shadow-[0_0_40px_rgba(22,54,45,0.06)] md:mr-[-96px] md:w-[300px]">
+                <img
+                  src={shopifyCtaMobileImage}
+                  alt="Shopify integrations dashboard preview"
+                  className="block h-auto w-full"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="absolute inset-x-0 bottom-0 h-[3px] bg-[#06231C]" />
+      </section>
+
+      <section className="hidden overflow-hidden bg-white pt-14 pb-14 lg:block xl:pt-16 xl:pb-6">
+        <div className="mx-auto grid min-h-[370px] max-w-[1440px] grid-cols-[40%_60%] items-center bg-[linear-gradient(90deg,#FFFFFF_0%,#FFFFFF_32%,#F4FAEA_100%)] pl-20 xl:pl-24">
+          <motion.div
+            initial={{ opacity: 0, y: 22 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="max-w-[410px] pb-7"
+          >
+            <h2
+              className="text-[32px] font-normal leading-[1.03] text-[#06231C] xl:text-[35px]"
+              style={{ fontFamily: '"SF Pro", sans-serif' }}
+            >
+              Seamless Integrations <span className="text-[#7F9588]">for</span>
+              <br />
+              AI-Driven Commerce
+            </h2>
+
+            <p
+              className="mt-3 text-[20px] font-normal leading-[1.2] text-[#00644F] xl:text-[21px]"
+              style={{ fontFamily: '"SF Pro", sans-serif' }}
+            >
+              Unify Your Tools. Execute Faster.
+            </p>
+
+            <div className="mt-9 space-y-3.5">
+              {[
+                "Connect your platforms in minutes",
+                "Launch automated WhatsApp journeys",
+                "Track and refine every interaction"
+              ].map((point) => (
+                <div key={point} className="flex items-center gap-3">
+                  <span className="flex h-[15px] w-[15px] shrink-0 items-center justify-center rounded-full border border-[#6F7A74] text-[#4E5C56]">
+                    <svg viewBox="0 0 16 16" className="h-[9px] w-[9px]" aria-hidden="true">
+                      <path d="M4 8.1 6.7 10.8 12 5.5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </span>
+                  <p
+                    className="text-[14px] leading-[1.3] text-[#4F5B57]"
+                    style={{ fontFamily: '"SF Pro", sans-serif' }}
+                  >
+                    {point}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            <button
+              type="button"
+              onClick={() => setIsDemoOpen(true)}
+              className="mt-9 inline-flex h-10 min-w-[168px] items-center justify-center rounded-[4px] bg-[#D4E5C0] px-6 text-[13px] font-medium text-[#06231C] transition-all duration-300 hover:translate-y-[-1px] hover:bg-[#dbe9ca]"
+            >
+              Schedule a Demo
+            </button>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 32 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.65, delay: 0.08 }}
+            viewport={{ once: true }}
+            className="relative flex h-full min-h-[370px] items-end overflow-hidden"
+          >
+            <div className="relative ml-auto h-[330px] w-[94%] overflow-hidden rounded-tl-[42px] border-l-[10px] border-t-[10px] border-[#F4FAEA]">
+              <img
+                src={shopifyCtaImage}
+                alt="Shopify integrations dashboard preview"
+                className="h-full w-full object-cover object-left-top"
+              />
+            </div>
+          </motion.div>
+        </div>
+      </section>
 
       <DemoModal isOpen={isDemoOpen} onClose={() => setIsDemoOpen(false)} />
     </main>
