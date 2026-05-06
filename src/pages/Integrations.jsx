@@ -2,17 +2,17 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
 import DemoModal from "../components/DemoModal";
-import hero from "../assets/images/Home/hero.png";
-import logoWithoutName from "../assets/images/logowithoutname.svg";
+import hero from "../assets/images/Integration/hero.png";
+import logoWithoutName from "../assets/images/Integration/logowithoutname.svg";
 import shopifyIcon from "../assets/images/Integration/shopifyIcon.svg";
 import wooIcon from "../assets/images/Integration/wocommerceIcon.svg";
 import woocommerceCardIcon from "../assets/images/Integration/woocommerce.png";
 import kactusApiCardIcon from "../assets/images/Integration/KactusApi.png";
-import whatsappMobileBg from "../assets/images/WhatsAppMarketing/mobileBg.png";
-import ShopifyCard from "../assets/images/Shopify/ShopifyCard.svg";
-import ShopifyHeroBg from "../assets/images/Shopify/shopifyhero.png";
-import shopifyCtaImage from "../assets/images/Shopify/shopifyCta.png";
-import shopifyCtaMobileImage from "../assets/images/Shopify/shopifyCtaMb.png";
+import whatsappMobileBg from "../assets/images/Integration/mobileBg.png";
+import ShopifyCard from "../assets/images/Integration/ShopifyCard.svg";
+import ShopifyHeroBg from "../assets/images/Integration/shopifyhero.png";
+import shopifyCtaImage from "../assets/images/Integration/shopifyCta.png";
+import shopifyCtaMobileImage from "../assets/images/Integration/shopifyCtaMb.png";
 
 const integrationCards = [
   {
@@ -67,7 +67,7 @@ export default function Integrations() {
           className="absolute inset-0 h-full w-full object-cover object-center md:hidden"
         />
 
-        <div className="relative z-10 px-6 pb-8 pt-[92px] sm:px-8 md:px-14 md:pb-6 md:pt-20 lg:px-20 xl:px-24">
+        <div className="relative z-10 px-6 pb-8 pt-[92px] sm:px-8 md:px-14 md:pb-6 md:pt-10 lg:px-20 xl:px-24">
           <div className="grid min-h-[calc(100svh-124px)] w-full content-center gap-6 md:min-h-[calc(100vh-10rem)] md:items-center lg:grid-cols-[60%_40%] lg:gap-6">
             <motion.div
               initial={{ opacity: 0, y: 28 }}
@@ -186,7 +186,7 @@ export default function Integrations() {
         </div>
       </section>
 
-      <section className="bg-white px-0 pb-14 pt-12 sm:px-0 md:px-14 md:pb-20 md:pt-8 lg:px-20 xl:px-24">
+      <section className="bg-white px-0 pb-10 pt-8 sm:px-0 md:px-14 md:pb-10 md:pt-8 lg:px-20 xl:px-24">
         <div className="mx-auto max-w-[1320px]">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -341,7 +341,7 @@ export default function Integrations() {
           </div>
         </div>
       </section>
-      <section className="relative overflow-hidden bg-white px-6 pt-10 pb-0 md:pt-12 lg:hidden">
+      <section className="relative overflow-hidden bg-white px-6 pt-10 pb-0 md:pt-8 lg:hidden">
         <div className="mx-auto max-w-[430px]">
           <div className="text-center">
             <h2 className="text-[31px] font-normal leading-[1.13] text-[#06231C]">
@@ -354,8 +354,8 @@ export default function Integrations() {
             </p>
           </div>
 
-          <div className="mt-9 grid grid-cols-[48%_52%] items-start gap-2">
-            <div className="flex min-h-[322px] flex-col justify-center">
+          <div className="mt-9 grid grid-cols-[48%_52%] items-start gap-4">
+            <div className="flex min-h-[322px] flex-col justify-center pr-1">
               <div className="space-y-4">
                 {[
                   "Connect in minutes",
@@ -392,7 +392,7 @@ export default function Integrations() {
               </div>
             </div>
 
-            <div className="relative min-h-[322px]">
+            <div className="relative min-h-[322px] pl-1">
               <div className="absolute left-[-28px] top-[-18px] h-44 w-44 rounded-full bg-[#E8F1CF] blur-[82px]" />
               <div className="relative mr-[-54px] w-[210px] overflow-hidden rounded-tl-[20px] border-t border-l border-[#EEF2E5] bg-white shadow-[0_0_40px_rgba(22,54,45,0.06)] md:mr-[-96px] md:w-[300px]">
                 <img
@@ -407,7 +407,7 @@ export default function Integrations() {
         <div className="absolute inset-x-0 bottom-0 h-[3px] bg-[#06231C]" />
       </section>
 
-      <section className="hidden overflow-hidden bg-white pt-14 pb-14 lg:block xl:pt-16 xl:pb-16">
+      <section className="hidden overflow-hidden bg-white pt-10 pb-10 lg:block xl:pt-8 xl:pb-10">
         <div className="mx-auto grid min-h-[370px] max-w-[1440px] grid-cols-[40%_60%] items-center bg-[linear-gradient(90deg,#FFFFFF_0%,#FFFFFF_32%,#F4FAEA_100%)] pl-20 xl:pl-24">
           <motion.div
             initial={{ opacity: 0, y: 22 }}
@@ -485,3 +485,4 @@ export default function Integrations() {
     </main>
   );
 }
+

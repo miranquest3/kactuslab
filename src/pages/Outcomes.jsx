@@ -5,39 +5,42 @@ import { MagneticButton, SectionTitle, RevealImage, StaggerText } from "../compo
 import DemoModal from "../components/DemoModal";
 
 // Icons
-import EnterpriseVector from "../assets/images/Home/vector.svg";
-import EnterpriseVectorHover from "../assets/images/Home/vectorHover.svg";
+import EnterpriseVector from "../assets/images/Outcomes/vector.svg";
+import EnterpriseVectorHover from "../assets/images/Outcomes/vectorHover.svg";
 
-import shopifyl from "../assets/images/Home/Icons/shopify.png";
-import magentol from "../assets/images/Home/Icons/magento.png";
-import woocoml from "../assets/images/Home/Icons/woocom.png";
-import EnterpriseReadyBg from "../assets/images/Home/Enterprise Ready.svg";
-import ShopifyCard from "../assets/images/Shopify/ShopifyCard.svg";
-import HowItWorksBg from "../assets/images/Shopify/HowitWorks.svg.svg";
-import vtoSectionBg from "../assets/images/Vto/sec 2.svg";
-import rightIcon from "../assets/images/Vto/right.svg";
-import wrongIcon from "../assets/images/Vto/wrong.svg";
-import vtoImg from "../assets/images/Vto/vtoImg.png";
-import lastSectionBg from "../assets/images/Shopify/lastSection.png";
+import shopifyl from "../assets/images/Outcomes/shopify.png";
+import magentol from "../assets/images/Outcomes/magento.png";
+import woocoml from "../assets/images/Outcomes/woocom.png";
+import EnterpriseReadyBg from "../assets/images/Outcomes/Enterprise Ready.svg";
+import ShopifyCard from "../assets/images/Outcomes/ShopifyCard.svg";
+import HowItWorksBg from "../assets/images/Outcomes/HowitWorks.svg.svg";
+import vtoSectionBg from "../assets/images/Outcomes/sec 2.svg";
+import rightIcon from "../assets/images/Outcomes/right.svg";
+import wrongIcon from "../assets/images/Outcomes/wrong.svg";
+import vtoImg from "../assets/images/Outcomes/vtoImg.png";
+import lastSectionBg from "../assets/images/Outcomes/lastSection.png";
 import outcomeHeroBg from "../assets/images/Outcomes/outcomebg.png";
-import leftPopupBg from "../assets/images/whatsapp/leftpopup.png";
-import rightPopupBg from "../assets/images/whatsapp/rightpopup.png";
-import whatsappSectionBg from "../assets/images/whatsapp/whatsappSec2.png";
+import leftPopupBg from "../assets/images/Outcomes/leftpopup.png";
+import rightPopupBg from "../assets/images/Outcomes/rightpopup.png";
+import whatsappSectionBg from "../assets/images/Outcomes/whatsappSec2.png";
 import outcomeWhatsapp from "../assets/images/Outcomes/outcomeWhatsapp.svg";
 import logo from "../assets/logo.svg";
 import logo2 from "../assets/logo2.svg";
-import ftlock from "../assets/images/Features/VTO.png";
-import ftlockHover from "../assets/images/Features/VTO G.png";
-import lock from "../assets/images/Features/lock.png";
-import lockHover from "../assets/images/Features/Lock G.png";
-import cardBg from "../assets/images/Home/cardbg.png";
-import whatsappIcon from "../assets/images/Home/whatsapp.svg";
-import aiProductIcon from "../assets/images/Home/aiProduct.svg";
-import marketResearchIcon from "../assets/images/Home/MARKET RESEARCH.png";
-import socialMediaMarketingIcon from "../assets/images/Home/SOCIAL MEDIA MARKETING.png";
-import websiteManagementIcon from "../assets/images/Home/web-management 1.png";
-import vtoFeatureIcon from "../assets/images/Home/vto.png";
-import inventoryManagementIcon from "../assets/images/Home/INVENTORY MANAGEMENT.png";
+import virtualTryOnMenuIcon from "../assets/images/Outcomes/Virtual Try-On.png";
+import whatsappMenuIcon from "../assets/images/Outcomes/whatsapp.png";
+import lockMenuIcon from "../assets/images/Outcomes/lock.png";
+import ftlock from "../assets/images/Outcomes/Virtual Try-On.png";
+import ftlockHover from "../assets/images/Outcomes/Virtual Try-On.png";
+import lock from "../assets/images/Outcomes/lock.png";
+import lockHover from "../assets/images/Outcomes/lock.png";
+import cardBg from "../assets/images/Outcomes/cardbg.png";
+import whatsappIcon from "../assets/images/Outcomes/whatsapp.svg";
+import aiProductIcon from "../assets/images/Outcomes/aiProduct.svg";
+import marketResearchIcon from "../assets/images/Outcomes/MARKET RESEARCH.png";
+import socialMediaMarketingIcon from "../assets/images/Outcomes/SOCIAL MEDIA MARKETING.png";
+import websiteManagementIcon from "../assets/images/Outcomes/web-management 1.png";
+import vtoFeatureIcon from "../assets/images/Outcomes/vto.png";
+import inventoryManagementIcon from "../assets/images/Outcomes/INVENTORY MANAGEMENT.png";
 
 
 const outcomeFeatureMenuItems = [
@@ -516,7 +519,7 @@ function CardSplitSection() {
 
   return (
     <section
-      className="relative overflow-visible bg-white px-4 py-14 font-['SF_Pro',sans-serif] sm:px-6 md:py-20 lg:px-8"
+      className="relative overflow-visible bg-white px-4 py-8 font-['SF_Pro',sans-serif] sm:px-6 md:py-8 lg:px-8"
     >
       <div className="mx-auto max-w-[1190px]">
         <motion.div
@@ -1203,7 +1206,7 @@ function FeatureShowcaseCard({ card, index, activeCard, setActiveCard }) {
       </div>
       <div className="absolute inset-0 rounded-[14px] border border-white/6 pointer-events-none group-hover:border-[#8ef0d0]/30 transition-colors duration-300" />
 
-      <div className="relative z-10 flex h-full flex-col items-center px-6 pt-16 pb-8 text-center">
+      <div className="relative z-10 flex h-full flex-col items-center px-6 pt-8 pb-8 text-center">
         <h3 className="text-white text-[17px] md:text-[18px] font-semibold tracking-wide">
           {card.title}
         </h3>
@@ -1245,6 +1248,8 @@ export default function Outcomes() {
     () => businessExecutionSlides.map(() => -1)
   );
   const [heroPhase, setHeroPhase] = useState(0);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [showMobileFeatures, setShowMobileFeatures] = useState(true);
 
   const openFeaturesDropdown = () => {
     if (featuresDropdownCloseTimerRef.current) {
@@ -1521,7 +1526,7 @@ export default function Outcomes() {
             initial={false}
             animate={introOverlayContentAnimation}
             transition={{ duration: 0.32, ease: heroEase }}
-            className="flex min-h-screen box-border items-center justify-center px-6 pb-16 pt-20 sm:px-8 md:px-14 md:pt-24 lg:px-20 xl:px-24"
+            className="flex min-h-screen box-border items-center justify-center px-6 pb-10 pt-10 sm:px-8 md:px-14 md:pt-24 lg:px-20 xl:px-24"
           >
             <div className="mx-auto flex w-full max-w-[620px] flex-col items-center text-center">
               <div className="self-stretch">
@@ -1556,7 +1561,7 @@ export default function Outcomes() {
         </motion.div>
 
         <div
-          className="pointer-events-none absolute inset-0 z-[55] flex min-h-screen box-border items-center justify-center px-6 pb-16 pt-20 sm:px-8 md:px-14 md:pt-24 lg:px-20 xl:px-24"
+          className="pointer-events-none absolute inset-0 z-[55] flex min-h-screen box-border items-center justify-center px-6 pb-10 pt-10 sm:px-8 md:px-14 md:pt-24 lg:px-20 xl:px-24"
           aria-hidden="true"
         >
           <div className="mx-auto flex w-full max-w-[620px] flex-col items-center text-center">
@@ -1609,15 +1614,48 @@ export default function Outcomes() {
           animate={heroNavAnimation}
           transition={{ duration: 0.28, delay: 0.04, ease: heroEase }}
           className={`pointer-events-auto absolute inset-x-0 top-0 z-[60] transition-colors duration-300 ${
-            showFeaturesDropdown
+            showFeaturesDropdown || mobileMenuOpen
               ? "border-b border-dashed border-[#dfe5df] bg-white"
               : "bg-transparent"
           }`}
         >
           <div className="relative flex items-center justify-between px-4 py-4 sm:px-6 lg:px-10">
             <Link to="/" className="flex items-center gap-3 shrink-0">
-              <img src={showFeaturesDropdown ? logo : logo2} alt="Kactus Logo" className="h-8 w-auto" />
+              <img src={showFeaturesDropdown || mobileMenuOpen ? logo : logo2} alt="Kactus Logo" className="h-8 w-auto" />
             </Link>
+
+            <button
+              type="button"
+              aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={mobileMenuOpen}
+              onClick={() => {
+                setMobileMenuOpen((prev) => {
+                  const next = !prev;
+                  if (!next) setShowMobileFeatures(true);
+                  return next;
+                });
+              }}
+              className={`md:hidden inline-flex h-10 w-10 items-center justify-center rounded-full transition ${
+                mobileMenuOpen
+                  ? "bg-[#d8ddd7] text-[#1d2b24]"
+                  : showFeaturesDropdown
+                    ? "text-[#111111]"
+                    : "text-white"
+              }`}
+            >
+              {mobileMenuOpen ? (
+                <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.8">
+                  <path d="M6 6L18 18" strokeLinecap="round" />
+                  <path d="M18 6L6 18" strokeLinecap="round" />
+                </svg>
+              ) : (
+                <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.8">
+                  <path d="M4 7H20" strokeLinecap="round" />
+                  <path d="M4 12H20" strokeLinecap="round" />
+                  <path d="M4 17H20" strokeLinecap="round" />
+                </svg>
+              )}
+            </button>
 
             <div className={`absolute left-1/2 hidden -translate-x-1/2 items-center gap-10 font-normal md:flex ${
               showFeaturesDropdown ? "text-[#111111]" : "text-white"
@@ -1767,9 +1805,82 @@ export default function Outcomes() {
             />
             <div className="hidden w-[120px] shrink-0 md:block" />
           </div>
+
+          <AnimatePresence>
+            {mobileMenuOpen && (
+              <motion.div
+                initial={{ opacity: 0, y: -8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.2 }}
+                className="absolute left-0 right-0 top-full z-[-1] min-h-[calc(100vh-64px)] bg-white md:hidden"
+              >
+                <div className="min-h-[calc(100vh-64px)] w-[min(100%,290px)] border-r border-dashed border-[#dfe5df] bg-white">
+                  <div className="border-b border-dashed border-[#dfe5df] px-7 pb-6 pt-6">
+                    <button
+                      type="button"
+                      onClick={() => setShowMobileFeatures((prev) => !prev)}
+                      className="flex items-center gap-2 text-[20px] font-normal leading-none text-[#111111]"
+                    >
+                      Features
+                      <svg
+                        className={`mt-[2px] h-4 w-4 transition-transform ${showMobileFeatures ? "rotate-180" : ""}`}
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M6 9l6 6 6-6" />
+                      </svg>
+                    </button>
+
+                    {showMobileFeatures && (
+                      <div className="mt-5 space-y-4">
+                        <Link to="/vto" onClick={() => setMobileMenuOpen(false)} className="block">
+                          <span className="flex min-h-[34px] w-full items-center gap-3">
+                            <img src={virtualTryOnMenuIcon} alt="" aria-hidden="true" className="h-8 w-8 shrink-0 object-contain" />
+                            <span className="min-w-0 flex-1 text-[12px] font-normal leading-[1.2] text-[#111111]">Virtual Try-On</span>
+                          </span>
+                        </Link>
+
+                        <Link to="/ai-whatsapp-marketing" onClick={() => setMobileMenuOpen(false)} className="block">
+                          <span className="flex min-h-[34px] w-full items-center gap-3">
+                            <img src={whatsappMenuIcon} alt="" aria-hidden="true" className="h-8 w-8 shrink-0 object-contain" />
+                            <span className="min-w-0 flex-1 text-[12px] font-normal leading-[1.2] text-[#111111]">AI Whatsapp Marketing</span>
+                          </span>
+                        </Link>
+
+                        <span aria-disabled="true" className="block cursor-not-allowed">
+                          <span className="flex min-h-[34px] w-full items-center gap-3">
+                            <img src={lockMenuIcon} alt="" aria-hidden="true" className="h-8 w-8 shrink-0 object-contain" />
+                            <span className="min-w-0 flex-1 whitespace-nowrap pr-3 text-[12px] font-normal leading-[1.2] text-[#111111]">AI Product Photoshoot</span>
+                            <span className="ml-3 shrink-0 rounded-full bg-[#eaf1e3] px-3 py-1.5 text-[7px] font-medium leading-none text-[#17362d]">Coming Soon</span>
+                          </span>
+                        </span>
+
+                        <span aria-disabled="true" className="block cursor-not-allowed">
+                          <span className="flex min-h-[34px] w-full items-center gap-3">
+                            <img src={lockMenuIcon} alt="" aria-hidden="true" className="h-8 w-8 shrink-0 object-contain" />
+                            <span className="min-w-0 flex-1 whitespace-nowrap pr-3 text-[12px] font-normal leading-[1.2] text-[#111111]">AI Marketing Research</span>
+                            <span className="ml-3 shrink-0 rounded-full bg-[#eaf1e3] px-3 py-1.5 text-[7px] font-medium leading-none text-[#17362d]">Coming Soon</span>
+                          </span>
+                        </span>
+                      </div>
+                    )}
+
+                    <div className="mt-6 space-y-5">
+                      <Link to="/outcomes" onClick={() => setMobileMenuOpen(false)} className="block text-[20px] font-normal leading-none text-[#111111]">Outcomes</Link>
+                      <Link to="/feelings" onClick={() => setMobileMenuOpen(false)} className="block text-[20px] font-normal leading-none text-[#111111]">Feelings</Link>
+                    </div>
+                  </div>
+                  <div className="h-[120px] border-b border-dashed border-[#dfe5df] bg-[repeating-linear-gradient(120deg,rgba(12,35,29,0.06)_0,rgba(12,35,29,0.06)_1px,transparent_1px,transparent_5px)]" />
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </motion.div>
 
-        <div className="relative z-10 flex min-h-screen box-border items-center justify-center px-6 pb-16 pt-20 sm:px-8 md:px-14 md:pt-24 lg:px-20 xl:px-24">
+        <div className="relative z-10 flex min-h-screen box-border items-center justify-center px-6 pb-10 pt-10 sm:px-8 md:px-14 md:pt-24 lg:px-20 xl:px-24">
           <div className="mx-auto flex w-full max-w-[620px] flex-col items-center text-center">
             <motion.div
               initial={false}
@@ -1868,7 +1979,7 @@ export default function Outcomes() {
         </div>
       </section>
 
-      <section className="bg-white px-6 py-16 sm:px-8 md:px-14 md:py-20 lg:px-20 xl:px-24">
+      <section className="bg-white px-6 py-10 sm:px-8 md:px-14 md:py-8 lg:px-20 xl:px-24">
         <div className="mx-auto max-w-[1240px]">
           <div className="relative px-1 sm:px-2 lg:px-4">
             <button
@@ -2084,3 +2195,4 @@ export default function Outcomes() {
     </main>
   );
 }
+

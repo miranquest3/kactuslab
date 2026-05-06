@@ -4,7 +4,7 @@ import { motion, AnimatePresence, useInView, useScroll, useTransform } from "fra
 import { MagneticButton, SectionTitle, RevealImage, StaggerText } from "../components/AnimatedElements"
 import DemoModal from "../components/DemoModal";
 import GrowthCtaSection from "../components/GrowthCtaSection";
-import vtoCtaImage from "../assets/images/Vto/vtoCta.png";
+import vtoCtaImage from "../assets/images/WhatsAppMarketing/vtoCta.png";
 
 // Icons
 import EnterpriseVector from "../assets/images/WhatsAppMarketing/vector.svg";
@@ -24,10 +24,11 @@ import whatsappSectionLogo from "../assets/images/WhatsAppMarketing/logo.svg";
 import whatsappCardBigBg from "../assets/images/WhatsAppMarketing/CardBig.png";
 import whatsappCardSmallBg from "../assets/images/WhatsAppMarketing/Cardsmall.png";
 import marketingFlowBg from "../assets/images/WhatsAppMarketing/Marketing Flow.png";
-import userEngagementIcon from "../assets/images/WhatsAppMarketing/User Engagement.svg";
-import imageCollectionIcon from "../assets/images/WhatsAppMarketing/Image Collection.svg";
-import contentGenerationIcon from "../assets/images/WhatsAppMarketing/Content Generation.svg";
-import automatedDeliveryIcon from "../assets/images/WhatsAppMarketing/Automated Delivery.svg";
+import marketingFlowSectionBg from "../assets/images/WhatsAppMarketing/Marketing Flow Bg.png";
+import marketingFlowIcon1 from "../assets/images/WhatsAppMarketing/mf1.svg";
+import marketingFlowIcon2 from "../assets/images/WhatsAppMarketing/mf2.svg";
+import marketingFlowIcon3 from "../assets/images/WhatsAppMarketing/mf3.svg";
+import marketingFlowIcon4 from "../assets/images/WhatsAppMarketing/mf4.svg";
 import otherMobile from "../assets/images/WhatsAppMarketing/otherMobile.png";
 import kactusMobile from "../assets/images/WhatsAppMarketing/kactusMobile.png";
 
@@ -271,27 +272,27 @@ const whatsappAdvantageKactusMessages = [
 const whatsappMarketingFlowSteps = [
   {
     number: "1",
-    title: "User Engagement",
-    description: "Customers upload photos to visualize how a product will look on them on a brand's website using Try-On.",
-    icon: userEngagementIcon
+    title: "New Stock Lands",
+    description: "Brand uploads a new shirt to inventory via Dashboard.",
+    icon: marketingFlowIcon1
   },
   {
     number: "2",
-    title: "Image Collection",
-    description: "Kactus AI collects customers' uploaded photos to create a WhatsApp marketing campaign for brands.",
-    icon: imageCollectionIcon
+    title: "AI Re-Apples",
+    description: "KactusLab generates new try-on on customer's stored image",
+    icon: marketingFlowIcon2
   },
   {
     number: "3",
-    title: "Content Generation",
-    description: "Kactus AI generates try-on images based on each customer's shopping preferences and newly arrived outfits.",
-    icon: contentGenerationIcon
+    title: "Whatsapp Drop",
+    description: "Personalized message: \"Here's how the new shirt looks on you\"",
+    icon: marketingFlowIcon3
   },
   {
     number: "4",
-    title: "Automated Delivery",
-    description: "Campaign creatives are automatically shared with customers via WhatsApp to drive engagement and conversions.",
-    icon: automatedDeliveryIcon
+    title: "Purchase",
+    description: "Loop restarts - and the asset gets richer each cycle",
+    icon: marketingFlowIcon4
   }
 ];
 
@@ -405,7 +406,7 @@ function FeatureShowcaseCard({ card, index, activeCard, setActiveCard }) {
       </div>
       <div className="absolute inset-0 rounded-[14px] border border-white/6 pointer-events-none group-hover:border-[#8ef0d0]/30 transition-colors duration-300" />
 
-      <div className="relative z-10 flex h-full flex-col items-center px-6 pt-16 pb-8 text-center">
+      <div className="relative z-10 flex h-full flex-col items-center px-6 pt-8 pb-8 text-center">
         <h3 className="text-white text-[17px] md:text-[18px] font-semibold tracking-wide">
           {card.title}
         </h3>
@@ -497,7 +498,7 @@ export default function WhatsAppMarketing() {
           className="absolute inset-0 h-full w-full object-cover object-left-top md:hidden"
         />
 
-        <div className="relative z-10 flex min-h-[663px] items-start px-[11px] pb-8 pt-[146px] sm:px-8 md:min-h-[720px] md:items-center md:px-14 md:pb-20 md:pt-32 lg:px-20 xl:px-24">
+        <div className="relative z-10 flex min-h-[663px] items-start px-[11px] pb-8 pt-[146px] sm:px-8 md:min-h-[720px] md:items-center md:px-14 md:pb-10 md:pt-32 lg:px-20 xl:px-24">
           <div className="mx-auto grid w-full max-w-[1320px] items-center gap-[86px] md:gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(420px,580px)] lg:gap-16">
             <motion.div
               initial={{ opacity: 0, y: 28 }}
@@ -615,7 +616,7 @@ export default function WhatsAppMarketing() {
 
         <div
           ref={whatsappAdvantageRef}
-          className="relative mx-auto w-full max-w-[1440px] px-5 pb-5 pt-6 sm:px-8 sm:pb-8 sm:pt-8 md:px-14 md:pb-10 md:pt-8 lg:px-20 lg:pt-8 lg:pb-14 xl:h-[773px] xl:px-24 xl:pt-8 xl:pb-0"
+          className="relative mx-auto w-full max-w-[1440px] px-5 pb-5 pt-6 sm:px-8 sm:pb-8 sm:pt-8 md:px-14 md:pb-10 md:pt-8 lg:px-20 lg:pt-8 lg:pb-10 xl:h-[773px] xl:px-24 xl:pt-8 xl:pb-0"
         >
           <div className="grid h-full items-start gap-9 lg:grid-cols-[minmax(0,60%)_minmax(0,40%)] lg:items-end lg:gap-4">
             <div className="flex max-w-[700px] flex-col lg:h-full lg:max-w-none">
@@ -884,14 +885,17 @@ export default function WhatsAppMarketing() {
       </section>
 
       <section
-        className="relative overflow-hidden bg-[#0A3128] px-5 py-14 text-white sm:px-8 md:px-14 md:py-24 lg:px-20 xl:px-24"
+        className="relative overflow-hidden bg-[#0A3128] px-5 py-8 text-white sm:px-8 md:px-14 md:py-10 lg:px-20 xl:px-24"
         style={{
           backgroundImage: `linear-gradient(180deg,rgba(10,49,40,0.78)_0%,rgba(5,38,30,0.92)_100%), url(${vtoSectionBg})`,
           backgroundSize: "cover",
           backgroundPosition: "center"
         }}
       >
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.14)_0%,rgba(255,255,255,0.04)_22%,transparent_52%)]" />
+        <div
+          className="absolute inset-0 bg-center bg-cover bg-no-repeat"
+          style={{ backgroundImage: `url(${marketingFlowSectionBg})` }}
+        />
 
         <div className="relative mx-auto max-w-[1320px]">
           <motion.div
@@ -915,7 +919,9 @@ export default function WhatsAppMarketing() {
                 lineHeight: "34.3px"
               }}
             >
-              Kactus AI WhatsApp Marketing Flow
+              KactusLabs Brings Smarter Tools for
+              <br />
+              <span className="whitespace-nowrap">Better Buying Decisions</span>
             </h2>
             <h2
               className="hidden text-center text-white md:block"
@@ -931,7 +937,7 @@ export default function WhatsAppMarketing() {
                 lineHeight: "normal"
               }}
             >
-              Kactus AI WhatsApp Marketing Flow
+              KactusLabs Brings Smarter Tools for Better Buying Decisions
             </h2>
           </motion.div>
 
@@ -993,14 +999,14 @@ export default function WhatsAppMarketing() {
               <div
                 className={`absolute inset-x-4 inset-y-6 z-10 transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] md:inset-x-12 md:inset-y-10 ${isMarketingFlowActive ? "translate-y-0 scale-100 opacity-100" : "pointer-events-none translate-y-8 scale-[0.96] opacity-0"}`}
               >
-                <div className="mx-auto grid h-full max-w-[900px] content-center gap-4 sm:grid-cols-2 sm:gap-x-12 sm:gap-y-10">
+                <div className="mx-auto grid h-full max-w-[900px] content-center gap-3 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-6">
                   {whatsappMarketingFlowSteps.map((step) => (
                     <article key={step.number} className="relative mx-auto min-h-[92px] w-full max-w-[380px] px-1 py-1 md:min-h-[170px] md:px-3 md:py-2">
-                      <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-[#5E6860] text-[11px] font-semibold text-white md:h-7 md:w-7 md:text-[12px]">
+                      <span className="absolute left-1 top-0 inline-flex h-6 w-6 items-center justify-center rounded-full bg-[#5E6860] text-[11px] font-semibold text-white md:left-3 md:h-7 md:w-7 md:text-[12px]">
                         {step.number}
                       </span>
 
-                      <div className="mt-2 flex items-start gap-2.5 md:mt-4 md:gap-4">
+                      <div className="mt-6 flex items-start gap-2 md:mt-8 md:gap-3">
                         <img
                           src={step.icon}
                           alt=""
@@ -1027,7 +1033,7 @@ export default function WhatsAppMarketing() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-white px-6 pt-10 pb-0 md:pt-14 lg:hidden">
+      <section className="relative overflow-hidden bg-white px-6 pt-10 pb-0 md:pt-10 lg:hidden">
         <div className="mx-auto max-w-[430px]">
           <div className="text-center">
             <h2 className="text-[31px] font-normal leading-[1.13] text-[#06231C]">
@@ -1040,8 +1046,8 @@ export default function WhatsAppMarketing() {
             </p>
           </div>
 
-          <div className="mt-9 grid grid-cols-[48%_52%] items-start gap-2">
-            <div className="flex min-h-[322px] flex-col justify-center">
+          <div className="mt-9 grid grid-cols-[48%_52%] items-start gap-4">
+            <div className="flex min-h-[322px] flex-col justify-center pr-1">
               <div className="space-y-4">
                 {["Grow consistently", "Manage effortlessly", "Optimize intelligently"].map((point) => (
                   <div key={point} className="flex items-center gap-3">
@@ -1073,7 +1079,7 @@ export default function WhatsAppMarketing() {
               </div>
             </div>
 
-            <div className="relative min-h-[322px]">
+            <div className="relative min-h-[322px] pl-1">
               <div className="absolute left-[-32px] top-[-22px] h-48 w-48 rounded-full bg-[#E8F1CF] blur-[88px]" />
               <div className="relative mr-[-132px] overflow-hidden rounded-tl-[20px] border-t border-l border-[#EEF2E5] bg-white pt-2 pl-2 shadow-[0_0_40px_rgba(22,54,45,0.06)]">
                 <img
@@ -1104,3 +1110,4 @@ export default function WhatsAppMarketing() {
     </main>
   );
 }
+

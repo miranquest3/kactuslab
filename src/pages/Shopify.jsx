@@ -20,7 +20,7 @@ import HowItWorksBg from "../assets/images/Shopify/HowitWorks.svg.svg";
 import ShopifyHeroBg from "../assets/images/Shopify/shopifyhero.png";
 import shopifyCtaImage from "../assets/images/Shopify/shopifyCta.png";
 import shopifyCtaMobileImage from "../assets/images/Shopify/shopifyCtaMb.png";
-import whatsappMobileBg from "../assets/images/WhatsAppMarketing/mobileBg.png";
+import whatsappMobileBg from "../assets/images/Shopify/mobileBg.png";
 import oneClickIcon from "../assets/images/Shopify/One-click.svg";
 import seamlessStoreIcon from "../assets/images/Shopify/Seamless store.svg";
 import virtualTryOnIcon from "../assets/images/Shopify/Virtual try-on.svg";
@@ -369,7 +369,7 @@ function FeatureShowcaseCard({ card, index, activeCard, setActiveCard }) {
       </div>
       <div className="absolute inset-0 rounded-[14px] border border-white/6 pointer-events-none group-hover:border-[#8ef0d0]/30 transition-colors duration-300" />
 
-      <div className="relative z-10 flex h-full flex-col items-center px-6 pt-16 pb-8 text-center">
+      <div className="relative z-10 flex h-full flex-col items-center px-6 pt-8 pb-8 text-center">
         <h3 className="text-white text-[17px] md:text-[18px] font-semibold tracking-wide">
           {card.title}
         </h3>
@@ -462,7 +462,7 @@ export default function Shopify() {
           className="absolute inset-0 h-full w-full object-cover object-center md:hidden"
         />
 
-        <div className="relative z-10 flex min-h-[100svh] items-center justify-center px-4 pb-14 pt-24 sm:px-6 md:min-h-screen md:items-center md:justify-start md:pb-16 md:pt-32 md:pl-14 md:pr-0 lg:pl-20 lg:pr-0 xl:pl-24 xl:pr-0">
+        <div className="relative z-10 flex min-h-[100svh] items-center justify-center px-4 pb-10 pt-24 sm:px-6 md:min-h-screen md:items-center md:justify-start md:pb-10 md:pt-32 md:pl-14 md:pr-0 lg:pl-20 lg:pr-0 xl:pl-24 xl:pr-0">
           <div className="mx-auto grid w-full max-w-[340px] items-center gap-5 md:mx-0 md:max-w-none md:gap-14 lg:grid-cols-[minmax(0,1fr)_577px] lg:gap-12">
             <motion.div
               initial={{ opacity: 0, y: 28 }}
@@ -533,7 +533,7 @@ export default function Shopify() {
         </div>
       </section>
 
-      <section className="bg-white px-6 py-7 sm:px-8 md:px-14 md:py-20 lg:px-20 xl:px-24">
+      <section className="bg-white px-6 py-7 sm:px-8 md:px-14 md:py-8 lg:px-20 xl:px-24">
         <div className="mx-auto max-w-[1320px]">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -714,7 +714,7 @@ export default function Shopify() {
 
       <section className="hidden bg-white px-0 py-0 md:block">
         <div
-          className="mx-auto min-h-[392px] w-full bg-cover bg-center bg-no-repeat px-6 py-16 sm:px-8 md:px-14 lg:px-20 xl:px-24"
+          className="mx-auto min-h-[392px] w-full bg-cover bg-center bg-no-repeat px-6 py-10 sm:px-8 md:px-14 lg:px-20 xl:px-24"
           style={{ backgroundImage: `url(${HowItWorksBg})` }}
         >
           <div className="mx-auto max-w-[1180px]">
@@ -782,7 +782,7 @@ export default function Shopify() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-white px-6 pt-10 pb-0 md:pt-12 lg:hidden">
+      <section className="relative overflow-hidden bg-white px-6 pt-10 pb-0 md:pt-8 lg:hidden">
         <div className="mx-auto max-w-[430px]">
           <div className="text-center">
             <h2 className="text-[31px] font-normal leading-[1.13] text-[#06231C]">
@@ -795,8 +795,8 @@ export default function Shopify() {
             </p>
           </div>
 
-          <div className="mt-9 grid grid-cols-[48%_52%] items-start gap-2">
-            <div className="flex min-h-[322px] flex-col justify-center">
+          <div className="mt-9 grid grid-cols-[48%_52%] items-start gap-4">
+            <div className="flex min-h-[322px] flex-col justify-center pr-1">
               <div className="space-y-4">
                 {[
                   "Connect in minutes",
@@ -833,7 +833,7 @@ export default function Shopify() {
               </div>
             </div>
 
-            <div className="relative min-h-[322px]">
+            <div className="relative min-h-[322px] pl-1">
               <div className="absolute left-[-28px] top-[-18px] h-44 w-44 rounded-full bg-[#E8F1CF] blur-[82px]" />
               <div className="relative mr-[-54px] w-[210px] overflow-hidden rounded-tl-[20px] border-t border-l border-[#EEF2E5] bg-white shadow-[0_0_40px_rgba(22,54,45,0.06)] md:mr-[-96px] md:w-[300px]">
                 <img
@@ -848,7 +848,7 @@ export default function Shopify() {
         <div className="absolute inset-x-0 bottom-0 h-[3px] bg-[#06231C]" />
       </section>
 
-      <section className="hidden overflow-hidden bg-white pt-14 pb-14 lg:block xl:pt-16 xl:pb-6">
+      <section className="hidden overflow-hidden bg-white pt-10 pb-10 lg:block xl:pt-8 xl:pb-6">
         <div className="mx-auto grid min-h-[370px] max-w-[1440px] grid-cols-[40%_60%] items-center bg-[linear-gradient(90deg,#FFFFFF_0%,#FFFFFF_32%,#F4FAEA_100%)] pl-20 xl:pl-24">
           <motion.div
             initial={{ opacity: 0, y: 22 }}
@@ -926,6 +926,7 @@ export default function Shopify() {
     </main>
   );
 }
+
 
 
 

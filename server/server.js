@@ -1,6 +1,6 @@
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
-require('dotenv').config()
+require("dotenv").config({ path: require("path").join(__dirname, ".env") });
 const express = require('express')
 const cors = require('cors')
 const passport = require('passport')
@@ -13,6 +13,7 @@ const demoRoutes = require('./routes/demo')
 const path = require("path")
 
 const app = express()
+const isProduction = process.env.NODE_ENV === "production";
 
 app.use(cors({
   origin: true,          // allow production domain
@@ -26,8 +27,8 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   cookie: {
-    secure: true,        // IMPORTANT for production (HTTPS)
-    sameSite: "none"
+    secure: isProduction,
+    sameSite: isProduction ? "none" : "lax"
   }
 }))
 

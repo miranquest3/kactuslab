@@ -1,5 +1,4 @@
 import { Link, useLocation, useNavigate } from "react-router-dom"
-import { useAuth } from "../context/AuthContext"
 import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import logo from "../assets/logo.svg"
@@ -75,7 +74,6 @@ function FeatureMenuItem({ item }) {
 }
 
 export default function Navbar() {
-  const { user, logout } = useAuth()
   const navigate = useNavigate()
   const location = useLocation()
 
@@ -305,7 +303,7 @@ export default function Navbar() {
                     </svg>
                   </span>
                   <span className="relative mt-2 overflow-hidden text-[clamp(12px,0.78vw,14px)] leading-none text-white/75 [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2]">
-                    Loram ipsum lorme ipsum
+                    Launch personalized campaigns and convert shoppers faster.
                   </span>
                 </button>
               </div>
@@ -389,11 +387,11 @@ export default function Navbar() {
                               aria-hidden="true"
                               className="h-8 w-8 shrink-0 object-contain"
                             />
-                            <span className="min-w-0 flex-1 text-[12px] font-normal leading-[1.2] text-[#111111]">
+                            <span className="min-w-0 flex-1 whitespace-nowrap pr-3 text-[12px] font-normal leading-[1.2] text-[#111111]">
                               {item.label}
                             </span>
                             {item.comingSoon && (
-                              <span className="ml-1 shrink-0 rounded-full bg-[#eaf1e3] px-3 py-1.5 text-[7px] font-medium leading-none text-[#17362d]">
+                              <span className="ml-3 shrink-0 rounded-full bg-[#eaf1e3] px-3 py-1.5 text-[7px] font-medium leading-none text-[#17362d]">
                                 Coming Soon
                               </span>
                             )}

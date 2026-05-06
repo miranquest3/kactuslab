@@ -32,7 +32,7 @@ import wrongIcon from "../assets/images/Vto/wrong.svg";
 import vtoImg from "../assets/images/Vto/vtoImg.png";
 import vtoCtaImage from "../assets/images/Vto/vtoCta.png";
 import ShopifyHeroBg from "../assets/images/Vto/shopifyhero.png";
-import whatsappMobileBg from "../assets/images/WhatsAppMarketing/mobileBg.png";
+import whatsappMobileBg from "../assets/images/Vto/mobileBg.png";
 import logoWithoutName from "../assets/images/Vto/logowithoutname.svg";
 
 
@@ -606,7 +606,7 @@ function FeatureShowcaseCard({ card, index, activeCard, setActiveCard }) {
       </div>
       <div className="absolute inset-0 rounded-[14px] border border-white/6 pointer-events-none group-hover:border-[#8ef0d0]/30 transition-colors duration-300" />
 
-      <div className="relative z-10 flex h-full flex-col items-center px-6 pt-16 pb-8 text-center">
+      <div className="relative z-10 flex h-full flex-col items-center px-6 pt-8 pb-8 text-center">
         <h3 className="text-white text-[17px] md:text-[18px] font-semibold tracking-wide">
           {card.title}
         </h3>
@@ -768,7 +768,7 @@ export default function Vto() {
           className="absolute inset-0 h-full w-full object-cover object-left-top md:hidden"
         />
 
-        <div className="relative z-10 flex min-h-[663px] items-start px-[11px] pb-8 pt-[146px] sm:px-8 md:min-h-[720px] md:items-center md:px-14 md:pb-20 md:pt-32 lg:px-20 xl:px-24">
+        <div className="relative z-10 flex min-h-[663px] items-start px-[11px] pb-8 pt-[146px] sm:px-8 md:min-h-[720px] md:items-center md:px-14 md:pb-10 md:pt-32 lg:px-20 xl:px-24">
           <div className="mx-auto grid w-full max-w-[1320px] items-center gap-[86px] md:gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(420px,580px)] lg:gap-16">
             <motion.div
               initial={{ opacity: 0, y: 28 }}
@@ -889,7 +889,7 @@ export default function Vto() {
 
       <section
         ref={vtoChallengesSectionRef}
-        className="bg-white px-6 py-16 sm:px-8 md:px-14 md:py-20 lg:px-20 xl:px-24"
+        className="bg-white px-6 py-10 sm:px-8 md:px-14 md:py-8 lg:px-20 xl:px-24"
       >
         <div className="mx-auto max-w-[1320px]">
           <motion.div
@@ -1135,7 +1135,7 @@ export default function Vto() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-[#06231C] px-6 pt-12 pb-20 text-white sm:px-8 md:px-14 md:pt-14 md:pb-24 lg:px-20 xl:px-24">
+      <section className="relative overflow-hidden bg-[#06231C] px-6 pt-8 pb-10 text-white sm:px-8 md:px-14 md:pt-10 md:pb-10 lg:px-20 xl:px-24">
         <VtoOrbitBackground />
         <VtoTopGlow
           wrapperClassName="top-0 -translate-y-[22%] md:-translate-y-[26%]"
@@ -1358,7 +1358,7 @@ export default function Vto() {
         </div>
       </section>
 
-      <section className="bg-white px-0 pt-4 pb-8 text-[#06231C] lg:px-20 lg:pt-20 lg:pb-10 xl:px-24">
+      <section className="bg-white px-0 pt-4 pb-8 text-[#06231C] lg:px-20 lg:pt-10 lg:pb-10 xl:px-24">
         <div className="mx-auto w-full max-w-none lg:max-w-[1200px]">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -1397,7 +1397,7 @@ export default function Vto() {
                 const isActive = activeVtoConversationRule === index;
 
                 return (
-                  <article key={item.title} className="border-b border-[#D8DED9] px-3 py-4 lg:px-0 lg:py-6">
+                  <article key={item.title} className="border-b border-[#D8DED9] px-5 py-4 lg:px-0 lg:py-6">
                     <button
                       type="button"
                       className="flex w-full items-start justify-between gap-5 text-left"
@@ -1483,7 +1483,7 @@ export default function Vto() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-white px-2 pt-8 pb-16 sm:px-6 md:px-8 md:pt-10 md:pb-24 lg:px-20 lg:pt-12 lg:pb-28 xl:px-24">
+      <section className="relative overflow-hidden bg-white px-2 pt-8 pb-10 sm:px-6 md:px-8 md:pt-10 md:pb-10 lg:px-20 lg:pt-8 lg:pb-28 xl:px-24">
         <div className="relative mx-auto max-w-[1320px]">
           <motion.div
             initial={{ opacity: 0, y: -64 }}
@@ -1569,8 +1569,8 @@ export default function Vto() {
             </p>
           </div>
 
-          <div className="mt-9 grid grid-cols-[48%_52%] items-start gap-2">
-            <div className="flex min-h-[322px] flex-col justify-center">
+          <div className="mt-9 grid grid-cols-[48%_52%] items-start gap-4">
+            <div className="flex min-h-[322px] flex-col justify-center pr-1">
               <div className="space-y-4">
                 {["Grow consistently", "Manage effortlessly", "Optimize intelligently"].map((point) => (
                   <div key={point} className="flex items-center gap-3">
@@ -1602,7 +1602,7 @@ export default function Vto() {
               </div>
             </div>
 
-            <div className="relative min-h-[322px]">
+            <div className="relative min-h-[322px] pl-1">
               <div className="absolute left-[-32px] top-[-22px] h-48 w-48 rounded-full bg-[#E8F1CF] blur-[88px]" />
               <div className="relative mr-[-132px] overflow-hidden rounded-tl-[20px] border-t border-l border-[#EEF2E5] bg-white pt-2 pl-2 shadow-[0_0_40px_rgba(22,54,45,0.06)]">
                 <img
@@ -1633,3 +1633,4 @@ export default function Vto() {
     </main>
   );
 }
+

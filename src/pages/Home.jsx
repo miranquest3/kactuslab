@@ -32,7 +32,7 @@ import poweredLeft from "../assets/images/Home/poweredLeft.png";
 import poweredRight from "../assets/images/Home/poweredRight.png";
 import miranLogo from "../assets/images/Home/MIRAN LOGO.png";
 import orbitCardBg from "../assets/images/Home/orbitcard.png";
-import logoWithoutName from "../assets/images/logowithoutname.svg";
+import logoWithoutName from "../assets/images/Home/logowithoutname.svg";
 
 
 const logos = [
@@ -1188,7 +1188,7 @@ function CardSplitSection() {
   const bottomCards = splitCards.filter((card) => card.row === "bot");
 
   return (
-    <section ref={sectionRef} className="relative overflow-visible bg-white px-4 py-14 font-['SF_Pro',sans-serif] sm:px-6 md:py-20 lg:px-8">
+    <section ref={sectionRef} className="relative overflow-visible bg-white px-4 py-8 font-['SF_Pro',sans-serif] sm:px-6 md:py-12 lg:px-8">
       <div className="mx-auto w-full max-w-[1190px]">
         <div className="mx-auto max-w-3xl text-center">
           <h2
@@ -1806,7 +1806,7 @@ function InteractiveFeatureOrbit({ cards, activeIndex, setActiveIndex }) {
   const iconOrbitRadius = iconOrbitSize / 2
 
   return (
-    <section className="relative overflow-hidden bg-white px-4 py-14 sm:px-6 lg:px-8 md:py-20">
+    <section className="relative overflow-hidden bg-white px-4 py-8 sm:px-6 lg:px-8 md:py-12">
       <div className="relative mx-auto max-w-[1440px]">
         <div className="grid items-center gap-10 xl:grid-cols-[1fr_764px] xl:gap-6">
           <motion.div
@@ -2145,7 +2145,7 @@ export default function Home() {
       className="h-full w-auto object-contain"
     />
 
-    <div className="absolute left-[36.5%] top-[14%] h-[18%] w-[27%] lg:left-[30.6%] lg:top-[0.4%] lg:h-[38%] lg:w-[45%]">
+    <div className="absolute left-1/2 top-[18%] h-[18%] w-[27%] -translate-x-1/2 lg:left-[30.6%] lg:top-[0.4%] lg:h-[38%] lg:w-[45%] lg:translate-x-0">
       <motion.div
         className="absolute inset-[8%] rounded-full blur-[12px] lg:inset-0 lg:blur-[73px]"
         style={{
@@ -2183,7 +2183,7 @@ export default function Home() {
 
 </section>
 
-      {/* <section className="relative bg-white pt-20 pb-10 md:pt-20 md:pb-14 overflow-hidden">
+      {/* <section className="relative bg-white pt-10 pb-10 md:pt-10 md:pb-10 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute left-[12%] top-[38%] w-40 h-40 rounded-full bg-[#b9f3ca]/30 blur-3xl" />
           <div className="absolute right-[14%] top-[28%] w-44 h-44 rounded-full bg-[#dcb6ff]/25 blur-3xl" />
@@ -2308,9 +2308,9 @@ export default function Home() {
 
       <CardSplitSection />
 
- <section className="w-full bg-white px-0 py-8 md:px-0 md:py-[40px]">
+ <section className="w-full bg-white px-0 py-6 md:px-0 md:py-[32px]">
   <div
-    className="relative flex h-[243px] w-full items-center overflow-hidden px-6 md:h-[396px] md:px-[56px] lg:overflow-visible lg:px-[80px]"
+    className="relative flex h-[243px] w-full items-center overflow-visible px-6 md:h-[396px] md:overflow-hidden md:px-[56px] lg:overflow-visible lg:px-[80px]"
     style={{
       backgroundImage: `url(${thirdContainerBg})`,
       backgroundPosition: "center",
@@ -2321,7 +2321,7 @@ export default function Home() {
     <motion.div
       initial={{ opacity: 0, x: -52 }}
       whileInView={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.375, ease: [0.22, 1, 0.36, 1] }}
       viewport={{ once: false, amount: 0.35 }}
       className="relative z-10 max-w-[178px] text-white md:max-w-[470px] lg:max-w-[997px]"
     >
@@ -2346,13 +2346,13 @@ export default function Home() {
       alt="Hand holding phone"
       initial={{ opacity: 0, x: 72 }}
       whileInView={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.82, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.41, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
       viewport={{ once: false, amount: 0.35 }}
-      className="pointer-events-none absolute bottom-0 right-0 z-[9] h-[292px] w-auto object-contain md:-right-[6%] md:h-[430px] lg:right-[3%] lg:h-[501.744px]"
+      className="pointer-events-none absolute right-[10px] top-[-52px] z-[9] h-[292px] w-auto object-contain md:-right-[6%] md:top-auto md:bottom-0 md:h-[430px] lg:right-[3%] lg:h-[501.744px]"
     />
     <div
       aria-hidden="true"
-      className="pointer-events-none absolute bottom-[148px] right-[20.5%] z-[10] h-[66px] w-[66px] md:bottom-[222px] md:right-[8.5%] md:h-[98px] md:w-[98px] lg:bottom-[252px] lg:right-[11.2%] lg:h-[116px] lg:w-[116px]"
+      className="pointer-events-none absolute bottom-[118px] right-[23%] z-[10] h-[66px] w-[66px] md:bottom-[222px] md:right-[8.5%] md:h-[98px] md:w-[98px] lg:bottom-[252px] lg:right-[11.2%] lg:h-[116px] lg:w-[116px]"
     >
       <motion.div
         className="absolute inset-0 rounded-full"
@@ -2366,7 +2366,7 @@ export default function Home() {
           scale: [0.95, 1.04, 0.98, 1.06, 0.96]
         }}
         transition={{
-          duration: 2.8,
+          duration: 1.4,
           ease: "easeInOut",
           repeat: Infinity
         }}
@@ -2375,7 +2375,7 @@ export default function Home() {
   </div>
 </section>
 
-      <section className="bg-white px-4 pb-8 pt-6 sm:px-6 md:py-8 lg:px-8">
+      <section className="bg-white px-4 pb-6 pt-4 sm:px-6 md:py-6 lg:px-8">
         <div className="mx-auto w-full max-w-[1480px]">
           <div className="bg-white lg:grid lg:grid-cols-[minmax(0,0.84fr)_minmax(0,1.16fr)] lg:items-center">
             <motion.div
@@ -2493,7 +2493,7 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="relative z-10 mx-auto max-w-[430px] px-5 pb-10 pt-[144px] md:hidden">
+          <div className="relative z-10 mx-auto max-w-[430px] px-5 pb-8 pt-[112px] md:hidden">
             <div className="grid grid-cols-2 gap-x-6 gap-y-[34px]">
               {[enterpriseCards[0], enterpriseCards[2], enterpriseCards[3], enterpriseCards[1]].map((item, index) => (
                 <EnterpriseReadyCard
@@ -2507,7 +2507,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="bg-white px-5 py-16 sm:px-6 md:px-10 md:py-20">
+      <section className="bg-white px-5 py-8 sm:px-6 md:px-10 md:py-12">
         <div className="mx-auto max-w-[1180px]">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -2533,7 +2533,7 @@ export default function Home() {
             </p>
           </motion.div>
 
-          <div className="mt-10 overflow-hidden md:mt-12">
+          <div className="mt-8 overflow-hidden md:mt-10">
             <style>{`
               @keyframes kactus-compatible-scroll {
                 from { transform: translateX(-50%); }
@@ -2562,7 +2562,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="mt-10 flex justify-center">
+          <div className="mt-8 flex justify-center">
             <Link
               to="/integrations"
               className="inline-flex h-[41px] w-[212px] items-center justify-center rounded-[4px] bg-[#D4E5C0] text-[13px] font-medium uppercase tracking-[0.06em] text-[#17362d] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#DCE9C9] md:h-[44px] md:w-[240px] md:text-[14px]"
@@ -2575,7 +2575,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-white pb-16 md:pb-20">
+      <section className="bg-white pb-8 md:pb-12">
         <div
           className="relative mx-auto w-full max-w-[1920px] overflow-hidden"
           style={{
@@ -2629,7 +2629,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* <section className="overflow-hidden bg-white px-5 pb-16 sm:px-6 md:px-10 md:pb-24">
+      {/* <section className="overflow-hidden bg-white px-5 pb-10 sm:px-6 md:px-10 md:pb-10">
         <div className="mx-auto max-w-[1320px]">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -2736,7 +2736,7 @@ export default function Home() {
         </div>
       </section> */}
 
-      <section className="bg-white px-5 pb-16 sm:px-6 md:px-10 md:pb-24">
+      <section className="bg-white px-5 pb-8 sm:px-6 md:px-10 md:pb-12">
         <div className="mx-auto max-w-[820px]">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -2831,6 +2831,7 @@ export default function Home() {
     </main>
   );
 }
+
 
 
 
